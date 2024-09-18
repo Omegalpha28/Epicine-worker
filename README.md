@@ -21,7 +21,7 @@
 
 <h2>Status</h2>
 <div>
-     <img src="https://readme-typing-svg.herokuapp.com?font=Zain&weight=900&size=30&letterSpacing=-3+px&duration=4000&pause=2000&color=093eeb&center=false&vCenter=true&width=500&lines=In+Progress...;" 
+     <img src="https://readme-typing-svg.herokuapp.com?font=Zain&weight=900&size=30&letterSpacing=-3+px&duration=4000&pause=2000&color=093eeb&center=false&vCenter=true&width=500&lines=In+Progress...;"
 </div>
 <h2>Resume 💬</h2>
 <div>
