@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: epicine_database
+    environment:
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+      MYSQL_DATABASE: db_name
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - epicine_db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - backend_overlay
+
+  backend:
+    build: ./backend
+    container_name: epicine_backend
+    environment:
+      DATABASE_URL: mysql://db_user:db_password@mysql:3307/db_name
+
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5555:5555"
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - mysql
+    networks:
+      - backend_overlay
+
+  frontend:
+    build: ./frontend
+    container_name: epicine_frontend
+    ports:
+      - "5173:5173"
+    command: npm start -- --host 0.0.0.0
+    depends_on:
+      - backend
+    networks:
+      - backend_overlay
+
+networks:
+  backend_overlay:
+    driver: bridge
+    attachable: true
+
+volumes:
+  epicine_db_data:
