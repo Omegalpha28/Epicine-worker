@@ -99,8 +99,8 @@ int main() {
                         // Exécution des commandes Git
                         executeCommand("git add .");
                         executeCommand("git commit -m \"" + commitMessage + "\"");
-                        executeCommand("git push");
                         std::cout << "Push effectué sur la branche " << branch << " avec le message: " << commitMessage << std::endl;
+                        executeCommand("git push");
                     }
 
                     // Détection du clic sur la zone de texte "Description"
