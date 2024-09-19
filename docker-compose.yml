@@ -31,6 +31,7 @@ services:
     networks:
       - backend_overlay
 
+
   frontend:
     build: ./frontend
     container_name: epicine_frontend
