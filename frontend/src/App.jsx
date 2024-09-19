@@ -1,6 +1,19 @@
+import styles from "./App.module.css";
+import React, { useState } from "react";
+import useLocalStorage from "use-local-storage";
+
+import { Toggle } from "./components/Toggle/Toggle";
+import { Navbar } from './components/Navbar/Navbar';
+
 function App() {
+    const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
+    const [isDark, setisDark] = useLocalStorage("isDark", preference);
+
   return (
-    <>Hello word</>
+    <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
+      <Toggle isChecked={isDark} handleChange={() => setisDark(!isDark)} />
+      <Navbar />
+    </div>
   )
 }
 

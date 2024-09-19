@@ -1,0 +1,49 @@
+:root {
+    /* Default Theme Colors */
+    --color-text: #000000;
+    --color-primary: #f2d669;
+    --color-secondary: #e6c892;
+    --color-dark: #f4dbb8;
+    --color-bg: #fbead2;
+    --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
+
+    /* About */
+    --color-about: #f3f3f366;
+    --background-item: linear-gradient(
+        90deg,
+        rgba(236, 3, 186, 0.298) 0%,
+        rgba(236, 3, 186, 0.05) 100%
+    );
+
+    /* Hero */
+    --color-blur: #ec03ba4c;
+
+    /* Fonts */
+    --font-robot: "Roboto";
+    --font-outfit: "Outfit";
+}
+
+[data-theme="dark"] {
+    /* Inverted Theme Colors */
+    --color-text: #fff;
+    --color-primary: #576cbc;
+    --color-secondary: #19376d;
+    --color-dark: #0b2447;
+    --color-bg: #04152d;
+    --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+    /* About */
+    --color-about: #0c0c0c99;
+    --background-item: linear-gradient(
+        90deg,
+        rgba(165, 215, 232, 0.42) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+
+    /* Hero */
+    --color-blur: #19376db3;
+
+    /* Fonts */
+    --font-robot: "Roboto";
+    --font-outfit: "Outfit";
+}
