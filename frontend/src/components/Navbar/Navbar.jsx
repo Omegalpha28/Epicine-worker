@@ -29,6 +29,7 @@ export const Navbar = () => {
                     <a href="#Trailers">Trailers</a>
                 </li>
             </ul>
+                <a className={styles.account} href="#account">Mon compte</a>
             <img
                 className={styles.menuBtn}
                 src={

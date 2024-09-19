@@ -10,29 +10,39 @@
 }
 
 .logo {
-    height: 100px;
-    width: 80px;
+    height: 70px;
+    width: 56px;
     text-decoration: none;
     color: var(--color-text);
 }
 
 .menu {
-    padding-top: 20px;
+    padding-top: 0px;
     display: flex;
     flex: auto;
     padding-left: 5vh;
 }
 
 .menuItems {
+    padding-left: 10vh;
     display: flex;
     gap: 4vh;
     list-style: none;
 }
 
 .menuItems a {
-    font-size: 25px;
+    font-size:18px;
+    color: var(--color-text);
+    padding-left: 2vh;
+    text-decoration: none;
+}
+
+.account {
+    font-size:18px;
     color: var(--color-text);
     text-decoration: none;
+    float: right;
+    margin-left: auto;
 }
 
 .menuBtn {
@@ -62,7 +72,7 @@
     }
 
     .logo {
-        background-color: red;
+        background-color: var(--color-secondary);
         height: 100px;
         width: 80px;
         text-decoration: none;
