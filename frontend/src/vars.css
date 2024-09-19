@@ -47,3 +47,32 @@
     --font-robot: "Roboto";
     --font-outfit: "Outfit";
 }
+
+@media (prefers-color-scheme: dark) {
+
+    [data-theme="dark"] {
+        /* Inverted Theme Colors */
+        --color-text: #fff;
+        --color-primary: #576cbc;
+        --color-secondary: #19376d;
+        --color-dark: #0b2447;
+        --color-bg: #04152d;
+        --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+        /* About */
+        --color-about: #0c0c0c99;
+        --background-item: linear-gradient(
+            90deg,
+            rgba(165, 215, 232, 0.42) 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+
+        /* Hero */
+        --color-blur: #19376db3;
+
+        /* Fonts */
+        --font-robot: "Roboto";
+        --font-outfit: "Outfit";
+    }
+
+}
