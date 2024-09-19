@@ -1,4 +1,8 @@
 node_modules
+<<<<<<< Updated upstream
 .env
 backend/src/logs/
 app.excalidraw
+=======
+./backend/src/logs
+>>>>>>> Stashed changes
