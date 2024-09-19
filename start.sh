@@ -4,6 +4,10 @@ if [ "$1" == "--pull" ]; then
     git pull origin main
     git stash pop
 fi
+if [ "$2" == "--no-start" ];then
+    exit 0
+fi;
+
 cd frontend
 npm i
 cd ..

@@ -101,6 +101,7 @@ class Model{
                 if (field.required) columnDefinition += ' NOT NULL';
                 if (field.default !== undefined) columnDefinition += ` DEFAULT "${field.default}"`;
                 if (field.unique) columnDefinition += ' UNIQUE';
+                if (field.auto_increment) columnDefinition += ' AUTO_INCREMENT';
                 return columnDefinition;
             }
 
