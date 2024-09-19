@@ -8,6 +8,11 @@ const userSchema = new Schema({
     },
     name: String,
     email: String,
+    telephone: {
+        type: String,
+        unique: true,
+        default: ""
+    },
     birthday: String
 });
 
