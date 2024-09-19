@@ -15,6 +15,10 @@ async function logs(content) {
     await write(content, "black", "bgWhite", "LOG", false);
 }
 
+async function client(content) {
+    await write(content, "black", "bgGreen", "CLIENT", false);
+}
+
 async function write(content, tagColor, bgTagColor, tag, error = false) {
     const chalk = (await import("chalk")).default;
     const timestamp = `[${dayjs().format("DD/MM - HH:mm:ss")}]`;
@@ -29,7 +33,7 @@ async function write(content, tagColor, bgTagColor, tag, error = false) {
     stream.write(item);
 }
 
-module.exports = { error, serveur, logs };
+module.exports = { error, serveur, logs, client };
 function appendToFile(content) {
     dotenv.config();
     if (!process.env.DEBUG || process.env.DEBUG !== "true") return

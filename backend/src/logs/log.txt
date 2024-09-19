@@ -38,3 +38,91 @@
 {[18/09 - 13:54:01]} [SERVER] EpiTodo server: http://localhost:5555
 {[18/09 - 13:54:07]} [LOG] Listening at port: 5555
 {[18/09 - 13:54:07]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:48:35]} [LOG] Listening at port: 5555
+{[19/09 - 07:48:35]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:48:43]} [LOG] Listening at port: 5555
+{[19/09 - 07:48:43]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:50:14]} [LOG] Listening at port: 5555
+{[19/09 - 07:50:14]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:50:27]} [LOG] Listening at port: 5555
+{[19/09 - 07:50:27]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:52:35]} [LOG] Listening at port: 5555
+{[19/09 - 07:52:35]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 07:52:42]} [LOG] Listening at port: 5555
+{[19/09 - 07:52:42]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:10:30]} [LOG] Listening at port: 5555
+{[19/09 - 08:10:30]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:10:35]} [LOG] Listening at port: 5555
+{[19/09 - 08:10:35]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:14:14]} [LOG] Listening at port: 5555
+{[19/09 - 08:14:14]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:14:14]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:14:14]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 08:14:18]} [LOG] Listening at port: 5555
+{[19/09 - 08:14:18]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:14:18]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:14:18]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:19:06]} [LOG] Listening at port: 5555
+{[19/09 - 08:19:06]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:19:06]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:19:06]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 08:19:13]} [LOG] Listening at port: 5555
+{[19/09 - 08:19:13]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:19:13]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:19:13]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:13]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:13]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:13]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:13]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:18]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:18]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:18]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:18]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:20]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:20]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:20]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:21]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:24]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:24]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:24]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:24]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:26]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:26]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:26]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:26]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:30]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:30]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:30]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:30]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:33]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:33]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:33]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:33]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:35]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:35]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:35]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:35]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:38]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:38]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:38]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:38]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:41]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:41]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:41]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:41]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:21:44]} [LOG] Listening at port: 5555
+{[19/09 - 08:21:44]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:21:44]} [ERROR] TypeError: Logger.client is not a function
+{[19/09 - 08:21:44]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:22:21]} [LOG] Listening at port: 5555
+{[19/09 - 08:22:21]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:22:21]} [CLIENT] - connecté à la base de donné
+{[19/09 - 08:22:21]} [LOG] La base de donnée User a été créé
+{[19/09 - 08:48:41]} [LOG] Listening at port: 5555
+{[19/09 - 08:48:41]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:48:41]} [CLIENT] - connecté à la base de donné
+{[19/09 - 08:48:41]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 08:48:46]} [LOG] Listening at port: 5555
+{[19/09 - 08:48:46]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 08:48:46]} [CLIENT] - connecté à la base de donné
+{[19/09 - 08:48:46]} [LOG] La base de donnée User a été créé
