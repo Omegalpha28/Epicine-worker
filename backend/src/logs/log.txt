@@ -126,3 +126,51 @@
 {[19/09 - 08:48:46]} [SERVER] EpiTodo server: http://localhost:5555
 {[19/09 - 08:48:46]} [CLIENT] - connecté à la base de donné
 {[19/09 - 08:48:46]} [LOG] La base de donnée User a été créé
+{[19/09 - 09:29:39]} [LOG] Listening at port: 5555
+{[19/09 - 09:29:39]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:29:39]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:29:39]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 09:29:46]} [LOG] Listening at port: 5555
+{[19/09 - 09:29:46]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:29:46]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:29:46]} [LOG] La base de donnée User a été créé
+{[19/09 - 09:31:09]} [LOG] Listening at port: 5555
+{[19/09 - 09:31:09]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:31:09]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:31:09]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 09:31:16]} [LOG] Listening at port: 5555
+{[19/09 - 09:31:16]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:31:16]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:31:16]} [LOG] La base de donnée User a été créé
+{[19/09 - 09:32:53]} [LOG] Listening at port: 5555
+{[19/09 - 09:32:53]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:32:53]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:32:53]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 09:32:59]} [LOG] Listening at port: 5555
+{[19/09 - 09:32:59]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:32:59]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:32:59]} [LOG] La base de donnée User a été créé
+{[19/09 - 09:33:49]} [LOG] Listening at port: 5555
+{[19/09 - 09:33:49]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:33:49]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:33:49]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 09:33:59]} [LOG] Listening at port: 5555
+{[19/09 - 09:33:59]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 09:33:59]} [CLIENT] - connecté à la base de donné
+{[19/09 - 09:33:59]} [LOG] La base de donnée User a été créé
+{[19/09 - 10:24:12]} [LOG] Listening at port: 5555
+{[19/09 - 10:24:12]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 10:24:12]} [CLIENT] - connecté à la base de donné
+{[19/09 - 10:24:12]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 10:24:18]} [LOG] Listening at port: 5555
+{[19/09 - 10:24:18]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 10:24:18]} [CLIENT] - connecté à la base de donné
+{[19/09 - 10:24:18]} [LOG] La base de donnée User a été créé
+{[19/09 - 10:24:49]} [LOG] Listening at port: 5555
+{[19/09 - 10:24:49]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 10:24:49]} [CLIENT] - connecté à la base de donné
+{[19/09 - 10:24:49]} [ERROR] Error creating table: Error: connect ECONNREFUSED 172.18.0.2:3306 with table name: User
+{[19/09 - 10:24:59]} [LOG] Listening at port: 5555
+{[19/09 - 10:24:59]} [SERVER] EpiTodo server: http://localhost:5555
+{[19/09 - 10:24:59]} [CLIENT] - connecté à la base de donné
+{[19/09 - 10:24:59]} [LOG] La base de donnée User a été créé
