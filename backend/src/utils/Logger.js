@@ -2,6 +2,7 @@ const fs = require('fs');
 const dayjs = require("dayjs");
 const dotenv = require("dotenv");
 const format = "{tstamp} {tag} {txt}\n";
+const path = require('path');
 
 async function error(content) {
     await write(content, "black", "bgRed", "ERROR", true);
@@ -44,6 +45,11 @@ function appendToFile(content) {
     }
 
     const strippedContent = content.replace(/\x1B\[[0-9;]*[mK]/g, '');
+
+    const dirPath = path.dirname(filePath);
+    if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true, mode: 0o777 });
+    }
 
     const fileExists = fs.existsSync(filePath);
     if (!fileExists) {
