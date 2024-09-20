@@ -188,4 +188,4 @@ class ModelInstance{
     }
 }
 
-module.exports = {Schema, connect, Model};
+module.exports = {Schema, connect, logout, Model};
