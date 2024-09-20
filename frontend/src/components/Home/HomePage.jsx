@@ -4,7 +4,7 @@ import useLocalStorage from "use-local-storage";
 
 import { Toggle } from "../Toggle/Toggle";
 import { Navbar } from "../Navbar/Navbar";
-import { Home } from "../Home/Home";
+import { Home } from "./Home";
 
 export const HomePage = () => {
   const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
