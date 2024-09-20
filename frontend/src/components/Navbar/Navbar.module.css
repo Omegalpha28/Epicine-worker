@@ -6,8 +6,12 @@
     align-items: center;
     justify-content: space-between;
     z-index: 2;
-    margin: 0 5%;
+    padding: 0 5%;
     text-wrap: nowrap;
+    flex-wrap: nowrap;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: var(--color-bg);
 }
 
 .logo {
@@ -20,14 +24,14 @@
     padding-top: 0px;
     display: flex;
     flex: auto;
-    padding-left: 5vh;
+    padding-left: 5px;
 }
 
 .menuItems {
-    padding-left: 10vh;
+    padding-left: 10px;
     display: flex;
-    gap: 2vh;
-    padding-top: 1vh;
+    gap: 1vw;
+    padding-top: 10px;
     padding-bottom: 10px;
     list-style: none;
 }
@@ -36,11 +40,12 @@
     position: relative;
     font-size: 18px;
     color: var(--color-text);
-    padding-left: 2vh;
-    padding-right: 2vh;
-    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 5px;
     padding-bottom: 10px;
     text-decoration: none;
+    align-items: center;
 }
 
 .menuItems li a::after {
@@ -85,9 +90,9 @@
     position: relative;
     font-size: 18px;
     color: var(--color-text);
-    padding-left: 2vh;
-    padding-right: 2vh;
-    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 10px;
     padding-bottom: 10px;
     text-decoration: none;
     float: right;
@@ -155,6 +160,7 @@
         width: 40px;
         flex-direction: column;
         align-items: flex-end;
+        margin-right: 5%;
     }
 
     .menuBtn {
@@ -186,7 +192,7 @@
 
     .menuOpen {
         position: absolute;
-        margin-top: 8vh;
+        margin-top: 60px;
         display: flex;
         z-index: 1;
     }

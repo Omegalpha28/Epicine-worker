@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-      <Toggle style={{ visibility: 'hidden'}} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
+      <Toggle isChecked={isDark} handleChange={() => setisDark(!isDark)} />
       <Navbar />
       <ConnectGoogle />
     </div>
