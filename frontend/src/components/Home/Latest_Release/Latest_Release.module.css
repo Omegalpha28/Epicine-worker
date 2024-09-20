@@ -36,8 +36,8 @@
 .categories .movies, .categories .series {
     margin-left: 5%;
     margin-top: 5%;
-    height: 2vh; /* Augmenté pour agrandir le background */
-    width: 5vw; /* Augmenté pour agrandir le background */
+    height: 3vh;
+    width: 8vw;
     font-size: 1.5vh;
     border-radius: 50px;
     border: none;

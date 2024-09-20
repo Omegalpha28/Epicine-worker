@@ -1,7 +1,66 @@
 .box {
     display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_box {
+    display: flex;
+    flex-direction: column;
     height: 40vh;
-    background-color: #ff00e1;
+    width: 100%;
+    background-color: #fa7000;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.title_box {
+    margin-left: 2.5%;
+    margin-bottom: 5%;
+    font-size: 4vh;
+}
+
+.categories {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.categories .movies, .categories .television_programme {
+    margin-right: 5%;
+    height: 3vh;
+    width: 15vw;
+    font-size: 1.5vh;
+    border-radius: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inside_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 81%;
+    width: 95%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 2%;
+    box-sizing: border-box;
 }
