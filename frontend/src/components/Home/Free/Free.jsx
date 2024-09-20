@@ -6,7 +6,7 @@ export const Free = () => {
     return <div className={styles.box}>
         <div className={styles.main_box}>
             <div className={styles.header}>
-                <h1 className={styles.title_box}>Trends</h1>
+                <h1 className={styles.title_box}>Free</h1>
                 <div className={styles.categories}>
                     <button className={styles.movies}>Movies</button>
                     <button className={styles.television_programme}>Television programme</button>
