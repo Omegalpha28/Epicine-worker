@@ -28,6 +28,8 @@ main();
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.raw());
+
+require("./src/routes/auth/auth")(client, app, bcrypt);
 app.listen(port, () => {
     Logger.logs(`Listening at port: ${port}`);
     Logger.serveur(`EpiTodo server: http://localhost:${port}`);
