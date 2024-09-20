@@ -1,5 +1,6 @@
-module.exports = {getUser, createUser, updateUser};
+module.exports = {getUserWithId, getUserWithMail, createUser, updateUser};
 
-async function getUser(client, userId){return await client.getUser(userId);}
-async function createUser(client, name, email, birthday){return await client.createUser(name, email, birthday)}
-async function updateUser(client, user, settings){return await client.updateUser(user, settings)}
+async function getUserWithId(client, userId){return await client.getUserWithId(userId);}
+async function getUserWithMail(client, userMail){return await client.getUserWithMail(userMail);}
+async function createUser(client, name, email, mdp){return await client.createUser(name, email, mdp);}
+async function updateUser(client, user, settings){return await client.updateUser(user, settings);}

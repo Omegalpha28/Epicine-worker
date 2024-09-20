@@ -6,14 +6,26 @@ const userSchema = new Schema({
         unique: true,
         auto_increment: true
     },
-    name: String,
-    email: String,
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String
+    },
     telephone: {
         type: String,
         unique: true,
-        default: ""
+        default: null
     },
-    birthday: String
+    birthday: {
+        type: String,
+        default: ""
+    }
 });
 
 module.exports = new Model("User", userSchema);

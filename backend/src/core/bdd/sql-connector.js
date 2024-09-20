@@ -101,9 +101,11 @@ class Model{
                 let columnDefinition = `${fieldName} ${sqlTypeMap[fieldType]}${sqlTypeMap[fieldType] == "VARCHAR" || sqlTypeMap[fieldType] == "INT" ? `(${field.length > 0 ? field.length : lengthDefault})` : ""}`;
 
                 if (field.required) columnDefinition += ' NOT NULL';
-                if (field.default !== undefined) columnDefinition += ` DEFAULT "${field.default}"`;
+                if (field.default !== undefined && field.default != null) columnDefinition += ` DEFAULT "${field.default}"`;
+                if (field.default === null) columnDefinition += ` DEFAULT NULL`;
                 if (field.unique) columnDefinition += ' UNIQUE';
                 if (field.auto_increment) columnDefinition += ' AUTO_INCREMENT';
+                if (typeof field.customize === 'string' && field.customize.length != 0) columnDefinition += ` ${field.customize}`;
                 return columnDefinition;
             }
 
@@ -121,12 +123,10 @@ class Model{
     async save(data) {
         const keys = Object.keys(data);
         const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
+
         try {
-            await connexion.promise().query(sql).catch((err) => {
-                error(`Error insert element : ${err}`);
-                throw err;
-            });
-            return data;
+            const result = await connexion.promise().query(sql);
+            return result;
         } catch (err) {
             error(`Error inserting data into ${this.name}: ${err}`);
             throw err;
