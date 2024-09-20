@@ -1,5 +1,7 @@
 const mysql = require("mysql2");
 const { error, logs } = require("../../utils/Logger");
+let client = {};
+
 class Schema {
     constructor(schemaDict) {
         this.schemaDict = schemaDict;
@@ -188,4 +190,4 @@ class ModelInstance{
     }
 }
 
-module.exports = {Schema, connect, logout, Model};
+module.exports = {Schema, connect, logout, Model, client};

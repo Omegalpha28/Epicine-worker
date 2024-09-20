@@ -4,8 +4,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const Logger = require("./src/utils/Logger");
-const { connect } = require("./src/core/bdd/sql-connector");
-const client = {};
+const { connect, client } = require("./src/core/bdd/sql-connector");
 const port = 5555;
 
 dotenv.config();
@@ -24,13 +23,14 @@ async function main() {
     require("./src/core/data/functions")(client);
 }
 
-main();
-app.use(bodyparser.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.raw());
-
-require("./src/routes/auth/auth")(client, app, bcrypt);
-app.listen(port, () => {
-    Logger.logs(`Listening at port: ${port}`);
-    Logger.serveur(`EpiTodo server: http://localhost:${port}`);
+main().then(() => {
+    app.use(bodyparser.urlencoded({ extended: true }));
+    app.use(express.json());
+    app.use(express.raw());
+    
+    require("./src/routes/auth/auth")(client, app, bcrypt);
+    app.listen(port, () => {
+        Logger.logs(`Listening at port: ${port}`);
+        Logger.serveur(`EpiTodo server: http://localhost:${port}`);
+    });
 });
