@@ -14,13 +14,13 @@ export const Navbar = () => {
             <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`}
                 onClick={() => setMenuOpen(false)}>
                 <li>
-                    <a href="#Nouveau">Nouveau</a>
+                    <a href="#Releases">New Releases</a>
                 </li>
                 <li>
-                    <a href="#Cinema">Cinema</a>
+                    <a href="#Movies">Movies</a>
                 </li>
                 <li>
-                    <a href="#Series">Series</a>
+                    <a href="#Shows">TV Shows</a>
                 </li>
                 <li>
                     <a href="#Streaming">Streaming</a>
@@ -28,8 +28,13 @@ export const Navbar = () => {
                 <li>
                     <a href="#Trailers">Trailers</a>
                 </li>
+                <li>
+                    <p className={styles.account_MB}>―――――――</p>
+                </li>
+                <li>
+                    <a className={styles.account_MB} href="#Account">My Account</a>
+                </li>
             </ul>
-                <a className={styles.account} href="#account">Mon compte</a>
             <img
                 className={styles.menuBtn}
                 src={
@@ -41,5 +46,6 @@ export const Navbar = () => {
                 onClick={() => setMenuOpen(!menuOpen)}
             />
         </div>
+        <a className={styles.account_PC} href="#Account">My Account</a>
     </nav>;
 }

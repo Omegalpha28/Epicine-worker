@@ -7,13 +7,13 @@
     justify-content: space-between;
     z-index: 2;
     margin: 0 5%;
+    text-wrap: nowrap;
 }
 
 .logo {
     height: 70px;
     width: 56px;
     text-decoration: none;
-    color: var(--color-text);
 }
 
 .menu {
@@ -26,23 +26,114 @@
 .menuItems {
     padding-left: 10vh;
     display: flex;
-    gap: 4vh;
+    gap: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 10px;
     list-style: none;
 }
 
 .menuItems a {
-    font-size:18px;
+    position: relative;
+    font-size: 18px;
     color: var(--color-text);
     padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 10px;
     text-decoration: none;
 }
 
-.account {
-    font-size:18px;
+.menuItems li a::after {
+    content: '';
+    height: 5px;
+    width: 0%;
+    background: var(--color-primary);
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.menuItems li a:hover::after {
+    left: 0%;
+    width: 100%;
+    background: var(--color-text);
+}
+
+.menuItems li a::before {
+    content: '';
+    height: 0%;
+    width: 100%;
+    background: var(--color-secondary);
+    position: absolute;
+    left: 0%;
+    bottom: 50%;
+    transition: 0.5s;
+    z-index: -2;
+}
+
+.menuItems li a:hover::before {
+    height: 100%;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    background: var(--color-primary);
+}
+
+.account_PC {
+    position: relative;
+    font-size: 18px;
     color: var(--color-text);
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 10px;
     text-decoration: none;
     float: right;
     margin-left: auto;
+}
+
+.account_PC::after {
+    content: '';
+    height: 5px;
+    width: 0%;
+    background: var(--color-primary);
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.account_PC:hover::after {
+    left: 0%;
+    width: 100%;
+    background: var(--color-text);
+}
+
+.account_PC::before {
+    content: '';
+    height: 0%;
+    width: 100%;
+    background: var(--color-secondary);
+    position: absolute;
+    left: 0%;
+    bottom: 50%;
+    transition: 0.5s;
+    z-index: -2;
+}
+
+.account_PC:hover::before {
+    height: 100%;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+    background: var(--color-primary);
+}
+
+.account_MB {
+    display: none;
 }
 
 .menuBtn {
@@ -51,33 +142,37 @@
 
 @media screen and (max-width: 1000px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .menu {
         position: absolute;
+        top: auto;
         right: 0;
+        height: 100%;
+        width: 40px;
         flex-direction: column;
         align-items: flex-end;
-        gap: 11px;
-        z-index: 3;
     }
 
     .menuBtn {
         position: absolute;
-        margin-top: 3.5vh;
         display: block;
         cursor: pointer;
+        top: 50%; /* Center vertically */
+        transform: translateY(-50%);
     }
 
     .logo {
-        background-color: var(--color-secondary);
-        height: 100px;
-        width: 80px;
-        text-decoration: none;
-        color: var(--color-text);
+        top: auto;
+        height: 50px;
+        width: 40px;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
+
     .menuItems {
         display: none;
         flex-direction: column;
@@ -85,11 +180,6 @@
         gap: 13px;
         border-radius: 10px;
         background: var(--color-secondary);
-        /*background: linear-gradient(
-            0deg,
-            rgba(25, 55, 109, 0.2) 0%,
-            rgba(25, 55, 106, 1) 100%
-        );*/
         padding: 24px 33px;
         box-shadow: var(--color-shadow);
     }
@@ -100,23 +190,14 @@
         display: flex;
         z-index: 1;
     }
-}
 
-@media screen and (min-width: 1000px) {
-    .menuItems li a::after{
-        content: '';
-        height: 3px;
-        width: 0;
-        background: var(--color-primary);
-        position: absolute;
-        left: 0px;
-        bottom: -10px;
-        transition: 0.5s;
+    .account_PC {
+        display: none;
     }
 
-    .menuItems li a:hover::after{
-        width: 100%;
-        background: var(--color-text);
+    .account_MB {
+        display: block;
+        color: var(--color-text);
     }
 
 }
