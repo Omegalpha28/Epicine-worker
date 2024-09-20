@@ -1,22 +1,20 @@
-import styles from "./App.module.css";
 import React, { useState } from "react";
 import useLocalStorage from "use-local-storage";
-
-import { Toggle } from "./components/Toggle/Toggle";
-import { Navbar } from './components/Navbar/Navbar';
-import { ConnectGoogle } from "./components/Account/Account";
-import { Home } from "./components/Home/Home"
+import { HomePage } from "./components/Home/HomePage";
+import { LoginPage } from "./components/Account/Account";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
-  const [isDark, setisDark] = useLocalStorage("isDark", preference);
 
   return (
-    <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-      <Toggle isChecked={isDark} handleChange={() => setisDark(!isDark)} />
-      <Navbar />
-      <ConnectGoogle />
-      <Home />
+    <div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/Account" element={<LoginPage />} />
+            </Routes>
+        </Router>
     </div>
   )
 }
