@@ -14,19 +14,22 @@ export const Navbar = () => {
             <div className={styles.menu}>
                 <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`} onClick={() => setMenuOpen(false)}>
                     <li>
-                        <a href="#Releases">New Releases</a>
+                        <Link to="/New_Release">New Release</Link>
                     </li>
                     <li>
-                        <a href="#Movies">Movies</a>
+                        <Link to="/Movies">Movies</Link>
                     </li>
                     <li>
-                        <a href="#Shows">TV Shows</a>
+                        <Link to="/TV_Shows">TV Shows</Link>
                     </li>
                     <li>
-                        <a href="#Streaming">Streaming</a>
+                        <Link to="/Streaming">Streaming</Link>
                     </li>
                     <li>
-                        <a href="#Trailers">Trailers</a>
+                        <Link to="/Trailers">Trailers</Link>
+                    </li>
+                    <li>
+                        <p className={styles.account_MB}>―――――――</p>
                     </li>
                     <li>
                         <Link className={styles.account_MB} to="/Account">My Account</Link>

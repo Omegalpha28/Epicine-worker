@@ -12,7 +12,7 @@ export const ConnectGoogle = () => {
 };
 
 export const LoginPage = () => {
-    const navigate = useNavigate();
+    /*const navigate = useNavigate();
 
     const supabase = createClient("https://pxppokfmmwdibnopbnjf.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4cHBva2ZtbXdkaWJub3BibmpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY4MzI4NjgsImV4cCI6MjA0MjQwODg2OH0.bdjDCmq9Ovq58nZUn_w42lT_kX4JPL3hBWTCMJkchzU");
 
@@ -22,17 +22,12 @@ export const LoginPage = () => {
         } else {
             navigate("/");
         }
-    });
+    });*/
 
     return (
         <div className={styles.App}>
             <Navbar />
-            <Auth
-                className={styles.Account}
-                supabaseClient={supabase}
-                theme="supa"
-                providers={["discord"]}
-            />
+            
         </div>
     );
 };
