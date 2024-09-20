@@ -5,6 +5,7 @@ import useLocalStorage from "use-local-storage";
 import { Toggle } from "./components/Toggle/Toggle";
 import { Navbar } from './components/Navbar/Navbar';
 import { ConnectGoogle } from "./components/Account/Account";
+import { Home } from "./components/Home/Home"
 
 function App() {
   const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
@@ -15,6 +16,7 @@ function App() {
       <Toggle isChecked={isDark} handleChange={() => setisDark(!isDark)} />
       <Navbar />
       <ConnectGoogle />
+      <Home />
     </div>
   )
 }

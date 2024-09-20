@@ -1,0 +1,62 @@
+.box {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: #fa0000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.title_box {
+    margin-left: 5%;
+    margin-top: 5%;
+    align-self: flex-start;
+    font-size: 4vh;
+}
+
+.categories {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2% 0;
+}
+
+.categories .movies, .categories .series {
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 2vh; /* Augmenté pour agrandir le background */
+    width: 5vw; /* Augmenté pour agrandir le background */
+    font-size: 1.5vh;
+    border-radius: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inside_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 78%;
+    width: 95%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 2%;
+    box-sizing: border-box;
+}
