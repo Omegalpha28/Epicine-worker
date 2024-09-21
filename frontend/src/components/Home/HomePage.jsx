@@ -4,6 +4,7 @@ import useLocalStorage from "use-local-storage";
 
 import { Toggle } from "../Toggle/Toggle";
 import { Navbar } from "../Navbar/Navbar";
+import { Header } from "../Header/Header";
 import { Home } from "./Home";
 
 export const HomePage = () => {
@@ -12,8 +13,9 @@ export const HomePage = () => {
 
   return (
     <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-      <Toggle style={{ visibility: 'hidden'}} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
+      <Toggle style={{ visibility: 'hidden' }} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
       <Navbar />
+      <Header />
       <Home />
     </div>
   )
