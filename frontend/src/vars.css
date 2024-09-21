@@ -1,6 +1,7 @@
 :root {
     /* Default Theme Colors */
     --color-text: #000000;
+    --color-app: #fff;
     --color-primary: #f2d669;
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
@@ -26,6 +27,7 @@
 [data-theme="dark"] {
     /* Inverted Theme Colors */
     --color-text: #fff;
+    --color-app: #000000;
     --color-primary: #576cbc;
     --color-secondary: #19376d;
     --color-dark: #0b2447;

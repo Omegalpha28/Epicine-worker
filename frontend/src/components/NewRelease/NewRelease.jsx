@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import "./NewRelease.module.css";
-import { Navbar } from "../Navbar/Navbar";
-import styles from "../../App.module.css";
+import styles from "./NewRelease.module.css";
 import useLocalStorage from "use-local-storage";
 
+import { Navbar } from "../Navbar/Navbar";
+import { Toggle } from "../Toggle/Toggle";
+
 export const NewReleasePage = () => {
-    const [isDark, setisDark] = useLocalStorage("isDark", preference);
+  const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
+  const [isDark, setisDark] = useLocalStorage("isDark", preference);
 
-    return (
+  return (
 
-    <div className={styles.App}>
-      <Toggle style={{ visibility: 'hidden' }} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
+    <div className={styles.New_Release} data-theme={isDark ? "dark" : "light"}>
+      <Toggle isChecked={isDark} handleChange={() => setisDark(!isDark)} />
       <Navbar />
     </div>
-    );
+  );
 };
