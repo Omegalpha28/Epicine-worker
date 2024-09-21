@@ -9,7 +9,7 @@
     padding: 0 5%;
     text-wrap: nowrap;
     flex-wrap: nowrap;
-    margin: 5px 1%;
+    margin-bottom: 5px;
     border-radius: 20px;
     background-color: var(--color-bg);
 }
