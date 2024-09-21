@@ -1,7 +1,7 @@
 .box {
     display: flex;
-    /* height: 100%;
-    width: 100%; */
+    height: 100%;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -11,7 +11,7 @@
     flex-direction: column;
     height: 40vh;
     width: 100%;
-    background-color: #4b00fa;
+    background-color: #fa0000;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 2%;
@@ -38,10 +38,10 @@
     margin-bottom: 5%;
 }
 
-.categories .today, .categories .this_week{
+.categories .movies, .categories .series {
     margin-right: 5%;
     height: 3vh;
-    width: 8vw;
+    width: 15vw;
     font-size: 1.5vh;
     border-radius: 50px;
     border: none;
@@ -63,13 +63,4 @@
     background-color: white;
     padding: 2%;
     box-sizing: border-box;
-}
-
-@media  screen and (max-width: 875px) {
-
-
-.categories .today, .categories .this_week {
-    height: 3vh;
-    width: 15vw;
-}
 }

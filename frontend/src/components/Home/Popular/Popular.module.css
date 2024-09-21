@@ -64,3 +64,13 @@
     padding: 2%;
     box-sizing: border-box;
 }
+
+@media  screen and (max-width: 875px) {
+
+
+.categories .streaming, .categories .television, .categories .to_rent, .categories .cinema {
+    height: 3vh;
+    width: 15vw;
+}
+
+}
