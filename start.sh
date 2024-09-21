@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ "$1" == "--zip" ]; then
+    zip -r "../$(basename "$PWD").zip" ./
+    exit 0
+fi
 if [ "$1" == "--pull" ]; then
     git stash
     git pull origin main
