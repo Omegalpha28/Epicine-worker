@@ -7,4 +7,20 @@
     transition: 0.25s ease-in-out;
     background-color: var(--color-app);
     position: relative;
+    filter: sepia(1) hue-rotate(90deg);
+    filter: sepia(1) hue-rotate(-60deg) saturate(5);
+    filter: sepia(1) hue-rotate(45deg) saturate(3) brightness(1.2);
+    filter: sepia(0) hue-rotate(270deg) saturate(10);
+    filter: none;
+    filter: sepia(1);
+    animation: bgrandom 8s infinite ease-in-out;
+    transition: background-color 1s ease;
+}
+
+@keyframes bgrandom {
+    0% {background-color: #ff0096;}
+    25% {background-color: #00ccff;}
+    50% {background-color: #00ffcc;}
+    75% {background-color: #ffcc00;}
+    100% {background-color: #ff0096;}
 }
