@@ -5,11 +5,7 @@ import styles from "../../App.module.css";
 import { Link } from 'react-router-dom';
 import { SignupValidation } from "./SignupValidation";
 import { useState } from "react";
-
-export const ConnectGoogle = () => {
-    const login = useGoogleLogin({ onSuccess: (tokenResponse) => console.log(tokenResponse), });
-    return <button onClick={() => login()}>Sign in with Google</button>
-};
+import { ConnectGoogle } from './connect';
 
 export const SignUpPage = () => {
     const [values, setValues] = useState({
@@ -36,8 +32,9 @@ export const SignUpPage = () => {
                     <form className={SignUp_styles.Form} action="" onSubmit={handleSubmit}>
                         <div className={SignUp_styles.Title}>EpiCiné</div>
                         <div className={SignUp_styles.TitleLog}>Sign Up</div>
-                        <div className={SignUp_styles.OneClick}>Create your account with a single click:</div>
-                        <p>-------------------------or-------------------------</p>
+                        <div className={SignUp_styles.OneClick}>On one click with:</div>
+                        <ConnectGoogle />
+                        <p className={SignUp_styles.or}>-------------------------or-------------------------</p>
                         <div className={SignUp_styles.mb3}>
                             <p className="name"><strong>New username</strong></p>
                             <input type="text" placeholder="Username" name="name" onChange={handleInput} />

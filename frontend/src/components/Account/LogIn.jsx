@@ -1,4 +1,3 @@
-import { useGoogleLogin } from "@react-oauth/google";
 import Login_styles from "./Login.module.css";
 import { Navbar } from "../Navbar/Navbar";
 import styles from "../../App.module.css";
@@ -8,11 +7,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { Validation } from "./LoginValidation";
-
-export const ConnectGoogle = () => {
-    const login = useGoogleLogin({ onSuccess: (tokenResponse) => console.log(tokenResponse), });
-    return login
-};
+import { ConnectGoogle } from "./connect";
 
 export const LoginPage = () => {
     /*const navigate = useNavigate();
@@ -27,11 +22,6 @@ export const LoginPage = () => {
         }
     });*/
 
-    const ConnectGoogle = () => {
-        const login = useGoogleLogin({ onSuccess: (tokenResponse) => console.log(tokenResponse), });
-        return  <img src="./logo/google.png" style={{ cursor: 'pointer' }} class={Login_styles.GoogleLogo} onClick={() => login()}
-    />
-    };
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -53,14 +43,14 @@ export const LoginPage = () => {
                 <form className={Login_styles.Form} action="" onSubmit={handleSubmit}>
                     <div className={Login_styles.Title}>EpiCiné</div>
                     <div className={Login_styles.TitleLog}>Log In</div>
-                    <div className={Login_styles.OneClick}>one click with:</div>
+                    <div className={Login_styles.OneClick}>On one click with:</div>
                     <ConnectGoogle />
-                    <p>--------------------or--------------------</p>
+                    <p className={Login_styles.or}>-------------------------or------------------------- </p>
                     <div className={Login_styles.mb3}>
-                        <p className="name"><strong>User Name</strong></p>
+                        <p className="name"><strong>Username</strong></p>
                         <input type="email" required name='email' placeholder="Email or Name" onChange={handleInput} value={values.email}/>
                         {issues.email && <span className={Login_styles.TextDanger}> {issues.email} </span>}
-                    </div>;
+                    </div>
                     <div className={Login_styles.mb3}>
                         <p className="name"><strong>Password</strong></p>
                         <input type="password" required name='password' placeholder="Password" onChange={handleInput} value={values.password}/>
