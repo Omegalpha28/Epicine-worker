@@ -1,12 +1,11 @@
 const jwt = require("jsonwebtoken");
 const { getUserWithMail, createUser } = require("../../core/data/config.function");
-const { error, logs } = require("../../utils/Logger");
 
 module.exports = { checkAccountMail, register }
 
-function checkAccountMail(client, res, email, callback)
+async function checkAccountMail(client, res, email, callback)
 {
-    const userData = getUserWithMail(client, email);
+    const userData = await getUserWithMail(client, email);
 
     if (Object.keys(userData).length == 0)
         callback(0);
