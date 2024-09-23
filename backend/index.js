@@ -4,7 +4,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const Logger = require("./src/utils/Logger");
-const { connect, client } = require("./src/core/bdd/sql-connector");
+const { connect, client, logout } = require("./src/core/bdd/sql-connector");
 const port = 5555;
 
 dotenv.config();
@@ -33,4 +33,18 @@ main().then(() => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiTodo server: http://localhost:${port}`);
     });
+});
+
+process.on('SIGINT', async () => {
+    await logout();
+    process.exit();
+});
+
+process.on('SIGTERM', async () => {
+    await logout();
+    process.exit();
+});
+
+process.on('exit', async () => {
+    await logout();
 });
