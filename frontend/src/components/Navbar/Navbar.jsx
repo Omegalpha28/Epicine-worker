@@ -32,7 +32,7 @@ export const Navbar = () => {
                         <p className={styles.account_MB}>―――――――</p>
                     </li>
                     <li>
-                        <Link className={styles.account_MB} to="/Account">My Account</Link>
+                        <Link className={styles.account_MB} to="/LogIn">My Account</Link>
                     </li>
                 </ul>
                 <img
@@ -46,7 +46,7 @@ export const Navbar = () => {
                     onClick={() => setMenuOpen(!menuOpen)}
                 />
             </div>
-            <Link className={styles.account_PC} to="/Account">My Account</Link>
+            <Link className={styles.account_PC} to="/LogIn">My Account</Link>
         </nav>
     );
 };
