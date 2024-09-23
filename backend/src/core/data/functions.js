@@ -1,4 +1,4 @@
-const { logs, error } = require("../../utils/Logger");
+const { error } = require("../../utils/Logger");
 const {User} = require("./models");
 
 module.exports = client => {
