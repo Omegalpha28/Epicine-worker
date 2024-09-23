@@ -2,6 +2,21 @@ const mysql = require("mysql2");
 const { error, logs } = require("../../utils/Logger");
 let client = {};
 
+/**
+ * Represents a database schema.
+ * 
+ * @example
+ * const transferSchema = new Schema({
+ *     token: {
+ *         type: String,
+ *         length: 50
+ *     },
+ *     mdp: {
+ *         type: String,
+ *         length: 15
+ *     }
+ * });
+ */
 class Schema {
     constructor(schemaDict) {
         this.schemaDict = schemaDict;
@@ -10,11 +25,44 @@ class Schema {
 
 let connexion = null;
 
-async function connect(config) {
-    connexion = mysql.createPool(config);
+/**
+ * Establishes a connection to the database using a given configuration.
+ * @param {Object} config Database connection configuration.
+ * @param {string} config.host The database host.
+ * @param {number} config.port The database port.
+ * @param {string} config.user The username for the connection.
+ * @param {string} config.password The password for the connection.
+ * @param {string} config.database The name of the database.
+ * @returns {Promise<void>} A promise that resolves when the connection is established.
+ * 
+ * @example
+ * const config = {
+ *   host: 'localhost',
+ *   port: 6666,
+ *   user: 'root',
+ *   password: 'password',
+ *   database: 'mydatabase'
+ * };
+ * await connect(config);
+ */
+async function connect(config)
+{
+    connexion = mysql.createConnection(config);
 }
 
-async function logout(){
+
+/**
+ * Closes the database connection.
+ * This function terminates the active database connection and records a logging message
+ * indicating whether the shutdown succeeded or failed.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the connection is closed.
+ *
+ * @example
+ * await logout();
+ */
+async function logout()
+{
     connexion.end(err => {
         if(err){
             error(`Error closing database connection: ${err}`);
@@ -25,7 +73,25 @@ async function logout(){
     });
 }
 
-function generateCondition(filter, isUpdate = false) {
+/**
+ * Generates an SQL condition from a filter object.
+ * 
+ * @param {Object} filter An object containing the key-value pairs to use to generate the condition.
+ * @param {boolean} [isUpdate=false] A flag to determine whether the condition is used in an update request.
+ * @returns {string} A character string representing the generated SQL condition.
+ * 
+ * @example
+ * const filter = { id: 1, name: "John" };
+ * const condition = generateCondition(filter);
+ * console.log(condition); // 'id = 1 AND name = "John"'
+ *
+ * @example
+ * const filter = { id: 1, name: "John" };
+ * const condition = generateCondition(filter, true);
+ * console.log(condition); // 'id = 1, name = "John"'
+ */
+function generateCondition(filter, isUpdate = false)
+{
     const keys = Object.keys(filter);
     const values = Object.values(filter);
 
@@ -37,13 +103,27 @@ function generateCondition(filter, isUpdate = false) {
     return conditions;
 }
 
-function generateValueSQL(value){
+function generateValueSQL(value)
+{
     return value.map(item => {
         return typeof item == "string" ? `"${item}"` : item;
     }).join(", ");
 }
 
-function replaceValues(dict, replacementDict) {
+/**
+ * Replaces values ​​from one dictionary with those from another dictionary if the keys match.
+ * @param {Object} dict The original dictionary containing the values ​​to replace.
+ * @param {Object} replacementDict The dictionary containing the replacement values.
+ * @returns {Object} A new dictionary with the replaced values.
+ * 
+ * @example
+ * const dict = { a: 1, b: 2, c: 3 };
+ * const replacementDict = { b: 20, c: 30 };
+ * const result = replaceValues(dict, replacementDict);
+ * console.log(result); // { a: 1, b: 20, c: 30 }
+ */
+function replaceValues(dict, replacementDict)
+{
     const resultDict = {};
 
     for (const key in dict) {
@@ -56,15 +136,39 @@ function replaceValues(dict, replacementDict) {
 
 const reservedKeywords = ['ADD', 'ALL', 'ALTER', 'AND', 'AS', 'ASC', 'BETWEEN', 'BY', 'CASE', 'CHECK', 'COLUMN', 'CONSTRAINT', 'CREATE', 'CURRENT_DATE', 'CURRENT_TIME', 'CURRENT_TIMESTAMP', 'DEFAULT', 'DELETE', 'DESC', 'DISTINCT', 'DROP', 'ELSE', 'END', 'ESCAPE', 'EXCEPT', 'EXISTS', 'FOR', 'FOREIGN', 'FROM', 'FULL', 'GROUP', 'HAVING', 'IN', 'INNER', 'INSERT', 'INTERSECT', 'INTO', 'IS', 'JOIN', 'LEFT', 'LIKE', 'LIMIT', 'NOT', 'NULL', 'ON', 'OR', 'ORDER', 'OUTER', 'PRIMARY', 'REFERENCES', 'RIGHT', 'SELECT', 'SET', 'SOME', 'TABLE', 'THEN', 'UNION', 'UNIQUE', 'UPDATE', 'VALUES', 'WHEN', 'WHERE'];
 
-function ifReservedKeywords(tableName) {
+/**
+ * Checks if a table name is a reserved keyword.
+ * 
+ * @param {string} tableName Le nom de la table à vérifier.
+ * @returns {boolean} `true` si le nom de la table est un mot-clé réservé, sinon `false`.
+ * 
+ * @example
+ * const isReserved = ifReservedKeywords('SELECT');
+ * console.log(isReserved); // true
+ *
+ * @example
+ * const isReserved = ifReservedKeywords('myTable');
+ * console.log(isReserved); // false
+ */
+function ifReservedKeywords(tableName)
+{
   if (reservedKeywords.includes(tableName.toUpperCase())) {
     return true;
   }
   return false;
 }
 
-class Model{
-    
+/**
+ * Represents a database model.
+ * @class
+ */
+class Model {
+
+    /**
+     * Creates an instance of Model.
+     * @param {string} name The name of the database table.
+     * @param {Object} schema The schema of the database table.
+     */
     constructor(name, schema){
         this.name = name;
         this.schema = schema;
@@ -78,6 +182,12 @@ class Model{
         });
     }
 
+    /**
+     * Generates an SQL statement to create a table based on the provided schema.
+     * 
+     * @param {Object} schema The schema of the database table.
+     * @returns {string} A character string representing the SQL statement to create the table.
+     */
     generateCreateTableStatement(schema) {
         const sqlTypeMap = {
             String: 'VARCHAR',
@@ -120,6 +230,12 @@ class Model{
         return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}) ENGINE=InnoDB`;
     }
 
+    /**
+     * Saves data to the database table.
+     * @param {Object} data The data to insert into the table.
+     * @returns {Promise<Object>} A promise that resolves with the result of the insertion.
+     * @throws {Error} Throws an error if the insert fails.
+     */
     async save(data) {
         const keys = Object.keys(data);
         const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
@@ -133,6 +249,11 @@ class Model{
         }
     }
 
+    /**
+     * Finds a unique entry in the database table based on the filter provided.
+     * @param {Object} filter An object containing the key-value pairs to use to generate the search condition.
+     * @returns {Promise<ModelInstance|number>} A promise that resolves to a ModelInstance if an entry is found, otherwise 0.
+     */
     async findOne(filter) {
         const sql = `SELECT * FROM ${this.name} WHERE ${generateCondition(filter)}`;
 
@@ -149,12 +270,38 @@ class Model{
     }
 }
 
+/**
+ * Represents an instance of a database model.
+ * @class
+ * @example
+ */
 class ModelInstance{
+    /**
+     * Creates an instance of ModelInstance.
+     * @param {string} name The name of the database table.
+     * @param {Object} data The instance data.
+     */
     constructor(name, data){
+        /**
+         * The name of the database table.
+         * @type {string}
+         */
         this.name = name;
+
+        /**
+         * The instance data.
+         * @type {Object}
+         */
         this.data = data;
     }
 
+    /**
+     * Updates a single entry in the database table.
+     * 
+     * @param {Object} model An object containing the key-value pairs to use for updating.
+     * @returns {Promise<Object>} A promise that resolves with updated data.
+     * @throws {Error} Throws an error if the update fails.
+     */
     async updateOne(model) {
         const sql = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
         await connexion.promise().query(sql).catch((err) => {
@@ -165,6 +312,12 @@ class ModelInstance{
         return replaceValues(this.data, model);
     }
 
+    /**
+     * Deletes a single entry in the database table.
+     * @param {Object} model An object containing the key-value pairs to use for deletion.
+     * @returns {Promise<Object>} A promise that resolves with the data deleted.
+     * @throws {Error} Throws an error if the deletion fails.
+     */
     async deleteOne(model) {
         const sql = `DELETE FROM ${this.name} WHERE ${generateCondition(model)}`;
         try {
@@ -178,6 +331,12 @@ class ModelInstance{
         return replaceValues(this.data, model);
     }
 
+    /**
+     * Runs a custom SQL query.
+     * @param {string} custom The custom SQL query to execute.
+     * @returns {Promise<void>} A promise that resolves when the query is executed.
+     * @throws {Error} Throws an error if query execution fails.
+     */
     async customRequest(custom){
         try {
             await connexion.promise().query(custom).catch((err) => {
