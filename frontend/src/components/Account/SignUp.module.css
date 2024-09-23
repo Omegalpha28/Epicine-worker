@@ -1,0 +1,77 @@
+@import "../../vars.css";
+
+.Connect {
+    height: 100vh;
+}
+
+.Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Form .Title {
+    font-size: 40px;
+}
+
+.Form .TitleLog {
+    font-size: 30px;
+    padding-top: 15px;
+}
+
+.Form .OneClick {
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.TextDanger {
+    color: rgb(161, 8, 8);
+}
+
+.Form input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 1%;
+}
+.comment {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.mb3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.Form .BtnDefault {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.Form .btnLogInSuccess {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.Form {
+    background-color: #dfcd67;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 5%;
+}
