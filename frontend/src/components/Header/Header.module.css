@@ -10,14 +10,15 @@
     z-index: 2;
     text-wrap: nowrap;
     margin-bottom: 5px;
-    border-radius: 10px;
-    background-color: #ffffff;
+    /* border-radius: 10px; */
+    background-color: #060d17;
+
 }
 
 .Title {
     font-size: 10vh;
     font-family: var(--font-Robot);
-    color: var(--color-text);
+    color: #ffffff;
     margin-top: 10vh;
 }
 
@@ -28,9 +29,9 @@
     width: 90%;
     margin-bottom: 8vh;
     padding: 10px;
-    border: 5px solid var(--color-text);
-    border-radius: 20px;
-    background-color: #ffffff69;
+    /* border: 5px solid var(--color-text); */
+    border-radius: 10px;
+    background-color: #10161d;
     height: 90px;
 }
 
@@ -41,16 +42,17 @@
     border: none;
     outline: none;
     background: transparent;
-    color: var(--color-text);
+    color: #888b8e;
     opacity: 1;
     pointer-events: auto;
 }
 
 .searchButton {
     padding: 10px 40px;
+    margin-right: 7px;
     font-size: 25px;
-    background-color: #fff9c2;
-    color: var(--color-text);
+    background-color: #545f6ed7;
+    color: #c6c8cd;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -79,7 +81,7 @@
         flex-wrap: nowrap;
         margin: 0px 1%;
         border-radius: 20px;
-        background-color: #ffffff;
+        background-color: #060d17;
     }
 
     .Title {

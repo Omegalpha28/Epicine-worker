@@ -9,7 +9,7 @@ export const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <Link to="/">
-                <img className={styles.logo} src={getImageUrl("logo.svg")} alt="logo" />
+                <img className={styles.logo} src={getImageUrl("logo.png")} alt="logo" />
             </Link>
             <div className={styles.menu}>
                 <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`} onClick={() => setMenuOpen(false)}>

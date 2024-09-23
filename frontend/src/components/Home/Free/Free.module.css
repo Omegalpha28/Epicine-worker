@@ -11,8 +11,8 @@
     flex-direction: column;
     height: 40vh;
     width: 100%;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
+    background-color: #060d17;
+    /* border-radius: 10px; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 2%;
     box-sizing: border-box;
@@ -29,6 +29,7 @@
     margin-left: 2.5%;
     margin-bottom: 5%;
     font-size: 4vh;
+    color: #ffffff;
 }
 
 .categories {
@@ -48,6 +49,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #111924;
+    color: #c6c8cd;
 }
 
 .inside_box {
@@ -60,7 +63,9 @@
     margin: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #10161d;
+    color : #ffffff;
+    border: 0.5px solid #999c9f;
     padding: 2%;
     box-sizing: border-box;
 }

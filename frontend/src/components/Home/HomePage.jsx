@@ -1,4 +1,4 @@
-import styles from "../../App.module.css";
+import { styles } from "./HomePage.module.css";
 import React, { useState } from "react";
 import useLocalStorage from "use-local-storage";
 
@@ -14,7 +14,7 @@ export const HomePage = () => {
   return (
     <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
       <Toggle style={{ visibility: 'hidden' }} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
-      <Navbar />
+      <Navbar className={styles.navbar}/>
       <Header />
       <Home />
     </div>
