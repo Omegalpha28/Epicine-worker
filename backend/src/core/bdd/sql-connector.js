@@ -144,7 +144,6 @@ class Model{
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
                 return;
-                // throw err;
             });
         });
     }
