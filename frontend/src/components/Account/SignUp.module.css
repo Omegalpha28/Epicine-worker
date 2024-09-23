@@ -13,17 +13,20 @@
 
 .Form .Title {
     font-size: 40px;
+    color: #ffffff;
 }
 
 .Form .TitleLog {
     font-size: 30px;
     padding-top: 15px;
+    color: #ffffff;
 }
 
 .Form .OneClick {
     font-size: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+    color: #ffffff;
 }
 
 .TextDanger {
@@ -31,12 +34,18 @@
 }
 .Form .or {
     font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 5px;
 }
 .Form input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border-radius: 15px;
+    border-radius: 20px;
+    background-color: #10161d;
+    color: #7d8084;
+    border: none;
+    margin-top: 10px;
 }
 
 .comment {
@@ -54,6 +63,8 @@
     margin-top: 5px;
     padding: 5px;
     font-size: 15px;
+    border-radius: 10px;
+    border: none;
 }
 
 .Form .btnLogInSuccess {
@@ -62,10 +73,14 @@
     margin-bottom: 40px;
     padding: 10px;
     font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffc416;
 }
 
 .Form {
-    background-color: #dfcd67;
+    background-color: #060d17;
+    border: 0.5px solid #999c9f;
     display: flex;
     justify-content: center;
     align-items: center;

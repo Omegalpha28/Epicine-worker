@@ -41,11 +41,11 @@ export const LoginPage = () => {
             <div className={Login_styles.Connect}>
                 <div className={Login_styles.Login}>
                 <form className={Login_styles.Form} action="" onSubmit={handleSubmit}>
-                    <div className={Login_styles.Title}>EpiCiné</div>
+                    <div className={Login_styles.Title}>EpiCine</div>
                     <div className={Login_styles.TitleLog}>Log In</div>
                     <div className={Login_styles.OneClick}>On one click with:</div>
                     <ConnectGoogle />
-                    <p className={Login_styles.or}>-------------------------or------------------------- </p>
+                    <p className={Login_styles.or}>________________________________________</p>
                     <div className={Login_styles.mb3}>
                         <p className="name"><strong>Username</strong></p>
                         <input type="email" required name='email' placeholder="Email or Name" onChange={handleInput} value={values.email}/>

@@ -34,7 +34,7 @@ export const SignUpPage = () => {
                         <div className={SignUp_styles.TitleLog}>Sign Up</div>
                         <div className={SignUp_styles.OneClick}>On one click with:</div>
                         <ConnectGoogle />
-                        <p className={SignUp_styles.or}>-------------------------or-------------------------</p>
+                        <p className={SignUp_styles.or}>________________________________________</p>
                         <div className={SignUp_styles.mb3}>
                             <p className="name"><strong>New username</strong></p>
                             <input type="text" placeholder="Username" name="name" onChange={handleInput} />
