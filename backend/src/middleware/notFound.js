@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     var id = req.params.id;
 
     if (id) {
-        const userData = getUser(client, id);
+        const userData = getUser(client, {id: id});
 
         if (userData == undefined || userData.length == 0)
             res.status(404).json({"msg": "Bad parameter"});

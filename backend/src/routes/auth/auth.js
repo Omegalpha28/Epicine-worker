@@ -1,5 +1,5 @@
 const { validUserArgs } = require("../../utils/valid_args");
-const { checkAccountMail, register } = require("../user/user.query");
+const { checkAccountMail, register, getAccountMail } = require("../user/user.query");
 
 module.exports = async function (client, app, bcrypt) {
     app.post("/register", async (req, res) => {
@@ -16,5 +16,23 @@ module.exports = async function (client, app, bcrypt) {
                     await register(client, res, email, name, mdp);
             });
         }
+    });
+
+    app.post("/login", async (req, res) => {
+        var email = req.body["email"];
+        var mdp = req.body["password"];
+
+        if (email == undefined || mdp == undefined) {
+            res.status(500).json({"msg": "Internal server error"});
+            return;
+        }
+        if (email.length == 0 || mdp.length == 0) {
+            res.status(400).json({"msg": "email and password is required"});
+            return;
+        }
+        await getAccountMail(client, res, email, mdp, bcrypt, async nb => {
+            if (nb == 84)
+                res.status(404).json({"msg": "Invalid Credentials"});
+        })
     })
 }
