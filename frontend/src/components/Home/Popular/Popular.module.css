@@ -51,6 +51,11 @@
     align-items: center;
     background-color: #111924;
     color: #c6c8cd;
+    cursor: pointer;
+}
+
+.categories .streaming:hover, .categories .television:hover, .categories .to_rent:hover, .categories .cinema:hover {
+    background-color: #161d24;
 }
 
 .inside_box {
