@@ -58,7 +58,7 @@ export const LoginPage = () => {
                     </div>
                     <button className={Login_styles.btnLogInSuccess}>Log in</button>
                     <p>If you don't have an account yet:</p>
-                    <Link className={Login_styles.btnDefault} to="/SignUp"><button className={Login_styles.btnDefault}>Create account</button></Link>
+                    <Link className={Login_styles.btnDefault} to="/Signup"><button className={Login_styles.btnDefault}>Create account</button></Link>
                 </form>
                 </div>
             </div>

@@ -18,13 +18,13 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/LogIn" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage />} />
                 <Route path="/New_Release" element={<NewReleasePage />} />
                 <Route path="/Movies" element={<Movies />} />
                 <Route path="/TV_Shows" element={<TV_Shows />} />
                 <Route path="/Streaming" element={<Streaming />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
-                <Route path="/SignUp" element={<SignUpPage />} />
+                <Route path="/Signup" element={<SignUpPage />} />
             </Routes>
         </Router>
     </div>
