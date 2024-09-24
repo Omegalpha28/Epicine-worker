@@ -3,6 +3,7 @@
     height: 100%;
     flex-direction: column;
     perspective: 1000px;
+    margin-top: 8vh;
 }
 
 .wrap_box {
