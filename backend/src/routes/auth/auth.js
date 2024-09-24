@@ -43,5 +43,5 @@ module.exports = async function (client, app, bcrypt) {
             if (nb == 84)
                 res.status(404).json({"msg": "Invalid Credentials"});
         })
-    })
+    });
 }
