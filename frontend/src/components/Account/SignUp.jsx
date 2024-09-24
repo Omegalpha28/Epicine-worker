@@ -53,7 +53,7 @@ export const SignUpPage = () => {
                         </div>
                         <button className={SignUp_styles.btnLogInSuccess}>Sign Up</button>
                         <p>If you have already an account:</p>
-                        <Link className={SignUp_styles.btnDefault} to="/LogIn"><button className={SignUp_styles.btnDefault}>Log In</button></Link>
+                        <Link className={SignUp_styles.btnDefault} to="/login"><button className={SignUp_styles.btnDefault}>Log In</button></Link>
                     </form>
                 </div>
             </div>
