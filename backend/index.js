@@ -1,5 +1,6 @@
 const express = require("express");
 var bcrypt = require("bcryptjs");
+const cors = require("cors");
 const app = express();
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
@@ -24,6 +25,12 @@ async function main() {
 }
 
 main().then(() => {
+    app.use(cors({ // Configurer CORS
+        origin: 'http://localhost:5173', // Remplace par l'URL de ton frontend
+        methods: ['GET', 'POST'], // Méthodes autorisées
+        credentials: true // Si tu veux permettre les cookies avec les requêtes
+    }));
+
     app.use(bodyparser.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(express.raw());
