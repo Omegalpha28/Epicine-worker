@@ -1,65 +1,117 @@
-import Login_styles from "./Login.module.css";
+import React, { useState } from 'react';
 import { Navbar } from "../Navbar/Navbar";
 import styles from "../../App.module.css";
-import { createClient } from "@supabase/supabase-js";
-import { useNavigate } from "react-router-dom";
-import { Auth } from "@supabase/auth-ui-react";
-import { Link } from 'react-router-dom';
-import { useState } from "react";
-import { Validation } from "./LoginValidation";
+import Login_styles from "./Login.module.css";
 import { ConnectGoogle } from "./connect";
+import { Link, useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
-    /*const navigate = useNavigate();
-
-    const supabase = createClient("https://pxppokfmmwdibnopbnjf.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4cHBva2ZtbXdkaWJub3BibmpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY4MzI4NjgsImV4cCI6MjA0MjQwODg2OH0.bdjDCmq9Ovq58nZUn_w42lT_kX4JPL3hBWTCMJkchzU");
-
-    supabase.auth.onAuthStateChange(async (event) => {
-        if (event !== "SIGNED_OUT") {
-            navigate("/Account");
-        } else {
-            navigate("/");
-        }
-    });*/
-
+    const navigate = useNavigate();
     const [values, setValues] = useState({
-        email: '',
-        password: ''
-    })
-    const [issues, setErrors] = useState({})
-    const handleInput = () => {
-        setValues((prevValues) => ({...prevValues, [event.target.name]: event.target.value}));
-    }
-    const handleSubmit = (event) => {
+        email: "",
+        password: ""
+    });
+    const [issues, setIssues] = useState({ email: '', password: '' });
+
+    const handleInput = (event) => {
+        const { name, value } = event.target;
+        setValues((prevValues) => ({
+            ...prevValues,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        setErrors(Validation(values));
-    }
+        const { email, password } = values;
+        if (!email || !password) {
+            setIssues({
+                email: !email ? 'Email is required' : '',
+                password: !password ? 'Password is required' : ''
+            });
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:5555/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Connexion réussie:", data);
+                navigate("/");
+            } else {
+                console.error("Erreur de connexion:", data.msg);
+                setIssues(prev => ({ ...prev, email: data.msg }));
+            }
+        } catch (error) {
+            console.error("Erreur lors de l'envoi de la requête:", error);
+        }
+    };
 
     return (
         <div className={styles.App}>
             <Navbar />
             <div className={Login_styles.Connect}>
                 <div className={Login_styles.Login}>
-                <form className={Login_styles.Form} action="" onSubmit={handleSubmit}>
-                    <div className={Login_styles.Title}>EpiCine</div>
-                    <div className={Login_styles.TitleLog}>Log In</div>
-                    <div className={Login_styles.OneClick}>On one click with:</div>
-                    <ConnectGoogle />
-                    <p className={Login_styles.or}>________________________________________</p>
-                    <div className={Login_styles.mb3}>
-                        <p className="name"><strong>Username</strong></p>
-                        <input type="email" required name='email' placeholder="Email or Name" onChange={handleInput} value={values.email}/>
-                        {issues.email && <span className={Login_styles.TextDanger}> {issues.email} </span>}
-                    </div>
-                    <div className={Login_styles.mb3}>
-                        <p className="name"><strong>Password</strong></p>
-                        <input type="password" required name='password' placeholder="Password" onChange={handleInput} value={values.password}/>
-                        {issues.password && <span className={Login_styles.TextDanger}> {issues.password} </span>}
-                    </div>
-                    <button className={Login_styles.btnLogInSuccess}>Log in</button>
-                    <p>If you don't have an account yet:</p>
-                    <Link className={Login_styles.btnDefault} to="/Signup"><button className={Login_styles.btnDefault}>Create account</button></Link>
-                </form>
+                    <form className={Login_styles.Form} onSubmit={handleSubmit}>
+                        <div className={Login_styles.Title}>EpiCine</div>
+                        <div className={Login_styles.TitleLog}>Log In</div>
+                        <div className={Login_styles.OneClick}>On one click with:</div>
+                        <ConnectGoogle />
+                        <p className={Login_styles.or}>________________________________________</p>
+
+                        {/* Email Input */}
+                        <div className={Login_styles.mb3}>
+                            <p className="name"><strong>Email</strong></p>
+                            <input
+                                type="email"
+                                required
+                                name="email"
+                                placeholder="Email or Username"
+                                onChange={handleInput}
+                                value={values.email}
+                            />
+                            {issues.email && (
+                                <span className={Login_styles.TextDanger}>
+                                    {issues.email}
+                                </span>
+                            )}
+                        </div>
+
+                        {/* Password Input */}
+                        <div className={Login_styles.mb3}>
+                            <p className="name"><strong>Password</strong></p>
+                            <input
+                                type="password"
+                                required
+                                name="password"
+                                placeholder="Password"
+                                onChange={handleInput}
+                                value={values.password}
+                            />
+                            {issues.password && (
+                                <span className={Login_styles.TextDanger}>
+                                    {issues.password}
+                                </span>
+                            )}
+                        </div>
+
+                        <button type="submit" className={Login_styles.btnLogInSuccess}>
+                            Log in
+                        </button>
+
+                        <p>If you don't have an account yet:</p>
+                        <Link className={Login_styles.btnDefault} to="/Signup">
+                            <button className={Login_styles.btnDefault}>Create account</button>
+                        </Link>
+                    </form>
                 </div>
             </div>
         </div>

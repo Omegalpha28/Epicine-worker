@@ -7,6 +7,7 @@ import styles from '../../App.module.css';
 import { ConnectGoogle } from './connect';
 
 export const SignUpPage = () => {
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [issues, setIssues] = useState({ name: '', email: '', password: '' });
@@ -20,11 +21,9 @@ export const SignUpPage = () => {
         navigate(path);
     }
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, email, password } = formData;
-
         if (!name || !email || !password) {
             setIssues({
                 name: !name ? 'Username is required' : '',
@@ -33,7 +32,6 @@ export const SignUpPage = () => {
             });
             return;
         }
-
         try {
             const response = await fetch('http://localhost:5555/register', {
                 method: 'POST',
@@ -42,9 +40,7 @@ export const SignUpPage = () => {
                 },
                 body: JSON.stringify({ name, email, password }),
             });
-
             const data = await response.json();
-
             if (response.ok) {
                 console.log('Inscription réussie:', data);
                 navigateTo('/LogIn');
