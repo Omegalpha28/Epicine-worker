@@ -7,16 +7,25 @@ module.exports = async function (client, app, bcrypt) {
         var name = req.body["name"];
         var mdp = req.body["password"];
 
+        console.log("Received registration request for email:", email);
+
         if (validUserArgs(res, email, name, mdp)) {
             mdp = bcrypt.hashSync(mdp, 10);
             await checkAccountMail(client, res, email, async nb => {
-                if (nb == 84)
+                if (nb == 84) {
+                    console.log("Account already exists for email:", email);
                     res.status(409).json({ "msg": "Account already exists" });
-                else
+                } else {
+                    console.log("Registering new account for email:", email);
                     await register(client, res, email, name, mdp);
+                    console.log("Registration successful for email:", email);
+                }
             });
+        } else {
+            console.log("Invalid user arguments for email:", email);
         }
     });
+
 
     app.post("/login", async (req, res) => {
         var email = req.body["email"];
