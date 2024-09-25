@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { createUser, getUser } = require("../../core/data/config.function");
-const { logs } = require("../../utils/Logger");
+const { error } = require("../../utils/Logger");
 
 module.exports = { checkAccountMail, register, getAccountMail }
 
@@ -18,9 +18,9 @@ async function register(client, res, email, name, mdp)
 {
     try {
         const result = await createUser(client, name, email, mdp);
-        
-        res.status(201).json({token: jwt.sign({id: result[0].insertId}, process.env.SECRET)});
-    } catch (error) {
+
+        res.status(201).json({token: jwt.sign({uuid: result.uuid}, process.env.SECRET)});
+    } catch (err) {
         error(err);
         res.status(500).json({"msg": "Internal server error"});
     }
@@ -36,7 +36,7 @@ async function getAccountMail(client, res, email, mdp, bcrypt, callback)
         var mdp2 = userData.password;
 
         if (bcrypt.compareSync(mdp, mdp2)) {
-            const token = jwt.sign({id:userData.id}, process.env.SECRET);
+            const token = jwt.sign({uuid:userData.uuid}, process.env.SECRET);
 
             res.json({token});
             callback(0);
