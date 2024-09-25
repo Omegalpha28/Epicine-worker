@@ -2,7 +2,8 @@
   position: absolute;
   top: 1.7em;
   right: 3em;
-  z-index: 3000;
+  z-index: 3;
+  visibility: hidden;
 }
 
 .toggle {
