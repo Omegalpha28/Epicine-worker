@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./Free.module.css";
 
 export const Free = () => {

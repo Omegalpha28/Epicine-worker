@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import de Link
+import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { getImageUrl } from "../../utils";
 
