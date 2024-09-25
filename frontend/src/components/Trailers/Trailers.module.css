@@ -1,5 +1,93 @@
 @import "../../vars.css";
 
-.Trailers {
-    padding: 50vh;
+.page {
+    background-color: var(--color-app);
+    transition: 0.25s ease-in-out;
+}
+
+.header {
+    width: auto;
+    height: 200px;
+    padding-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    text-wrap: nowrap;
+    margin-bottom: 5px;
+    background-color: var(--color-header-bg);
+    transition: 0.25s ease-in-out;
+}
+
+.Title {
+    font-size: 10vh;
+    font-family: var(--font-robot);
+    color: var(--color-text);
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.searchContainer {
+    position: relative;
+    border: 0.5px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 8vh;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--color-search-bg);
+    height: 90px;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 25px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--color-input-bg);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.searchButton {
+    padding: 10px 40px;
+    margin-right: 7px;
+    font-size: 25px;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.searchButton:hover {
+    background-color: var(--color-btn-hover);
+}
+
+.searchButton:active {
+    background-color: var(--color-btn);
+    transform: scale(0.9);
+}
+
+.inside_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 75vh;
+    width: 95%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: var(--color-box-shadow);
+    background-color: var(--color-inside-box);
+    color: var(--color-text-mode);
+    border: 0.5px solid var(--color-border);
+    padding: 2%;
+    box-sizing: border-box;
 }

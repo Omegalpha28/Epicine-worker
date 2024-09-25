@@ -2,6 +2,7 @@
 
 .page {
     background-color: var(--color-app);
+    transition: 0.25s ease-in-out;
 }
 
 .header {
@@ -17,6 +18,7 @@
     text-wrap: nowrap;
     margin-bottom: 5px;
     background-color: var(--color-header-bg);
+    transition: 0.25s ease-in-out;
 }
 
 .Title {

@@ -1,6 +1,7 @@
 .page {
     padding-top: 100px;
     background-color: var(--color-App);
+    transition: 0.25s ease-in-out;
 }
 
 .box {
