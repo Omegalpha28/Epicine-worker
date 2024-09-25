@@ -1,4 +1,5 @@
 @import "../../vars.css";
+@import "../animations/animation.css";
 
 .navbar {
     position: fixed;
@@ -12,7 +13,7 @@
     flex-wrap: nowrap;
     width: 100%;
     margin-bottom: 5px;
-    background-color: #060d17;
+    background-color: var(--color-app);
     box-sizing: border-box;
 }
 
@@ -36,13 +37,13 @@
     display: flex;
     gap: 1vw;
     list-style: none;
-    align-items: center; /* Alignement vertical centré */
+    align-items: center;
 }
 
 .menuItems a {
     position: relative;
     font-size: 16px;
-    color: #888b8e;
+    color: var(--color-text);
     text-decoration: none;
     padding: 5px 1vw;
     align-items: center;
@@ -50,7 +51,7 @@
 
 .account_PC {
     font-size: 16px;
-    color: #888b8e;
+    color: var(--color-text);
     text-decoration: none;
     padding: 0 13%;
 }

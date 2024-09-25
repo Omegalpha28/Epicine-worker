@@ -5,9 +5,10 @@ import SignUp_styles from './SignUp.module.css';
 import { Navbar } from '../Navbar/Navbar';
 import styles from '../../App.module.css';
 import { ConnectGoogle } from './connect';
+import useTheme from "../set_theme";
 
 export const SignUpPage = () => {
-
+    const [isDark, setIsDark] = useTheme();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [issues, setIssues] = useState({ name: '', email: '', password: '' });
@@ -55,7 +56,7 @@ export const SignUpPage = () => {
     };
 
     return (
-        <div className={styles.App}>
+        <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
             <Navbar />
             <div className={SignUp_styles.Connect}>
                 <div className={SignUp_styles.Login}>

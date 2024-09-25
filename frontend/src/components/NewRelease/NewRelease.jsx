@@ -12,7 +12,17 @@ export const NewReleasePage = () => {
       <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
       <Navbar />
       <div className={styles.New_Release_page}>
-        <h1>ok boomer</h1>
+      <nav className={styles.header}>
+            <div className={styles.searchContainer}>
+                <input type="text"
+                    placeholder="Type to search..."
+                    className={styles.searchInput}
+                />
+                <button className={styles.searchButton}>
+                    Search
+                </button>
+            </div>
+        </nav>
       </div>
     </div>
   );
