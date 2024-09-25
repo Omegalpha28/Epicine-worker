@@ -2,28 +2,34 @@ import useTheme from "../set_theme";
 import styles from "./NewRelease.module.css";
 import { Navbar } from "../Navbar/Navbar";
 import { Toggle } from "../Toggle/Toggle";
+import app_styles from "../../App.module.css";
+import { Join_Us } from "../Joinus/join_us";
 
 export const NewReleasePage = () => {
 
   const [isDark, setIsDark] = useTheme();
 
   return (
-    <div className={styles.New_Release_nav} data-theme={isDark ? "dark" : "light"}>
-      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-      <Navbar />
-      <div className={styles.New_Release_page}>
-      <nav className={styles.header}>
+    <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
+      <div className={app_styles.App} >
+        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+        <Navbar />
+        <div className={styles.New_Release_page}>
+          <nav className={styles.header}>
             <div className={styles.searchContainer}>
-                <input type="text"
-                    placeholder="Type to search..."
-                    className={styles.searchInput}
-                />
+                <input type="text" placeholder="Type to search..." className={styles.searchInput} />
                 <button className={styles.searchButton}>
-                    Search
+                  Search
                 </button>
             </div>
-        </nav>
+          </nav>
+        </div>
+      <div className={styles.inside_box}>
+          <h1>New Release</h1>
       </div>
+    </div>
+    <Join_Us />
     </div>
   );
 };
+
