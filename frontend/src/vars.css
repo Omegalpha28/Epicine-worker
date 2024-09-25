@@ -1,14 +1,18 @@
 :root {
-    /* Default Theme Colors */
-    --color-text: #000000;
+    --color-text: #060d17;
     --color-app: #fff;
+    --color-text-mode: #000000;
     --color-primary: #f2d669;
+    --color-btn-hover: #676e75;
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
+    --color-btn: #535457;
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
+    --color-border: #1d1d1d;
+    --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    --color-inside-box: #8a96a3;
 
-    /* About */
     --color-about: #f3f3f366;
     --background-item: linear-gradient(
         90deg,
@@ -16,25 +20,27 @@
         rgba(236, 3, 186, 0.05) 100%
     );
 
-    /* Hero */
     --color-blur: #ec03ba4c;
 
-    /* Fonts */
     --font-robot: "Roboto";
     --font-outfit: "Outfit";
 }
 
 [data-theme="dark"] {
-    /* Inverted Theme Colors */
-    --color-text: #fff;
-    --color-app: #000000;
+    --color-text: #c6c8cd;
+    --color-app: #060d17;
+    --color-text-mode: #ffffff;
     --color-primary: #576cbc;
+    --color-btn-hover: #161d24;
     --color-secondary: #19376d;
     --color-dark: #0b2447;
+    --color-btn: #111924;
     --color-bg: #04152d;
     --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    --color-border: #999c9f;
+    --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    --color-inside-box: #10161d;
 
-    /* About */
     --color-about: #0c0c0c99;
     --background-item: linear-gradient(
         90deg,
@@ -42,26 +48,25 @@
         rgba(255, 255, 255, 0) 100%
     );
 
-    /* Hero */
     --color-blur: #19376db3;
-
-    /* Fonts */
     --font-robot: "Roboto";
     --font-outfit: "Outfit";
 }
 
 @media (prefers-color-scheme: dark) {
-
     [data-theme="dark"] {
-        /* Inverted Theme Colors */
-        --color-text: #fff;
+        --color-text: #c6c8cd;
         --color-primary: #576cbc;
+        --color-text-mode: #ffffff;
+        --color-btn-hover: #161d24;
         --color-secondary: #19376d;
+        --color-inside-box: #10161d;
         --color-dark: #0b2447;
         --color-bg: #04152d;
         --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+        --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-        /* About */
+        --color-border: #999c9f;
         --color-about: #0c0c0c99;
         --background-item: linear-gradient(
             90deg,
@@ -69,12 +74,6 @@
             rgba(255, 255, 255, 0) 100%
         );
 
-        /* Hero */
         --color-blur: #19376db3;
-
-        /* Fonts */
-        --font-robot: "Roboto";
-        --font-outfit: "Outfit";
     }
-
 }

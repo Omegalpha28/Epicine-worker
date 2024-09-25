@@ -11,9 +11,8 @@
     flex-direction: column;
     height: 40vh;
     width: 100%;
-    background-color: #060d17;
-    /* border-radius: 10px; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-app);
+    box-shadow: var(--color-box-shadow);
     padding: 2%;
     box-sizing: border-box;
     position: relative;
@@ -29,7 +28,7 @@
     margin-left: 2.5%;
     margin-bottom: 5%;
     font-size: 4vh;
-    color: #ffffff;
+    color: var(--color-text-mode);
 }
 
 .categories {
@@ -39,7 +38,10 @@
     margin-bottom: 5%;
 }
 
-.categories .streaming, .categories .television, .categories .to_rent, .categories .cinema {
+.categories .streaming,
+.categories .television,
+.categories .to_rent,
+.categories .cinema {
     margin-right: 5%;
     height: 3vh;
     width: 8vw;
@@ -49,13 +51,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #111924;
-    color: #c6c8cd;
+    background-color: var(--color-btn);
+    color: var(--color-text);
     cursor: pointer;
 }
 
-.categories .streaming:hover, .categories .television:hover, .categories .to_rent:hover, .categories .cinema:hover {
-    background-color: #161d24;
+.categories .streaming:hover,
+.categories .television:hover,
+.categories .to_rent:hover,
+.categories .cinema:hover {
+    background-color: var(--color-btn-hover);
 }
 
 .inside_box {
@@ -67,20 +72,20 @@
     width: 95%;
     margin: auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #10161d;
-    color : #ffffff;
-    border: 0.5px solid #999c9f;
+    box-shadow: var(--color-box-shadow);
+    background-color: var(--color-inside-box);
+    color: var(--color-text-mode);
+    border: 0.5px solid var(--color-border);
     padding: 2%;
     box-sizing: border-box;
 }
 
-@media  screen and (max-width: 875px) {
-
-
-.categories .streaming, .categories .television, .categories .to_rent, .categories .cinema {
-    height: 3vh;
-    width: 15vw;
-}
-
+@media screen and (max-width: 875px) {
+    .categories .streaming,
+    .categories .television,
+    .categories .to_rent,
+    .categories .cinema {
+        height: 3vh;
+        width: 15vw;
+    }
 }

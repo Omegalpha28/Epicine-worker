@@ -11,9 +11,8 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-color: #060d17;
-    /* border-radius: 10px; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-app);
+    box-shadow: var(--color-box-shadow);
     padding: 2%;
     box-sizing: border-box;
     position: relative;
@@ -24,7 +23,7 @@
     margin-top: 5%;
     align-self: flex-start;
     font-size: 4vh;
-    color: #ffffff;
+    color: var(--color-text-mode);
 }
 
 .categories {
@@ -34,7 +33,8 @@
     margin: 2% 0;
 }
 
-.categories .movies, .categories .series {
+.categories .movies,
+.categories .series {
     margin-left: 5%;
     margin-top: 5%;
     height: 3vh;
@@ -45,13 +45,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #111924;
-    color: #c6c8cd;
+    background-color: var(--color-btn);
+    color: var(--color-text);
     cursor: pointer;
 }
 
-.categories .movies:hover, .categories .series:hover {
-    background-color: #161d24;
+.categories .movies:hover,
+.categories .series:hover {
+    background-color: var(--color-btn-hover);
 }
 
 .inside_box {
@@ -63,10 +64,10 @@
     width: 95%;
     margin: auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #10161d;
-    color : #ffffff;
-    border: 0.5px solid #999c9f;
+    box-shadow: var(--color-box-shadow);
+    background-color: var(--color-inside-box);
+    color: var(--color-text-mode);
+    border: 0.5px solid var(--color-border);
     padding: 2%;
     box-sizing: border-box;
 }
