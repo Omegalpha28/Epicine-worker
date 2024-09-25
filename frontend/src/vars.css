@@ -26,6 +26,34 @@
     --font-outfit: "Outfit";
 }
 
+[data-theme="light"] {
+    --color-text: #060d17;
+    --color-app: #fff;
+    --color-text-mode: #000000;
+    --color-primary: #f2d669;
+    --color-btn-hover: #676e75;
+    --color-secondary: #e6c892;
+    --color-dark: #f4dbb8;
+    --color-btn: #535457;
+    --color-bg: #fbead2;
+    --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
+    --color-border: #1d1d1d;
+    --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    --color-inside-box: #8a96a3;
+
+    --color-about: #f3f3f366;
+    --background-item: linear-gradient(
+        90deg,
+        rgba(236, 3, 186, 0.298) 0%,
+        rgba(236, 3, 186, 0.05) 100%
+    );
+
+    --color-blur: #ec03ba4c;
+
+    --font-robot: "Roboto";
+    --font-outfit: "Outfit";
+}
+
 [data-theme="dark"] {
     --color-text: #c6c8cd;
     --color-app: #060d17;
