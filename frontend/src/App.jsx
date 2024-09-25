@@ -11,7 +11,6 @@ import { SignUpPage } from "./components/Account/SignUp";
 import { TrailersPage } from "./components/Trailers/Trailers";
 
 function App() {
-  const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
 
   return (
     <div>

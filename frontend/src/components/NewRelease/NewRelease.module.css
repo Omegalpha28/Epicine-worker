@@ -1,10 +1,20 @@
 @import "../../vars.css";
 
-.New_Release {
-    padding: 5px 5vw 0px 5vw;
+.New_Release_nav {
+    padding: 5px 5vb 0px 5vw;
     width: 100%;
     height: 100%;
     transition: 0.25s ease-in-out;
     background-color: var(--color-app);
     position: relative;
 }
+
+.New_Release_page {
+    padding-top: 10vh;
+    width: 100vh;
+    height: 100vh;
+    transition: 0.25s ease-in-out;
+    background-color: var(--color-app);
+    color: var(--color-text);
+}
+
