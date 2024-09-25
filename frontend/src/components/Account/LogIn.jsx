@@ -4,8 +4,11 @@ import styles from "../../App.module.css";
 import Login_styles from "./Login.module.css";
 import { ConnectGoogle } from "./connect";
 import { Link, useNavigate } from 'react-router-dom';
+import useTheme from "../set_theme";
+
 
 export const LoginPage = () => {
+    const [isDark, setIsDark] = useTheme();
     const navigate = useNavigate();
     const [values, setValues] = useState({
         email: "",
@@ -56,7 +59,7 @@ export const LoginPage = () => {
     };
 
     return (
-        <div className={styles.App}>
+        <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
             <Navbar />
             <div className={Login_styles.Connect}>
                 <div className={Login_styles.Login}>

@@ -1,18 +1,19 @@
 :root {
     --color-text: #060d17;
-    --color-app: #fff;
+    --color-app: #d8d4d4;
     --color-text-mode: #000000;
     --color-primary: #f2d669;
     --color-btn-hover: #676e75;
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
+    --color-input-bg: #565d688a;
     --color-btn: #535457;
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
     --color-border: #1d1d1d;
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     --color-inside-box: #8a96a3;
-
+    --color-header-bg: var(--color-app);
     --color-about: #f3f3f366;
     --background-item: linear-gradient(
         90deg,
@@ -28,19 +29,20 @@
 
 [data-theme="light"] {
     --color-text: #060d17;
-    --color-app: #fff;
+    --color-app: #d8d4d4;
     --color-text-mode: #000000;
     --color-primary: #f2d669;
     --color-btn-hover: #676e75;
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
     --color-btn: #535457;
+    --color-input-bg: #565d6880;
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
     --color-border: #1d1d1d;
+    --color-header-bg: var(--color-app);
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     --color-inside-box: #8a96a3;
-
     --color-about: #f3f3f366;
     --background-item: linear-gradient(
         90deg,
@@ -63,7 +65,9 @@
     --color-secondary: #19376d;
     --color-dark: #0b2447;
     --color-btn: #111924;
+    --color-input-bg: #8a919c80;
     --color-bg: #04152d;
+    --color-header-bg: var(--color-app);
     --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     --color-border: #999c9f;
     --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -87,6 +91,7 @@
         --color-primary: #576cbc;
         --color-text-mode: #ffffff;
         --color-btn-hover: #161d24;
+        --color-input-bg: #8a919c80;
         --color-secondary: #19376d;
         --color-inside-box: #10161d;
         --color-dark: #0b2447;

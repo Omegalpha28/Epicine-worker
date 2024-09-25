@@ -1,7 +1,5 @@
-@import "../../vars.css";
-
 .Connect {
-    height: 95vh;
+    height: 100vh;
 }
 
 .Login {
@@ -13,25 +11,25 @@
 
 .Form .Title {
     font-size: 40px;
-    color : #ffffff;
+    color: var(--color-text);
 }
 
 .Form .TitleLog {
     font-size: 30px;
     padding-top: 15px;
-    color : #ffffff;
+    color: var(--color-text);
 }
 
 .Form .OneClick {
     font-size: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    color : #ffffff;
+    color : var(--color-text);
 }
 
 .Form .or {
     font-size: 20px;
-    color : #ffffff;
+    color : var(--color-text);
     margin-bottom: 5px;
 }
 
@@ -40,8 +38,8 @@
     padding: 10px;
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: #10161d;
-    color: #7d8084;
+    background-color: var(--color-inside-box);
+    color: var(--color-input);
     border: none;
     margin-top: 10px;
 }
@@ -53,7 +51,7 @@
 }
 
 p {
-    color : #ffffff;
+    color : var(--color-text);
 }
 
 .GoogleLogo {
@@ -75,6 +73,11 @@ p {
     border: none;
 }
 
+.Form .BtnDefault:active {
+    filter: brightness(0.8);
+    transform: scale(0.95);
+}
+
 .Form .btnLogInSuccess {
     width: 100%;
     margin-top: 15px;
@@ -83,13 +86,19 @@ p {
     font-size: 20px;
     border-radius: 10px;
     border: none;
-    background-color: #ffc416;
+    cursor: pointer;
+    background-color: #ffc416 ;
 }
 
+.Form .btnLogInSuccess:active {
+    background-color: #ffc416;
+    filter: brightness(0.8);
+    transform: scale(0.9);
+}
 
 .Form {
-    background-color: #060d17;
-    border: 0.5px solid #999c9f;
+    background-color: var(--color-about);
+    border: 0.5px solid var(--color-border);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,3 +138,4 @@ p {
         padding-bottom: 10px;
     }
 }
+

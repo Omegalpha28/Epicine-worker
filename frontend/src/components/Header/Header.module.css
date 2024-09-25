@@ -1,4 +1,5 @@
 @import "../../vars.css";
+@import "../animations/animation.css";
 
 .header {
     height: 40vh;
@@ -10,29 +11,27 @@
     z-index: 2;
     text-wrap: nowrap;
     margin-bottom: 5px;
-    /* border-radius: 10px; */
-    background-color: #060d17;
-
+    background-color: var(--color-header-bg); /* Mise à jour avec la variable appropriée */
 }
 
 .Title {
     font-size: 10vh;
-    font-family: var(--font-Robot);
-    color: #ffffff;
+    font-family: var(--font-robot); /* Mise à jour avec la variable de police */
+    color: var(--color-text); /* Mise à jour avec la variable appropriée */
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
 
 .searchContainer {
     position: relative;
+    border: 0.5px solid var(--color-border);
     display: flex;
     align-items: center;
     width: 90%;
     margin-bottom: 8vh;
     padding: 10px;
-    /* border: 5px solid var(--color-text); */
     border-radius: 10px;
-    background-color: #10161d;
+    background-color: var(--color-search-bg); /* Mise à jour avec la variable appropriée */
     height: 90px;
 }
 
@@ -43,7 +42,7 @@
     border: none;
     outline: none;
     background: transparent;
-    color: #888b8e;
+    color: var(--color-input-bg);
     opacity: 1;
     pointer-events: auto;
 }
@@ -52,8 +51,8 @@
     padding: 10px 40px;
     margin-right: 7px;
     font-size: 25px;
-    background-color: #545f6ed7;
-    color: #c6c8cd;
+    background-color: var(--color-btn); /* Mise à jour avec la variable appropriée */
+    color: var(--color-text); /* Mise à jour avec la variable appropriée */
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -61,34 +60,25 @@
 }
 
 .searchButton:hover {
-    filter: hue-rotate(30deg);
+    background-color: var(--color-btn-hover); /* Mise à jour avec la variable appropriée */
 }
 
 .searchButton:active {
-    filter: brightness(0.8) hue-rotate(30deg);
+    background-color: var(--color-btn); /* Mise à jour avec la variable appropriée */
+    filter: brightness(0.8);
     transform: scale(0.9);
 }
 
 @media screen and (max-width: 1000px) {
     .header {
         height: 60vh;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        z-index: 2;
-        text-wrap: wrap;
-        flex-wrap: nowrap;
         margin: 0px 1%;
         border-radius: 20px;
-        background-color: #060d17;
+        background-color: var(--color-header-bg); /* Mise à jour avec la variable appropriée */
     }
 
     .Title {
         font-size: 10vh;
-        font-family: var(--font-Robot);
         margin-top: 10vh;
     }
-
 }
