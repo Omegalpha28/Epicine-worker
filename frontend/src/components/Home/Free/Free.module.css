@@ -68,10 +68,10 @@
     width: 95%;
     margin: auto;
     border-radius: 10px;
-    box-shadow: var(--color-box-shadow); /* Utilisation de la variable pour l'ombre */
-    background-color: var(--color-inside-box); /* Utilisation de la variable pour le fond de la boîte */
-    color: var(--color-text-mode); /* Utilisation de la variable pour le texte */
-    border: 0.5px solid var(--color-border); /* Utilisation de la variable pour la bordure */
+    box-shadow: var(--color-box-shadow);
+    background-color: var(--color-inside-box);
+    color: var(--color-text-mode);
+    border: 0.5px solid var(--color-border);
     padding: 2%;
     box-sizing: border-box;
 }
