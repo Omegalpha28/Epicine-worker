@@ -1,10 +1,11 @@
 const { Schema, Model } = require("../../bdd/sql-connector");
+// const { String, Number } = Model.sqlTypeMap;
 
 const userSchema = new Schema({
-    id: {
-        type: Number,
+    uuid: {
+        type: String,
         unique: true,
-        auto_increment: true
+        length: 36
     },
     name: {
         type: String,
@@ -24,6 +25,10 @@ const userSchema = new Schema({
         default: null
     },
     birthday: {
+        type: String,
+        default: null
+    },
+    token: {
         type: String,
         default: null
     }

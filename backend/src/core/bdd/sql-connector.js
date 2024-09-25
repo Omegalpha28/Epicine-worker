@@ -1,6 +1,15 @@
 const mysql = require("mysql2");
 const { error, logs } = require("../../utils/Logger");
 let client = {};
+const sqlTypeMap = {
+    String: 'VARCHAR',
+    Number: 'INT',
+    Boolean: 'BOOLEAN',
+    Date: 'DATETIME',
+    Object: 'JSON',
+    Array: 'VARCHAR',
+    Now: 'NOW()',
+};
 
 /**
  * Represents a database schema.
@@ -163,7 +172,7 @@ function ifReservedKeywords(tableName)
  * @class
  */
 class Model {
-
+    static sqlTypeMap = sqlTypeMap;
     /**
      * Creates an instance of Model.
      * @param {string} name The name of the database table.
@@ -189,16 +198,6 @@ class Model {
      * @returns {string} A character string representing the SQL statement to create the table.
      */
     generateCreateTableStatement(schema) {
-        const sqlTypeMap = {
-            String: 'VARCHAR',
-            Number: 'INT',
-            Boolean: 'BOOLEAN',
-            Date: 'DATETIME',
-            Object: 'JSON',
-            Array: 'VARCHAR',
-            Now: 'NOW()'
-        };
-
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
             let lengthDefault = 255;
@@ -260,13 +259,70 @@ class Model {
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql).then((rows) => {
                 if(rows.length == 0) return resolve(0);
-                
+
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
                 return;
             });
         });
+    }
+
+    /**
+     * Asynchronously drops a table if it exists in the database.
+     *
+     * This function constructs a SQL query to drop a table with the name specified
+     * by the `this.name` property. It then executes the query using a promise-based
+     * approach. If the query is successful, the result is logged to the console.
+     * If an error occurs during the execution of the query, an error message is logged.
+     *
+     * @returns {Promise<void>} A promise that resolves when the query execution is complete.
+     */
+    async dropTable() {
+        const sql = `DROP TABLE IF EXISTS ${this.name};`;
+
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql).then((rows) => {
+                console.log(rows);
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        })
+    }
+
+    /**
+     * Generates a unique UUID for the current model.
+     *
+     * This function generates a UUID using the SQL `UUID()` function and checks if the generated UUID
+     * already exists in the database for the current model. If the UUID is unique, it is returned.
+     * Otherwise, the function resolves to `null`.
+     *
+     * @returns {Promise<string|null>} A promise that resolves to a unique UUID string if successful, or `null` if an error occurs or the UUID is not unique.
+     *
+     * @example
+     * const uuid = await model.generate_uuid();
+     * if (uuid) {
+     *     console.log(`Generated UUID: ${uuid}`);
+     * } else {
+     *     console.log('Failed to generate a unique UUID.');
+     * }
+     *
+     * @throws {Error} If there is an error executing the SQL query.
+     */
+    async generate_uuid() {
+        const uuid = (await connexion.promise().query("SELECT UUID();"))[0][0]["UUID()"];
+        const sql = `SELECT COUNT(*) FROM ${this.name} WHERE uuid="${uuid}";`;
+
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql).then((rows) => {
+                if (rows[0][0]['COUNT(*)'] == 0) return resolve(uuid);
+                resolve(null);
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return null;
+            })
+        })
     }
 }
 

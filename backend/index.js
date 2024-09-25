@@ -20,7 +20,10 @@ async function main() {
         multipleStatements: true,
         idleTimeout: 10000,
         typeCast: true
-    }).then(() => {Logger.client("- connecté à la base de donné")}).catch(error => {Logger.error(error)});
+    }).then(() => {Logger.client("- connecté à la base de donné")}).catch(error => {
+        Logger.error(error);
+        process.exit();
+    });
     require("./src/core/data/functions")(client);
 }
 

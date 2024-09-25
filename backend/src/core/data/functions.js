@@ -1,6 +1,7 @@
 const { error } = require("../../utils/Logger");
 const {User} = require("./models");
 
+
 module.exports = client => {
     client.getUser = async (userInfo) => {
         const userData = await User.findOne(userInfo);
@@ -9,7 +10,15 @@ module.exports = client => {
 
     client.createUser = async (name, email, mdp) => {
         try {
-            const result = await User.save({ name: name, email: email, password: mdp });
+            const uuid = await User.generate_uuid();
+
+            if (!uuid) {
+                error("There was a problem generating the uuid");
+                return 0;
+            }
+            const result = await User.save({ uuid: uuid, name: name, email: email, password: mdp });
+
+            result["uuid"] = uuid;
             return result;
         } catch (err) {
             error(err);
