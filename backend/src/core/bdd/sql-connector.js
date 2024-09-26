@@ -187,7 +187,7 @@ class Model {
                 error(`Error creating table: ${err} with table name: ${this.name}`);
                 return;
             }
-            logs(`La base de donnée ${this.name} a été créé`);
+            logs(`La table ${this.name} a été créé`);
         });
     }
 
@@ -329,7 +329,6 @@ class Model {
 /**
  * Represents an instance of a database model.
  * @class
- * @example
  */
 class ModelInstance{
     /**
