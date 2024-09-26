@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Popular.module.css";
 
 export const Popular = () => {
+
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
