@@ -43,7 +43,7 @@ main().then(() => {
     require("./src/routes/list/list_tv")(client, app, bcrypt);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
-        Logger.serveur(`EpiTodo server: http://localhost:${port}`);
+        Logger.serveur(`EpiCine server: http://localhost:${port}`);
     });
 });
 
