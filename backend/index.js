@@ -20,7 +20,7 @@ async function main() {
         multipleStatements: true,
         idleTimeout: 10000,
         typeCast: true
-    }).then(() => {Logger.client("- connecté à la base de donné")}).catch(error => {
+    }).then(() => { Logger.client("- connecté à la base de donné") }).catch(error => {
         Logger.error(error);
         process.exit();
     });
@@ -37,9 +37,10 @@ main().then(() => {
     app.use(bodyparser.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(express.raw());
-    
+
     require("./src/routes/auth/auth")(client, app, bcrypt);
     require("./src/routes/user/user")(client, app, bcrypt);
+    require("./src/routes/list/list_tv")(client, app, bcrypt);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiTodo server: http://localhost:${port}`);
@@ -48,7 +49,7 @@ main().then(() => {
 
 process.on('SIGINT', async () => {
     console.log("entrain de s'arrêter");
-    
+
     await logout();
     process.exit();
 });

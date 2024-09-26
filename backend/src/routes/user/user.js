@@ -1,5 +1,6 @@
 const { getUser } = require("../../core/data/config.function");
 const auth = require("../../middleware/auth");
+
 module.exports = async function (client, app, bcrypt) {
     app.get("/user", auth, async (req, res) => {
         const userData = (await getUser(client, {uuid: req.uuiduser})).data;

@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export const Join_Us = () => {
 
     return (
-        <div class={styles.page}>
-            <div class={styles.box}>
+        <div className={styles.page}>
+            <div className={styles.box}>
                 <Link to="/">
                     <img className={styles.logo} src={getImageUrl("logo.png")} alt="logo" />
                 </Link>

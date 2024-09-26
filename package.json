@@ -10,6 +10,7 @@
     "gapi-script": "^1.2.0",
     "jwt-decode": "^4.0.0",
     "jwt-js-decode": "^1.9.0",
+    "node-fetch": "^2.7.0",
     "react-router-dom": "^6.26.2",
     "use-local-storage": "^3.0.0"
   }

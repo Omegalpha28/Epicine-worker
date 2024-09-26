@@ -54,8 +54,7 @@ let connexion = null;
  * };
  * await connect(config);
  */
-async function connect(config)
-{
+async function connect(config) {
     connexion = mysql.createConnection(config);
 }
 
@@ -70,10 +69,9 @@ async function connect(config)
  * @example
  * await logout();
  */
-async function logout()
-{
+async function logout() {
     connexion.end(err => {
-        if(err){
+        if (err) {
             error(`Error closing database connection: ${err}`);
             return;
         }
@@ -99,21 +97,19 @@ async function logout()
  * const condition = generateCondition(filter, true);
  * console.log(condition); // 'id = 1, name = "John"'
  */
-function generateCondition(filter, isUpdate = false)
-{
+function generateCondition(filter, isUpdate = false) {
     const keys = Object.keys(filter);
     const values = Object.values(filter);
 
     const conditions = keys.map((key, index) => {
         const value = values[index];
         return `${key} = ${typeof value === "string" ? `"${value}"` : value}`;
-    }).join(` ${isUpdate == false? "AND" : ","} `);
+    }).join(` ${isUpdate == false ? "AND" : ","} `);
 
     return conditions;
 }
 
-function generateValueSQL(value)
-{
+function generateValueSQL(value) {
     return value.map(item => {
         return typeof item == "string" ? `"${item}"` : item;
     }).join(", ");
@@ -131,8 +127,7 @@ function generateValueSQL(value)
  * const result = replaceValues(dict, replacementDict);
  * console.log(result); // { a: 1, b: 20, c: 30 }
  */
-function replaceValues(dict, replacementDict)
-{
+function replaceValues(dict, replacementDict) {
     const resultDict = {};
 
     for (const key in dict) {
@@ -159,12 +154,11 @@ const reservedKeywords = ['ADD', 'ALL', 'ALTER', 'AND', 'AS', 'ASC', 'BETWEEN', 
  * const isReserved = ifReservedKeywords('myTable');
  * console.log(isReserved); // false
  */
-function ifReservedKeywords(tableName)
-{
-  if (reservedKeywords.includes(tableName.toUpperCase())) {
-    return true;
-  }
-  return false;
+function ifReservedKeywords(tableName) {
+    if (reservedKeywords.includes(tableName.toUpperCase())) {
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -178,12 +172,12 @@ class Model {
      * @param {string} name The name of the database table.
      * @param {Object} schema The schema of the database table.
      */
-    constructor(name, schema){
+    constructor(name, schema) {
         this.name = name;
         this.schema = schema;
 
         connexion.query(this.generateCreateTableStatement(schema.schemaDict), (err) => {
-            if(err){
+            if (err) {
                 error(`Error creating table: ${err} with table name: ${this.name}`);
                 return;
             }
@@ -204,7 +198,7 @@ class Model {
             if (!field.type && typeof field == "object") throw new Error(`Field ${fieldName} has no type defined.`);
             const fieldType = typeof field == "object" ? field.type.name : field.name;
 
-            if(field.type && typeof field == "object"){
+            if (field.type && typeof field == "object") {
                 if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${fieldType}.`);
 
                 let columnDefinition = `${fieldName} ${sqlTypeMap[fieldType]}${sqlTypeMap[fieldType] == "VARCHAR" || sqlTypeMap[fieldType] == "INT" ? `(${field.length > 0 ? field.length : lengthDefault})` : ""}`;
@@ -218,11 +212,11 @@ class Model {
                 return columnDefinition;
             }
 
-            if(!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${field}`);
+            if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${field}`);
 
             return `${fieldName} ${sqlTypeMap[fieldType] == "VARCHAR" ? `${sqlTypeMap[fieldType]}(${lengthDefault})` : sqlTypeMap[fieldType]}`;
         });
-        if(ifReservedKeywords(this.name)){
+        if (ifReservedKeywords(this.name)) {
             error("Error: Invalid table name. Please choose a different name that is not a reserved keyword in SQL");
             return;
         }
@@ -258,7 +252,7 @@ class Model {
 
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql).then((rows) => {
-                if(rows.length == 0) return resolve(0);
+                if (rows.length == 0) return resolve(0);
 
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
             }).catch((err) => {
@@ -330,13 +324,13 @@ class Model {
  * Represents an instance of a database model.
  * @class
  */
-class ModelInstance{
+class ModelInstance {
     /**
      * Creates an instance of ModelInstance.
      * @param {string} name The name of the database table.
      * @param {Object} data The instance data.
      */
-    constructor(name, data){
+    constructor(name, data) {
         /**
          * The name of the database table.
          * @type {string}
@@ -392,7 +386,7 @@ class ModelInstance{
      * @returns {Promise<void>} A promise that resolves when the query is executed.
      * @throws {Error} Throws an error if query execution fails.
      */
-    async customRequest(custom){
+    async customRequest(custom) {
         try {
             await connexion.promise().query(custom).catch((err) => {
                 return error(`Error executing query: ${err}`);
@@ -403,4 +397,4 @@ class ModelInstance{
     }
 }
 
-module.exports = {Schema, connect, logout, Model, client};
+module.exports = { Schema, connect, logout, Model, client };
