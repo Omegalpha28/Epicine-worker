@@ -47,6 +47,8 @@ main().then(() => {
 });
 
 process.on('SIGINT', async () => {
+    console.log("entrain de s'arrêter");
+    
     await logout();
     process.exit();
 });
