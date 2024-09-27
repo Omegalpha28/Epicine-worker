@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { getImageUrl } from "../../utils";
 
-export const Navbar = () => {
+export const Navbar = ({ isDark }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <nav className={styles.navbar}>
             <Link to="/">
-                <img className={styles.logo} src={getImageUrl("logo.png")} alt="logo" />
+                <img
+                    className={styles.logo}
+                    src={isDark ? getImageUrl("logo.png") : getImageUrl("light_logo.png")}
+                    alt="logo"
+                />
             </Link>
             <div className={styles.menu}>
                 <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`} onClick={() => setMenuOpen(false)}>

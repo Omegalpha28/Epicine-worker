@@ -68,7 +68,6 @@ module.exports = (client, app, bcrypt) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             const data = await response.json();
             res.json(data);
         } catch (error) {
@@ -78,3 +77,4 @@ module.exports = (client, app, bcrypt) => {
     });
 
 };
+

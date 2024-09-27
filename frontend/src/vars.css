@@ -2,7 +2,7 @@
     --color-text: #060d17;
     --color-app: #d8d4d4;
     --color-text-mode: #000000;
-    --color-primary: #f2d669;
+    --color-primary: #fecc00;
     --color-btn-hover: #676e75;
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
@@ -28,21 +28,23 @@
 }
 
 [data-theme="light"] {
+    --nav-bar: #fecc00;
     --color-text: #060d17;
-    --color-app: #d8d4d4;
+    --color-app: #ffffff;
     --color-text-mode: #000000;
-    --color-primary: #f2d669;
-    --color-btn-hover: #676e75;
+    --color-primary: #fecc00;
+    --color-btn-hover: #adadad;
     --color-secondary: #e6c892;
+    --color-search-bar: #ececec;
     --color-dark: #f4dbb8;
-    --color-btn: #535457;
-    --color-input-bg: #565d6880;
+    --color-btn: #ececec;
+    --color-input-bg: #ececec;
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
     --color-border: #1d1d1d;
     --color-header-bg: var(--color-app);
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    --color-inside-box: #8a96a3;
+    --color-inside-box: #ececec;
     --color-about: #f3f3f366;
     --background-item: linear-gradient(
         90deg,
@@ -57,12 +59,14 @@
 }
 
 [data-theme="dark"] {
+    --nav-bar: #060d17;
     --color-text: #c6c8cd;
     --color-app: #060d17;
     --color-text-mode: #ffffff;
     --color-primary: #576cbc;
     --color-btn-hover: #161d24;
     --color-secondary: #19376d;
+    --color-search-bar: #10161d;
     --color-dark: #0b2447;
     --color-btn: #111924;
     --color-input-bg: #8a919c80;

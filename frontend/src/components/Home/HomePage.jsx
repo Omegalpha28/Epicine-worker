@@ -9,14 +9,14 @@ import { Header } from "../Header/Header";
 import { Home } from "./Home";
 
 export const HomePage = () => {
-  const preference = window.matchMedia("prefers-color-scheme: dark)").matches;
+  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setisDark] = useLocalStorage("isDark", preference);
 
   return (
     <div className={Home_style.page} data-theme={isDark ? "dark" : "light"}>
+      <Navbar isDark={isDark} className={styles.navbar}/>
       <div className={styles.App}>
         <Toggle style={{ visibility: 'hidden' }} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
-        <Navbar className={styles.navbar}/>
         <Header />
         <Home />
       </div>
