@@ -11,6 +11,7 @@
     flex-direction: column;
     height: 40vh;
     width: 100%;
+    margin-right: 18px;
     background-color: var(--color-app); /* Utilisation de la variable pour le fond */
     box-shadow: var(--color-box-shadow); /* Utilisation de la variable pour l'ombre */
     padding: 2%;
@@ -25,7 +26,6 @@
 }
 
 .title_box {
-    margin-left: 2.5%;
     margin-bottom: 5%;
     font-size: 4vh;
     color: var(--color-text-mode); /* Utilisation de la variable pour la couleur du texte */
@@ -64,14 +64,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 81%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
     margin: auto;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     border: 0.5px solid var(--color-border);
-    padding: 2%;
+    padding: 2%;;
     box-sizing: border-box;
 }

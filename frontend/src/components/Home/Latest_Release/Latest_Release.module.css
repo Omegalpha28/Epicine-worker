@@ -19,9 +19,9 @@
 }
 
 .title_box {
-    margin-left: 5%;
-    margin-top: 5%;
-    align-self: flex-start;
+    margin-top: 0.5%;
+    margin-left: 2.5%;
+    margin-bottom: 5%;
     font-size: 4vh;
     color: var(--color-text-mode);
 }
@@ -30,13 +30,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 2% 0;
+    margin-bottom: 5%;
+    margin-top: 1%;
 }
 
 .categories .movies,
 .categories .series {
-    margin-left: 5%;
-    margin-top: 5%;
+    margin-left: 2%;
     height: 3vh;
     width: 8vw;
     font-size: 1.5vh;
@@ -60,7 +60,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 78%;
+    height: 80.5%;
     width: 95%;
     margin: auto;
     border-radius: 10px;
