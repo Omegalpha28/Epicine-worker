@@ -9,6 +9,7 @@ import { TV_Shows } from "./components/TV_Shows/TV_Shows";
 import { Streaming } from "./components/Streaming/Streaming";
 import { SignUpPage } from "./components/Account/SignUp";
 import { TrailersPage } from "./components/Trailers/Trailers";
+import { MPage } from "./components/MoviePage/MPage";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/Streaming" element={<Streaming />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
                 <Route path="/Signup" element={<SignUpPage />} />
+                <Route path="/Movie" element={<MPage />} />
             </Routes>
         </Router>
     </div>
