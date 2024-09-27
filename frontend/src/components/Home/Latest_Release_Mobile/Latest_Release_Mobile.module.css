@@ -70,7 +70,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #10161d;
     color : #ffffff;
-    border: 0.5px solid #999c9f;
+    /* border: 0.5px solid #999c9f; */
     padding: 2%;
     box-sizing: border-box;
 }
