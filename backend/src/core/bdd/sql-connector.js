@@ -1,6 +1,18 @@
 const mysql = require("mysql2");
 const { error, logs } = require("../../utils/Logger");
 let client = {};
+
+const sqlType = {
+    String: "String",
+    Number: "Number",
+    Boolean: "Boolean",
+    Date: "Date",
+    Object: "Object",
+    Array: "Array",
+    Now: "Now",
+    Float: "Float"
+};
+
 const sqlTypeMap = {
     String: 'VARCHAR',
     Number: 'INT',
@@ -9,6 +21,7 @@ const sqlTypeMap = {
     Object: 'JSON',
     Array: 'VARCHAR',
     Now: 'NOW()',
+    Float: 'FLOAT'
 };
 
 /**
@@ -192,12 +205,12 @@ class Model {
      * @returns {string} A character string representing the SQL statement to create the table.
      */
     generateCreateTableStatement(schema) {
+        
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
             let lengthDefault = 255;
             if (!field.type && typeof field == "object") throw new Error(`Field ${fieldName} has no type defined.`);
-            const fieldType = typeof field == "object" ? field.type.name : field.name;
-
+            const fieldType = typeof field == "object" ? field.type.name : field.name != undefined ? field.name : field;
             if (field.type && typeof field == "object") {
                 if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${fieldType}.`);
 
@@ -211,7 +224,7 @@ class Model {
                 if (typeof field.customize === 'string' && field.customize.length != 0) columnDefinition += ` ${field.customize}`;
                 return columnDefinition;
             }
-
+            
             if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${field}`);
 
             return `${fieldName} ${sqlTypeMap[fieldType] == "VARCHAR" ? `${sqlTypeMap[fieldType]}(${lengthDefault})` : sqlTypeMap[fieldType]}`;
@@ -397,4 +410,4 @@ class ModelInstance {
     }
 }
 
-module.exports = { Schema, connect, logout, Model, client };
+module.exports = { Schema, connect, logout, Model, client, sqlType };
