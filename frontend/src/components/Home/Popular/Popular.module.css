@@ -9,7 +9,7 @@
 .main_box {
     display: flex;
     flex-direction: column;
-    height: 40vh;
+    height: 450px;
     width: 100%;
     background-color: var(--color-app);
     box-shadow: var(--color-box-shadow);
@@ -85,7 +85,7 @@
     display: flex;
     gap: 1rem; /* Espace entre les films */
     overflow-x: auto; /* Permet le défilement horizontal */
-    padding-bottom: 5px; /* Pour éviter que le contenu soit coupé par la bordure */
+    padding-bottom: 15px; /* Pour éviter que le contenu soit coupé par la bordure */
 }
 
 .movie_item {
