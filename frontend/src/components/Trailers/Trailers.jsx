@@ -14,16 +14,6 @@ export const TrailersPage = () => {
       <div className={app_styles.App} >
         <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         <Navbar />
-        <div className={styles.New_Release_page}>
-          <nav className={styles.header}>
-            <div className={styles.searchContainer}>
-                <input type="text" placeholder="Type to search..." className={styles.searchInput} />
-                <button className={styles.searchButton}>
-                  Search
-                </button>
-            </div>
-          </nav>
-        </div>
       <div className={styles.inside_box}>
           <h1>Trailers</h1>
       </div>
