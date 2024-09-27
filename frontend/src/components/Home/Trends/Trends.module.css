@@ -81,7 +81,12 @@
     display: flex;
     gap: 1rem; /* Espace entre les films */
     overflow-x: auto; /* Permet le défilement horizontal */
-    padding-bottom: 15px;
+    -webkit-overflow-scrolling: touch; /* Améliore le scroll sur mobile */
+    scrollbar-width: none; /* Pour Firefox */
+}
+
+.movie_list::-webkit-scrollbar {
+    display: none;
 }
 
 .movie_item {
