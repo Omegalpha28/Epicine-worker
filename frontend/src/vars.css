@@ -28,6 +28,7 @@
 }
 
 [data-theme="light"] {
+    --color-base: #fff;
     --nav-bar: #fecc00;
     --color-text: #060d17;
     --color-app: #ffffff;
@@ -42,7 +43,7 @@
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
     --color-border: #1d1d1d;
-    --color-header-bg: var(--color-app);
+    --color-header-bg: #ffffffcc;
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     --color-inside-box: #ececec;
     --color-about: #f3f3f366;
@@ -59,6 +60,7 @@
 }
 
 [data-theme="dark"] {
+    --color-base: #000;
     --nav-bar: #060d17;
     --color-text: #c6c8cd;
     --color-app: #060d17;
@@ -71,7 +73,7 @@
     --color-btn: #111924;
     --color-input-bg: #8a919c80;
     --color-bg: #04152d;
-    --color-header-bg: var(--color-app);
+    --color-header-bg: #060d17cc;
     --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
     --color-border: #999c9f;
     --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

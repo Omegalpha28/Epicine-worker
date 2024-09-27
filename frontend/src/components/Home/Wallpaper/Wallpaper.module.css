@@ -1,0 +1,21 @@
+.Wallpaper {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.image {
+    width: 100vw;
+    filter: brightness(0.5);
+}
+
+.blurblock {
+    top: 35vh;
+    left: -20vw;
+    width: 140vw;
+    height: 110vh;
+    position: absolute;
+    background-color: var(--color-app);
+    filter: blur(30vh);
+}
