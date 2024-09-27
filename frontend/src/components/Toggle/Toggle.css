@@ -1,9 +1,8 @@
 .toggle-container {
   position: absolute;
-  top: 1.7em;
+  top: 3em;
   right: 3em;
   z-index: 3;
-  visibility: hidden;
 }
 
 .toggle {
@@ -46,7 +45,7 @@
 @media screen and (max-width: 1000px) {
   .toggle-container {
     position: absolute;
-    top: 1.7em;
+    top: 3em;
     transform: scale(1.1);
     right: 1em;
     z-index: 3;
