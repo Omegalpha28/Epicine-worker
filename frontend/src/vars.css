@@ -42,8 +42,8 @@
     --color-input-bg: #ececec;
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
-    --color-border: #1d1d1d;
-    --color-header-bg: #ffffffcc;
+    --color-border: #000000;
+    --color-header-bg: #ffffff00;
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     --color-inside-box: #ececec;
     --color-about: #f3f3f366;
@@ -73,9 +73,9 @@
     --color-btn: #111924;
     --color-input-bg: #8a919c80;
     --color-bg: #04152d;
-    --color-header-bg: #060d17cc;
+    --color-header-bg: #060d1700;
     --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-    --color-border: #999c9f;
+    --color-border: #000000;
     --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     --color-inside-box: #10161d;
 

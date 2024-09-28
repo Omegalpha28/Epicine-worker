@@ -16,6 +16,7 @@
 }
 
 .Title {
+    display: none;
     font-size: 10vh;
     font-family: var(--font-robot);
     color: var(--color-text);
@@ -24,14 +25,17 @@
 
 .searchContainer {
     position: relative;
-    /* border: 0.5px solid var(--color-border); */
+    /* border: 2px solid var(--color-border); */
+    border: 0.1px solid var(--color-input-bg);
     display: flex;
     align-items: center;
     width: 90%;
+    margin-top: 27vh;
     margin-bottom: 8vh;
     padding: 10px;
     border-radius: 10px;
     background-color: var(--color-search-bar);
+    box-shadow: var(--color-box-shadow);
     height: 90px;
 }
 
