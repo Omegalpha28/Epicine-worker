@@ -56,13 +56,14 @@
 }
 
 .inside_box {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80%;
     width: 100%;
     margin: auto;
-    overflow: hidden; /* Cache le scroll pour créer l'effet carrousel */
+    overflow: hidden;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
@@ -71,25 +72,13 @@
     box-sizing: border-box;
 }
 
-.movie_list {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto; /* Permet le défilement horizontal pour créer un effet de carrousel */
-    scroll-behavior: smooth; /* Pour que le scroll soit fluide */
-    scrollbar-width: none; /* Cache la scrollbar sur Firefox */
-}
-
-.movie_list::-webkit-scrollbar {
-    display: none; /* Cache la scrollbar sur les navigateurs Webkit */
-}
-
 .movie_item {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    width: 200px; /* Taille fixe pour que les affiches soient carrées */
-    height: 300px; /* Ajuste la hauteur pour correspondre aux proportions d'une affiche de film */
+    width: 50%; /* Augmente la taille de l'affiche */
+    height: 100%; /* La hauteur prend tout l'espace disponible */
     text-align: center;
     border-radius: 10px;
     background-color: var(--color-box-item);
@@ -97,33 +86,32 @@
 
 .movie_title {
     margin-top: 10px;
-    width: 90%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .release_date {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     margin-top: 5px;
     color: var(--color-text-secondary);
 }
 
 .movie_item img {
-    width: 100%;
-    height: 80%;
-    object-fit: cover; /* Rend l'image centrée et coupe les bords si nécessaire pour remplir le carré */
+    width: 90%;
+    height: 70%;
+    object-fit: cover;
     border-radius: 10px;
 }
 
 .carousel_controls {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
+    height: 100%;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    left: 0;
+    padding: 0 2%;
 }
 
 .carousel_button {
@@ -131,5 +119,11 @@
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: var(--color-btn);
+    color: white;
+    transition: color 0.3s ease;
 }
+
+.carousel_button:hover {
+    color: var(--color-btn-hover);
+}
+
