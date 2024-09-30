@@ -26,7 +26,7 @@ export const MPage = () => {
           </div>
           <div className={styles.row_element}>
             <div className={styles.Role}>Role</div>
-              <Trailer_Video />
+              <Trailer_Video movieID={id}/>
           </div>
         </div>
       </div>
