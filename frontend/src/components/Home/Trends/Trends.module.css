@@ -97,7 +97,12 @@
     text-overflow: ellipsis;
     min-width: 150px;
     text-align: center;
-    border-radius: 10px; /* Arrondi pour les éléments de film */
+    border-radius: 10px;
+}
+
+.movie_item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .movie_title {
