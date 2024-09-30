@@ -25,7 +25,7 @@ function App() {
                 <Route path="/Streaming" element={<Streaming />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
                 <Route path="/Signup" element={<SignUpPage />} />
-                <Route path="/Movie" element={<MPage />} />
+                <Route path="/Movie/:id" element={<MPage />} />
             </Routes>
         </Router>
     </div>

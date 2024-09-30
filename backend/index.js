@@ -41,6 +41,7 @@ main().then(() => {
     require("./src/routes/auth/auth")(client, app, bcrypt);
     require("./src/routes/user/user")(client, app, bcrypt);
     require("./src/routes/list/list_tv")(client, app, bcrypt);
+    require("./src/routes/list/movie_tv")(client, app, bcrypt);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);

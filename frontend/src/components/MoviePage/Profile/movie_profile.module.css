@@ -13,17 +13,16 @@
 }
 
 .picture {
-    width: 350px;
-    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 20px;
-    background-color: red;
-    border-radius: 5%;
-    min-width: 250px;
-    min-height: 350px;
+    min-width: 200px;
+    min-height: 300px;
     transition: 0.25s ease-in-out;
+}
+
+.picture img {
+    border-radius: 5%;
 }
 
 .picture:hover {
@@ -50,5 +49,4 @@
 .column_profile {
     flex-direction: column;
     padding-left: 100px;
-    
 }
