@@ -1,7 +1,5 @@
 .box {
     display: flex;
-    height: 100%;
-    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -9,11 +7,9 @@
 .main_box {
     display: flex;
     flex-direction: column;
-    height: 40vh;
     width: 100%;
-    margin-right: 18px;
-    background-color: var(--color-app); /* Utilisation de la variable pour le fond */
-    box-shadow: var(--color-box-shadow); /* Utilisation de la variable pour l'ombre */
+    background-color: var(--color-app);
+    box-shadow: var(--color-box-shadow);
     padding: 2%;
     box-sizing: border-box;
     position: relative;
@@ -26,9 +22,10 @@
 }
 
 .title_box {
+    margin-left: 2.5%;
     margin-bottom: 5%;
-    font-size: 4vh;
-    color: var(--color-text-mode); /* Utilisation de la variable pour la couleur du texte */
+    font-size: 4vh; /* Adjust font size as needed */
+    color: var(--color-text-mode);
 }
 
 .categories {
@@ -41,37 +38,88 @@
 .categories .movies,
 .categories .television_programme {
     margin-right: 5%;
-    height: 3vh;
-    width: 15vw;
-    font-size: 1.5vh;
+    height: 3vh; /* Adjust button height as needed */
+    width: 8vw; /* Adjust button width as needed */
+    font-size: 1.5vh; /* Adjust font size as needed */
     border-radius: 50px;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-btn); /* Utilisation de la variable pour les boutons */
-    color: var(--color-text); /* Utilisation de la variable pour le texte */
+    background-color: var(--color-btn);
+    color: var(--color-text);
     cursor: pointer;
 }
 
 .categories .movies:hover,
 .categories .television_programme:hover {
-    background-color: var(--color-btn-hover); /* Utilisation de la variable pour l'effet hover */
+    background-color: var(--color-btn-hover);
 }
 
 .inside_box {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
+    align-items: center;
+    width: 95%;
     margin: auto;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
-    /* border: 0.5px solid var(--color-border); */
-    padding: 2%;;
+    padding: 2%;
     box-sizing: border-box;
+    overflow-x: hidden;
+    scrollbar-width: none; /* For Firefox */
+    /* Remove the fixed height to adapt to content */
+    flex-wrap: wrap; /* Allow items to wrap if necessary */
+}
+
+.movie_list {
+    display: flex;
+    gap: 1rem; /* Space between items */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Improves scrolling on mobile */
+    scrollbar-width: none; /* For Firefox */
+}
+
+.movie_list::-webkit-scrollbar {
+    display: none; /* Hides scrollbar */
+}
+
+.movie_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-overflow: ellipsis;
+    min-width: 150px; /* Minimum width for each item */
+    text-align: center;
+    border-radius: 10px;
+}
+
+.movie_item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.movie_title {
+    display: none;
+    margin-top: 10px;
+    width: 10ch; /* Adjust title width as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie_item img {
+    width: 100%;
+    border-radius: 10px; /* Rounded corners for the image */
+}
+
+@media screen and (max-width: 875px) {
+    .categories .movies,
+    .categories .television_programme {
+        height: 3vh;
+        width: 15vw; /* Adjust button width for smaller screens */
+    }
 }
