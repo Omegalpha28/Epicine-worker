@@ -42,7 +42,7 @@ export const Movie_Profile = ({ movieId }) => {
                             <div className={styles.Title}>{movieDetails.title}</div>
                         </div>
                         <div className={styles.Resume}>
-                            Resume: {movieDetails.overview}
+                            <strong>Resume:</strong> {movieDetails.overview}
                         </div>
                     </div>
                 </>
