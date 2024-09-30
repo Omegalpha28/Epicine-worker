@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./Popular.module.css";
 
 export const Popular = () => {
-
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -23,7 +22,7 @@ export const Popular = () => {
             const data = await response.json();
             setMovies(data.results);
         } catch (err) {
-            console.error(err);
+            // console.error(err); // Commenté ou supprimé
             setError(err.message);
         } finally {
             setLoading(false);

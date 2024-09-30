@@ -57,12 +57,12 @@
 
 .inside_box {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 80.5%;
-    width: 95%;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
     margin: auto;
+    overflow: hidden; /* Cache le scroll pour créer l'effet carrousel */
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
@@ -73,14 +73,14 @@
 
 .movie_list {
     display: flex;
-    gap: 1rem; /* Espace entre les films */
-    overflow-x: auto; /* Permet le défilement horizontal */
-    -webkit-overflow-scrolling: touch; /* Améliore le scroll sur mobile */
-    scrollbar-width: none; /* Pour Firefox */
+    gap: 1rem;
+    overflow-x: auto; /* Permet le défilement horizontal pour créer un effet de carrousel */
+    scroll-behavior: smooth; /* Pour que le scroll soit fluide */
+    scrollbar-width: none; /* Cache la scrollbar sur Firefox */
 }
 
 .movie_list::-webkit-scrollbar {
-    display: none;
+    display: none; /* Cache la scrollbar sur les navigateurs Webkit */
 }
 
 .movie_item {
@@ -88,19 +88,20 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    text-overflow: ellipsis;
-    min-width: 150px;
+    width: 200px; /* Taille fixe pour que les affiches soient carrées */
+    height: 300px; /* Ajuste la hauteur pour correspondre aux proportions d'une affiche de film */
     text-align: center;
-    border-radius: 10px; /* Arrondi pour les éléments de film */
+    border-radius: 10px;
+    background-color: var(--color-box-item);
 }
 
 .movie_title {
-    display: block;
     margin-top: 10px;
-    width: 10ch;
+    width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.2rem;
 }
 
 .release_date {
@@ -111,5 +112,24 @@
 
 .movie_item img {
     width: 100%;
-    border-radius: 10px; /* Arrondi pour l'image */
+    height: 80%;
+    object-fit: cover; /* Rend l'image centrée et coupe les bords si nécessaire pour remplir le carré */
+    border-radius: 10px;
+}
+
+.carousel_controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel_button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-btn);
 }
