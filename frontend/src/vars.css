@@ -15,6 +15,8 @@
     --color-inside-box: #8a96a3;
     --color-header-bg: var(--color-app);
     --color-about: #f3f3f366;
+    --color-radiant1: #ff7e5f;
+    --color-radiant2: #feb47b;
     --background-item: linear-gradient(
         90deg,
         rgba(236, 3, 186, 0.298) 0%,
@@ -43,6 +45,8 @@
     --color-bg: #fbead2;
     --color-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.75);
     --color-border: #000000;
+    --color-radiant1: #ff7e5f;
+    --color-radiant2: #feb47b;
     --color-header-bg: #ffffff00;
     --color-box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     --color-inside-box: #ececec;
@@ -71,6 +75,8 @@
     --color-search-bar: #10161d;
     --color-dark: #0b2447;
     --color-btn: #111924;
+    --color-radiant1: #5f97ff;
+    --color-radiant2: #d47bfe;
     --color-input-bg: #8a919c80;
     --color-bg: #04152d;
     --color-header-bg: #060d1700;
@@ -100,6 +106,8 @@
         --color-input-bg: #8a919c80;
         --color-secondary: #19376d;
         --color-inside-box: #10161d;
+        --color-radiant1: #184df8;
+        --color-radiant2: #d47bfe;
         --color-dark: #0b2447;
         --color-bg: #04152d;
         --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);

@@ -12,6 +12,18 @@
     transition: 0.25s ease-in-out;
 }
 
+.Title {
+    font-size: 50px;
+    margin-right: 100px;
+    background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: moveGradient 4s ease infinite;
+}
+
 .picture {
     display: flex;
     align-items: center;
