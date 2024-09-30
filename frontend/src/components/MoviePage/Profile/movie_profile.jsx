@@ -21,7 +21,6 @@ export const Movie_Profile = ({ movieId }) => {
                 setLoading(false);
             }
         };
-
         if (movieId) {
             fetchMovieDetails();
         }

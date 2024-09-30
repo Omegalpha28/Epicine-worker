@@ -1,4 +1,3 @@
-// src/MoviePage.js
 import { useState } from "react";
 
 export const useMoviePage = () => {
@@ -6,7 +5,6 @@ export const useMoviePage = () => {
 
     const handleMovieClick = (movieId) => {
         setActiveMovieId(movieId);
-        console.log("ID du film actif:", movieId);
     };
 
     return {
