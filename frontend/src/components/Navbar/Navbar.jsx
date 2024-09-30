@@ -11,7 +11,7 @@ export const Navbar = ({ isDark }) => {
             <Link to="/">
                 <img
                     className={styles.logo}
-                    src={isDark ? getImageUrl("logo.png") : getImageUrl("light_logo.png")}
+                    src={getImageUrl("full_logo.svg")}
                     alt="logo"
                 />
             </Link>
@@ -39,6 +39,13 @@ export const Navbar = ({ isDark }) => {
                         <Link className={styles.account_MB} to="/login">My Account</Link>
                     </li>
                 </ul>
+                <div class={styles.box}>
+                    <input type="text" placeholder="Search..."/>
+                        <a href="#">
+                            <img class={styles.fas} src={getImageUrl("glass.svg")} />
+                        </a>
+                </div>
+
                 <img
                     className={styles.menuBtn}
                     src={

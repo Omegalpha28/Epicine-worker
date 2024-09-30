@@ -19,7 +19,6 @@
 
 .logo {
     height: 40px;
-    width: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
@@ -148,11 +147,67 @@
     display: none;
 }
 
+.box {
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 20px 20px;
+    background-color: var(--color-search-bar);
+    border: 0.1px solid var(--color-input-bg);
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.box:hover input {
+    width: 350px;
+}
+
+.box input{
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+    color: var(--color-input-bg);
+}
+
+.box input::placeholder{
+    color: var(--color-input-bg);
+    opacity: 1;
+}
+
+.box a .fas {
+    height: 15px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.box a .fas::after {
+    content: "";
+    position: absolute;
+    top: 50; /* Centre verticalement */
+    left: 50; /* Centre horizontalement */
+    width: 3000px; /* Taille du cercle */
+    height: 3000px; /* Taille du cercle */
+    z-index: -1;
+    color: aqua;
+    border-radius: 100%;
+}
+
 @media screen and (max-width: 1000px) {
     .navbar {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .box {
+        display: none;
     }
 
     .menu {
