@@ -1,7 +1,5 @@
 .box {
     display: flex;
-    height: 100%;
-    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -9,7 +7,6 @@
 .main_box {
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 100%;
     background-color: var(--color-app);
     box-shadow: var(--color-box-shadow);
@@ -18,28 +15,32 @@
     position: relative;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .title_box {
-    margin-top: 0.5%;
     margin-left: 2.5%;
     margin-bottom: 5%;
-    font-size: 4vh;
+    font-size: 4vh; /* Adjust font size as needed */
     color: var(--color-text-mode);
 }
 
 .categories {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     margin-bottom: 5%;
-    margin-top: 1%;
 }
 
 .categories .movies,
-.categories .series {
-    margin-left: 2%;
-    height: 3vh;
-    width: 8vw;
-    font-size: 1.5vh;
+.categories .television_programme {
+    margin-right: 5%;
+    height: 3vh; /* Adjust button height as needed */
+    width: 8vw; /* Adjust button width as needed */
+    font-size: 1.5vh; /* Adjust font size as needed */
     border-radius: 50px;
     border: none;
     display: flex;
@@ -51,36 +52,38 @@
 }
 
 .categories .movies:hover,
-.categories .series:hover {
+.categories .television_programme:hover {
     background-color: var(--color-btn-hover);
 }
 
 .inside_box {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 80%;
-    width: 100%;
+    width: 95%;
     margin: auto;
-    overflow: hidden; /* Cache le scroll pour créer l'effet carrousel */
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     padding: 2%;
     box-sizing: border-box;
+    overflow-x: hidden;
+    scrollbar-width: none; /* For Firefox */
+    /* Remove the fixed height to adapt to content */
+    flex-wrap: wrap; /* Allow items to wrap if necessary */
 }
 
 .movie_list {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto; /* Permet le défilement horizontal pour créer un effet de carrousel */
-    scroll-behavior: smooth; /* Pour que le scroll soit fluide */
-    scrollbar-width: none; /* Cache la scrollbar sur Firefox */
+    gap: 1rem; /* Space between items */
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Improves scrolling on mobile */
+    scrollbar-width: none; /* For Firefox */
 }
 
 .movie_list::-webkit-scrollbar {
-    display: none; /* Cache la scrollbar sur les navigateurs Webkit */
+    display: none; /* Hides scrollbar */
 }
 
 .movie_item {
@@ -88,48 +91,35 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    width: 200px; /* Taille fixe pour que les affiches soient carrées */
-    height: 300px; /* Ajuste la hauteur pour correspondre aux proportions d'une affiche de film */
+    text-overflow: ellipsis;
+    min-width: 150px; /* Minimum width for each item */
     text-align: center;
     border-radius: 10px;
-    background-color: var(--color-box-item);
+}
+
+.movie_item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .movie_title {
+    display: none;
     margin-top: 10px;
-    width: 90%;
+    width: 10ch; /* Adjust title width as needed */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1.2rem;
-}
-
-.release_date {
-    font-size: 0.9rem;
-    margin-top: 5px;
-    color: var(--color-text-secondary);
 }
 
 .movie_item img {
     width: 100%;
-    height: 80%;
-    object-fit: cover; /* Rend l'image centrée et coupe les bords si nécessaire pour remplir le carré */
-    border-radius: 10px;
+    border-radius: 10px; /* Rounded corners for the image */
 }
 
-.carousel_controls {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.carousel_button {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--color-btn);
+@media screen and (max-width: 875px) {
+    .categories .movies,
+    .categories .television_programme {
+        height: 3vh;
+        width: 15vw; /* Adjust button width for smaller screens */
+    }
 }

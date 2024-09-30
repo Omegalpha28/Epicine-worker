@@ -1,9 +1,9 @@
 import styles from "./Home.module.css";
-import { Latest_Release } from "./Latest_Release/Latest_Release";
-import { Latest_Release_Mobile } from "./Latest_Release_Mobile/Latest_Release_Mobile";
+import { UpComing } from "./UpComing/UpComing";
+import { UpComing_Mobile } from "./UpComing_Mobile/UpComing_Mobile";
 import { Trends } from "./Trends/Trends";
 import { Popular } from "./Popular/Popular";
-import { Free } from "./Free/Free";
+import { Latest_Release } from "./Latest_Release/Latest_Release";
 import useTheme from "../set_theme";
 
 export const Home = () => {
@@ -12,10 +12,10 @@ export const Home = () => {
     return <div className={styles.home} data-theme={isDark ? "dark" : "light"}>
         <div className={styles.wrap_box}>
             <div className={styles.mobile}>
-                <Latest_Release_Mobile />
+                <UpComing_Mobile />
             </div>
             <div className={styles.left_box}>
-                <Latest_Release />
+                <UpComing />
             </div>
             <div className={styles.right_box}>
                 <Trends />
@@ -24,8 +24,8 @@ export const Home = () => {
                 </div>
             </div>
         </div>
-        <div className={styles.free_box}>
-            <Free />
+        <div className={styles.Latest_Release_box}>
+            <Latest_Release />
         </div>
     </div>
 }

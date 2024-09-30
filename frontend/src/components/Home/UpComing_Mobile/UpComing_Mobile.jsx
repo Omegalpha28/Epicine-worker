@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./Latest_Release_Mobile.module.css";
+import styles from "./UpComing_Mobile.module.css";
 
-export const Latest_Release_Mobile = () => {
+export const UpComing_Mobile = () => {
 
     return <div className={styles.box}>
         <div className={styles.main_box}>
             <div className={styles.header}>
-                <h1 className={styles.title_box}>Latest Release</h1>
+                <h1 className={styles.title_box}>Upcoming</h1>
                 <div className={styles.categories}>
                     <button className={styles.movies}>Movies</button>
                     <button className={styles.series}>Series</button>
