@@ -47,7 +47,6 @@ export const LoginPage = () => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("Connexion réussie:", data);
                 navigate("/");
             } else {
                 console.error("Erreur de connexion:", data.msg);
