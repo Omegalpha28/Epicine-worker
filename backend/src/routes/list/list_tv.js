@@ -19,7 +19,6 @@ module.exports = (client, app, bcrypt) => {
         }
 
         try {
-            // console.log(`Fetching ${type} from TMDB...`); // Commenté ou supprimé
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -27,15 +26,12 @@ module.exports = (client, app, bcrypt) => {
                     Authorization: `Bearer ${TMDB_API_KEY}`,
                 },
             });
-
-            // console.log(`Response status: ${response.status}`); // Commenté ou supprimé
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
-            // console.log("Data received:", data); // Commenté ou supprimé
+
             res.json(data);
         } catch (error) {
             console.error('Erreur lors de la récupération des données :', error);
