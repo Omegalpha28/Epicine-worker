@@ -1,13 +1,34 @@
 const { Schema, Model, sqlType } = require("../../bdd/sql-connector");
 
 const moviesSchema = new Schema({
-    adult: Boolean,
-    backdrop_path: String,
-    genre_ids: Array,
-    id: Number,
-    original_language: String,
-    original_title: String,
-    overview: String,
+    adult: {
+        type: Boolean,
+        required: true
+    },
+    backdrop_path: {
+        type: String,
+        required: true
+    },
+    genre_ids: {
+        type: Array,
+        required: true
+    },
+    id: {
+        type: Number,
+        required: true
+    },
+    original_language: {
+        type: String,
+        required: true
+    },
+    original_title: {
+        type: String,
+        required: true
+    },
+    overview: {
+        type: String,
+        required: true
+    },
     popularity: sqlType.Float,
     poster_path: String,
     release_date: String,
