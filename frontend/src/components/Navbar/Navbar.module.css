@@ -247,10 +247,10 @@
 
     .logo {
         top: auto;
-        height: 40px;
-        width: 50px;
-        margin-bottom: 10px;
-        margin-top: 10px;
+        height: 95px;
+        width: 105px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .menuItems {

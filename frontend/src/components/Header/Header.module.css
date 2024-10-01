@@ -23,61 +23,9 @@
     margin-bottom: 10vh;
 }
 
-.searchContainer {
-    display: none;
-    position: relative;
-    border: 0.5px solid var(--color-border);
-    align-items: center;
-    width: 90%;
-    margin-top: 27vh;
-    margin-bottom: 8vh;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--color-search-bar);
-    box-shadow: var(--color-box-shadow);
-    height: 90px;
-}
-
-.searchInput {
-    flex: 1;
-    padding: 10px;
-    font-size: 25px;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--color-input-bg);
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.searchButton {
-    padding: 10px 40px;
-    margin-right: 7px;
-    font-size: 25px;
-    background-color: var(--color-btn);
-    color: var(--color-text);
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-
-.searchButton:hover {
-    background-color: var(--color-btn-hover); /* Mise à jour avec la variable appropriée */
-}
-
-.searchButton:active {
-    background-color: var(--color-btn); /* Mise à jour avec la variable appropriée */
-    filter: brightness(0.8);
-    transform: scale(0.9);
-}
-
 @media screen and (max-width: 1000px) {
     .header {
-        height: 55vh;
-        margin: 0px 1%;
-        border-radius: 20px;
-        background-color: var(--color-header-bg); /* Mise à jour avec la variable appropriée */
+        display: none;
     }
 
     .Title {
@@ -88,23 +36,4 @@
         white-space: normal;
     }
 
-    /* Mettre le bouton en dessous de la barre de recherche */
-    .searchContainer {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        border: 0.5px solid var(--color-border);
-    }
-
-    .searchInput {
-        font-size: 20px; /* Réduit la taille du texte dans le champ */
-    }
-
-    .searchButton {
-        padding: 20px 30px;
-        width: 100%; /* Pour s'adapter à la largeur du conteneur */
-        margin-top: 55px; /* Augmenter l'espace entre l'input et le bouton */
-        margin-right: 0; /* Remise à zéro de la marge */
-        font-size: 20px;
-    }
 }
