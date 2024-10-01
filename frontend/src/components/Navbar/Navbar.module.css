@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: space-between;
     z-index: 100;
-    top : 0px;
+    top: 0px;
     padding: 0 5%;
     text-wrap: nowrap;
     flex-wrap: nowrap;
@@ -22,6 +22,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
+    filter: var(--filter-logo);
 }
 
 .menu {
@@ -157,46 +158,57 @@
     border-radius: 30px;
     align-items: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .box:hover input {
     width: 350px;
 }
 
-.box input{
+.box input {
     width: 0;
     outline: none;
     border: none;
     font-weight: 500;
     transition: 0.8s;
     background: transparent;
-    color: var(--color-input-bg);
+    color: var(--color-text);
 }
 
-.box input::placeholder{
+.box input::placeholder {
     color: var(--color-input-bg);
     opacity: 1;
 }
 
-.box a .fas {
+.fas {
     height: 15px;
     margin: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    z-index: 1;
 }
 
-.box a .fas::after {
+.box a span {
     content: "";
+    display: block;
+    visibility: hidden;
     position: absolute;
-    top: 50; /* Centre verticalement */
-    left: 50; /* Centre horizontalement */
-    width: 3000px; /* Taille du cercle */
-    height: 3000px; /* Taille du cercle */
-    z-index: -1;
-    color: aqua;
-    border-radius: 100%;
+    top: 2.5px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: var(--color-input-bg);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.box:hover a span {
+    visibility: visible;
+}
+
+.box:hover a:active span {
+    visibility: visible;
+    filter: brightness(200%);
 }
 
 @media screen and (max-width: 1000px) {
@@ -225,7 +237,8 @@
         position: absolute;
         display: block;
         cursor: pointer;
-        top: 50%; /* Center vertically */
+        top: 50%;
+        /* Center vertically */
         transform: translateY(-50%);
         margin-right: 8vw;
     }

@@ -30,6 +30,7 @@
 }
 
 [data-theme="light"] {
+    --filter-logo: brightness(0) invert(1);
     --color-base: #fff;
     --nav-bar: #fecc00;
     --color-text: #060d17;
@@ -64,6 +65,7 @@
 }
 
 [data-theme="dark"] {
+    --filter-logo: none;
     --color-base: #000;
     --nav-bar: #060d17;
     --color-text: #c6c8cd;

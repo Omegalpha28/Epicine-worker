@@ -12,13 +12,9 @@
 
 .blurblock {
     top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /*top: 40vh;
     left: -20vw;
     width: 140vw;
-    height: 110vh;*/
+    height: 110vh;
     position: absolute;
     background: linear-gradient(to top, var(--color-app) 47%, var(--color-app) 45%, transparent 100%, transparent 100%);
 }
