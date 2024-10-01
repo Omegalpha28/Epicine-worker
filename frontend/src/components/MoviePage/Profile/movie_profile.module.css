@@ -91,10 +91,6 @@
     transition: 0.25s ease-in-out;
 }
 
-.picture img {
-    
-}
-
 .picture:hover {
     transform: scale(1.1);
     cursor: pointer;
