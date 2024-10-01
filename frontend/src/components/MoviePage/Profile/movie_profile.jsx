@@ -58,6 +58,8 @@ export const Movie_Profile = ({ movieId }) => {
                                 {ratingPercentage}%
                             </div>
                             <div className={styles.ReleaseDate}>
+                                <strong>Release:</strong>
+                                <br />
                                 {movieDetails.release_date}
                             </div>
                         </div>
