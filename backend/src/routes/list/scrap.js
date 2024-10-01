@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { Movies } = require('../../core/data/models');
+const { Movies, Tv } = require('../../core/data/models');
 
 module.exports = async (client, app, bcrypt) => {
     const API_KEY = process.env.TOKEN;
@@ -29,33 +29,25 @@ module.exports = async (client, app, bcrypt) => {
     const addMoviesToDatabase = async (movies) => {
         try {
             const _movies = movies.results;
-
-            console.log(_movies[0]);
-            // await tv
-            // await Movies.save({
-            //     adult: _movies[0].adult,
-            //     backdrop_path: _movies[0].backdrop_path,
-            //     genre_ids: _movies[0].genre_ids,
-            //     id: _movies[0].id,
-            //     original_language: _movies[0].original_language,
-            //     original_title: _movies[0].original_title,
-            //     overview: _movies[0].overview,
-            //     popularity: _movies[0].popularity,
-            //     poster_path: _movies[0].poster_path,
-            //     release_date: _movies[0].release_date,
-            //     title: _movies[0].title,
-            //     video: _movies[0].video,
-            //     vote_average: _movies[0].vote_average,
-            //     vote_count: _movies[0].vote_count
-            // });
-            // for (const movie of _movies) {
-            //     // await Movie.create({
-            //     //     title: movie.title,
-            //     //     overview: movie.overview,
-            //     //     release_date: movie.release_date,
-            //     //     // Ajoutez d'autres champs nécessaires
-            //     // });
-            // }
+            
+            for (const movie of _movies) {
+                await Tv.save({
+                    adult: movie.adult,
+                    backdrop_path: movie.backdrop_path,
+                    genre_ids: movie.genre_ids,
+                    id: movie.id,
+                    origin_country: movie.origin_country,
+                    original_language: movie.original_language,
+                    original_name: movie.original_name,
+                    overview: movie.overview,
+                    popularity: movie.popularity,
+                    poster_path: movie.poster_path,
+                    first_air_date: movie.first_air_date,
+                    name: movie.name,
+                    vote_average: movie.vote_average,
+                    vote_count: movie.vote_count
+                });
+            }
             console.log('Films ajoutés à la base de données avec succès');
         } catch (error) {
             console.error('Erreur lors de l\'ajout des films à la base de données:', error);

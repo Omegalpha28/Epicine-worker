@@ -10,7 +10,8 @@ const sqlType = {
     Object: "Object",
     Array: "Array",
     Now: "Now",
-    Float: "Float"
+    Float: "Float",
+    Text: "Text"
 };
 
 const sqlTypeMap = {
@@ -21,7 +22,8 @@ const sqlTypeMap = {
     Object: 'JSON',
     Array: 'VARCHAR',
     Now: 'NOW()',
-    Float: 'FLOAT'
+    Float: 'FLOAT',
+    Text: 'TEXT'
 };
 
 /**
@@ -124,7 +126,9 @@ function generateCondition(filter, isUpdate = false) {
 
 function generateValueSQL(value) {
     return value.map(item => {
-        return typeof item == "string" ? `"${item}"` : item;
+        if (typeof item === "string") return `"${item.replace(/"/g, '\\"')}"`;
+        if (typeof item === "object") return `"${item}"`;
+        return item;
     }).join(", ");
 }
 
@@ -237,7 +241,7 @@ class Model {
                 if (typeof field.customize === 'string' && field.customize.length != 0) columnDefinition += ` ${field.customize}`;
                 return columnDefinition;
             }
-            
+
             if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${field}`);
 
             return `${fieldName} ${sqlTypeMap[fieldType] == "VARCHAR" ? `${sqlTypeMap[fieldType]}(${lengthDefault})` : sqlTypeMap[fieldType]}`;
@@ -259,8 +263,6 @@ class Model {
         const keys = Object.keys(data);
         const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
 
-        logs(sql);
-        
         try {
             const result = await connexion.promise().query(sql);
             return result;
