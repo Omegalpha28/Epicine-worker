@@ -32,4 +32,5 @@ module.exports = client => {
 
         return userData.updateOne(settings);
     }
+
 }
