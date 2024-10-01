@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Latest_Release.module.css";
+import { Link } from "react-router-dom";
+import { useMoviePage } from "../../MovePage/MovePage";
 
 export const Latest_Release = () => {
     const [releases, setReleases] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isMovies, setIsMovies] = useState(true); // State to track if the user wants movies or series
+    const [isMovies, setIsMovies] = useState(true);
+    const { activeMovieId, handleMovieClick } = useMoviePage();
 
     useEffect(() => {
         fetchLatestReleases(isMovies ? 'movies' : 'series');
-    }, [isMovies]); // Fetch whenever the type changes
+    }, [isMovies]);
 
     const fetchLatestReleases = async (type) => {
         setLoading(true);
@@ -58,13 +61,11 @@ export const Latest_Release = () => {
                     ) : releases.length > 0 ? (
                         <div className={styles.movie_list}>
                             {releases.map((release) => (
-                                <div key={release.id} className={styles.movie_item}>
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200${release.poster_path}`}
-                                        alt={release.title || release.name}
-                                    />
+                                <div key={release.id} className={styles.movie_item} onClick={() => handleMovieClick(release.id)}>
+                                    <Link to={`/Movie/${release.id}`}>
+                                        <img src={`https://image.tmdb.org/t/p/w200${release.poster_path}`} alt={release.title || release.name} />
+                                    </Link>
                                     <h3 className={styles.movie_title}>{release.title || release.name}</h3>
-                                    {/* <p>{release.releaseDate}</p> Show the release date */}
                                 </div>
                             ))}
                         </div>

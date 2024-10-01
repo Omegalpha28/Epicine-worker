@@ -26,7 +26,6 @@ export const Popular = () => {
             const data = await response.json();
             setMovies(data.results);
         } catch (err) {
-            // console.error(err); // Commenté ou supprimé
             setError(err.message);
         } finally {
             setLoading(false);
@@ -69,3 +68,4 @@ export const Popular = () => {
         </div>
     );
 };
+    
