@@ -10,7 +10,6 @@ export const ConnectGoogle = () => {
                 },
             }
             );
-            console.log(userInfo.data);
         } catch (error) {
             console.error("Failed to fetch user info", error);
         }

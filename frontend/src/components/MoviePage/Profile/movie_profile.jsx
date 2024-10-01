@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import styles from './movie_profile.module.css';
 import useTheme from '../../set_theme';
+import { Trailer_Video } from '../Trailers/trailer_video';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
     return `linear-gradient(360deg, var(--color-radiant1) ${percentage}%, var(--color-radiant2) ${100 - percentage}%)`;
 };
 
-// Utilisation dans le composant Movie_Profile
 export const Movie_Profile = ({ movieId }) => {
     const [isDark, setIsDark] = useTheme();
     const [movieDetails, setMovieDetails] = useState(null);
@@ -36,8 +36,6 @@ export const Movie_Profile = ({ movieId }) => {
     if (error) return <div>Error: {error}</div>;
 
     const rating = movieDetails ? movieDetails.vote_average : 0;
-    
-    // Convertir la note en pourcentage arrondi au dixième près
     const ratingPercentage = rating ? Math.round(rating * 10) : 0;
 
     return (
@@ -58,6 +56,8 @@ export const Movie_Profile = ({ movieId }) => {
                                 {ratingPercentage}%
                             </div>
                             <div className={styles.ReleaseDate}>
+                                <strong>Release:</strong>
+                                <br />
                                 {movieDetails.release_date}
                             </div>
                         </div>
@@ -81,6 +81,9 @@ export const Movie_Profile = ({ movieId }) => {
                         </div>
                         <div className={styles.Resume}>
                             <strong>Resume:</strong> {movieDetails.overview}
+                        </div>
+                        <div className={styles.Trailers}>
+                            <Trailer_Video movieId={movieDetails.id}/>
                         </div>
                     </div>
                 </>
