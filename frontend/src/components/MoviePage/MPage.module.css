@@ -7,7 +7,9 @@
     padding: 2%;
     background-color: var(--color-inside-box);
     color: var(--color-text);
-    margin-top: 150px;
+    margin-top: 350px;
+    margin-left: 25%;
+    margin-right: 25%;
     border-radius: 10px;
     transition: 0.25s ease-in-out;
 
