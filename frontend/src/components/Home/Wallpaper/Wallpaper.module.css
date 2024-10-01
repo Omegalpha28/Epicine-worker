@@ -16,5 +16,5 @@
     width: 140vw;
     height: 110vh;
     position: absolute;
-    background: linear-gradient(to top, var(--color-app) 47%, var(--color-app) 55%, transparent 100%, transparent 100%);
+    background: linear-gradient(to top, var(--color-app) 55%, var(--color-app) 60%, transparent 95%, transparent 100%);
 }

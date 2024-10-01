@@ -2,7 +2,7 @@
 @import "../animations/animation.css";
 
 .header {
-    height: 35vh;
+    height: 30vh;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -36,6 +36,19 @@ export const UpComing = () => {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + upcoming.length) % upcoming.length);
     };
 
+    const renderIndicators = () => {
+        return (
+            <div className={styles.indicators}>
+                {upcoming.map((_, index) => (
+                    <div
+                        key={index}
+                        className={`${styles.indicator} ${index === currentIndex ? styles.active : ''}`}
+                    />
+                ))}
+            </div>
+        );
+    };
+
     if (loading) {
         return <div className={styles.box}><div>Loading...</div></div>;
     }
@@ -69,7 +82,8 @@ export const UpComing = () => {
                             alt={currentMovie.title || currentMovie.name}
                         />
                         <h3 className={styles.movie_title}>{currentMovie.title || currentMovie.name}</h3>
-                        <p className={styles.release_date}>{currentMovie.release_date}</p>
+                        <button className={styles.more_button}>View more</button>
+                        {renderIndicators()} {/* Indicateurs placés ici */}
                     </div>
                 </div>
             </div>

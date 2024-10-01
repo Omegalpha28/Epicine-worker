@@ -56,10 +56,11 @@
 }
 
 .inside_box {
-    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     height: 80%;
     width: 100%;
     margin: auto;
@@ -77,15 +78,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%; /* Augmente la taille de l'affiche */
-    height: 100%; /* La hauteur prend tout l'espace disponible */
+    width: 50%;
+    height: 100%;
     text-align: center;
     border-radius: 10px;
     background-color: var(--color-box-item);
+    position: relative;
 }
 
 .movie_title {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 1.5rem;
 }
 
@@ -100,6 +102,7 @@
     height: 70%;
     object-fit: cover;
     border-radius: 10px;
+    z-index: 10;
 }
 
 .carousel_controls {
@@ -109,10 +112,13 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
+    transform: translateY(-50%);
     padding: 0 2%;
+    z-index: 10;
 }
+
 
 .carousel_button {
     background: none;
@@ -127,3 +133,46 @@
     color: var(--color-btn-hover);
 }
 
+.more_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 35%;
+    height: 7%;
+    background-color: #fecc00;
+    color: var(--color-text-button);
+    box-shadow: var(--color-box-shadow);
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    z-index: 10;
+}
+
+.more_button:hover {
+    transform: scale(1.03);
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+}
+
+.indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: grey;
+    margin: 0 3px;
+    transition: background-color 0.3s ease;
+}
+
+.active {
+    background-color: white;
+}

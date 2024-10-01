@@ -34,6 +34,7 @@
     --color-base: #fff;
     --nav-bar: #fecc00;
     --color-text: #060d17;
+    --color-text-button: black;
     --color-app: #ffffff;
     --color-text-mode: #000000;
     --color-primary: #fecc00;
@@ -69,6 +70,7 @@
     --color-base: #000;
     --nav-bar: #060d17;
     --color-text: #c6c8cd;
+    --color-text-button: #000000;
     --color-app: #060d17;
     --color-text-mode: #ffffff;
     --color-primary: #576cbc;
