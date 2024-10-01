@@ -1,8 +1,7 @@
 import styles from "../../App.module.css";
-import Home_style from "./HomePage.module.css"
+import Home_style from "./HomePage.module.css";
 import React, { useState } from "react";
 import useLocalStorage from "use-local-storage";
-
 import { Toggle } from "../Toggle/Toggle";
 import { Navbar } from "../Navbar/Navbar";
 import { Header } from "../Header/Header";
@@ -16,14 +15,14 @@ export const HomePage = () => {
 
   return (
     <div className={Home_style.page} data-theme={isDark ? "dark" : "light"}>
-      <Navbar isDark={isDark} className={styles.navbar}/>
+      <Navbar isDark={isDark} className={styles.navbar} />
       <div className={styles.App}>
-        <Wallpaper />
+        <Wallpaper isDark={isDark} />
         <Toggle style={{ visibility: 'hidden' }} isChecked={isDark} handleChange={() => setisDark(!isDark)} />
         <Header />
         <Home />
       </div>
       <Join_Us />
     </div>
-  )
-}
+  );
+};

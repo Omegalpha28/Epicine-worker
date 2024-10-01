@@ -95,7 +95,7 @@
     font-size: 18px;
     color: var(--color-text);
     text-decoration: none;
-    margin: 0 13%;
+    /* margin: 0 13%; */
     padding: 0.5% 1%;
     text-decoration: none;
     float: right;
@@ -149,20 +149,17 @@
 }
 
 .box {
-    height: 30px;
+    position: relative;
+    height: 25px;
     display: flex;
     cursor: pointer;
     padding: 20px 20px;
     background-color: var(--color-search-bar);
-    border: 0.1px solid var(--color-input-bg);
+    /* border: 0.1px solid var(--color-input-bg); */
     border-radius: 30px;
     align-items: center;
+    margin-top: 3px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-.box:hover input {
-    width: 350px;
 }
 
 .box input {
@@ -197,7 +194,7 @@
     right: 10px;
     width: 35px;
     height: 35px;
-    background-color: var(--color-input-bg);
+    background-color: var(--color-search-bar);
     border-radius: 50%;
     z-index: 0;
 }
@@ -210,6 +207,11 @@
     visibility: visible;
     filter: brightness(200%);
 }
+
+.box.open input {
+    width: 400px;
+}
+
 
 @media screen and (max-width: 1000px) {
     .navbar {

@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { getImageUrl } from "../../utils";
 
 export const Navbar = ({ isDark }) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+
+    // Ferme la boîte de recherche si on clique en dehors
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest(`.${styles.box}`)) {
+                setSearchOpen(false);
+            }
+        };
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
     return (
         <nav className={styles.navbar}>
@@ -18,19 +32,16 @@ export const Navbar = ({ isDark }) => {
             <div className={styles.menu}>
                 <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`} onClick={() => setMenuOpen(false)}>
                     <li>
-                        <Link to="/New_Release">New Release</Link>
+                        <Link to="/New_Release">Events</Link>
                     </li>
                     <li>
                         <Link to="/Movies">Movies</Link>
                     </li>
                     <li>
-                        <Link to="/TV_Shows">TV Shows</Link>
+                        <Link to="/TV_Shows">Series</Link>
                     </li>
                     <li>
-                        <Link to="/Streaming">Streaming</Link>
-                    </li>
-                    <li>
-                        <Link to="/Trailers">Trailers</Link>
+                        <Link to="/Streaming">Forums</Link>
                     </li>
                     <li>
                         <p className={styles.account_MB}>―――――――</p>
@@ -39,13 +50,6 @@ export const Navbar = ({ isDark }) => {
                         <Link className={styles.account_MB} to="/login">My Account</Link>
                     </li>
                 </ul>
-                <div class={styles.box}>
-                    <input type="text" placeholder="Search..." />
-                    <a href="#">
-                        <img class={styles.fas} src={getImageUrl("glass.svg")} />
-                        <span></span>
-                    </a>
-                </div>
                 <img
                     className={styles.menuBtn}
                     src={
@@ -56,6 +60,13 @@ export const Navbar = ({ isDark }) => {
                     alt="menu-button"
                     onClick={() => setMenuOpen(!menuOpen)}
                 />
+            </div>
+            <div className={`${styles.box} ${searchOpen ? styles.open : ''}`} onClick={() => setSearchOpen(!searchOpen)}>
+                <input type="text" placeholder="Search..." />
+                <a href="#">
+                    <img className={styles.fas} src={getImageUrl("glass.svg")} alt="search-icon" />
+                    <span></span>
+                </a>
             </div>
             <Link className={styles.account_PC} to="/login">My Account</Link>
         </nav>

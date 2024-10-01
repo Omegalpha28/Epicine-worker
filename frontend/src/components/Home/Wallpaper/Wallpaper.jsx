@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./Wallpaper.module.css";
 import { getImageUrl } from "../../../utils";
 
-export const Wallpaper = () => {
+export const Wallpaper = ({ isDark }) => {
+    const wallpaperImage = isDark
+        ? getImageUrl("home_wallpaper_dark.jpg")
+        : getImageUrl("home_wallpaper_light.png");
+
     return (
         <div className={styles.wallpaper}>
-          <img className={styles.image} src={getImageUrl("home_wallpaper.jpg")} alt="wallpaper image" />
-          <div className={styles.blurblock}/>
+            <img className={styles.image} src={wallpaperImage} alt="wallpaper" />
+            <div className={styles.blurblock} />
         </div>
     );
 };
