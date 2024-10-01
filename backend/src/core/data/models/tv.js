@@ -6,31 +6,33 @@ const tvSchema = new Schema({
         required: true,
     },
     backdrop_path: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     genre_ids: {
-        type: Array,
+        type: sqlType.Array,
         required: true,
     },
     id: {
         type: Number,
+        unique: true,
         required: true,
+        customize: "PRIMARY KEY"
     },
     origin_country: {
-        type: Array,
+        type: sqlType.Array,
         required: true,
     },
     original_language: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     original_name: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     overview: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     popularity: {
@@ -38,15 +40,15 @@ const tvSchema = new Schema({
         required: true,
     },
     poster_path: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     first_air_date: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     name: {
-        type: String,
+        type: sqlType.Text,
         required: true,
     },
     vote_average: {

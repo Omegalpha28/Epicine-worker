@@ -23,7 +23,7 @@ async function main() {
     }).then(() => { Logger.client("- connecté à la base de donné") }).catch(error => {
         Logger.error(error);
         process.exit();
-    });
+    })
     require("./src/core/data/functions")(client);
 }
 
@@ -41,7 +41,7 @@ main().then(() => {
     require("./src/routes/auth/auth")(client, app, bcrypt);
     require("./src/routes/user/user")(client, app, bcrypt);
     require("./src/routes/list/list_tv")(client, app, bcrypt);
-    // require("./src/routes/list/scrap")(client, app, bcrypt);
+    require("./src/routes/list/scrap")(client, app, bcrypt);
     require("./src/routes/list/movie_tv")(client, app, bcrypt);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
