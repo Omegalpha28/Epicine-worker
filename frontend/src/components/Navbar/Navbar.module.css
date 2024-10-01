@@ -221,7 +221,7 @@
     }
 
     .box {
-        display: none;
+        display: flex;
     }
 
     .menu {
@@ -282,3 +282,4 @@
         color: var(--color-text);
     }
 }
+

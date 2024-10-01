@@ -7,7 +7,6 @@ export const Navbar = ({ isDark }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
 
-    // Ferme la boîte de recherche si on clique en dehors
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (!event.target.closest(`.${styles.box}`)) {
@@ -61,13 +60,19 @@ export const Navbar = ({ isDark }) => {
                     onClick={() => setMenuOpen(!menuOpen)}
                 />
             </div>
-            <div className={`${styles.box} ${searchOpen ? styles.open : ''}`} onClick={() => setSearchOpen(!searchOpen)}>
+            <div className={`${styles.box} ${searchOpen ? styles.open : ''}`}>
                 <input type="text" placeholder="Search..." />
                 <a href="#">
-                    <img className={styles.fas} src={getImageUrl("glass.svg")} alt="search-icon" />
+                    <img
+                        className={styles.fas}
+                        src={getImageUrl("glass.svg")}
+                        alt="search-icon"
+                        onClick={() => setSearchOpen(!searchOpen)} // Déplacez l'événement ici
+                    />
                     <span></span>
                 </a>
             </div>
+
             <Link className={styles.account_PC} to="/login">My Account</Link>
         </nav>
     );
