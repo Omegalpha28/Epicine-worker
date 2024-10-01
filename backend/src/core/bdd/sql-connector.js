@@ -174,6 +174,16 @@ function ifReservedKeywords(tableName) {
     return false;
 }
 
+function getFieldType(field) {
+    if (typeof field === "object") {
+        if (field.type.name !== undefined) return field.type.name;
+        else return field.type;
+    } else {
+        if (field.name !== undefined) return field.name;
+        else return field;
+    }
+}
+
 /**
  * Represents a database model.
  * @class
@@ -209,8 +219,11 @@ class Model {
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
             let lengthDefault = 255;
+            
             if (!field.type && typeof field == "object") throw new Error(`Field ${fieldName} has no type defined.`);
-            const fieldType = typeof field == "object" ? field.type.name : field.name != undefined ? field.name : field;
+            
+            const fieldType = getFieldType(field);
+
             if (field.type && typeof field == "object") {
                 if (!sqlTypeMap[fieldType]) throw new Error(`Field ${fieldName} has unsupported type ${fieldType}.`);
 
@@ -246,6 +259,8 @@ class Model {
         const keys = Object.keys(data);
         const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
 
+        logs(sql);
+        
         try {
             const result = await connexion.promise().query(sql);
             return result;
