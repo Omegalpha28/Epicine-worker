@@ -40,12 +40,12 @@ export const Navbar = ({ isDark }) => {
                     </li>
                 </ul>
                 <div class={styles.box}>
-                    <input type="text" placeholder="Search..."/>
-                        <a href="#">
-                            <img class={styles.fas} src={getImageUrl("glass.svg")} />
-                        </a>
+                    <input type="text" placeholder="Search..." />
+                    <a href="#">
+                        <img class={styles.fas} src={getImageUrl("glass.svg")} />
+                        <span></span>
+                    </a>
                 </div>
-
                 <img
                     className={styles.menuBtn}
                     src={
