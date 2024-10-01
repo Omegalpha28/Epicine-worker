@@ -20,14 +20,6 @@ export const MPage = () => {
         <Navbar />
         <div className={styles.box}>
           <Movie_Profile movieId={id} />
-          <div className={styles.list}>
-            <div className={styles.Rating}>Rating</div>
-            <div className={styles.notes}>notes</div>
-          </div>
-          <div className={styles.row_element}>
-            <div className={styles.Role}>Role</div>
-              <Trailer_Video movieID={id}/>
-          </div>
         </div>
       </div>
       <Join_Us />
