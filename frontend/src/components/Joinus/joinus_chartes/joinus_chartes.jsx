@@ -5,6 +5,9 @@ import { useState } from "react";
 
 export const Joinus_chartes = () => {
     return (
-        <></>
+        
+        <h1 className={styles.charte_title}>
+            Legal
+        </h1>
     )
 }

@@ -1,0 +1,6 @@
+@import "../../../vars.css";
+
+.charte_title {
+    font-size: 30px;
+    color: var(--color-text);
+}
