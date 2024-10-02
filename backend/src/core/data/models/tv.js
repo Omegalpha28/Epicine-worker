@@ -15,9 +15,7 @@ const tvSchema = new Schema({
     },
     id: {
         type: Number,
-        unique: true,
         required: true,
-        customize: "PRIMARY KEY"
     },
     origin_country: {
         type: sqlType.Array,

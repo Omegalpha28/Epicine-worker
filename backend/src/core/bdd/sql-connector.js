@@ -263,6 +263,7 @@ class Model {
         const keys = Object.keys(data);
         const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
 
+        logs(sql);
         try {
             const result = await connexion.promise().query(sql);
             return result;
