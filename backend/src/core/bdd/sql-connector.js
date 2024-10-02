@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const { error, logs } = require("../../utils/Logger");
+const { error, logs, sql } = require("../../utils/Logger");
 let client = {};
 
 const sqlType = {
@@ -96,11 +96,11 @@ async function logout() {
 }
 
 /**
- * Generates an SQL condition from a filter object.
+ * Generates an SQL_request condition from a filter object.
  * 
  * @param {Object} filter An object containing the key-value pairs to use to generate the condition.
  * @param {boolean} [isUpdate=false] A flag to determine whether the condition is used in an update request.
- * @returns {string} A character string representing the generated SQL condition.
+ * @returns {string} A character string representing the generated SQL_request condition.
  * 
  * @example
  * const filter = { id: 1, name: "John" };
@@ -130,6 +130,14 @@ function generateValueSQL(value) {
         if (typeof item === "object") return `"${item}"`;
         return item;
     }).join(", ");
+}
+
+function formatObject(obj) {
+    return Object.keys(obj).map(key => {
+        if (typeof obj[key] === "string") return `${obj[key].replace(/"/g, '\\"')}`;
+        if (typeof obj[key] === "object") return `${obj[key]}`;
+        return obj[key];
+    });
 }
 
 /**
@@ -213,10 +221,10 @@ class Model {
     }
 
     /**
-     * Generates an SQL statement to create a table based on the provided schema.
+     * Generates an SQL_request statement to create a table based on the provided schema.
      * 
      * @param {Object} schema The schema of the database table.
-     * @returns {string} A character string representing the SQL statement to create the table.
+     * @returns {string} A character string representing the SQL_request statement to create the table.
      */
     generateCreateTableStatement(schema) {
         
@@ -247,7 +255,7 @@ class Model {
             return `${fieldName} ${sqlTypeMap[fieldType] == "VARCHAR" ? `${sqlTypeMap[fieldType]}(${lengthDefault})` : sqlTypeMap[fieldType]}`;
         });
         if (ifReservedKeywords(this.name)) {
-            error("Error: Invalid table name. Please choose a different name that is not a reserved keyword in SQL");
+            error("Error: Invalid table name. Please choose a different name that is not a reserved keyword in SQL_request");
             return;
         }
         return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}) ENGINE=InnoDB`;
@@ -261,11 +269,11 @@ class Model {
      */
     async save(data) {
         const keys = Object.keys(data);
-        const sql = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
+        const sql_request = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
 
-        logs(sql);
+        sql(this.name, sql_request);
         try {
-            const result = await connexion.promise().query(sql);
+            const result = await connexion.promise().query(sql_request);
             return result;
         } catch (err) {
             error(`Error inserting data into ${this.name}: ${err}`);
@@ -279,10 +287,10 @@ class Model {
      * @returns {Promise<ModelInstance|number>} A promise that resolves to a ModelInstance if an entry is found, otherwise 0.
      */
     async findOne(filter) {
-        const sql = `SELECT * FROM ${this.name} WHERE ${generateCondition(filter)}`;
+        const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
 
         return new Promise((resolve, reject) => {
-            connexion.promise().query(sql).then((rows) => {
+            connexion.promise().query(sql_request).then((rows) => {
                 if (rows.length == 0) return resolve(0);
 
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
@@ -296,7 +304,7 @@ class Model {
     /**
      * Asynchronously drops a table if it exists in the database.
      *
-     * This function constructs a SQL query to drop a table with the name specified
+     * This function constructs a SQL_request query to drop a table with the name specified
      * by the `this.name` property. It then executes the query using a promise-based
      * approach. If the query is successful, the result is logged to the console.
      * If an error occurs during the execution of the query, an error message is logged.
@@ -304,10 +312,10 @@ class Model {
      * @returns {Promise<void>} A promise that resolves when the query execution is complete.
      */
     async dropTable() {
-        const sql = `DROP TABLE IF EXISTS ${this.name};`;
+        const sql_request = `DROP TABLE IF EXISTS ${this.name};`;
 
         return new Promise((resolve, reject) => {
-            connexion.promise().query(sql).then((rows) => {
+            connexion.promise().query(sql_request).then((rows) => {
                 console.log(rows);
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
@@ -319,7 +327,7 @@ class Model {
     /**
      * Generates a unique UUID for the current model.
      *
-     * This function generates a UUID using the SQL `UUID()` function and checks if the generated UUID
+     * This function generates a UUID using the SQL_request `UUID()` function and checks if the generated UUID
      * already exists in the database for the current model. If the UUID is unique, it is returned.
      * Otherwise, the function resolves to `null`.
      *
@@ -333,14 +341,14 @@ class Model {
      *     console.log('Failed to generate a unique UUID.');
      * }
      *
-     * @throws {Error} If there is an error executing the SQL query.
+     * @throws {Error} If there is an error executing the SQL_request query.
      */
     async generate_uuid() {
         const uuid = (await connexion.promise().query("SELECT UUID();"))[0][0]["UUID()"];
-        const sql = `SELECT COUNT(*) FROM ${this.name} WHERE uuid="${uuid}";`;
+        const sql_request = `SELECT COUNT(*) FROM ${this.name} WHERE uuid="${uuid}";`;
 
         return new Promise((resolve, reject) => {
-            connexion.promise().query(sql).then((rows) => {
+            connexion.promise().query(sql_request).then((rows) => {
                 if (rows[0][0]['COUNT(*)'] == 0) return resolve(uuid);
                 resolve(null);
             }).catch((err) => {
@@ -383,8 +391,8 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        const sql = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
-        await connexion.promise().query(sql).catch((err) => {
+        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
+        await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;
         });
@@ -399,9 +407,9 @@ class ModelInstance {
      * @throws {Error} Throws an error if the deletion fails.
      */
     async deleteOne(model) {
-        const sql = `DELETE FROM ${this.name} WHERE ${generateCondition(model)}`;
+        const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(model)}`;
         try {
-            await connexion.promise().query(sql).catch((err) => {
+            await connexion.promise().query(sql_request).catch((err) => {
                 return error(`Error executing query: ${err}`);
             });
         } catch (err) {
@@ -412,8 +420,8 @@ class ModelInstance {
     }
 
     /**
-     * Runs a custom SQL query.
-     * @param {string} custom The custom SQL query to execute.
+     * Runs a custom SQL_request query.
+     * @param {string} custom The custom SQL_request query to execute.
      * @returns {Promise<void>} A promise that resolves when the query is executed.
      * @throws {Error} Throws an error if query execution fails.
      */
