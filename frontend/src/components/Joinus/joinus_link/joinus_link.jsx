@@ -13,7 +13,6 @@ export const Joinus_link = () => {
         { name: "Ossan", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/ossan-msoili/" },
     ];
 
-    // Fonction pour gérer le clic sur un auteur
     const handleClick = (index) => {
         setActiveAuthor(activeAuthor === index ? null : index); // Active ou désactive l'auteur cliqué
     };
