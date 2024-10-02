@@ -12,7 +12,7 @@
     margin-right: 25%;
     border-radius: 10px;
     transition: 0.25s ease-in-out;
-
+    z-index: 5;
 }
 
 .list {
