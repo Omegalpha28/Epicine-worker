@@ -213,7 +213,7 @@
 }
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 875px) {
     .navbar {
         flex-direction: row;
         align-items: center;
@@ -221,7 +221,7 @@
     }
 
     .box {
-        display: flex;
+        display: none;
     }
 
     .menu {

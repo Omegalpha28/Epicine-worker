@@ -213,5 +213,45 @@ module.exports = (client, app, bcrypt) => {
             res.status(500).json({ message: 'Erreur lors de la récupération des données.' });
         }
     });
+
+    app.get('/api/:type/search', async (req, res) => {
+        const { type } = req.params;
+        const { query } = req.query;
+        let url;
+
+        if (!query) {
+            return res.status(400).json({ message: 'Query is required for search.' });
+        }
+
+        if (type === "movies") {
+            url = `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=1`;
+        } else if (type === "series") {
+            url = `https://api.themoviedb.org/3/search/tv?query=${query}&language=en-US&page=1`;
+        } else {
+            return res.status(400).json({ message: 'Invalid type. Use "movies" or "series".' });
+        }
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${TMDB_API_KEY}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const searchResults = data.results.slice(0, 10);
+
+            res.json(searchResults);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données :', error);
+            res.status(500).json({ message: 'Erreur lors de la récupération des données.' });
+        }
+    });
+
 };
 

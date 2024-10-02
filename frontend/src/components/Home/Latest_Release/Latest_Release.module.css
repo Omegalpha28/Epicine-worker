@@ -28,7 +28,7 @@
 .title_box {
     margin-right: auto; /* Aligne le titre à droite */
     margin-top: 0; /* Aligne le titre tout en haut */
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
     font-size: 4vh;
     color: var(--color-text-mode);
 }

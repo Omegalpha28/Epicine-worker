@@ -1,0 +1,65 @@
+.container {
+    padding: 100px 20px 20px;
+    background-color: var(--color-background);
+    max-height: 80vh; /* Limite la hauteur du conteneur */
+    overflow-y: auto; /* Ajoute un défilement vertical */
+    position: relative; /* Pour gérer la position du conteneur */
+    z-index: 1; /* Pour s'assurer que le conteneur soit au-dessus d'autres éléments */
+}
+
+.results {
+    display: flex;
+    justify-content: space-between;
+}
+
+.movies_column, .series_column {
+    width: 48%;
+}
+
+.movie_item, .series_item {
+    display: flex;
+    background-color: var(--color-box-background);
+    box-shadow: var(--color-box-shadow);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px; /* Espace entre les éléments */
+    transition: background-color 0.3s;
+}
+
+.movie_item:hover, .series_item:hover {
+    background-color: var(--color-hover); /* Couleur lors du survol */
+}
+
+.movie_poster, .series_poster {
+    width: 100px; /* Ajuster la taille de l'affiche */
+    border-radius: 8px;
+}
+
+.movie_details, .series_details {
+    margin-left: 20px;
+    color: var(--color-text);
+}
+
+.movie_title, .series_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.movie_year, .series_year {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.column_title {
+    font-size: 1.5rem; /* Taille de la police */
+    margin-bottom: 0.5rem; /* Espacement en bas du titre */
+    color: var(--color-text); /* Couleur du texte */
+}
+
+.column_separator {
+    border: none; /* Pas de bordure */
+    border-top: 1px solid var(--color-inside-box); /* Trait fin */
+    margin-bottom: 1rem; /* Espacement en bas du trait */
+}
+
