@@ -5,18 +5,27 @@ import { getImageUrl } from "../../utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 
-export const Navbar = ({ isDark, setSearchQuery }) => {
+export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [searchOpen, setSearchOpen] = useState(false);
     const [searchText, setSearchText] = useState("");
 
     const handleSearch = () => {
         setSearchQuery(searchText);
+        setSearchOpen(true); // Ouvrir le contenu de recherche lors de la recherche
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        } else if (e.key === "Escape") { // Vérifie si Échap est pressé
+            setSearchOpen(false); // Ferme la barre de recherche
+            setSearchText(""); // Optionnel : Réinitialise le texte de recherche
+        }
     };
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (!event.target.closest(`.${styles.box}`)) {
+            if (!event.target.closest(`.${styles.box}`) && !searchOpen) {
                 setSearchOpen(false);
             }
         };
@@ -24,7 +33,7 @@ export const Navbar = ({ isDark, setSearchQuery }) => {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, []);
+    }, [searchOpen]);
 
     return (
         <nav className={styles.navbar}>
@@ -60,13 +69,13 @@ export const Navbar = ({ isDark, setSearchQuery }) => {
                     placeholder="Search..."
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
-                <a href="#" onClick={handleSearch}>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleSearch(); }}>
                     <img
                         className={styles.fas}
                         src={getImageUrl("glass.svg")}
                         alt="search-icon"
-                        onClick={() => setSearchOpen(!searchOpen)}
                     />
                 </a>
             </div>
