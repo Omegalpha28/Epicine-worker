@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const { Tv } = require('../../core/data/models');
 const { logs } = require('../../utils/Logger');
+const { SaveJSON, LoadJSON } = require('../../core/json/json');
+const { getTv } = require('../../core/data/config.function');
 
 module.exports = async (client, app, bcrypt) => {
     const API_KEY = process.env.TOKEN;
@@ -30,14 +32,21 @@ module.exports = async (client, app, bcrypt) => {
     const addMoviesToDatabase = async (movies) => {
         try {
             let _movies = undefined;
-            const total = movies.total_pages;
+            const json_val = LoadJSON("./src/routes/list/scrap/tv-popular-scrap.json");
+            console.log(json_val.page);
+            
+            let page = json_val.page ? json_val.page : 1;
+            const total = json_val.page ? json_val.total : movies.total_pages;
 
-            for (let page = 1; page <= total; page++) {
+            for (; page <= total; page++) {
                 _movies = (await getPopularMovies(page)).results;
                 
                 logs(`Page: ${page}/${total}`);
+                if (page % 25 == 0)
+                    SaveJSON("./src/routes/list/scrap/tv-popular-scrap.json", { page: page, total: total });
                 for (const movie of _movies) {
-                    await Tv.save({
+                    
+                    const tvData = (await getTv(client, {
                         adult: movie.adult,
                         backdrop_path: movie.backdrop_path,
                         genre_ids: movie.genre_ids,
@@ -52,7 +61,24 @@ module.exports = async (client, app, bcrypt) => {
                         name: movie.name,
                         vote_average: movie.vote_average,
                         vote_count: movie.vote_count
-                    });
+                    })).data;
+                    if (!tvData)
+                        await Tv.save({
+                            adult: movie.adult,
+                            backdrop_path: movie.backdrop_path,
+                            genre_ids: movie.genre_ids,
+                            id: movie.id,
+                            origin_country: movie.origin_country,
+                            original_language: movie.original_language,
+                            original_name: movie.original_name,
+                            overview: movie.overview,
+                            popularity: movie.popularity,
+                            poster_path: movie.poster_path,
+                            first_air_date: movie.first_air_date,
+                            name: movie.name,
+                            vote_average: movie.vote_average,
+                            vote_count: movie.vote_count
+                        });
                 }
             }
             console.log('Films ajoutés à la base de données avec succès');

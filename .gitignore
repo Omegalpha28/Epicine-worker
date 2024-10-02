@@ -3,3 +3,4 @@ node_modules
 app.excalidraw
 backend/src/logs
 THISISTHE_FOOTER
+backend/src/routes/list/scrap/tv-popular-scrap.json
