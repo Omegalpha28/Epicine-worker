@@ -126,11 +126,15 @@
     font-size: 2rem;
     cursor: pointer;
     color: white;
-    transition: color 0.3s ease;
+    transition: 0.1s ease-in-out;
 }
 
 .carousel_button:hover {
-    color: var(--color-btn-hover);
+    scale: 110%;
+}
+
+.carousel_button:active {
+    scale: 80%;
 }
 
 .more_button {
