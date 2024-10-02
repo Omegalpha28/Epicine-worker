@@ -5,7 +5,6 @@
 
 .box {
     padding: 2%;
-    background-color: var(--color-inside-box);
     color: var(--color-text);
     margin-top: 350px;
     margin-left: 25%;
