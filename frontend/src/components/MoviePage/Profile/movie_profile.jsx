@@ -35,6 +35,7 @@ export const Movie_Profile = ({ movieId }) => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    console.log(movieDetails);
     const rating = movieDetails ? movieDetails.vote_average : 0;
     const ratingPercentage = rating ? Math.round(rating * 10) : 0;
 
@@ -81,9 +82,6 @@ export const Movie_Profile = ({ movieId }) => {
                         </div>
                         <div className={styles.Resume}>
                             <strong>Resume:</strong> {movieDetails.overview}
-                        </div>
-                        <div className={styles.Trailers}>
-                            <Trailer_Video movieId={movieDetails.id}/>
                         </div>
                     </div>
                 </>

@@ -7,6 +7,7 @@ import { Join_Us } from "../Joinus/join_us";
 import { Movie_Profile } from "./Profile/movie_profile";
 import { Trailer_Video } from "./Trailers/trailer_video";
 import { useParams } from "react-router-dom";
+import { WallpaperMovie } from "./Wallpaper/WallpaperMovie";
 
 export const MPage = () => {
 
@@ -18,6 +19,7 @@ export const MPage = () => {
       <div className={app_styles.App}>
         <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         <Navbar />
+        <WallpaperMovie movieId={id} />
         <div className={styles.box}>
           <Movie_Profile movieId={id} />
         </div>
