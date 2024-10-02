@@ -11,6 +11,7 @@ export const Joinus_link = () => {
         { name: "Marin", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/marin" },
         { name: "Raphaël", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/rapha%C3%ABl-ostier-99923a2b0/" },
         { name: "Ossan", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/ossan-msoili/" },
+        { name: "Mathis", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/mathis-quenardel/" },
     ];
 
     const handleClick = (index) => {
