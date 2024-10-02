@@ -27,12 +27,17 @@
 }
 
 .movie_item:hover, .series_item:hover {
-    background-color: var(--color-hover); /* Couleur lors du survol */
+    background-color: var(--color-inside-box); /* Couleur lors du survol */
 }
 
 .movie_poster, .series_poster {
     width: 100px; /* Ajuster la taille de l'affiche */
     border-radius: 8px;
+    box-shadow: var(--color-box-shadow);
+}
+
+.movie_poster:hover, .series_poster:hover{
+    transform: scale(1.03);
 }
 
 .movie_details, .series_details {

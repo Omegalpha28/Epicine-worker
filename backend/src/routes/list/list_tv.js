@@ -244,7 +244,7 @@ module.exports = (client, app, bcrypt) => {
             }
 
             const data = await response.json();
-            const searchResults = data.results.slice(0, 10);
+            const searchResults = data.results.slice(0, 30);
 
             res.json(searchResults);
         } catch (error) {
