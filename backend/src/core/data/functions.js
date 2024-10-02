@@ -1,5 +1,5 @@
 const { error } = require("../../utils/Logger");
-const {User} = require("./models");
+const {User, Tv} = require("./models");
 
 
 module.exports = client => {
@@ -33,4 +33,8 @@ module.exports = client => {
         return userData.updateOne(settings);
     }
 
+    client.getTv = async (tvInfo) => {
+        const tvData = await Tv.findOne(tvInfo);
+        return tvData;
+    };
 }
