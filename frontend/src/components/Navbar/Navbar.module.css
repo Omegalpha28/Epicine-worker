@@ -19,7 +19,7 @@
 
 .logo {
     height: 40px;
-    margin-top: 10px;
+    margin-top: 14px;
     margin-bottom: 10px;
     margin-right: 10px;
     filter: var(--filter-logo);
@@ -56,7 +56,7 @@
     content: '';
     height: 5px;
     width: 0%;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
     position: absolute;
     left: 50%;
     bottom: 0px;
@@ -74,7 +74,7 @@
     content: '';
     height: 0%;
     width: 100%;
-    background: var(--color-secondary);
+    /* background: var(--color-secondary); */
     position: absolute;
     left: 0%;
     bottom: 50%;
@@ -87,12 +87,12 @@
     left: 0%;
     bottom: 0%;
     width: 100%;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
 }
 
 .account_PC {
     position: relative;
-    font-size: 18px;
+    font-size: 22px;
     color: var(--color-text);
     text-decoration: none;
     /* margin: 0 13%; */
@@ -100,13 +100,14 @@
     text-decoration: none;
     float: right;
     margin-left: auto;
+    margin-top: 5px;
 }
 
 .account_PC::after {
     content: '';
     height: 5px;
     width: 0%;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
     position: absolute;
     left: 50%;
     bottom: 0px;
@@ -124,7 +125,7 @@
     content: '';
     height: 0%;
     width: 100%;
-    background: var(--color-secondary);
+    /* background: var(--color-secondary); */
     position: absolute;
     left: 0%;
     bottom: 50%;
@@ -137,7 +138,7 @@
     left: 0%;
     bottom: 0%;
     width: 100%;
-    background: var(--color-primary);
+    /* background: var(--color-primary); */
 }
 
 .account_MB {

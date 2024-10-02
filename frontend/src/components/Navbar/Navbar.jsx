@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 export const Navbar = ({ isDark, setSearchQuery }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -39,7 +41,11 @@ export const Navbar = ({ isDark, setSearchQuery }) => {
                     <li><Link to="/Movies">Movies</Link></li>
                     <li><Link to="/TV_Shows">Series</Link></li>
                     <li><Link to="/Streaming">Forums</Link></li>
-                    <li className={styles.account_MB}><Link to="/login">My Account</Link></li>
+                    <li className={styles.account_MB}>
+                        <Link to="/login">
+                            <FontAwesomeIcon icon={faUserTie} />
+                        </Link>
+                    </li>
                 </ul>
                 <img
                     className={styles.menuBtn}
@@ -64,7 +70,7 @@ export const Navbar = ({ isDark, setSearchQuery }) => {
                     />
                 </a>
             </div>
-            <Link className={styles.account_PC} to="/login">My Account</Link>
+            <Link className={styles.account_PC} to="/login"><FontAwesomeIcon icon={faUserTie} /></Link>
         </nav>
     );
 };

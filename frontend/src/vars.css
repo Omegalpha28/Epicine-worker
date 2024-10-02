@@ -30,7 +30,7 @@
 }
 
 [data-theme="light"] {
-    --filter-logo: brightness(0) invert(1);
+    --filter-logo: brightness(0);
     --color-base: #fff;
     --nav-bar: #fecc00;
     --color-text: #060d17;

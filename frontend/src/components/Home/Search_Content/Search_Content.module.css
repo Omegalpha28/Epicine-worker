@@ -1,6 +1,7 @@
 .container {
     padding: 100px 20px 20px;
     background-color: var(--color-background);
+    box-shadow: var(--color-box-shadow);
     max-height: 80vh; /* Limite la hauteur du conteneur */
     overflow-y: auto; /* Ajoute un défilement vertical */
     position: relative; /* Pour gérer la position du conteneur */
