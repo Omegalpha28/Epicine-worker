@@ -29,7 +29,7 @@ export const Navbar = ({ isDark, setSearchQuery }) => {
             <Link to="/">
                 <img
                     className={styles.logo}
-                    src={getImageUrl("full_logo.svg")}
+                    src={getImageUrl("full_logo.png")}
                     alt="logo"
                 />
             </Link>

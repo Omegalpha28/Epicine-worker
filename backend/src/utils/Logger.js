@@ -20,6 +20,14 @@ async function client(content) {
     await write(content, "black", "bgGreen", "CLIENT", false);
 }
 
+/**
+ * Sauvegarde les requêtes SQL
+ * @param {*} content requête SQL
+ */
+function sql(table_name, content) {
+    appendToFile(`${content}\n`, `${table_name}.sql`);
+}
+
 async function write(content, tagColor, bgTagColor, tag, error = false) {
     const chalk = (await import("chalk")).default;
     const timestamp = `[${dayjs().format("DD/MM - HH:mm:ss")}]`;
@@ -34,11 +42,11 @@ async function write(content, tagColor, bgTagColor, tag, error = false) {
     stream.write(item);
 }
 
-module.exports = { error, serveur, logs, client };
-function appendToFile(content) {
+module.exports = { error, serveur, logs, client, sql };
+function appendToFile(content, nameFile = "logs.txt") {
     dotenv.config();
     if (!process.env.DEBUG || process.env.DEBUG !== "true") return
-    const filePath = process.env.LOGS;
+    const filePath = `${process.env.LOGS}/${nameFile}`;
     if (!content) {
         console.error('Le contenu est vide ou non défini.');
         return;
