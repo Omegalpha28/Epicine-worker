@@ -13,6 +13,7 @@ export const Join_Us = () => {
                 <Link to="/">
                     <Joinus_logo/>
                 </Link>
+                <Joinus_chartes/>
                 <Joinus_link/>
             </div>
         </div>

@@ -1,45 +1,4 @@
-/* .footer_section_padding {
-    padding: 4rem 4rem;
-}
-
-.footer_links {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-flow: row wrap;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 2rem;
-}
-
-.footer_links_div {
-    width: 150px;
-    margin: 1rem;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    color: #fff;
-}
-
-a {
-    color: rgb(175, 175, 179);
-    text-decoration: none;
-}
-
-.socialMedia {
-    display: flex;
-    flex-direction: row;
-}
-
-.socialMedia i {
-    width: 80%;
-}
-
-.footer_links_div h4 {
-    font-size: 28px;
-    line-height: 1.2;
-    margin-bottom: 0.9rem;
-} */
+@import "../../../vars.css";
 
 .footer_section_padding {
     padding: -4rem 4rem;
@@ -57,14 +16,14 @@ a {
 
 /* Ajoute ces styles pour aligner les auteurs en ligne */
 .footer_links_div ul {
-    display: flex; /* Change la disposition en ligne */
+    display: flex;
     list-style-type: none; /* Enlève les puces de la liste */
     padding: 0;
     margin: 0;
 }
 
 .footer_links_div li {
-    margin-right: 2rem; /* Ajoute de l'espace entre chaque auteur */
+    margin-right: 2rem;
     display: flex;
     flex-direction: column; /* Pour que l'icône apparaisse sous le nom */
     align-items: center; /* Centre les éléments verticalement */
@@ -73,9 +32,9 @@ a {
 .footer_links_div p {
     cursor: pointer;
     position: relative;
-    margin: 0; /* Enlève les marges autour du texte des noms */
+    margin: 0;
     font-size: 1.2rem;
-    color: white; /* Ajuste la couleur si nécessaire */
+    color: var(--color-text);
 }
 
 .footer_links_div p::after {
@@ -90,18 +49,17 @@ a {
 
 .footer_links_div p:hover::after {
     width: 100%;
-    background: #fff;
+    background: var(--color-text);
 }
 
-/* Style des icônes */
 .iconBox i {
-    font-size: 1.5rem; /* Ajuste la taille de l'icône */
+    font-size: 1.5rem;
     margin-top: 0.5rem; /* Espace entre le nom et l'icône */
-    color: white;
+    color: var(--color-text);
 }
 
 .iconBox a:hover i {
-    color: #0e76a8; /* Couleur de l'icône au survol */
-    transform: scale(1.2); /* Agrandit légèrement l'icône */
+    color: #0e76a8;
+    transform: scale(1.2);
     transition: transform 0.2s ease-in-out;
 }
