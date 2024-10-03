@@ -1,13 +1,12 @@
 import styles from "./joinus_chartes.module.css";
-import { getImageUrl } from "../../../utils";
-import { Link } from "react-router-dom";
-import { useState } from "react";
 
 export const Joinus_chartes = () => {
     return (
-        
-        <h1 className={styles.charte_title}>
-            Legal
-        </h1>
-    )
-}
+        <div className={styles.chartesContainer}>
+            <h1 className={styles.charteTitle}>Legal</h1>
+            <p className={styles.charteText}>
+                Find out more about our legal policies and privacy terms.
+            </p>
+        </div>
+    );
+};

@@ -17,6 +17,10 @@
     transition: background-color 1s ease; */
 }
 
+.footer {
+    margin-top: 50px;
+}
+
 
 /* @keyframes bgrandom {
     0% {background-color: #ff0096;}
