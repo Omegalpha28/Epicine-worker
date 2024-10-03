@@ -113,7 +113,6 @@ async function logout() {
  * console.log(condition); // 'id = 1, name = "John"'
  */
 function generateCondition(filter, isUpdate = false) {
-    console.log("filter", filter);
     
     const keys = Object.keys(filter);
     const values = Object.values(filter);
@@ -295,7 +294,6 @@ class Model {
      */
     async findOne(filter) {
         const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-        console.log("sql_request", sql_request);
         
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
@@ -399,11 +397,8 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        console.log(this.data);
-        
         const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
-        logs(sql_request);
-        
+
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { createUser, getUser } = require("../../core/data/config.function");
+const { createUser, getUser, updateUser } = require("../../core/data/config.function");
 const { error } = require("../../utils/Logger");
 
 module.exports = { checkAccountMail, register, getAccountMail }
@@ -18,8 +18,10 @@ async function register(client, res, email, name, mdp)
 {
     try {
         const result = await createUser(client, name, email, mdp);
+        const token = jwt.sign({uuid: result.uuid}, process.env.SECRET);
 
-        res.status(201).json({token: jwt.sign({uuid: result.uuid}, process.env.SECRET)});
+        await updateUser(client, result.uuid, {token: token});
+        res.status(201).json({token: token});
     } catch (err) {
         error(err);
         res.status(500).json({"msg": "Internal server error"});
