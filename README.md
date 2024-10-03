@@ -14,10 +14,11 @@
 <h2>Authors 👇</h2>
 
 ![AUTHORS](https://img.shields.io/badge/AUTHORS:-gray?style=for-the-badge)
-![https://github.com/lagie-marin](https://img.shields.io/badge/Marin%20Lagie-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
-![https://github.com/Slakkos](https://img.shields.io/badge/Mathieu%20Rea-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
-![https://github.com/bombabobo](https://img.shields.io/badge/Raphael%20Ostier-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
-![https://github.com/Omegalpha28](https://img.shields.io/badge/ossan%20msoili-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/lagie-marin](https://img.shields.io/badge/Marin%20Lagie-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/Slakkos](https://img.shields.io/badge/Mathieu%20Rea-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/bombabobo](https://img.shields.io/badge/Raphael%20Ostier-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/Omegalpha28](https://img.shields.io/badge/ossan%20msoili-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/LederWarrior](https://img.shields.io/badge/Mathis%20Quenardel-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
 
 <h2>Status</h2>
 <div>
