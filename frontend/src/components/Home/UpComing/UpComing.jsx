@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./UpComing.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const UpComing = () => {
     const [contentType, setContentType] = useState("movies");
@@ -7,6 +8,11 @@ export const UpComing = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleViewMoreClick = () => {
+        navigate(`/Movie/${currentMovie.id}`);
+    };
 
     useEffect(() => {
         fetchContent(contentType);
@@ -20,7 +26,7 @@ export const UpComing = () => {
             if (!response.ok) throw new Error("Failed to fetch data");
             const data = await response.json();
             setUpcoming(data);
-            setCurrentIndex(0); // Réinitialise l'index du carrousel
+            setCurrentIndex(0);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -82,8 +88,8 @@ export const UpComing = () => {
                             alt={currentMovie.title || currentMovie.name}
                         />
                         <h3 className={styles.movie_title}>{currentMovie.title || currentMovie.name}</h3>
-                        <button className={styles.more_button}>View more</button>
-                        {renderIndicators()} {/* Indicateurs placés ici */}
+                        <button className={styles.more_button} onClick={handleViewMoreClick}>View more</button>
+                        {renderIndicators()}
                     </div>
                 </div>
             </div>
