@@ -56,6 +56,10 @@ export const Movies = () => {
     if (page > 1) setPage(page - 1);
   };
 
+  const truncateTitle = (title) => {
+    return title.length > 15 ? title.slice(0, 10) + "..." : title;
+  };
+
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
@@ -84,7 +88,7 @@ export const Movies = () => {
               <div key={movie.id} className={styles.movie_item}>
                 <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
                 <div>
-                  <h3>{movie.title}</h3>
+                  <h3>{truncateTitle(movie.title)}</h3>
                   <p>{movie.release_date}</p>
                 </div>
               </div>
@@ -100,5 +104,4 @@ export const Movies = () => {
       <Join_Us />
     </div>
   );
-
 };

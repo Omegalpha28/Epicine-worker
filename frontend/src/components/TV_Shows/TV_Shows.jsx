@@ -56,6 +56,10 @@ export const TV_Shows = () => {
     if (page > 1) setPage(page - 1);
   };
 
+  const truncateTitle = (title) => {
+    return title.length > 15 ? title.slice(0, 10) + "..." : title;
+  };
+
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
@@ -84,7 +88,7 @@ export const TV_Shows = () => {
               <div key={show.id} className={styles.show_item}>
                 <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
                 <div>
-                  <h3>{show.name}</h3>
+                  <h3>{truncateTitle(show.name)}</h3>
                   <p>{show.first_air_date}</p>
                 </div>
               </div>
