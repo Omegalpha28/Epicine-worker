@@ -30,7 +30,7 @@
 }
 
 [data-theme="light"] {
-    --button_newsletter: #ffffff;
+    --button-newsletter: #ffffff;
     --footer-background-color : #fecc00;
     --filter-logo: brightness(0);
     --color-base: #fff;
