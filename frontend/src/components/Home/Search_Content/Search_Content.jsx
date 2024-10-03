@@ -60,11 +60,9 @@ export const Search_Content = ({ query }) => {
                             movies.map((movie, index) => (
                                 movie.poster_path && ( // Check if poster_path is defined
                                     <div key={index} className={styles.movie_item}>
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                            alt={movie.title}
-                                            className={styles.movie_poster}
-                                        />
+                                        <Link to={{ pathname: `/Movie/${movie.id}`, state: { isMovie: true } }}>
+                                            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className={styles.movie_poster} />
+                                        </Link>
                                         <div className={styles.movie_details}>
                                             <h3 className={styles.movie_title}>
                                                 {movie.title}
@@ -87,8 +85,8 @@ export const Search_Content = ({ query }) => {
                             series.map((serie, index) => (
                                 serie.poster_path && ( // Check if poster_path is defined
                                     <div key={index} className={styles.series_item}>
-                                        <Link to={`/Movie/${serie.id}`}>
-                                            <img src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`} alt={serie.name} className={styles.series_poster} />
+                                        <Link to={{ pathname: `/Movie/${serie.id}`, state: { isMovie: false } }}>
+                                            <img src={`https://image.tmdb.org/t/p/w500${serie.poster_path}`}  alt={serie.name}  className={styles.series_poster}  />
                                         </Link>
                                         <div className={styles.series_details}>
                                             <h3 className={styles.series_title}>
