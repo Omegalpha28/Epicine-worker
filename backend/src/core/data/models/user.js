@@ -1,5 +1,4 @@
-const { Schema, Model } = require("../../bdd/sql-connector");
-// const { String, Number } = Model.sqlTypeMap;
+const { Schema, Model, sqlType } = require("../../bdd/sql-connector");
 
 const userSchema = new Schema({
     uuid: {
@@ -28,10 +27,18 @@ const userSchema = new Schema({
         type: String,
         default: null
     },
-    token: {
+    avatar:{
         type: String,
+        default: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
+    },
+    status: {
+        type: Number,
+        default: 0
+    },
+    token: {
+        type: sqlType.Text,
         default: null
-    }
+    },
 });
 
 module.exports = new Model("User", userSchema);

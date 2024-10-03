@@ -113,6 +113,7 @@ async function logout() {
  * console.log(condition); // 'id = 1, name = "John"'
  */
 function generateCondition(filter, isUpdate = false) {
+    
     const keys = Object.keys(filter);
     const values = Object.values(filter);
 
@@ -133,11 +134,16 @@ function generateValueSQL(value) {
 }
 
 function formatObject(obj) {
-    return Object.keys(obj).map(key => {
-        if (typeof obj[key] === "string") return `${obj[key].replace(/"/g, '\\"')}`;
-        if (typeof obj[key] === "object") return `${obj[key]}`;
-        return obj[key];
-    });
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const value = obj[key];
+            if (typeof value === "string")
+                obj[key] = `${value.replace(/"/g, '\\"')}`;
+            if (typeof value === "object")
+                obj[key] = `${value}`;
+        }
+    }
+    return obj;
 }
 
 /**
@@ -288,7 +294,7 @@ class Model {
      */
     async findOne(filter) {
         const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-
+        
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
                 if (rows.length == 0) return resolve(0);
@@ -392,6 +398,7 @@ class ModelInstance {
      */
     async updateOne(model) {
         const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
+
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;
