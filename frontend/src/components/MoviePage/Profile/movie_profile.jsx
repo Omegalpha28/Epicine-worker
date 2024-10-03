@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './movie_profile.module.css';
 import useTheme from '../../set_theme';
 import { Trailer_Video } from '../Trailers/trailer_video';
+import { Roles } from '../Roles/Roles';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -43,6 +44,7 @@ export const Movie_Profile = ({ movieId }) => {
             <div className={styles.divleft}>
                 {movieDetails && (
                     <>
+                        <div className={styles.TitleMobile}>{movieDetails.title}</div>
                         <div className={styles.picture}>
                             <a href={movieDetails.homepage} target="_blank" rel="noopener noreferrer">
                                 <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
@@ -56,19 +58,24 @@ export const Movie_Profile = ({ movieId }) => {
                                 {ratingPercentage}%
                             </div>
                             <div className={styles.ReleaseDate}>
-                                <strong>Release:</strong>
-                                <br />
+                                <strong>Release:</strong> <br />
                                 {movieDetails.release_date}
                             </div>
                         </div>
+                        <div className={styles.original_title}>
+                            <strong>Title Original:</strong> <br />{movieDetails.original_title}
+                        </div>
                         <div className={styles.Genres}>
-                            <strong>Genres: </strong>
+                            <strong>Genres: </strong> <br />
                             {movieDetails.genres.map((genre, index) => (
                                 <span key={genre.id}>
                                     {genre.name}
                                     {index < movieDetails.genres.length - 1 && ', '}
                                 </span>
                             ))}
+                        </div>
+                        <div className={styles.role}>
+
                         </div>
                     </>
                 )}
@@ -80,7 +87,12 @@ export const Movie_Profile = ({ movieId }) => {
                             {movieDetails.title}
                         </div>
                         <div className={styles.Resume}>
-                            <strong>Resume:</strong> {movieDetails.overview}
+                            <strong>Resume:</strong> <br />
+                            {movieDetails.overview}
+                        </div>
+                        <div className={styles.Roles}>
+                            <div className={styles.RoleTitle}> Role </div>
+                            <Roles movieId={movieId}/>
                         </div>
                     </div>
                 </>
