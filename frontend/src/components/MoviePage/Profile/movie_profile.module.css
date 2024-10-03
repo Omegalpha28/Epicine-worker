@@ -1,7 +1,7 @@
 @import '../../animations/animation.css';
 
 .box {
-    background-color: var(--color-inside-box);
+    background-color: transparent;
     display: flex;
     justify-content: letf;
     padding: 2%;
@@ -44,6 +44,7 @@
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    margin-top: 40px;
 }
 
 .myrow {
@@ -53,10 +54,21 @@
     align-items: center;
     flex-direction: row;
 }
+.RatingTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.mycolumn  {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .Title, .TitleMobile {
-    font-size: 40px;
+    font-size: 80px;
     margin-top: 50px;
     margin-left: 2%;
+    margin-bottom: 50px;
     background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
     background-clip: text;
     -webkit-background-clip: text;
@@ -77,14 +89,19 @@
     font-size: 20px;
 }
 
+.released {
+    margin-top: 40px;
+    font-size: 20px;
+}
+
 .Resume {
-    margin-top: 80px;
-    font-size: 25px;
+    margin-top: 10px;
+    font-size: 30px;
     margin-left: 2%;
 }
 
 .Genres {
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 20px;
     justify-content: center;
 }
@@ -106,16 +123,15 @@
     margin-top: 40px;
     font-size: 20px;
 }
-/* Image avec transition */
+
 .picture img {
     width: 100%;
     height: auto;
     border-radius: 5%;
     transition: 0.25s ease-in-out;
-    z-index: 1; /* L'image a un z-index supérieur à 0 pour rester au-dessus de l'overlay */
+    z-index: 1;
 }
 
-/* Overlay grisé avec transparence, mais qui n'interfère pas avec le clic */
 .picture::after {
     content: '';
     position: absolute;
@@ -123,18 +139,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Overlay grisé avec transparence */
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.25s ease-in-out;
-    z-index: 2; /* Overlay juste au-dessus de l'image */
-    pointer-events: none; /* Ne bloque pas l'interaction avec l'image */
+    z-index: 2;
+    pointer-events: none;
 }
 
 .picture:hover::after {
     opacity: 1;
 }
 
-/* Texte "Show More" qui apparaît au survol */
 .picture::before {
     content: 'Show More';
     position: absolute;
@@ -144,8 +159,8 @@
     color: white;
     font-size: 1.2rem;
     opacity: 0;
-    z-index: 3; /* Texte au-dessus de l'overlay */
-    pointer-events: none; /* Ne bloque pas l'interaction avec l'image */
+    z-index: 3;
+    pointer-events: none;
     transition: opacity 0.25s ease-in-out;
 }
 
@@ -167,8 +182,8 @@
 }
 
 .RoleTitle {
-    font-size: 30px;
-    margin-top: 40px;
+    font-size: 40px;
+    margin-top: 50px;
     margin-left: 2%;
     background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
     background-clip: text;
@@ -187,6 +202,10 @@
         margin: 0;
     }
 
+    .Runtime {
+        margin-left: 2%;
+        font-size: 18px;
+    }
     .box {
         border-radius: 20px;
     }
