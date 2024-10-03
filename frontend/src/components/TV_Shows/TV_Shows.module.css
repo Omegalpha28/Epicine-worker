@@ -1,7 +1,6 @@
 .page {
     background-color: var(--color-app);
     transition: 0.25s ease-in-out;
-    padding: 20px;
     min-height: 100vh;
 }
 
