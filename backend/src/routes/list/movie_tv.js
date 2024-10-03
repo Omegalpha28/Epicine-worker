@@ -5,7 +5,6 @@ const app = express();
 module.exports = (client, app, bcrypt) => {
     const TMDB_API_KEY = process.env.TOKEN;
 
-    // Dans movie_tv.js (ou le fichier approprié)
     app.get('/api/movie/:movieId', async (req, res) => {
         const { movieId } = req.params;
         const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
@@ -30,14 +29,14 @@ module.exports = (client, app, bcrypt) => {
     });
 
     app.get('/api/movies', async (req, res) => {
-        const { page = 1 } = req.query; // Récupère la page des films depuis la query string
+        const { page = 1 } = req.query;
         const url = `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}`;
 
         const options = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${TMDB_API_KEY}`, // Utilisez la clé d'API du serveur
+                Authorization: `Bearer ${TMDB_API_KEY}`,
             },
         };
 
