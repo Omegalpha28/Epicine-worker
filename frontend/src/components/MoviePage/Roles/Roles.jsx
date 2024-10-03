@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Roles.module.css';
 import useTheme from '../../set_theme';
+import unknown from '../../../../assets/anonymous-user-icon.svg';
 
 export const Roles = ({ movieId }) => {
     const [isDark, setIsDark] = useTheme();
@@ -9,9 +10,7 @@ export const Roles = ({ movieId }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-
         const fetchMovieCredits = async () => {
-
             try {
                 const response = await fetch(`http://localhost:5555/api/movie/${movieId}/credits`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,8 +38,8 @@ export const Roles = ({ movieId }) => {
                 <div className={styles.movie_list}>
                     {movieCredits.map((castMember) => (
                         <div key={castMember.cast_id} className={styles.movie_item}>
-                            <img src={`https://media.themoviedb.org/t/p/w138_and_h175_face${castMember.profile_path}`} />
-                            {castMember.name} as {castMember.character} <br /> 
+                            <img src={`https://media.themoviedb.org/t/p/w138_and_h175_face${castMember.profile_path}`} onError={(e) => e.target.src = unknown} alt={castMember.name} />
+                            {castMember.name} as {castMember.character} <br />
                         </div>
                     ))}
                 </div>
@@ -50,4 +49,3 @@ export const Roles = ({ movieId }) => {
         </div>
     );
 };
-
