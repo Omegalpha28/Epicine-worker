@@ -18,7 +18,7 @@
 ![https://github.com/Slakkos](https://img.shields.io/badge/Mathieu%20Rea-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
 ![https://github.com/bombabobo](https://img.shields.io/badge/Raphael%20Ostier-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
 ![https://github.com/Omegalpha28](https://img.shields.io/badge/ossan%20msoili-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
-![https://github.com/LederWarrior](https://img.shields.io/badge/Mathis%20Quenardel-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
+![https://github.com/LederWarrior](https://img.shields.io/badge/Mathis%20Quenardel%20(%20honorary%20member%20)-yellow?style=for-the-badge&logo=undertale&logoColor=E71D29)
 
 <h2>Status</h2>
 <div>
