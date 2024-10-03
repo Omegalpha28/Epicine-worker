@@ -1,25 +1,130 @@
-@import "../../vars.css";
-
 .page {
     background-color: var(--color-app);
     transition: 0.25s ease-in-out;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.controls button,
+.controls select {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--color-button-bg);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.controls button:hover,
+.controls select:hover {
+    background-color: var(--nav-bar);
 }
 
 .inside_box {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 75vh;
+    height: calc(75vh - 100px);
     width: 95%;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
+    margin: 150px auto 0;
+    border-radius: 20px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
-    border: 0.5px solid var(--color-border);
-    padding: 2%;
+    padding: 20px;
     box-sizing: border-box;
+}
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 20px;
+    width: 100%;
+    height: calc(75vh - 150px); /* Ajustez la hauteur ici pour faire de la place pour les boutons */
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.movies::-webkit-scrollbar {
+    display: none;
+}
+
+.movie_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-movie-item-bg);
+    border-radius: 5px;
+    box-shadow: var(--color-box-shadow);
+    transition: transform 0.2s ease-in-out;
+}
+
+.movie_item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.movie_item h3 {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.movie_item p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+.movie_item:hover {
+    transform: scale(1.05);
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center; /* Centrer les éléments verticalement */
+}
+
+.pagination button {
+    padding: 10px 20px;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.pagination button:hover {
+    background-color: var(--color-button-bg-hover);
+}
+
+.pagination span {
+    font-size: 16px;
+    align-self: center;
 }
