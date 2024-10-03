@@ -102,6 +102,10 @@
     overflow: hidden;
 }
 
+.Runtime {
+    margin-top: 40px;
+    font-size: 20px;
+}
 /* Image avec transition */
 .picture img {
     width: 100%;

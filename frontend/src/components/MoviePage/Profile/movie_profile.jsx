@@ -1,12 +1,18 @@
 import { useEffect, useState } from 'react';
 import styles from './movie_profile.module.css';
 import useTheme from '../../set_theme';
-import { Trailer_Video } from '../Trailers/trailer_video';
 import { Roles } from '../Roles/Roles';
+import { Recommendation } from '../Recommendation/Recommendation';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
     return `linear-gradient(360deg, var(--color-radiant1) ${percentage}%, var(--color-radiant2) ${100 - percentage}%)`;
+};
+
+const formatRuntime = (runtime) => {
+    const hours = Math.floor(runtime / 60);
+    const minutes = runtime % 60;
+    return ` ${hours}h ${minutes}m `;
 };
 
 export const Movie_Profile = ({ movieId }) => {
@@ -38,13 +44,14 @@ export const Movie_Profile = ({ movieId }) => {
 
     const rating = movieDetails ? movieDetails.vote_average : 0;
     const ratingPercentage = rating ? Math.round(rating * 10) : 0;
+    const formattedRuntime = movieDetails ? formatRuntime(movieDetails.runtime) : '';
 
     return (
         <div className={styles.box} data-theme={isDark ? "dark" : "light"}>
             <div className={styles.divleft}>
                 {movieDetails && (
                     <>
-                        <div className={styles.TitleMobile}>{movieDetails.title}</div>
+                        <div className={styles.TitleMobile}>{movieDetails.title} {formattedRuntime}</div>
                         <div className={styles.picture}>
                             <a href={movieDetails.homepage} target="_blank" rel="noopener noreferrer">
                                 <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
@@ -62,6 +69,9 @@ export const Movie_Profile = ({ movieId }) => {
                                 {movieDetails.release_date}
                             </div>
                         </div>
+                        <div className={styles.runtime}>
+                            <strong>Runtine:</strong> <br />{formattedRuntime}
+                        </div>
                         <div className={styles.original_title}>
                             <strong>Title Original:</strong> <br />{movieDetails.original_title}
                         </div>
@@ -73,9 +83,6 @@ export const Movie_Profile = ({ movieId }) => {
                                     {index < movieDetails.genres.length - 1 && ', '}
                                 </span>
                             ))}
-                        </div>
-                        <div className={styles.role}>
-
                         </div>
                     </>
                 )}
@@ -94,27 +101,13 @@ export const Movie_Profile = ({ movieId }) => {
                             <div className={styles.RoleTitle}> Role </div>
                             <Roles movieId={movieId}/>
                         </div>
+                        <div className={styles.Recommendation}>
+                            <div className={styles.RoleTitle}> Recommandations </div>
+                            <Recommendation movieId={movieId}/>
+                        </div>
                     </div>
                 </>
             )}
         </div>
     );
 };
-
-
-
-/*{movieDetails && (
-                <>
-                    <div className={styles.picture}>
-                        <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
-                    </div>
-                    <div className={styles.column_profile}>
-                        <div className={styles.row_profile}>
-                            <div className={styles.Title}>{movieDetails.title}</div>
-                        </div>
-                        <div className={styles.Resume}>
-                            <strong>Resume:</strong> {movieDetails.overview}
-                        </div>
-                    </div>
-                </>
-            )} */
