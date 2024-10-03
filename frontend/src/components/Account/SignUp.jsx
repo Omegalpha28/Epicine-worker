@@ -6,12 +6,17 @@ import { Navbar } from '../Navbar/Navbar';
 import styles from '../../App.module.css';
 import { ConnectGoogle } from './connect';
 import useTheme from "../set_theme";
+import { Search_Content } from "../Home/Search_Content/Search_Content";
 
 export const SignUpPage = () => {
     const [isDark, setIsDark] = useTheme();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [issues, setIssues] = useState({ name: '', email: '', password: '' });
+
+    // Nouveaux états pour la recherche
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchOpen, setSearchOpen] = useState(false); // État pour la visibilité de la recherche
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -57,7 +62,12 @@ export const SignUpPage = () => {
 
     return (
         <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-            <Navbar />
+            <Navbar
+                setSearchQuery={setSearchQuery}
+                searchOpen={searchOpen}
+                setSearchOpen={setSearchOpen}
+            />
+            {searchOpen && searchQuery && <Search_Content query={searchQuery} />} {/* Affichez les résultats de recherche si ouverts */}
             <div className={SignUp_styles.Connect}>
                 <div className={SignUp_styles.Login}>
                     <form className={SignUp_styles.Form} onSubmit={handleSubmit}>

@@ -11,21 +11,21 @@ export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) =>
 
     const handleSearch = () => {
         setSearchQuery(searchText);
-        setSearchOpen(true); // Ouvrir le contenu de recherche lors de la recherche
+        setSearchOpen(true);
     };
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             handleSearch();
-        } else if (e.key === "Escape") { // Vérifie si Échap est pressé
-            setSearchOpen(false); // Ferme la barre de recherche
-            setSearchText(""); // Optionnel : Réinitialise le texte de recherche
+        } else if (e.key === "Escape") {
+            setSearchOpen(false);
+            setSearchText("");
         }
     };
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (!event.target.closest(`.${styles.box}`) && !searchOpen) {
+            if (!event.target.closest(`.${styles.box}`) && searchOpen) {
                 setSearchOpen(false);
             }
         };

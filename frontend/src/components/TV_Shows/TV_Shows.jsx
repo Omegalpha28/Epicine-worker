@@ -5,6 +5,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { Toggle } from "../Toggle/Toggle";
 import app_styles from "../../App.module.css";
 import { Join_Us } from "../Joinus/join_us";
+import { Search_Content } from "../Home/Search_Content/Search_Content";
 
 export const TV_Shows = () => {
   const [isDark, setIsDark] = useTheme();
@@ -14,6 +15,8 @@ export const TV_Shows = () => {
   const [isFree, setIsFree] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:5555/api/genres')
@@ -37,6 +40,23 @@ export const TV_Shows = () => {
       })
       .catch(error => console.error('Erreur lors de la récupération des séries :', error));
   }, [selectedGenre, page, isFree]);
+
+  // Effectuer la recherche
+  useEffect(() => {
+    if (searchQuery) {
+      fetch(`http://localhost:5555/api/search/tv?query=${encodeURIComponent(searchQuery)}`)
+        .then(response => response.json())
+        .then(data => {
+          setShows(data.results);
+          setTotalPages(data.total_pages > 30 ? 30 : data.total_pages);
+        })
+        .catch(error => console.error('Erreur lors de la recherche des séries :', error));
+    } else {
+      // Si aucun terme de recherche, réinitialiser les séries
+      setSelectedGenre(null);
+      setPage(1);
+    }
+  }, [searchQuery]);
 
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
@@ -63,7 +83,14 @@ export const TV_Shows = () => {
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
-        <Navbar />
+        <Navbar
+          isDark={isDark}
+          setSearchQuery={setSearchQuery}
+          searchOpen={searchOpen}
+          setSearchOpen={setSearchOpen}
+        />
+        {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
+
         <div className={styles.inside_box}>
           <div className={styles.header}>
             <h1>Series</h1>

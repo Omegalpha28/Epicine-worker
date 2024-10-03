@@ -12,7 +12,7 @@ import { Search_Content } from "./Search_Content/Search_Content";
 
 export const HomePage = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [isDark, setisDark] = useLocalStorage("isDark", preference);
+  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false); // Add state for search visibility
 
@@ -29,7 +29,8 @@ export const HomePage = () => {
         <Wallpaper isDark={isDark} />
         <Toggle
           style={{ visibility: 'hidden' }}
-          isChecked={isDark} handleChange={() => setisDark(!isDark)}
+          isChecked={isDark}
+          handleChange={() => setIsDark(!isDark)}
         />
         <Header />
         <Home />

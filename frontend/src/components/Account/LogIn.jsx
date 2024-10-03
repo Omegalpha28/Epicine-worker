@@ -5,7 +5,7 @@ import Login_styles from "./Login.module.css";
 import { ConnectGoogle } from "./connect";
 import { Link, useNavigate } from 'react-router-dom';
 import useTheme from "../set_theme";
-
+import { Search_Content } from "../Home/Search_Content/Search_Content";
 
 export const LoginPage = () => {
     const [isDark, setIsDark] = useTheme();
@@ -15,6 +15,9 @@ export const LoginPage = () => {
         password: ""
     });
     const [issues, setIssues] = useState({ email: '', password: '' });
+    // Nouveaux états pour la recherche
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchOpen, setSearchOpen] = useState(false); // État pour la visibilité de la recherche
 
     const handleInput = (event) => {
         const { name, value } = event.target;
@@ -59,7 +62,12 @@ export const LoginPage = () => {
 
     return (
         <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-            <Navbar />
+            <Navbar 
+                setSearchQuery={setSearchQuery} 
+                searchOpen={searchOpen} 
+                setSearchOpen={setSearchOpen} 
+            />
+            {searchOpen && searchQuery && <Search_Content query={searchQuery} />} {/* Affichez les résultats de recherche si ouverts */}
             <div className={Login_styles.Connect}>
                 <div className={Login_styles.Login}>
                     <form className={Login_styles.Form} onSubmit={handleSubmit}>
