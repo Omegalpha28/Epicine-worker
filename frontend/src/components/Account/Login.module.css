@@ -38,8 +38,8 @@
     padding: 10px;
     box-sizing: border-box;
     border-radius: 20px;
-    background-color: var(--color-inside-box);
-    color: var(--color-input);
+    background-color: var(--color-btn);
+    color: var(--color-text);
     border: none;
     margin-top: 10px;
 }
@@ -97,7 +97,7 @@ p {
 }
 
 .Form {
-    background-color: var(--color-about);
+    background-color: var(--app-bg);
     border: 0.5px solid var(--color-border);
     display: flex;
     justify-content: center;
