@@ -51,32 +51,35 @@ export const Movie_Profile = ({ movieId }) => {
             <div className={styles.divleft}>
                 {movieDetails && (
                     <>
-                        <div className={styles.TitleMobile}>{movieDetails.title} {formattedRuntime}</div>
+                        <div className={styles.TitleMobile}>{movieDetails.title} </div>
                         <div className={styles.picture}>
                             <a href={movieDetails.homepage} target="_blank" rel="noopener noreferrer">
                                 <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
                             </a>
                         </div>
                         <div className={styles.myrow}>
-                            <div
-                                className={styles.Ratings}
-                                style={{ background: getRatingBackground(rating) }}
-                            >
-                                {ratingPercentage}%
+                            <div className={styles.mycolumn} >
+                                <div className={styles.RatingTitle}><strong>Rating</strong></div>
+                                <div className={styles.Ratings} style={{ background: getRatingBackground(rating) }} >
+                                    {ratingPercentage}%
+                                </div>
                             </div>
-                            <div className={styles.ReleaseDate}>
-                                <strong>Release:</strong> <br />
-                                {movieDetails.release_date}
-                            </div>
+                        </div>
+                        <div className={styles.ReleaseDate}>
+                            <strong>Release Date</strong> <br />
+                            {movieDetails.release_date}
                         </div>
                         <div className={styles.runtime}>
-                            <strong>Runtine:</strong> <br />{formattedRuntime}
+                            <strong>Runtine</strong> <br />{formattedRuntime}
                         </div>
                         <div className={styles.original_title}>
-                            <strong>Title Original:</strong> <br />{movieDetails.original_title}
+                            <strong>Title Original</strong> <br />{movieDetails.original_title}
+                        </div>
+                        <div className={styles.released}>
+                            <strong>Status</strong> <br />{movieDetails.status}
                         </div>
                         <div className={styles.Genres}>
-                            <strong>Genres: </strong> <br />
+                            <strong>Genres</strong> <br />
                             {movieDetails.genres.map((genre, index) => (
                                 <span key={genre.id}>
                                     {genre.name}
@@ -93,8 +96,8 @@ export const Movie_Profile = ({ movieId }) => {
                         <div className={styles.Title}>
                             {movieDetails.title}
                         </div>
+                        <div className={styles.RoleTitle}> Resume</div>
                         <div className={styles.Resume}>
-                            <strong>Resume:</strong> <br />
                             {movieDetails.overview}
                         </div>
                         <div className={styles.Roles}>
