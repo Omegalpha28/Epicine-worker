@@ -76,7 +76,7 @@ module.exports = (client, app, bcrypt) => {
 
     app.get('/api/movie/:movieId/credits', async (req, res) => {
 
-        const { movieId } = req.params; // Récupère l'ID du film depuis les paramètres de la requête
+        const { movieId } = req.params;
         const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
         const options = {
             method: 'GET',
@@ -91,14 +91,37 @@ module.exports = (client, app, bcrypt) => {
 
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
-            res.json(data); // Renvoie les crédits (cast et crew) du film
+            res.json(data);
         } catch (error) {
             console.error('Erreur lors de la récupération des crédits :', error);
             res.status(500).json({ message: 'Erreur lors de la récupération des crédits.' });
         }
     });
 
-    // Route pour récupérer les films par genre et par page
+    app.get('/api/movie/:movieId/recommendations', async (req, res) => {
+
+        const { movieId } = req.params;
+        const url = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${TMDB_API_KEY}`,
+            },
+        };
+
+        try {
+            const response = await fetch(url, options);
+
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            res.json(data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des crédits :', error);
+            res.status(500).json({ message: 'Erreur lors de la récupération des crédits.' });
+        }
+    });
+
     app.get('/api/movies/:genreId/:page', async (req, res) => {
         const { genreId, page } = req.params;
         const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=${page}`;
