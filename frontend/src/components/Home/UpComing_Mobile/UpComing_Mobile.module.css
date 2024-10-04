@@ -91,18 +91,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 300px; /* Fixer la hauteur */
+    height: 81%;
     width: 95%;
     margin: auto;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
+    /* border: 0.5px solid var(--color-border); */
     padding: 2%;
     box-sizing: border-box;
-    overflow-y: auto; /* Autoriser le scroll vertical */
-    overflow-x: hidden; /* Empêcher le débordement horizontal */
-    scrollbar-width: none;
+    overflow-x: hidden;
+    scrollbar-width: none; /* Pour Firefox */
 }
 
 .movie_list {
