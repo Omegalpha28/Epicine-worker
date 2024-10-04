@@ -33,13 +33,14 @@ module.exports = client => {
         return userData.updateOne(settings);
     }
 
-    client.getFavorite = async (uuid, film_id) => {
-        const favData = await Favorite.findOne({userUUID: uuid, film_id: film_id});
+    client.getFavorite = async (favInfo) => {
+        
+        const favData = await Favorite.findOne(favInfo);
         return favData;
     }
     
     client.addFavorite = async (uuid, film_id) => {
-        const favData = (await client.getFavorite(uuid, film_id)).data;
+        const favData = (await client.getFavorite({userUUID: uuid, film_id: film_id})).data;
 
         if (!favData)
             return await Favorite.save({userUUID: uuid, film_id: film_id});
