@@ -5,7 +5,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const Logger = require("./src/utils/Logger");
-const { connect, client, logout } = require("./src/core/bdd/sql-connector");
+const { connect, client, logout } = require("./core/bdd/sql-connector");
 const port = 5555;
 
 dotenv.config();
@@ -24,7 +24,7 @@ async function main() {
         Logger.error(error);
         process.exit();
     })
-    require("./src/core/data/functions")(client);
+    require("./core/data/functions")(client);
 }
 
 main().then(() => {

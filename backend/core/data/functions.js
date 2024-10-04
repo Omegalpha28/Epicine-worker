@@ -1,4 +1,4 @@
-const { error } = require("../../utils/Logger");
+const { error } = require("../../src/utils/Logger");
 const {User, Tv} = require("./models");
 
 
