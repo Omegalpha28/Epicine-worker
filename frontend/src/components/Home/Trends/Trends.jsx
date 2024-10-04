@@ -3,13 +3,12 @@ import styles from "./Trends.module.css";
 import { useMoviePage } from "../../MovePage/MovePage";
 import { Link } from "react-router-dom";
 
-
 export const Trends = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [dropdownActive, setDropdownActive] = useState(false); // État pour le dropdown
     const { activeMovieId, handleMovieClick } = useMoviePage();
-
 
     useEffect(() => {
         fetchContent('movies', 'day');
@@ -34,6 +33,10 @@ export const Trends = () => {
         }
     };
 
+    const toggleDropdown = () => {
+        setDropdownActive(!dropdownActive); // Basculer l'état du dropdown
+    };
+
     return (
         <div className={styles.box}>
             <div className={styles.main_box}>
@@ -42,6 +45,12 @@ export const Trends = () => {
                     <div className={styles.categories}>
                         <button className={styles.today} onClick={() => fetchContent('movies', 'day')}>Today</button>
                         <button className={styles.this_week} onClick={() => fetchContent('movies', 'week')}>This week</button>
+                        <button className={styles.category_button} onClick={toggleDropdown}>Categories</button>
+                        <div className={`${styles.dropdown} ${dropdownActive ? styles.active : ''}`}>
+                            <div className={styles.dropdown_item} onClick={() => fetchContent('movies', 'day')}>Today</div>
+                            <div className={styles.dropdown_item} onClick={() => fetchContent('movies', 'week')}>This week</div>
+                            {/* Ajoutez d'autres catégories ici */}
+                        </div>
                     </div>
                 </div>
                 <div className={styles.inside_box}>

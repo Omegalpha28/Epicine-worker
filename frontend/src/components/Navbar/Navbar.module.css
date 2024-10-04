@@ -247,11 +247,8 @@
     }
 
     .logo {
-        top: auto;
-        height: 95px;
-        width: 105px;
-        margin-top: 0;
-        margin-bottom: 0;
+        height: 30px;
+        width: 100px;
     }
 
     .menuItems {

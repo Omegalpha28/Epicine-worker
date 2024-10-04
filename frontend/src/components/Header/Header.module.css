@@ -23,9 +23,10 @@
     margin-bottom: 10vh;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 875px) {
     .header {
-        display: none;
+        height: 3vh;
+        visibility: hidden;
     }
 
     .Title {

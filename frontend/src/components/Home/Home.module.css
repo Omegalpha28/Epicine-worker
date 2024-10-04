@@ -39,6 +39,11 @@
 
 @media  screen and (max-width: 875px) {
 
+.home {
+    margin-top: 0;
+    padding: 0px 0px 0px 0px;
+}
+
 .wrap_box {
     flex-direction: column;
 }

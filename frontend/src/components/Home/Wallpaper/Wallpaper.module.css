@@ -21,6 +21,11 @@
 
 @media screen and (max-width: 875px) {
     .Wallpaper {
-        display: none;
+        margin-bottom: 150px;
+        overflow-y: hidden;
+    }
+
+    .blurblock {
+        background: linear-gradient(to top, var(--color-app) 80%, var(--color-app) 85%, transparent 100%, transparent 100%);
     }
 }

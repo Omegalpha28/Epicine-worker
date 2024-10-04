@@ -6,6 +6,7 @@ export const UpComing_Mobile = () => {
     const [upcoming, setUpcoming] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showDropdown, setShowDropdown] = useState(false); // état pour gérer le menu déroulant
 
     useEffect(() => {
         fetchContent(contentType);
@@ -26,24 +27,31 @@ export const UpComing_Mobile = () => {
         }
     };
 
+    const toggleDropdown = () => {
+        setShowDropdown((prev) => !prev);
+    };
+
     return (
         <div className={styles.box}>
             <div className={styles.main_box}>
                 <div className={styles.header}>
                     <h1 className={styles.title_box}>Upcoming</h1>
                     <div className={styles.categories}>
-                        <button
-                            className={styles.today}
-                            onClick={() => setContentType("movies")}
-                        >
-                            Movies
+                        <button className={styles.category_button} onClick={toggleDropdown}>
+                            Categories
                         </button>
-                        <button
-                            className={styles.this_week}
-                            onClick={() => setContentType("series")}
-                        >
-                            Series
-                        </button>
+
+                        {/* Menu déroulant pour les catégories */}
+                        {showDropdown && (
+                            <div className={styles.dropdown}>
+                                <button onClick={() => { setContentType("movies"); setShowDropdown(false); }}>
+                                    Movies
+                                </button>
+                                <button onClick={() => { setContentType("series"); setShowDropdown(false); }}>
+                                    Series
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className={styles.inside_box}>
