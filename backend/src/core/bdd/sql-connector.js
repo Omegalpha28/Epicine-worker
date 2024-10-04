@@ -113,12 +113,14 @@ async function logout() {
  * console.log(condition); // 'id = 1, name = "John"'
  */
 function generateCondition(filter, isUpdate = false) {
-    
+
     const keys = Object.keys(filter);
     const values = Object.values(filter);
 
     const conditions = keys.map((key, index) => {
         const value = values[index];
+
+        if (value === null && isUpdate == false) return `${key} IS NULL`;
         return `${key} = ${typeof value === "string" ? `"${value}"` : value}`;
     }).join(` ${isUpdate == false ? "AND" : ","} `);
 
