@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import styles from './Recommendation.module.css';
 import useTheme from '../../set_theme';
 import { Link } from 'react-router-dom';
-import unknown from '../../../../assets/film-movies-icon.svg';  // Import fallback SVG
 
 export const Recommendation = ({ movieId }) => {
     const [isDark, setIsDark] = useTheme();
@@ -43,20 +42,13 @@ export const Recommendation = ({ movieId }) => {
             ) : recommendations && recommendations.length > 0 ? (
                 <div className={styles.movie_list}>
                     {recommendations
+                        .filter(movie => !failedMovies.has(movie.id)) // Skip failed movies
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
-                                <Link to={`/Movie/${movie.id}`}>
-                                    <img
-                                        src={
-                                            failedMovies.has(movie.id)
-                                                ? unknown // Show fallback SVG for failed images
-                                                : `https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`
-                                        }
-                                        alt={movie.title}
-                                        onError={() => handleImageError(movie.id)} // Handle error
-                                    />
+                                <Link to={`/movies/${movie.id}`}>
+                                    <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
                                 </Link>
-                                <div className={styles.movie_title}>{movie.title}</div>
+                                {movie.title}
                             </div>
                         ))}
                 </div>
@@ -66,3 +58,4 @@ export const Recommendation = ({ movieId }) => {
         </div>
     );
 };
+

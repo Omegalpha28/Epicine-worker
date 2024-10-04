@@ -12,6 +12,7 @@ export const Popular = () => {
 
     useEffect(() => {
         fetchContent('movies', 'popular');
+        setMyType('movies');
     }, []);
 
     const fetchContent = async (type, subType) => {
@@ -38,6 +39,7 @@ export const Popular = () => {
                 <div className={styles.header}>
                     <h1 className={styles.title_box}>Popular</h1>
                     <div className={styles.categories}>
+
                         <button className={styles.streaming} onClick={() => { setMyType('movies'); fetchContent('movies', 'popular'); }} >
                             Streaming
                         </button>
@@ -78,3 +80,4 @@ export const Popular = () => {
         </div>
     );
 };
+

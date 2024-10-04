@@ -114,8 +114,8 @@ export const Movies = () => {
           <div className={styles.movies}>
             {movies.map((movie) => (
               <div key={movie.id} className={styles.movie_item}>
-                <Link to={`/Movie/${movie.id}`}>
-                <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
+                <Link to={`/movies/${movie.id}`}>
+                  <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
                 </Link>
                 <div>
                   <h3>{truncateTitle(movie.title)}</h3>

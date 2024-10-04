@@ -1,15 +1,15 @@
-import React from 'react';
 import useTheme from "../set_theme";
 import styles from "./MPage.module.css";
-import app_styles from "../../App.module.css";
 import { Navbar } from "../Navbar/Navbar";
 import { Toggle } from "../Toggle/Toggle";
+import app_styles from "../../App.module.css";
 import { Join_Us } from "../Joinus/join_us";
 import { Movie_Profile } from "./Profile/movie_profile";
-import { WallpaperMovie } from "./Wallpaper/WallpaperMovie";
 import { useParams } from "react-router-dom";
+import { WallpaperMovie } from "./Wallpaper/WallpaperMovie";
 
 export const MPage = () => {
+
   const [isDark, setIsDark] = useTheme();
   const { id } = useParams();
 
