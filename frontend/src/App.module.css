@@ -17,6 +17,15 @@
     transition: background-color 1s ease; */
 }
 
+.App::-webkit-scrollbar {
+    height: 3px;
+}
+
+.App::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 10px;
+}
+
 .footer {
     margin-top: 50px;
 }

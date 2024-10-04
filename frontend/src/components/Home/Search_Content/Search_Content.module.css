@@ -8,6 +8,15 @@
     z-index: 1; /* Pour s'assurer que le conteneur soit au-dessus d'autres éléments */
 }
 
+.container::-webkit-scrollbar {
+    height: 3px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 10px;
+}
+
 .results {
     display: flex;
     justify-content: space-between;
