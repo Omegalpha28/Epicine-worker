@@ -235,11 +235,11 @@ class Model {
      * @returns {string} A character string representing the SQL_request statement to create the table.
      */
     generateCreateTableStatement(schema) {
-        
+        let foreignKey = [];
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
             let lengthDefault = 255;
-            
+
             if (!field.type && typeof field == "object") throw new Error(`Field ${fieldName} has no type defined.`);
             
             const fieldType = getFieldType(field);
@@ -254,6 +254,7 @@ class Model {
                 if (field.default === null) columnDefinition += ` DEFAULT NULL`;
                 if (field.unique) columnDefinition += ' UNIQUE';
                 if (field.auto_increment) columnDefinition += ' AUTO_INCREMENT';
+                if (field.foreignKey) foreignKey.push(`FOREIGN KEY (${fieldName}) REFERENCES ${field.foreignKey}`);
                 if (typeof field.customize === 'string' && field.customize.length != 0) columnDefinition += ` ${field.customize}`;
                 return columnDefinition;
             }
@@ -266,7 +267,7 @@ class Model {
             error("Error: Invalid table name. Please choose a different name that is not a reserved keyword in SQL_request");
             return;
         }
-        return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}) ENGINE=InnoDB`;
+        return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}${foreignKey.length > 0 ? ", " + foreignKey.join(', ') : ""}) ENGINE=InnoDB`;
     }
 
     /**
