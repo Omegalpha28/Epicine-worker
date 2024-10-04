@@ -18,7 +18,7 @@ export const Join_Us = () => {
                 </div>
             </div>
             <div className={styles.footerCopyright}>
-                <p>Copyright IATI 2024. All rights reserved</p>
+                <p>Copyright IONIS 2024. All rights reserved</p>
             </div>
         </footer>
     );

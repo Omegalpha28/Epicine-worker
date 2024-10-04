@@ -6,7 +6,7 @@ export const Joinus_links = () => {
 
     const authors = [
         { name: "Mathieu", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/mathieu-rea-a1b4092b5/" },
-        { name: "Marin", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/marin" },
+        { name: "Marin", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/marin-lagi%C3%A9-2b0b992a0/" },
         { name: "Raphaël", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/rapha%C3%ABl-ostier-99923a2b0/" },
         { name: "Ossan", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/ossan-msoili/" },
         { name: "Mathis", icon: "bxl-linkedin", link: "https://www.linkedin.com/in/mathis-quenardel/" },
