@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require("express");
 var bcrypt = require("bcryptjs");
 const cors = require("cors");
@@ -28,6 +29,8 @@ async function main() {
 }
 
 main().then(() => {
+    const list = "./src/epicine/routes/list/";
+
     app.use(cors({
         origin: 'http://localhost:5173',
         methods: ['GET', 'POST'],
@@ -40,9 +43,12 @@ main().then(() => {
 
     require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
-    require("./src/epicine/routes/list/list_tv")(client, app, bcrypt);
-    require("./src/epicine/routes/list/series_tv")(client, app, bcrypt);
-    require("./src/epicine/routes/list/movie_tv")(client, app, bcrypt);
+    fs.readdir(list, (err, files) => {
+        if (err) return Logger.error(`Erreur lors de la lecture du dossier: ${err}`);
+        files.forEach(file => {
+            require(`${list}${file}`)(client, app, bcrypt);
+        });
+    });
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
