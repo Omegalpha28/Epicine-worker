@@ -1,0 +1,7 @@
+@import '../../animations/animation.css';
+
+.box {
+    display: flex;
+    height: auto;
+    background-color: green;
+}
