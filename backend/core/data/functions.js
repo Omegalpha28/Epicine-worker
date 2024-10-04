@@ -40,7 +40,7 @@ module.exports = client => {
     
     client.addFavorite = async (uuid, film_id) => {
         const favData = (await client.getFavorite(uuid, film_id)).data;
-        
+
         if (!favData)
             return await Favorite.save({userUUID: uuid, film_id: film_id});
         return 0;

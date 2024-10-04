@@ -321,14 +321,16 @@ class Model {
      * @throws {Error} Lance une erreur si la requête SQL échoue.
      */
     async deleteOne(filter) {
-        const sql_request = `DELETE TABLE ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-
+        const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+        console.log(sql_request);
+        
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
                 if (rows.length == 0) return resolve(0);
 
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
             }).catch((err) => {
+                logs("ici");
                 error(`Error executing query: ${err}`);
                 return 0;
             });
