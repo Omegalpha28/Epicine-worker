@@ -235,11 +235,11 @@ class Model {
      * @returns {string} A character string representing the SQL_request statement to create the table.
      */
     generateCreateTableStatement(schema) {
-        
+        let foreignKey = [];
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
             let lengthDefault = 255;
-            
+
             if (!field.type && typeof field == "object") throw new Error(`Field ${fieldName} has no type defined.`);
             
             const fieldType = getFieldType(field);
@@ -254,6 +254,7 @@ class Model {
                 if (field.default === null) columnDefinition += ` DEFAULT NULL`;
                 if (field.unique) columnDefinition += ' UNIQUE';
                 if (field.auto_increment) columnDefinition += ' AUTO_INCREMENT';
+                if (field.foreignKey) foreignKey.push(`FOREIGN KEY (${fieldName}) REFERENCES ${field.foreignKey}`);
                 if (typeof field.customize === 'string' && field.customize.length != 0) columnDefinition += ` ${field.customize}`;
                 return columnDefinition;
             }
@@ -266,7 +267,7 @@ class Model {
             error("Error: Invalid table name. Please choose a different name that is not a reserved keyword in SQL_request");
             return;
         }
-        return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}) ENGINE=InnoDB`;
+        return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}${foreignKey.length > 0 ? ", " + foreignKey.join(', ') : ""}) ENGINE=InnoDB`;
     }
 
     /**
@@ -305,6 +306,31 @@ class Model {
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
                 return;
+            });
+        });
+    }
+
+    /**
+     * Supprime une entrée de la table SQL correspondant au filtre fourni.
+     *
+     * @async
+     * @function deleteOne
+     * @param {Object} filter - Un objet représentant les conditions de filtre pour la suppression.
+     * @returns {Promise<number|ModelInstance>} Une promesse qui se résout à 0 si aucune ligne n'a été supprimée,
+     * ou à une instance de ModelInstance représentant la ligne supprimée.
+     * @throws {Error} Lance une erreur si la requête SQL échoue.
+     */
+    async deleteOne(filter) {
+        const sql_request = `DELETE TABLE ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql_request).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return 0;
             });
         });
     }
