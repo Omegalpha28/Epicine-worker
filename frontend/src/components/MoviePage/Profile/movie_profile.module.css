@@ -1,38 +1,28 @@
 @import '../../animations/animation.css';
 
 .box {
-    background-color: transparent;
+    background-color: var(--color-app);
+    box-shadow: var(--color-box-shadow);
     display: flex;
-    justify-content: letf;
+    justify-content: flex-start;
+    /* Alignement à gauche */
     padding: 2%;
     color: var(--color-text);
     flex-direction: row;
     margin-bottom: 2%;
-    transition: 0.25s ease-in-out;
+    transition: all 0.3s ease-in-out;
     position: relative;
     flex-wrap: wrap;
+    border-radius: 10px;
 }
 
 .divleft {
     width: 30%;
     height: auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Alignement à gauche */
     flex-direction: column;
-    padding: 2%;
-
-}
-
-.Ratings {
-    width: 70px;
-    height: 70px;
-    font-size: 20px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(180deg, var(--color-radiant1), var(--color-radiant2));
-    transition: 0.25s ease-in-out;
 }
 
 .divright {
@@ -44,40 +34,133 @@
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    margin-top: 40px;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    /* Hauteur de la ligne */
+    background-color: var(--color-text);
+    /* Couleur de la ligne */
+    margin: 20px 0;
+    /* Espacement autour de la ligne */
 }
 
 .myrow {
     display: flex;
     margin-top: 40px;
     justify-content: space-between;
-    align-items: center;
     flex-direction: row;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .RatingTitle {
     font-size: 20px;
     margin-bottom: 10px;
+    color: var(--color-text);
 }
-.mycolumn  {
+
+.Ratings {
+    width: 150%;
+    /* Prendre toute la largeur */
+    height: 15px;
+    /* Hauteur de la barre de progression */
+    border-radius: 25px;
+    /* Coins arrondis pour la barre */
+    background: rgba(255, 255, 255, 0.2);
+    /* Fond de la barre */
+    position: relative;
+    /* Position pour l'élément interne */
+    overflow: hidden;
+    /* Pour cacher le dépassement */
+    font-size: 10px;
+}
+
+.RatingValue {
+    display: flex;
+    /* Utiliser Flexbox pour centrer le contenu */
+    align-items: center;
+    /* Centrer verticalement */
+    justify-content: center;
+    /* Centrer horizontalement */
+    height: 90%;
+    /* Prendre toute la hauteur de la barre */
+    border-radius: 25px;
+    /* Coins arrondis pour l'indicateur */
+    transition: width 0.5s ease;
+    /* Transition douce */
+    background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
+    /* Dégradé coloré */
+    width: 0;
+    /* Commencer à zéro */
+    color: #fff;
+    /* Couleur du texte pour le contraste */
+    font-weight: bold;
+    /* Mettre le texte en gras */
+    text-align: center;
+    /* S'assurer que le texte est centré */
+    white-space: nowrap;
+    /* Empêcher le texte de s'enrouler */
+}
+
+/* Animation de chargement pour la barre de progression */
+@keyframes load {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.mycolumn {
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.Title, .TitleMobile {
+.Title,
+.TitleMobile {
     font-size: 80px;
     margin-top: 50px;
     margin-left: 2%;
     margin-bottom: 50px;
-    background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
+    background: linear-gradient(90deg, white, rgb(0, 0, 0));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
     display: flex;
-    justify-content: center;
     background-size: 200% 200%;
     animation: moveGradient 3s ease infinite;
+}
+
+.separator {
+    width: 90%;
+    height: 1px; /* Hauteur de la ligne */
+    background-color: var(--line-break);
+}
+
+.sectionDivider {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: none;
+    border-top: 1px solid var(--line-break);
+    width: 90%;
+    /* margin: 10px auto; Centrer le trait et ajuster l'espacement */
+}
+
+
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 .TitleMobile {
@@ -85,12 +168,10 @@
 }
 
 .original_title {
-    margin-top: 40px;
     font-size: 20px;
 }
 
 .released {
-    margin-top: 40px;
     font-size: 20px;
 }
 
@@ -101,34 +182,31 @@
 }
 
 .Genres {
-    margin-top: 40px;
     font-size: 20px;
     justify-content: center;
 }
 
 .picture {
     position: relative;
-    width: 200px;
+    width: 100%;
     height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
     min-width: 100px;
-    min-height: 200px;
-    border-radius: 5%;
+    min-height: 300px;
+    border-radius: 10px;
     overflow: hidden;
+    transition: transform 0.3s ease-in-out;
 }
 
-.Runtime {
-    margin-top: 40px;
-    font-size: 20px;
+.picture:hover {
+    transform: scale(1.03);
 }
 
 .picture img {
-    width: 100%;
+    width: 150%;
     height: auto;
-    border-radius: 5%;
-    transition: 0.25s ease-in-out;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
     z-index: 1;
 }
 
@@ -139,9 +217,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
-    transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     z-index: 2;
     pointer-events: none;
 }
@@ -161,14 +238,12 @@
     opacity: 0;
     z-index: 3;
     pointer-events: none;
-    transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
-
 
 .picture:hover::before {
     opacity: 1;
 }
-
 
 .Trailers {
     margin-top: 50px;
@@ -184,8 +259,9 @@
 .RoleTitle {
     font-size: 40px;
     margin-top: 50px;
+    margin-bottom: 20px;
     margin-left: 2%;
-    background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
+    background: linear-gradient(90deg, white, rgb(0, 0, 0));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -196,7 +272,9 @@
 }
 
 @media screen and (max-width: 900px) {
-    .divleft, .divright {
+
+    .divleft,
+    .divright {
         width: 100%;
         padding: 1%;
         margin: 0;
@@ -205,6 +283,7 @@
     .Runtime {
         font-size: 18px;
     }
+
     .box {
         border-radius: 20px;
     }
@@ -214,7 +293,7 @@
     }
 
     .TitleMobile {
-        font-size: 40px;
+        font-size: 35px;
         margin-top: 20px;
         display: flex;
     }
@@ -224,7 +303,7 @@
     }
 
     .Resume {
-        font-size: 20px;
+        font-size: 22px;
         margin-top: 20px;
         margin-left: 0;
     }
@@ -234,26 +313,22 @@
     }
 
     .Ratings {
-        width: 50px;
-        height: 50px;
-        font-size: 16px;
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
     }
 
     .picture {
         width: 100%;
-        margin-top: 30px;
+        margin-top: 20px;
         height: auto;
-        margin-bottom: 20px;
-        display: flex;
+        margin-bottom: 15px;
         justify-content: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-
     .TitleMobile {
         font-size: 35px;
     }
-
-
 }

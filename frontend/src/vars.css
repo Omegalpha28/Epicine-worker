@@ -30,6 +30,7 @@
 }
 
 [data-theme="light"] {
+    --line-break: #ececec;
     --button-newsletter: #ffffff;
     --footer-background-color : #fecc00;
     --filter-logo: brightness(0);
@@ -68,6 +69,7 @@
 }
 
 [data-theme="dark"] {
+    --line-break: #252a32;
     --button-newsletter: #fecc00;
     --footer-background-color: #060d17;
     --filter-logo: none;

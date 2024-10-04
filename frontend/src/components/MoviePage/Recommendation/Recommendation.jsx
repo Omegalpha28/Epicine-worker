@@ -9,7 +9,7 @@ export const Recommendation = ({ movieId }) => {
     const [recommendations, setRecommendations] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [failedMovies, setFailedMovies] = useState(new Set()); // Track failed movies
+    const [failedMovies, setFailedMovies] = useState(new Set());
 
     useEffect(() => {
         const fetchMovieRecommendations = async () => {
@@ -43,13 +43,20 @@ export const Recommendation = ({ movieId }) => {
             ) : recommendations && recommendations.length > 0 ? (
                 <div className={styles.movie_list}>
                     {recommendations
-                        .filter(movie => !failedMovies.has(movie.id)) // Skip failed movies
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
                                 <Link to={`/Movie/${movie.id}`}>
-                                    <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
+                                    <img
+                                        src={
+                                            failedMovies.has(movie.id)
+                                                ? unknown // Show fallback SVG for failed images
+                                                : `https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`
+                                        }
+                                        alt={movie.title}
+                                        onError={() => handleImageError(movie.id)} // Handle error
+                                    />
                                 </Link>
-                                {movie.title}
+                                <div className={styles.movie_title}>{movie.title}</div>
                             </div>
                         ))}
                 </div>
@@ -59,4 +66,3 @@ export const Recommendation = ({ movieId }) => {
         </div>
     );
 };
-

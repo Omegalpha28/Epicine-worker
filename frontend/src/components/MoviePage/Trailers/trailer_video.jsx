@@ -14,7 +14,7 @@ export const Trailer_Video = ({ movieId }) => {
                 method: 'GET',
                 headers: {
                     accept: 'application/json',
-                    Authorization: `Bearer ${process.env.TOKEN}`,  // Ajout d'un token si nécessaire
+                    Authorization: `Bearer ${process.env.TOKEN}`,
                 },
             };
 
@@ -41,16 +41,20 @@ export const Trailer_Video = ({ movieId }) => {
         }
     }, [movieId]);
 
-    if (loading) return <div>Loading trailer...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) return <div className={styles.loading}>Loading trailer...</div>;
+    if (error) return <div className={styles.error}>Error: {error}</div>;
 
     return (
         <div className={styles.box} data-theme={isDark ? "dark" : "light"}>
             {trailerKey ? (
-                <iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailerKey}`} title="YouTube video player" iframeBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                </iframe>
+                <iframe 
+                    src={`https://www.youtube.com/embed/${trailerKey}`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                />
             ) : (
-                <div>No trailer available</div>
+                <div className={styles.no_trailer}>No trailer available</div>
             )}
         </div>
     );

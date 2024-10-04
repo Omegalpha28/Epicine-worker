@@ -4,19 +4,22 @@ import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 
+// Fonction pour obtenir le style de fond de la note
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
     return `linear-gradient(360deg, var(--color-radiant1) ${percentage}%, var(--color-radiant2) ${100 - percentage}%)`;
 };
 
+// Fonction pour formater la durée du film
 const formatRuntime = (runtime) => {
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
     return ` ${hours}h ${minutes}m `;
 };
 
+// Composant principal
 export const Movie_Profile = ({ movieId }) => {
-    const [isDark, setIsDark] = useTheme();
+    const [isDark] = useTheme();
     const [movieDetails, setMovieDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -39,6 +42,7 @@ export const Movie_Profile = ({ movieId }) => {
         }
     }, [movieId]);
 
+    // Affichage pendant le chargement
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
@@ -57,27 +61,48 @@ export const Movie_Profile = ({ movieId }) => {
                                 <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
                             </a>
                         </div>
+
                         <div className={styles.myrow}>
-                            <div className={styles.mycolumn} >
+                            <div className={styles.mycolumn}>
                                 <div className={styles.RatingTitle}><strong>Rating</strong></div>
-                                <div className={styles.Ratings} style={{ background: getRatingBackground(rating) }} >
-                                    {ratingPercentage}%
+                                <div className={styles.Ratings}>
+                                    <div
+                                        className={styles.RatingValue}
+                                        style={{ width: `${ratingPercentage}%`, animation: 'load 0.5s forwards' }} // Animation pour la barre
+                                    >
+                                        {ratingPercentage}%
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.ReleaseDate}>
                             <strong>Release Date</strong> <br />
                             {movieDetails.release_date}
                         </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.runtime}>
-                            <strong>Runtine</strong> <br />{formattedRuntime}
+                            <strong>Runtime</strong> <br />{formattedRuntime}
                         </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.original_title}>
                             <strong>Title Original</strong> <br />{movieDetails.original_title}
                         </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.released}>
                             <strong>Status</strong> <br />{movieDetails.status}
                         </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.Genres}>
                             <strong>Genres</strong> <br />
                             {movieDetails.genres.map((genre, index) => (
@@ -91,25 +116,19 @@ export const Movie_Profile = ({ movieId }) => {
                 )}
             </div>
             {movieDetails && (
-                <>
-                    <div className={styles.divright}>
-                        <div className={styles.Title}>
-                            {movieDetails.title}
-                        </div>
-                        <div className={styles.RoleTitle}> Resume</div>
-                        <div className={styles.Resume}>
-                            {movieDetails.overview}
-                        </div>
-                        <div className={styles.Roles}>
-                            <div className={styles.RoleTitle}> Role </div>
-                            <Roles movieId={movieId}/>
-                        </div>
-                        <div className={styles.Recommendation}>
-                            <div className={styles.RoleTitle}> Recommandations </div>
-                            <Recommendation movieId={movieId}/>
-                        </div>
+                <div className={styles.divright}>
+                    <div className={styles.Title}>{movieDetails.title}</div>
+                    <div className={styles.RoleTitle}> Resume</div>
+                    <div className={styles.Resume}>{movieDetails.overview}</div>
+                    <div className={styles.Roles}>
+                        <div className={styles.RoleTitle}> Role </div>
+                        <Roles movieId={movieId} />
                     </div>
-                </>
+                    <div className={styles.Recommendation}>
+                        <div className={styles.RoleTitle}> Recommandations </div>
+                        <Recommendation movieId={movieId} />
+                    </div>
+                </div>
             )}
         </div>
     );
