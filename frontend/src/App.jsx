@@ -10,6 +10,7 @@ import { Streaming } from "./components/Streaming/Streaming";
 import { SignUpPage } from "./components/Account/SignUp";
 import { TrailersPage } from "./components/Trailers/Trailers";
 import { MPage } from "./components/MoviePage/MPage";
+import { SPage } from "./components/SeriePage/SPage";
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
                 <Route path="/Streaming" element={<Streaming />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
                 <Route path="/Signup" element={<SignUpPage />} />
-                <Route path="/Movie/:id" element={<MPage />} />
+                <Route path="/movies/:id" element={<MPage />} />
+                <Route path="/series/:id" element={<SPage />} />
             </Routes>
         </Router>
     </div>

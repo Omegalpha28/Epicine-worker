@@ -14,7 +14,7 @@ export const HomePage = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false); // Add state for search visibility
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <div className={Home_style.page} data-theme={isDark ? "dark" : "light"}>
