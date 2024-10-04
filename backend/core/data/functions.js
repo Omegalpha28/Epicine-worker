@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const {User, Tv} = require("./models");
+const {User, Tv, Favorite} = require("./models");
 
 
 module.exports = client => {
@@ -33,8 +33,20 @@ module.exports = client => {
         return userData.updateOne(settings);
     }
 
-    client.getTv = async (tvInfo) => {
-        const tvData = await Tv.findOne(tvInfo);
-        return tvData;
-    };
+    client.getFavorite = async (uuid, film_id) => {
+        const favData = await Favorite.findOne({userUUID: uuid, film_id: film_id});
+        return favData;
+    }
+    
+    client.addFavorite = async (uuid, film_id) => {
+        const favData = (await client.getFavorite(uuid, film_id)).data;
+        
+        if (!favData)
+            return await Favorite.save({userUUID: uuid, film_id: film_id});
+        return 0;
+    }
+
+    client.removeFavorite = async (uuid, film_id) => {
+        return await Favorite.deleteOne({userUUID: uuid, film_id: film_id});
+    }
 }
