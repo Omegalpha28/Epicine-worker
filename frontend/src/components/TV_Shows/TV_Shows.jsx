@@ -6,6 +6,7 @@ import { Toggle } from "../Toggle/Toggle";
 import app_styles from "../../App.module.css";
 import { Join_Us } from "../Joinus/join_us";
 import { Search_Content } from "../Home/Search_Content/Search_Content";
+import { Link } from "react-router-dom";
 
 export const TV_Shows = () => {
   const [isDark, setIsDark] = useTheme();
@@ -113,7 +114,9 @@ export const TV_Shows = () => {
           <div className={styles.shows}>
             {shows.map((show) => (
               <div key={show.id} className={styles.show_item}>
-                <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
+                <Link to={`/series/${show.id}`}>
+                  <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
+                </Link>
                 <div>
                   <h3>{truncateTitle(show.name)}</h3>
                   <p>{show.first_air_date}</p>
