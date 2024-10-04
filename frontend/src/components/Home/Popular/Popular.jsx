@@ -44,8 +44,8 @@ export const Popular = () => {
                     <div className={styles.categories}>
                     <button className={styles.streaming} onClick={() => fetchContent('movies', 'popular')}>Today</button>
                     <button className={styles.television} onClick={() => { fetchContent('series', 'popular'); }}>Television</button>
-                    <button className={styles.to_rent} onClick={() => { fetchContent('series', 'now_playing'); }}>To rent</button>
-                    <button className={styles.cinema} onClick={() => { fetchContent('series', 'upcoming'); }}>Cinema</button>
+                    <button className={styles.to_rent} onClick={() => { fetchContent('movies', 'now_playing'); }}>To rent</button>
+                    <button className={styles.cinema} onClick={() => { fetchContent('movies', 'upcoming'); }}>Cinema</button>
                         <button className={styles.category_button} onClick={toggleDropdown}>Categories</button>
                         <div className={`${styles.dropdown} ${dropdownActive ? styles.active : ''}`}>
                             <div className={styles.dropdown_item} onClick={() => { fetchContent('movies', 'popular'); }}>Streaming</div>
