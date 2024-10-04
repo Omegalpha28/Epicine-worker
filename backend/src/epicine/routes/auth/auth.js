@@ -1,4 +1,4 @@
-const { validUserArgs } = require("../../utils/valid_args");
+const { validUserArgs } = require("../../../utils/valid_args");
 const { checkAccountMail, register, getAccountMail } = require("../user/user.query");
 
 module.exports = async function (client, app, bcrypt) {

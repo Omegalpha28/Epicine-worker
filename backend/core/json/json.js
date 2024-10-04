@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { logs, error } = require('../../utils/Logger');
+const { logs, error } = require('../../../utils/Logger');
 
 /**
  * @param {Path} filename 

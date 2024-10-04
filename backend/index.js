@@ -28,21 +28,21 @@ async function main() {
 }
 
 main().then(() => {
-    app.use(cors({ // Configurer CORS
-        origin: 'http://localhost:5173', // Remplace par l'URL de ton frontend
-        methods: ['GET', 'POST'], // Méthodes autorisées
-        credentials: true // Si tu veux permettre les cookies avec les requêtes
+    app.use(cors({
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST'],
+        credentials: true
     }));
 
     app.use(bodyparser.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(express.raw());
 
-    require("./src/routes/auth/auth")(client, app, bcrypt);
-    require("./src/routes/user/user")(client, app, bcrypt);
-    require("./src/routes/list/list_tv")(client, app, bcrypt);
-    require("./src/routes/list/series_tv")(client, app, bcrypt);
-    require("./src/routes/list/movie_tv")(client, app, bcrypt);
+    require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
+    require("./src/epicine/routes/user/user")(client, app, bcrypt);
+    require("./src/epicine/routes/list/list_tv")(client, app, bcrypt);
+    require("./src/epicine/routes/list/series_tv")(client, app, bcrypt);
+    require("./src/epicine/routes/list/movie_tv")(client, app, bcrypt);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
