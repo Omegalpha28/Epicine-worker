@@ -5,6 +5,7 @@ import { Navbar } from "../Navbar/Navbar";
 import { Toggle } from "../Toggle/Toggle";
 import app_styles from "../../App.module.css";
 import { Join_Us } from "../Joinus/join_us";
+import { Link } from "react-router-dom";
 import { Search_Content } from "../Home/Search_Content/Search_Content";
 
 export const Movies = () => {
@@ -52,7 +53,7 @@ export const Movies = () => {
         })
         .catch(error => console.error('Erreur lors de la recherche des films :', error));
     } else {
-      // Si aucun terme de recherche, réinitialiser les films
+
       setSelectedGenre(null);
       setPage(1);
     }
@@ -113,7 +114,9 @@ export const Movies = () => {
           <div className={styles.movies}>
             {movies.map((movie) => (
               <div key={movie.id} className={styles.movie_item}>
+                <Link to={`/Movie/${movie.id}`}>
                 <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
+                </Link>
                 <div>
                   <h3>{truncateTitle(movie.title)}</h3>
                   <p>{movie.release_date}</p>
