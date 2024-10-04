@@ -3,7 +3,7 @@ import styles from "./UpComing.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const UpComing = () => {
-    const [contentType, setContentType] = useState("movies");
+    const [contentType, setContentType] = useState("movies"); // État pour stocker le type de contenu
     const [upcoming, setUpcoming] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -11,7 +11,8 @@ export const UpComing = () => {
     const navigate = useNavigate();
 
     const handleViewMoreClick = () => {
-        navigate(`/Movie/${currentMovie.id}`);
+        const currentMovie = upcoming[currentIndex];
+        navigate(`/${contentType}/${currentMovie.id}`); // Dynamique selon le type de contenu
     };
 
     useEffect(() => {
