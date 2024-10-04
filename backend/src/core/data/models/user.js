@@ -34,11 +34,7 @@ const userSchema = new Schema({
     status: {
         type: Number,
         default: 0
-    },
-    token: {
-        type: sqlType.Text,
-        default: null
-    },
+    }
 });
 
 module.exports = new Model("User", userSchema);

@@ -4,8 +4,6 @@ const {User, Tv} = require("./models");
 
 module.exports = client => {
     client.getUser = async (userInfo) => {
-        console.log("getUser", userInfo);
-        
         const userData = await User.findOne(userInfo);
         return userData;
     }
@@ -21,8 +19,6 @@ module.exports = client => {
             const result = await User.save({ uuid: uuid, name: name, email: email, password: mdp });
 
             result["uuid"] = uuid;
-            console.log("createUser", result);
-            
             return result;
         } catch (err) {
             error(err);
@@ -31,12 +27,9 @@ module.exports = client => {
     }
 
     client.updateUser = async (uuid, settings) => {
-        console.log("updateUser", uuid, settings);
-        
         let userData = await client.getUser({uuid: uuid});
 
         if (typeof userData.data != "object") userData.data = {};
-
         return userData.updateOne(settings);
     }
 
