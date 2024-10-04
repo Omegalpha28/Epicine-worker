@@ -1,4 +1,4 @@
-const { getUser } = require("../../../core/data/config.function");
+const { getUser } = require("../../../../core/data/config.function");
 const auth = require("../../middleware/auth");
 
 module.exports = async function (client, app, bcrypt) {
