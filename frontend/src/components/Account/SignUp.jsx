@@ -48,7 +48,6 @@ export const SignUpPage = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                console.log('Inscription réussie:', data);
                 navigateTo('/LogIn');
 
             } else {

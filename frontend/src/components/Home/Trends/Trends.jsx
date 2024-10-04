@@ -53,7 +53,7 @@ export const Trends = () => {
                         <div className={styles.movie_list}>
                             {movies.map((movie) => (
                                 <div key={movie.id} className={styles.movie_item} onClick={() => handleMovieClick(movie.id)}>
-                                    <Link to={`/Movie/${movie.id}`}>
+                                    <Link to={`/movies/${movie.id}`}>
                                         <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title || movie.name} />
                                     </Link>
                                     <h3 className={styles.movie_title}>{movie.title || movie.name}</h3>

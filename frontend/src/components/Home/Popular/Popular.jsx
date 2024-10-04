@@ -1,4 +1,3 @@
-// src/Popular.js
 import React, { useState, useEffect } from "react";
 import styles from "./Popular.module.css";
 import { Link } from "react-router-dom";
@@ -8,6 +7,7 @@ export const Popular = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [myType, setMyType] = useState('movie');
     const { activeMovieId, handleMovieClick } = useMoviePage();
 
     useEffect(() => {
@@ -38,10 +38,18 @@ export const Popular = () => {
                 <div className={styles.header}>
                     <h1 className={styles.title_box}>Popular</h1>
                     <div className={styles.categories}>
-                        <button className={styles.streaming} onClick={() => fetchContent('movies', 'popular')}>Streaming</button>
-                        <button className={styles.television} onClick={() => fetchContent('series')}>Television</button>
-                        <button className={styles.to_rent} onClick={() => fetchContent('movies', 'now_playing')}>To rent</button>
-                        <button className={styles.cinema} onClick={() => fetchContent('movies', 'upcoming')}>Cinema</button>
+                        <button className={styles.streaming} onClick={() => { setMyType('movies'); fetchContent('movies', 'popular'); }} >
+                            Streaming
+                        </button>
+                        <button className={styles.television} onClick={() => { setMyType('series'); fetchContent('series'); }} >
+                            Television
+                        </button>
+                        <button className={styles.to_rent} onClick={() => { setMyType('movies'); fetchContent('movies', 'now_playing'); }} >
+                            To rent
+                        </button>
+                        <button className={styles.cinema} onClick={() => { setMyType('movies'); fetchContent('movies', 'upcoming'); }} >
+                            Cinema
+                        </button>
                     </div>
                 </div>
                 <div className={styles.inside_box}>
@@ -51,14 +59,16 @@ export const Popular = () => {
                         <h1>{error}</h1>
                     ) : movies.length > 0 ? (
                         <div className={styles.movie_list}>
-                            {movies.map((movie) => (
-                                <div key={movie.id} className={styles.movie_item} onClick={() => handleMovieClick(movie.id)}>
-                                    <Link to={`/Movie/${movie.id}`}>
-                                        <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title || movie.name} />
-                                    </Link>
-                                    <h3 className={styles.movie_title}>{movie.title || movie.name}</h3>
-                                </div>
-                            ))}
+                            {movies.map((movie) => {
+                                return (
+                                    <div key={movie.id} className={styles.movie_item} onClick={() => handleMovieClick(movie.id)}>
+                                        <Link to={`/${myType}/${movie.id}`}>
+                                            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title || movie.name} />
+                                        </Link>
+                                        <h3 className={styles.movie_title}>{movie.title || movie.name}</h3>
+                                    </div>
+                                );
+                            })}
                         </div>
                     ) : (
                         <h1>No Movies Available</h1>
@@ -68,4 +78,3 @@ export const Popular = () => {
         </div>
     );
 };
-    

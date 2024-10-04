@@ -3,7 +3,7 @@ import Login_styles from "./Login.module.css";
 import axios from "axios";
 
 export const ConnectGoogle = () => {
-    const login = useGoogleLogin({ onSuccess: async (tokenResponse) => { console.log(tokenResponse);
+    const login = useGoogleLogin({ onSuccess: async (tokenResponse) => {
             try { const userInfo = await axios.get( "https://www.googleapis.com/oauth2/v3/userinfo", {
                 headers: {
                     Authorization: `Bearer ${tokenResponse.access_token}`,
