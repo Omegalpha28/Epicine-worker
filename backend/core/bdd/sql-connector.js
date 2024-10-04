@@ -310,6 +310,31 @@ class Model {
     }
 
     /**
+     * Supprime une entrée de la table SQL correspondant au filtre fourni.
+     *
+     * @async
+     * @function deleteOne
+     * @param {Object} filter - Un objet représentant les conditions de filtre pour la suppression.
+     * @returns {Promise<number|ModelInstance>} Une promesse qui se résout à 0 si aucune ligne n'a été supprimée,
+     * ou à une instance de ModelInstance représentant la ligne supprimée.
+     * @throws {Error} Lance une erreur si la requête SQL échoue.
+     */
+    async deleteOne(filter) {
+        const sql_request = `DELETE TABLE ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql_request).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        });
+    }
+
+    /**
      * Asynchronously drops a table if it exists in the database.
      *
      * This function constructs a SQL_request query to drop a table with the name specified
