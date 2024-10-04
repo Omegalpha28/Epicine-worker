@@ -20,7 +20,6 @@ async function register(client, res, email, name, mdp)
         const result = await createUser(client, name, email, mdp);
         const token = jwt.sign({uuid: result.uuid}, process.env.SECRET);
 
-        await updateUser(client, result.uuid, {token: token});
         res.status(201).json({token: token});
     } catch (err) {
         error(err);
