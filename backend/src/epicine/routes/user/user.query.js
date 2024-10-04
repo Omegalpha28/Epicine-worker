@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { createUser, getUser, updateUser } = require("../../../core/data/config.function");
-const { error } = require("../../utils/Logger");
+const { createUser, getUser, updateUser } = require("../../../../core/data/config.function");
+const { error } = require("../../../utils/Logger");
 
 module.exports = { checkAccountMail, register, getAccountMail }
 
