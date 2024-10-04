@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from "./UpComing_Mobile.module.css";
+import { Link } from "react-router-dom";
 
 export const UpComing_Mobile = () => {
-    const [contentType, setContentType] = useState("movies"); // movies or series
     const [upcoming, setUpcoming] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [showDropdown, setShowDropdown] = useState(false); // état pour gérer le menu déroulant
+    const [contentType, setContentType] = useState("movies"); // movies or series
+    const [dropdownActive, setDropdownActive] = useState(false); // état pour gérer le menu déroulant
 
-    useEffect(() => {
-        fetchContent(contentType);
-    }, [contentType]);
-
+    // Fonction pour récupérer le contenu selon le type
     const fetchContent = async (type) => {
         setLoading(true);
         setError(null);
@@ -27,8 +25,18 @@ export const UpComing_Mobile = () => {
         }
     };
 
+    // Gérer l'affichage du dropdown
     const toggleDropdown = () => {
-        setShowDropdown((prev) => !prev);
+        setDropdownActive((prev) => !prev);
+    };
+
+    useEffect(() => {
+        fetchContent(contentType); // Chargement initial des films ou séries à venir
+    }, [contentType]);
+
+    const getYear = (date) => {
+        const year = new Date(date).getFullYear();
+        return isNaN(year) ? "N/A" : year; // Return 'N/A' if year is NaN
     };
 
     return (
@@ -37,21 +45,13 @@ export const UpComing_Mobile = () => {
                 <div className={styles.header}>
                     <h1 className={styles.title_box}>Upcoming</h1>
                     <div className={styles.categories}>
-                        <button className={styles.category_button} onClick={toggleDropdown}>
-                            Categories
-                        </button>
-
-                        {/* Menu déroulant pour les catégories */}
-                        {showDropdown && (
-                            <div className={styles.dropdown}>
-                                <button onClick={() => { setContentType("movies"); setShowDropdown(false); }}>
-                                    Movies
-                                </button>
-                                <button onClick={() => { setContentType("series"); setShowDropdown(false); }}>
-                                    Series
-                                </button>
-                            </div>
-                        )}
+                        <button className={styles.movies} onClick={() => { setContentType('movies'); toggleDropdown(); }}>Movies</button>
+                        <button className={styles.series} onClick={() => { setContentType('series'); toggleDropdown(); }}>Series</button>
+                        <button className={styles.category_button} onClick={toggleDropdown}>Categories</button>
+                        <div className={`${styles.dropdown} ${dropdownActive ? styles.active : ''}`}>
+                            <div className={styles.dropdown_item} onClick={() => { setContentType('movies'); setDropdownActive(false); }}>Movies</div>
+                            <div className={styles.dropdown_item} onClick={() => { setContentType('series'); setDropdownActive(false); }}>Series</div>
+                        </div>
                     </div>
                 </div>
                 <div className={styles.inside_box}>
@@ -63,11 +63,14 @@ export const UpComing_Mobile = () => {
                         <div className={styles.movie_list}>
                             {upcoming.map((item) => (
                                 <div key={item.id} className={styles.movie_item}>
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                                        alt={item.title || item.name}
-                                    />
-                                    <h3 className={styles.movie_title}>{item.title || item.name}</h3>
+                                    <Link to={{ pathname: `/${item.media_type}/${item.id}` }}>
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
+                                            alt={item.title || item.name}
+                                        />
+                                    </Link>
+                                    {/* <h3 className={styles.movie_title}>{item.title || item.name}</h3>
+                                    <p className={styles.movie_year}>{getYear(item.release_date || item.first_air_date)}</p> */}
                                 </div>
                             ))}
                         </div>
