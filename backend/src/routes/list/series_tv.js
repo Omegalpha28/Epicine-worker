@@ -51,7 +51,6 @@ module.exports = (client, app, bcrypt) => {
         }
     });
 
-    // Route pour récupérer toutes les séries par page
     app.get('/api/tv', async (req, res) => {
         const { page = 1 } = req.query;
         const url = `https://api.themoviedb.org/3/discover/tv?language=en-US&page=${page}`;
@@ -64,6 +63,27 @@ module.exports = (client, app, bcrypt) => {
             },
         };
 
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            res.json(data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des séries :', error);
+            res.status(500).json({ message: 'Erreur lors de la récupération des séries.' });
+        }
+    });
+
+    app.get('/api/tv/:serieId', async (req, res) => {
+        const { serieId } = req.params;
+        const url = `https://api.themoviedb.org/3/tv/${serieId}?language=en-US`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${TMDB_API_KEY}`,
+            },
+        };
         try {
             const response = await fetch(url, options);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
