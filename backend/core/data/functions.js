@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const {User, Tv, Favorite} = require("./models");
+const {User, Tv, Favorite, watchlist} = require("./models");
 
 
 module.exports = client => {
@@ -49,5 +49,10 @@ module.exports = client => {
 
     client.removeFavorite = async (uuid, film_id) => {
         return await Favorite.deleteOne({userUUID: uuid, film_id: film_id});
+    }
+
+    client.getWatchList = async (watchInfo) => {
+        const watchData = await watchlist.findOne(watchInfo);
+        return watchData;
     }
 }
