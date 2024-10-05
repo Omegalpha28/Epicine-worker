@@ -34,9 +34,7 @@ module.exports = client => {
     }
 
     client.getFavorite = async (favInfo) => {
-        
-        const favData = await Favorite.findOne(favInfo);
-        return favData;
+        return await Favorite.findOne(favInfo);
     }
     
     client.addFavorite = async (uuid, film_id) => {
@@ -52,8 +50,7 @@ module.exports = client => {
     }
 
     client.getWatchList = async (watchInfo) => {
-        const watchData = await Watchlist.findOne(watchInfo);
-        return watchData;
+        return await Watchlist.findOne(watchInfo);
     }
 
     client.addWatchList = async (uuid, film_id) => {
@@ -62,5 +59,9 @@ module.exports = client => {
         if (!favData)
             return await Watchlist.save({userUUID: uuid, film_id: film_id});
         return 0;
+    }
+
+    client.removeWatchList = async (uuid, film_id) => {
+        return await Watchlist.deleteOne({userUUID: uuid, film_id: film_id});
     }
 }
