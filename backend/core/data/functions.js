@@ -56,7 +56,7 @@ module.exports = client => {
     client.addWatchList = async (uuid, film_id) => {
         const watchData = (await client.getWatchList({userUUID: uuid, film_id: film_id})).data;
 
-        if (!favData)
+        if (!watchData)
             return await Watchlist.save({userUUID: uuid, film_id: film_id});
         return 0;
     }
