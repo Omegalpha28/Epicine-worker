@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const {User, Tv, Favorite, watchlist} = require("./models");
+const {User, Favorite, Watchlist} = require("./models");
 
 
 module.exports = client => {
@@ -52,7 +52,15 @@ module.exports = client => {
     }
 
     client.getWatchList = async (watchInfo) => {
-        const watchData = await watchlist.findOne(watchInfo);
+        const watchData = await Watchlist.findOne(watchInfo);
         return watchData;
+    }
+
+    client.addWatchList = async (uuid, film_id) => {
+        const watchData = (await client.getWatchList({userUUID: uuid, film_id: film_id})).data;
+
+        if (!favData)
+            return await Watchlist.save({userUUID: uuid, film_id: film_id});
+        return 0;
     }
 }
