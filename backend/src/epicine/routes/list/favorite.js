@@ -6,8 +6,8 @@ module.exports = async function(client, app, bcrypt) {
         const uuid = req.body["uuid"];
         const film_id = req.body["film_id"];
 
-        const favData = (await getFavorite(client, uuid, film_id)).data;
-
+        const favData = (await getFavorite(client, {userUUID: uuid, film_id: film_id})).data;
+        
         if (!favData) {
             if (!(await addFavorite(client, uuid, film_id)))
                 res.status(404).json({"msg": "Internal server error"});
@@ -20,7 +20,7 @@ module.exports = async function(client, app, bcrypt) {
     app.delete("/remove/favorite", auth, async (req, res) => {
         const uuid = req.body["uuid"];
         const film_id = req.body["film_id"];
-        const favData = (await getFavorite(client, uuid, film_id)).data;
+        const favData = (await getFavorite(client, {userUUID: uuid, film_id: film_id})).data;
 
         if (favData) {
             if (!(await removeFavorite(client, uuid, film_id)))
