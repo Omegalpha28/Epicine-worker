@@ -322,7 +322,6 @@ class Model {
      */
     async deleteOne(filter) {
         const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-        console.log(sql_request);
         
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
