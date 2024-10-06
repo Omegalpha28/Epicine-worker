@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const {User, Tv, Favorite} = require("./models");
+const {User, Favorite, Watchlist} = require("./models");
 
 
 module.exports = client => {
@@ -33,14 +33,16 @@ module.exports = client => {
         return userData.updateOne(settings);
     }
 
+    client.getFavoriteUnique = async (favInfo) => {
+        return await Favorite.findOne(favInfo);
+    }
+
     client.getFavorite = async (favInfo) => {
-        
-        const favData = await Favorite.findOne(favInfo);
-        return favData;
+        return await Favorite.find(favInfo);
     }
     
     client.addFavorite = async (uuid, film_id) => {
-        const favData = (await client.getFavorite({userUUID: uuid, film_id: film_id})).data;
+        const favData = (await Favorite.findOne({userUUID: uuid, film_id: film_id})).data;
 
         if (!favData)
             return await Favorite.save({userUUID: uuid, film_id: film_id});
@@ -49,5 +51,25 @@ module.exports = client => {
 
     client.removeFavorite = async (uuid, film_id) => {
         return await Favorite.deleteOne({userUUID: uuid, film_id: film_id});
+    }
+
+    client.getWatchListUnique = async (watchInfo) => {
+        return await Watchlist.findOne(watchInfo);
+    }
+
+    client.getWatchList = async (watchInfo) => {
+        return await Watchlist.find(watchInfo);
+    }
+
+    client.addWatchList = async (uuid, film_id) => {
+        const watchData = (await Watchlist.findOne({userUUID: uuid, film_id: film_id})).data;
+
+        if (!watchData)
+            return await Watchlist.save({userUUID: uuid, film_id: film_id});
+        return 0;
+    }
+
+    client.removeWatchList = async (uuid, film_id) => {
+        return await Watchlist.deleteOne({userUUID: uuid, film_id: film_id});
     }
 }
