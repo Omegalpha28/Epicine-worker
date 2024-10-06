@@ -3,5 +3,7 @@ module.exports = {
     Movies: require("./movies"),
     Favorite: require("./favorite"),
     Watchlist: require("./watchlist"),
-    Fil: require("./fil")
+    Fil: require("./fil"),
+    Message: require("./message"),
+    Likes: require("./likes")
 }
