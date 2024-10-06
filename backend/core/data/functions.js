@@ -34,7 +34,7 @@ module.exports = client => {
     }
 
     client.getFavorite = async (favInfo) => {
-        return await Favorite.findOne(favInfo);
+        return await Favorite.find(favInfo);
     }
     
     client.addFavorite = async (uuid, film_id) => {
