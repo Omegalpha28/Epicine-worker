@@ -11,7 +11,8 @@ const sqlType = {
     Array: "Array",
     Now: "Now",
     Float: "Float",
-    Text: "Text"
+    Text: "Text",
+    DateTime: "DateTime"
 };
 
 const sqlTypeMap = {
@@ -23,7 +24,8 @@ const sqlTypeMap = {
     Array: 'VARCHAR',
     Now: 'NOW()',
     Float: 'FLOAT',
-    Text: 'TEXT'
+    Text: 'TEXT',
+    DateTime: "DATETIME"
 };
 
 /**
