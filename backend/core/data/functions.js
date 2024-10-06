@@ -33,12 +33,16 @@ module.exports = client => {
         return userData.updateOne(settings);
     }
 
+    client.getFavoriteUnique = async (favInfo) => {
+        return await Favorite.findOne(favInfo);
+    }
+
     client.getFavorite = async (favInfo) => {
         return await Favorite.find(favInfo);
     }
     
     client.addFavorite = async (uuid, film_id) => {
-        const favData = (await client.getFavorite({userUUID: uuid, film_id: film_id})).data;
+        const favData = (await Favorite.findOne({userUUID: uuid, film_id: film_id})).data;
 
         if (!favData)
             return await Favorite.save({userUUID: uuid, film_id: film_id});
@@ -49,12 +53,16 @@ module.exports = client => {
         return await Favorite.deleteOne({userUUID: uuid, film_id: film_id});
     }
 
-    client.getWatchList = async (watchInfo) => {
+    client.getWatchListUnique = async (watchInfo) => {
         return await Watchlist.findOne(watchInfo);
     }
 
+    client.getWatchList = async (watchInfo) => {
+        return await Watchlist.find(watchInfo);
+    }
+
     client.addWatchList = async (uuid, film_id) => {
-        const watchData = (await client.getWatchList({userUUID: uuid, film_id: film_id})).data;
+        const watchData = (await Watchlist.findOne({userUUID: uuid, film_id: film_id})).data;
 
         if (!watchData)
             return await Watchlist.save({userUUID: uuid, film_id: film_id});
