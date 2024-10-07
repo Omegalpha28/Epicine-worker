@@ -295,11 +295,12 @@ class Model {
     /**
      * Finds a unique entry in the database table based on the filter provided.
      * @param {Object} filter An object containing the key-value pairs to use to generate the search condition.
+     * @param {string[]} [fields=["*"]] An array of field names to return in the result.
      * @returns {Promise<ModelInstance|number>} A promise that resolves to a ModelInstance if an entry is found, otherwise 0.
      */
-    async findOne(filter) {
-        const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-        
+    async findOne(filter, fields = ["*"]) {
+        const sql_request = `SELECT ${fields.join(", ")} FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
                 if (rows.length == 0) return resolve(0);
@@ -312,8 +313,30 @@ class Model {
         });
     }
 
-    async find(filter) {
-        const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+    /**
+     * Finds a record in the database based on the provided filter.
+     *
+     * @async
+     * @param {Object} filter - The filter criteria for the query. Should be an object where keys are column names and values are the values to filter by.
+     * @param {Array<string>} [fields=["*"]] - The fields to select in the query. Defaults to selecting all fields.
+     * @returns {Promise<ModelInstance|number>} - A promise that resolves to a `ModelInstance` if a record is found, or `0` if no records match the filter.
+     *
+     * @example
+     * // Example usage:
+     * const filter = { id: 1 };
+     * const fields = ["id", "name"];
+     * MyTable.find(filter, fields).then((result) => {
+     *     if (result === 0) {
+     *         console.log("No records found.");
+     *     } else {
+     *         console.log("Record found:", result);
+     *     }
+     * }).catch((err) => {
+     *     console.error("Error:", err);
+     * });
+     */
+    async find(filter, fields = ["*"]) {
+        const sql_request = `SELECT ${fields.join(", ")} FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
         
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
@@ -325,6 +348,22 @@ class Model {
                 return;
             });
         });
+    }
+
+    /**
+     * Runs a custom SQL_request query.
+     * @param {string} custom The custom SQL_request query to execute.
+     * @returns {Promise<void>} A promise that resolves when the query is executed.
+     * @throws {Error} Throws an error if query execution fails.
+     */
+    async customRequest(custom) {
+        try {
+            await connexion.promise().query(custom).catch((err) => {
+                return error(`Error executing query: ${err}`);
+            })
+        } catch (err) {
+            return error(`Error executing query: ${err}`);
+        }
     }
 
     /**

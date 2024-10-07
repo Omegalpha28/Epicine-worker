@@ -4,8 +4,7 @@ const {User, Favorite, Watchlist} = require("./models");
 
 module.exports = client => {
     client.getUser = async (userInfo) => {
-        const userData = await User.findOne(userInfo);
-        return userData;
+        return userData = await User.findOne(userInfo);
     }
 
     client.createUser = async (name, email, mdp) => {
@@ -71,5 +70,9 @@ module.exports = client => {
 
     client.removeWatchList = async (uuid, film_id) => {
         return await Watchlist.deleteOne({userUUID: uuid, film_id: film_id});
+    }
+
+    client.getFilPopular = async () => {
+        return await client.customRequest("SELECT Fil.id,Fil.titre,Fil.description,SUM(IFNULL(Likes.type,0)) AS somme FROM Message LEFT Join Likes ON Likes.id_message=Message.id JOIN Fil ON Fil.id=Message.id_fil GROUP BY Fil.id ORDER BY somme DESC LIMIT 10");
     }
 }
