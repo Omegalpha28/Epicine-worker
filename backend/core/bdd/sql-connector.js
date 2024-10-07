@@ -11,7 +11,8 @@ const sqlType = {
     Array: "Array",
     Now: "Now",
     Float: "Float",
-    Text: "Text"
+    Text: "Text",
+    DateTime: "DateTime"
 };
 
 const sqlTypeMap = {
@@ -23,7 +24,8 @@ const sqlTypeMap = {
     Array: 'VARCHAR',
     Now: 'NOW()',
     Float: 'FLOAT',
-    Text: 'TEXT'
+    Text: 'TEXT',
+    DateTime: "DATETIME"
 };
 
 /**
@@ -310,6 +312,21 @@ class Model {
         });
     }
 
+    async find(filter) {
+        const sql_request = `SELECT * FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
+        
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql_request).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        });
+    }
+
     /**
      * Supprime une entrée de la table SQL correspondant au filtre fourni.
      *
@@ -322,7 +339,6 @@ class Model {
      */
     async deleteOne(filter) {
         const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-        console.log(sql_request);
         
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
