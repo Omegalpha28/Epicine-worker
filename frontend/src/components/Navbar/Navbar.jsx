@@ -3,25 +3,11 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faUserTie, faSignOutAlt, faCog } from '@fortawesome/free-solid-svg-icons';
 
-export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) => {
+export const Navbar = ({ setSearchQuery, searchOpen, setSearchOpen, isLoggedIn, setIsLoggedIn }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchText, setSearchText] = useState("");
-
-    const handleSearch = () => {
-        setSearchQuery(searchText);
-        setSearchOpen(true);
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
-            handleSearch();
-        } else if (e.key === "Escape") {
-            setSearchOpen(false);
-            setSearchText("");
-        }
-    };
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -34,6 +20,26 @@ export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) =>
             document.removeEventListener("click", handleClickOutside);
         };
     }, [searchOpen]);
+
+    const handleSearch = () => {
+        setSearchQuery(searchText);
+        setSearchOpen(true);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        } else if (e.key === "Escape") {
+            setSearchOpen(false);
+            setSearchText("");
+        }
+    };
 
     return (
         <nav className={styles.navbar}>
@@ -50,11 +56,22 @@ export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) =>
                     <li><Link to="/Movies">Movies</Link></li>
                     <li><Link to="/TV_Shows">Series</Link></li>
                     <li><Link to="/Streaming">Forums</Link></li>
-                    <li className={styles.account_MB}>
-                        <Link to="/login">
-                            <FontAwesomeIcon icon={faUserTie} />
-                        </Link>
-                    </li>
+                    {isLoggedIn ? (
+                        <>
+                            <li><Link to="/settings">Settings</Link></li> {/* Lien vers la page des paramètres */}
+                            <li className={styles.account_MB}>
+                                <a onClick={handleLogout}>
+                                <FontAwesomeIcon icon="fa-solid fa-user-plus" />
+                                </a>
+                            </li>
+                        </>
+                    ) : (
+                        <li className={styles.account_MB}>
+                            <Link to="/login">
+                                <FontAwesomeIcon icon={faUserTie} />
+                            </Link>
+                        </li>
+                    )}
                 </ul>
                 <img
                     className={styles.menuBtn}
@@ -79,7 +96,9 @@ export const Navbar = ({ isDark, setSearchQuery, searchOpen, setSearchOpen }) =>
                     />
                 </a>
             </div>
-            <Link className={styles.account_PC} to="/login"><FontAwesomeIcon icon={faUserTie} /></Link>
+            <Link className={styles.account_PC} to={isLoggedIn ? "#" : "/login"}>
+                <FontAwesomeIcon icon={isLoggedIn ? faSignOutAlt : faUserTie} />
+            </Link>
         </nav>
     );
 };

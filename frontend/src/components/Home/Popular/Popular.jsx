@@ -7,7 +7,7 @@ export const Popular = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [dropdownActive, setDropdownActive] = useState(false); // État pour le dropdown
+    const [dropdownActive, setDropdownActive] = useState(false);
     const { activeMovieId, handleMovieClick } = useMoviePage();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export const Popular = () => {
     };
 
     const toggleDropdown = () => {
-        setDropdownActive(!dropdownActive); // Basculer l'état du dropdown
+        setDropdownActive(!dropdownActive);
     };
 
     return (

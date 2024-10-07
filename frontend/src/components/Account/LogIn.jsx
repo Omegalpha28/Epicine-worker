@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from "../Navbar/Navbar";
 import styles from "../../App.module.css";
 import Login_styles from "./Login.module.css";
@@ -15,9 +15,17 @@ export const LoginPage = () => {
         password: ""
     });
     const [issues, setIssues] = useState({ email: '', password: '' });
-    // Nouveaux états pour la recherche
     const [searchQuery, setSearchQuery] = useState("");
-    const [searchOpen, setSearchOpen] = useState(false); // État pour la visibilité de la recherche
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Gérer l'état de connexion ici
+
+    // Vérifiez si l'utilisateur est déjà connecté à la connexion
+    useEffect(() => {
+        const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (loggedIn) {
+            navigate("/settings"); // Redirigez vers la page des paramètres
+        }
+    }, [navigate]);
 
     const handleInput = (event) => {
         const { name, value } = event.target;
@@ -50,7 +58,10 @@ export const LoginPage = () => {
             const data = await response.json();
 
             if (response.ok) {
-                navigate("/");
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('isLoggedIn', 'true'); // Mettez à jour le statut de connexion dans le localStorage
+                setIsLoggedIn(true); // Mettez à jour l'état de connexion
+                navigate("/settings"); // Redirigez vers la page des paramètres
             } else {
                 console.error("Erreur de connexion:", data.msg);
                 setIssues(prev => ({ ...prev, email: data.msg }));
@@ -62,12 +73,14 @@ export const LoginPage = () => {
 
     return (
         <div className={styles.App} data-theme={isDark ? "dark" : "light"}>
-            <Navbar 
-                setSearchQuery={setSearchQuery} 
-                searchOpen={searchOpen} 
-                setSearchOpen={setSearchOpen} 
+            <Navbar
+                setSearchQuery={setSearchQuery}
+                searchOpen={searchOpen}
+                setSearchOpen={setSearchOpen}
+                isLoggedIn={isLoggedIn} // Passez l'état de connexion à la Navbar
+                setIsLoggedIn={setIsLoggedIn} // Passez la fonction pour mettre à jour l'état
             />
-            {searchOpen && searchQuery && <Search_Content query={searchQuery} />} {/* Affichez les résultats de recherche si ouverts */}
+            {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
             <div className={Login_styles.Connect}>
                 <div className={Login_styles.Login}>
                     <form className={Login_styles.Form} onSubmit={handleSubmit}>
