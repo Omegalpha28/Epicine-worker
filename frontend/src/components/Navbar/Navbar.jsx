@@ -58,7 +58,7 @@ export const Navbar = ({ setSearchQuery, searchOpen, setSearchOpen, isLoggedIn, 
                     <li><Link to="/Streaming">Forums</Link></li>
                     {isLoggedIn ? (
                         <>
-                            <li><Link to="/settings">Settings</Link></li> {/* Lien vers la page des paramètres */}
+                            <li><Link to="/settings">Settings</Link></li>
                             <li className={styles.account_MB}>
                                 <a onClick={handleLogout}>
                                 <FontAwesomeIcon icon="fa-solid fa-user-plus" />

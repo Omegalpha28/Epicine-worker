@@ -1,0 +1,54 @@
+.settingsPage {
+    display: flex;
+    width: 100%;
+    background-color: var(--background-color); /* Ajuster avec votre thème */
+    color: var(--text-color);
+    min-height: 100vh; /* Pour couvrir tout l'écran */
+    margin-top: 8vh;
+}
+
+.settings {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--background-color);
+}
+
+.navs_settings {
+    display: flex;
+    flex-direction: column;
+    width: 15%; /* Taille de la sidebar */
+    border-right: 1px solid var(--border-color); /* Séparation avec le contenu */
+    padding: 10px;
+    background-color: #1c1c1e; /* Couleur de fond similaire à celle vue */
+}
+
+.categories_settings {
+    list-style: none;
+    padding-left: 0;
+}
+
+.categories_settings li {
+    margin: 15px 0;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.categories_settings li:hover {
+    background-color: #313134; /* Couleur au survol */
+}
+
+.categories_settings li.active {
+    background-color: #ffcc00; /* Couleur jaune active */
+    color: #000;
+}
+
+.content_area {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--background-content-color); /* Couleur de fond de la zone de contenu */
+}

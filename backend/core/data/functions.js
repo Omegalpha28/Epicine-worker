@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const {User, Favorite, Watchlist} = require("./models");
+const { User, Favorite, Watchlist } = require("./models");
 
 
 module.exports = client => {
@@ -27,7 +27,7 @@ module.exports = client => {
     }
 
     client.updateUser = async (uuid, settings) => {
-        let userData = await client.getUser({uuid: uuid});
+        let userData = await client.getUser({ uuid: uuid });
 
         if (typeof userData.data != "object") userData.data = {};
         return userData.updateOne(settings);
@@ -40,17 +40,17 @@ module.exports = client => {
     client.getFavorite = async (favInfo) => {
         return await Favorite.find(favInfo);
     }
-    
+
     client.addFavorite = async (uuid, film_id) => {
-        const favData = (await Favorite.findOne({userUUID: uuid, film_id: film_id})).data;
+        const favData = (await Favorite.findOne({ userUUID: uuid, film_id: film_id })).data;
 
         if (!favData)
-            return await Favorite.save({userUUID: uuid, film_id: film_id});
+            return await Favorite.save({ userUUID: uuid, film_id: film_id });
         return 0;
     }
 
     client.removeFavorite = async (uuid, film_id) => {
-        return await Favorite.deleteOne({userUUID: uuid, film_id: film_id});
+        return await Favorite.deleteOne({ userUUID: uuid, film_id: film_id });
     }
 
     client.getWatchListUnique = async (watchInfo) => {
@@ -62,14 +62,14 @@ module.exports = client => {
     }
 
     client.addWatchList = async (uuid, film_id) => {
-        const watchData = (await Watchlist.findOne({userUUID: uuid, film_id: film_id})).data;
+        const watchData = (await Watchlist.findOne({ userUUID: uuid, film_id: film_id })).data;
 
         if (!watchData)
-            return await Watchlist.save({userUUID: uuid, film_id: film_id});
+            return await Watchlist.save({ userUUID: uuid, film_id: film_id });
         return 0;
     }
 
     client.removeWatchList = async (uuid, film_id) => {
-        return await Watchlist.deleteOne({userUUID: uuid, film_id: film_id});
+        return await Watchlist.deleteOne({ userUUID: uuid, film_id: film_id });
     }
 }

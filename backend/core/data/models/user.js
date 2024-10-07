@@ -24,7 +24,11 @@ const userSchema = new Schema({
         default: null
     },
     birthday: {
-        type: String,
+        type: String,  // Assurez-vous que le format date soit respecté (YYYY-MM-DD)
+        default: null
+    },
+    gender: {
+        type: String,  // Vous pouvez utiliser un ENUM ou simplement des strings comme "male", "female", "other"
         default: null
     },
     avatar:{

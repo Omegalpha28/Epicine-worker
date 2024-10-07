@@ -1,0 +1,96 @@
+.FavouritesContainer {
+    padding: 40px;
+    background-color: #2c2c2c;
+    color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.FavouritesContainer h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.tabMenu {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 20px;
+}
+
+.tabMenu button {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.activeTab {
+    border-bottom: 2px solid #ffcc00;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.inputGroup input,
+.inputGroup select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.birthDate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.birthDate select {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.birthDate select:last-child {
+    margin-right: 0;
+}
+
+.saveButton {
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.deactivateAccount {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.deactivateAccount a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.deactivateAccount a:hover {
+    text-decoration: underline;
+}

@@ -11,6 +11,7 @@ import { SignUpPage } from "./components/Account/SignUp";
 import { TrailersPage } from "./components/Trailers/Trailers";
 import { MPage } from "./components/MoviePage/MPage";
 import { SPage } from "./components/SeriePage/SPage";
+import { SettingsPage } from "./components/Settings/settings";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/Signup" element={<SignUpPage />} />
                 <Route path="/movies/:id" element={<MPage />} />
                 <Route path="/series/:id" element={<SPage />} />
+                <Route path="/Settings" element={<SettingsPage />} />
             </Routes>
         </Router>
     </div>
