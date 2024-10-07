@@ -6,6 +6,10 @@ const filschema = new Schema({
         auto_increment: true,
         customize: "PRIMARY KEY"
     },
+    film_id: {
+        type: Number,
+        required: true
+    },
     title: {
         type: String,
         required: true,
