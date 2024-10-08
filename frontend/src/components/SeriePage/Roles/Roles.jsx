@@ -12,10 +12,10 @@ export const Roles = ({ serieId }) => {
     useEffect(() => {
         const fetchSerieCredits = async () => {
             try {
-                const response = await fetch(`http://localhost:5555/api/tv/${serieId}/credits`);
+                const response = await fetch(`http://localhost:5555/api/serie/${serieId}/credits`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-                setSerieCredits(data.cast); // Cast des séries
+                setSerieCredits(data.cast);
             } catch (err) {
                 setError(err.message);
             } finally {
