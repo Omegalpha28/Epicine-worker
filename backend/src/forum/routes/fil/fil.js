@@ -8,4 +8,10 @@ module.exports = async function(client, app, bcrypt) {
         if (FilData) res.status(200).json(FilData);
         else res.status(404).json({ "msg": "No popular movies found" });
     });
+
+    app.post("/add/fil", auth, async (req, res) => {
+        const { title, description, auteur } = req.body;
+
+        Fil.save({ title: title, description: description, auteur: auteur });
+    });
 }
