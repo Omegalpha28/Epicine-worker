@@ -16,7 +16,8 @@ module.exports = async function(client, app, bcrypt) {
             if (!response.ok)
                 throw new Error(`HTTP error! status: ${response.status}`);
             else {
-                res.status(200).json(await response.json());
+                const responseJson = await response.json();
+                res.status(200).json();
             }
         }
         catch (err) {
