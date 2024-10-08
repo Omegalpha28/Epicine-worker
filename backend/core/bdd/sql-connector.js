@@ -6,7 +6,6 @@ const sqlType = {
     String: "String",
     Number: "Number",
     Boolean: "Boolean",
-    Date: "Date",
     Object: "Object",
     Array: "Array",
     Now: "Now",
@@ -19,7 +18,6 @@ const sqlTypeMap = {
     String: 'VARCHAR',
     Number: 'INT',
     Boolean: 'BOOLEAN',
-    Date: 'DATETIME',
     Object: 'JSON',
     Array: 'VARCHAR',
     Now: 'NOW()',
@@ -129,14 +127,6 @@ function generateCondition(filter, isUpdate = false) {
     return conditions;
 }
 
-function generateValueSQL(value) {
-    return value.map(item => {
-        if (typeof item === "string") return `"${item.replace(/"/g, '\\"')}"`;
-        if (typeof item === "object") return `"${item}"`;
-        return item;
-    }).join(", ");
-}
-
 function formatObject(obj) {
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
@@ -236,7 +226,7 @@ class Model {
      * @param {Object} schema The schema of the database table.
      * @returns {string} A character string representing the SQL_request statement to create the table.
      */
-    generateCreateTableStatement(schema) {
+    static generateCreateTableStatement(schema) {
         let foreignKey = [];
         const columns = Object.keys(schema).map(fieldName => {
             const field = schema[fieldName];
@@ -270,6 +260,14 @@ class Model {
             return;
         }
         return `CREATE TABLE IF NOT EXISTS ${this.name} (${columns.join(', ')}${foreignKey.length > 0 ? ", " + foreignKey.join(', ') : ""}) ENGINE=InnoDB`;
+    }
+
+    static generateValueSQL(value) {
+        return value.map(item => {
+            if (typeof item === "string") return `"${item.replace(/"/g, '\\"')}"`;
+            if (typeof item === "object") return `"${item}"`;
+            return item;
+        }).join(", ");
     }
 
     /**
