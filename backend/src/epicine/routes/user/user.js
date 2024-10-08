@@ -25,10 +25,7 @@ module.exports = async function(client, app) {
         const { name, gender, birthday } = req.body;
 
         try {
-            const result = await client.query(
-                "UPDATE User SET name = $1, gender = $2, birthday = $3 WHERE uuid = $4",
-                [name, gender, birthday, req.uuiduser]
-            );
+            const result = await getUser(client, { uuid: req.uuiduser });
 
             if (result.rowCount === 1) {
                 res.status(200).json({ message: "Mise à jour réussie" });

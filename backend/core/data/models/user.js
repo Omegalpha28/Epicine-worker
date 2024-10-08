@@ -31,10 +31,6 @@ const userSchema = new Schema({
         type: String,  // Vous pouvez utiliser un ENUM ou simplement des strings comme "male", "female", "other"
         default: null
     },
-    avatar:{
-        type: String,
-        default: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
-    },
     status: {
         type: Number,
         default: 0
