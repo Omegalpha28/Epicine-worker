@@ -31,6 +31,11 @@ const userSchema = new Schema({
         type: String,  // Vous pouvez utiliser un ENUM ou simplement des strings comme "male", "female", "other"
         default: null
     },
+    session_tbdm: {
+        type: String,
+        default: null,
+        unique: true
+    },
     status: {
         type: Number,
         default: 0
