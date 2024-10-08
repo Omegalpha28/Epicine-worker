@@ -1,0 +1,118 @@
+.ProfileContainer {
+    max-width: 1200px;
+    margin-left: 3.5vw;
+    padding: 20px;
+    background-color: var(--color-app);
+    color: var(--color-text);
+    box-shadow: var(--color-box-shadow);
+}
+
+/* Bannière */
+.Banner {
+    width: 100%;
+    height: 200px; /* Ajustez la hauteur selon vos préférences */
+    background-color: var(--button-newsletter); /* Couleur de fond par défaut */
+    margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px; /* Ajout d'un bord arrondi */
+    position: relative; /* Pour positionner l'avatar */
+}
+
+/* Avatar */
+.Avatar {
+    width: 100px; /* Ajustez la taille de l'avatar */
+    height: 100px; /* Ajustez la taille de l'avatar */
+    border-radius: 50%; /* Arrondi pour l'avatar */
+    object-fit: cover;
+    margin-right: 20px;
+    border: 5px solid var(--color-app);
+    background-color: black;
+    box-shadow: var(--color-box-shadow);
+}
+
+/* Section des inputs */
+.InputContainer {
+    width: 100%; /* S'assurer que le conteneur remplit toute la largeur */
+    background-color: var(--color-app);
+    border-radius: 10px;
+    box-shadow: var(--color-box-shadow);
+}
+
+/* Ajustement des groupes d'input */
+.inputGroup {
+    margin-bottom: 20px;
+    width: 100%; /* Assurez-vous que chaque groupe d'input remplit la largeur */
+}
+
+.inputGroup label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* Pour s'assurer que les labels prennent toute la largeur */
+}
+
+.inputGroup input,
+.inputGroup textarea {
+    width: 100%; /* Remplir l'espace disponible */
+    background-color: var(--color-inside-box);
+    padding: 10px; /* Ajoutez du padding ici pour l'espacement interne */
+    border: none;
+    border-radius: 5px;
+    color: var(--color-text);
+    box-sizing: border-box; /* Ajouté pour inclure padding et border dans la taille totale */
+}
+
+.inputGroup textarea {
+    resize: none; /* Empêche le redimensionnement */
+    height: 100px; /* Hauteur de la zone de texte */
+}
+
+/* Bouton d'enregistrement */
+.SaveButton {
+    background-color: var(--button-newsletter); /* Couleur du bouton */
+    color: black; /* Couleur du texte */
+    padding: 5px 10px; /* Espacement interne réduit */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Arrondi */
+    cursor: pointer; /* Curseur de main */
+    transition: background-color 0.3s; /* Effet de transition */
+    height: 100%; /* Hauteur pour s'aligner avec l'input */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Effet au survol du bouton */
+.SaveButton:hover {
+    background-color: var(--color-button-hover); /* Couleur au survol */
+}
+
+/* Conteneur pour l'input avec bouton */
+.inputWithButton {
+    display: flex; /* Utiliser flexbox pour aligner l'input et le bouton */
+    align-items: center; /* Aligne verticalement au centre */
+}
+
+.inputWithButton input,
+.inputWithButton textarea {
+    flex-grow: 1; /* Permet à l'input ou textarea de prendre tout l'espace disponible */
+    margin: 0; /* Supprime les marges pour un alignement parfait */
+}
+
+.inputWithButton input {
+    height: 40px; /* Ajustez la hauteur pour correspondre à celle du bouton */
+    border-radius: 5px 0 0 5px; /* Bord arrondi à gauche uniquement */
+}
+
+.inputWithButton button {
+    margin-left: 0; /* Supprime l'espacement entre l'input et le bouton */
+    height: 40px; /* Ajuste la hauteur du bouton pour correspondre à l'input */
+    padding: 0 10px; /* Ajoutez un peu de padding latéral pour un meilleur aspect */
+    border-radius: 0 5px 5px 0; /* Bord arrondi à droite uniquement */
+}
+
+/* Effet au survol du bouton avec input */
+.inputWithButton button:hover {
+    background-color: var(--color-button-hover); /* Couleur au survol */
+}

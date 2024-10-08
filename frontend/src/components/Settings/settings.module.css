@@ -21,6 +21,7 @@
     background-color: var(--color-app);/* Taille de la sidebar */
     border-right: 1px solid var(--line-break);; /* Séparation avec le contenu */
     padding: 10px;
+    margin-top: 3vh;
 }
 
 .categories_settings {

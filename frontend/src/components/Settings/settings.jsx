@@ -11,7 +11,7 @@ import { MyPreferences } from "../Settings/MyPreferences/MyPreferences";
 import { RatedMovies } from "../Settings/RatedMovies/RatedMovies";
 
 export const SettingsPage = () => {
-    const [selectedNav, setSelectedNav] = useState('MyMovies'); // Par défaut sur "Mes films"
+    const [selectedNav, setSelectedNav] = useState('MyProfile');
     const [isDark] = useTheme();
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export const SettingsPage = () => {
             case 'RatedMovies':
                 return <RatedMovies />;
             default:
-                return <MyMovies />;
+                return <MyProfile />;
         }
     };
 

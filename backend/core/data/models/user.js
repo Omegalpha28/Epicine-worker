@@ -24,16 +24,24 @@ const userSchema = new Schema({
         default: null
     },
     birthday: {
-        type: String,  // Assurez-vous que le format date soit respecté (YYYY-MM-DD)
+        type: String,  // Format date (YYYY-MM-DD)
         default: null
     },
     gender: {
-        type: String,  // Vous pouvez utiliser un ENUM ou simplement des strings comme "male", "female", "other"
+        type: String,  // "male", "female", "other"
         default: null
     },
-    avatar:{
+    avatar: {
         type: String,
         default: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
+    },
+    banner: {
+        type: String, // URL ou identifiant de la bannière
+        default: null
+    },
+    bio: {
+        type: String,
+        default: null
     },
     status: {
         type: Number,
