@@ -130,3 +130,26 @@ console.log(sqlTypeMap.String); // "VARCHAR"
 ```
 ## Conclusion
 Le module `sql-connector` fournit une interface simple et efficace pour interagir avec une base de données MySQL, permettant de définir des schémas, de gérer des connexions, et de manipuler des données de manière intuitive.
+
+# Client
+Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+
+### Utilisation
+Pour ajouter une fonction à l'objet client, vous pouvez simplement définir une nouvelle propriété sur l'objet et lui assigner une fonction.
+* ### Exemple
+```javascript
+module.exports = client => {
+    client.checkServer() {
+        if (server.islaunch())
+            return 1;
+        return 0;
+    };
+};
+```
+### Avantages
+* `Centralisation` : Toutes les fonctions liées à des opérations spécifiques peuvent être centralisées dans un seul objet, ce qui facilite la gestion et l'organisation du code.
+* `Réutilisabilité` : Les fonctions stockées dans l'objet `client` peuvent être facilement réutilisées dans différentes parties de l'application.
+* `Modularité` : En utilisant un objet pour stocker des fonctions, il est plus facile de maintenir et de mettre à jour le code, car les fonctions peuvent être ajoutées, modifiées ou supprimées sans affecter d'autres parties de l'application.
+
+## Conclusion
+L'objet `client` est un outil puissant pour organiser et centraliser les fonctions dans votre application. En stockant des fonctions dans cet objet, vous pouvez améliorer la modularité, la réutilisabilité et la maintenabilité de votre code.

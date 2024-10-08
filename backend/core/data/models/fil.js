@@ -14,6 +14,11 @@ const filschema = new Schema({
         type: String,
         required: true,
     },
+    open: {
+        type: Boolean,
+        required: true,
+        default: 1
+    },
     description: {
         type: sqlType.Text,
         required: true

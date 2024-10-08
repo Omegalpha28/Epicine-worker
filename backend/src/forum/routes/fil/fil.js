@@ -14,4 +14,10 @@ module.exports = async function(client, app, bcrypt) {
 
         Fil.save({ title: title, description: description, auteur: auteur });
     });
+
+    app.remove("/remove/fil", auth, async (req, res) => {
+        const { id } = req.body;
+
+        Fil.deleteOne({ id: id });
+    })
 }
