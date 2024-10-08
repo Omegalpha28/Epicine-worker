@@ -19,7 +19,6 @@ module.exports = async function (client, app, bcrypt) {
         }
     });
 
-
     app.post("/login", async (req, res) => {
         var email = req.body["email"];
         var mdp = req.body["password"];

@@ -1,4 +1,3 @@
-const fs = require('fs');
 const express = require("express");
 var bcrypt = require("bcryptjs");
 const cors = require("cors");
@@ -7,6 +6,7 @@ const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const Logger = require("./src/utils/Logger");
 const { connect, client, logout } = require("./core/bdd/sql-connector");
+const autoRequire = require("./core/autoRequire/autoRequire");
 const port = 5555;
 
 dotenv.config();
@@ -29,7 +29,6 @@ async function main() {
 }
 
 main().then(() => {
-    const list = "./src/epicine/routes/list/";
 
     app.use(cors({
         origin: 'http://localhost:5173',
@@ -43,12 +42,8 @@ main().then(() => {
 
     require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
-    fs.readdir(list, (err, files) => {
-        if (err) return Logger.error(`Erreur lors de la lecture du dossier: ${err}`);
-        files.forEach(file => {
-            require(`${list}${file}`)(client, app, bcrypt);
-        });
-    });
+    autoRequire("./src/epicine/routes/list/", [client, app, bcrypt] );
+    autoRequire("./src/epicine/routes/tmdb/", [client, app, bcrypt] );
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
