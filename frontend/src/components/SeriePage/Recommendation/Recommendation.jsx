@@ -13,7 +13,7 @@ export const Recommendation = ({ movieId }) => {
     useEffect(() => {
         const fetchMovieRecommendations = async () => {
             try {
-                const response = await fetch(`http://localhost:5555/api/movie/${movieId}/recommendations`);
+                const response = await fetch(`http://localhost:5555/api/serie/${movieId}/recommendations`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 setRecommendations(data.results);
@@ -41,11 +41,11 @@ export const Recommendation = ({ movieId }) => {
                 <h1>{error}</h1>
             ) : recommendations && recommendations.length > 0 ? (
                 <div className={styles.movie_list}>
-                    {recommendations
-                        .filter(movie => !failedMovies.has(movie.id)) // Skip failed movies
+                        {recommendations
+                        .filter(movie => !failedMovies.has(movie.id))
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
-                                <Link to={`/Movie/${movie.id}`}>
+                                <Link to={`/series/${movie.id}`}>
                                     <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
                                 </Link>
                                 {movie.title}
