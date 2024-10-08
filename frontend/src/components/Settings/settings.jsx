@@ -7,7 +7,7 @@ import { MyProfile } from "../Settings/MyProfile/MyProfile";
 import { MyMovies } from "../Settings/MyMovies/MyMovies";
 import { MySeries } from "../Settings/MySeries/MySeries";
 import { MyCollections } from "../Settings/MyCollections/MyCollections";
-import { MyFavourites } from "../Settings/MyFavourites/MyFavourites";
+import { MyPreferences } from "../Settings/MyPreferences/MyPreferences";
 import { RatedMovies } from "../Settings/RatedMovies/RatedMovies";
 
 export const SettingsPage = () => {
@@ -36,8 +36,8 @@ export const SettingsPage = () => {
                 return <MySeries />;
             case 'MyCollections':
                 return <MyCollections />;
-            case 'MyFavourites':
-                return <MyFavourites />;
+            case 'MyPreferences':
+                return <MyPreferences />;
             case 'RatedMovies':
                 return <RatedMovies />;
             default:
@@ -53,12 +53,12 @@ export const SettingsPage = () => {
                 <div className={styles.settings}>
                     <nav className={styles.navs_settings}>
                         <ul className={styles.categories_settings}>
-                            <li onClick={() => handleNavClick('MyProfile')}>Mon profil</li>
-                            <li onClick={() => handleNavClick('MyMovies')}>Mes films</li>
-                            <li onClick={() => handleNavClick('MySeries')}>Mes séries</li>
-                            <li onClick={() => handleNavClick('MyCollections')}>Mes collections</li>
-                            <li onClick={() => handleNavClick('MyFavourites')}>Mes critiques</li>
-                            <li onClick={() => handleNavClick('RatedMovies')}>Noter des films</li>
+                            <li onClick={() => handleNavClick('MyProfile')}>My profil</li>
+                            <li onClick={() => handleNavClick('MyMovies')}>My movies</li>
+                            <li onClick={() => handleNavClick('MySeries')}>My series</li>
+                            <li onClick={() => handleNavClick('MyCollections')}>My collections</li>
+                            <li onClick={() => handleNavClick('MyPreferences')}>My preferences</li>
+                            <li onClick={() => handleNavClick('RatedMovies')}>Rated Movies</li>
                         </ul>
                     </nav>
                     <div className={styles.content_area}>

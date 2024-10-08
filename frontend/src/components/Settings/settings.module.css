@@ -1,7 +1,7 @@
 .settingsPage {
     display: flex;
     width: 100%;
-    background-color: var(--background-color); /* Ajuster avec votre thème */
+    background-color: var(--color-app); /* Ajuster avec votre thème */
     color: var(--text-color);
     min-height: 100vh; /* Pour couvrir tout l'écran */
     margin-top: 8vh;
@@ -11,16 +11,16 @@
     display: flex;
     width: 100%;
     padding: 20px;
-    background-color: var(--background-color);
+    background-color: var(--color-app);
 }
 
 .navs_settings {
     display: flex;
     flex-direction: column;
-    width: 15%; /* Taille de la sidebar */
-    border-right: 1px solid var(--border-color); /* Séparation avec le contenu */
+    width: 15%;
+    background-color: var(--color-app);/* Taille de la sidebar */
+    border-right: 1px solid var(--line-break);; /* Séparation avec le contenu */
     padding: 10px;
-    background-color: #1c1c1e; /* Couleur de fond similaire à celle vue */
 }
 
 .categories_settings {
@@ -30,7 +30,7 @@
 
 .categories_settings li {
     margin: 15px 0;
-    color: white;
+    color: var(--color-text);
     font-size: 16px;
     cursor: pointer;
     padding: 10px;
@@ -39,16 +39,16 @@
 }
 
 .categories_settings li:hover {
-    background-color: #313134; /* Couleur au survol */
+    background-color: var(--color-inside-box); /* Couleur au survol */
 }
 
 .categories_settings li.active {
-    background-color: #ffcc00; /* Couleur jaune active */
-    color: #000;
+    background-color: (--nav-bar); /* Couleur jaune active */
+    /* color: #000; */
 }
 
 .content_area {
     flex: 1;
     padding: 20px;
-    background-color: var(--background-content-color); /* Couleur de fond de la zone de contenu */
+    background-color: var(--color-app); /* Couleur de fond de la zone de contenu */
 }

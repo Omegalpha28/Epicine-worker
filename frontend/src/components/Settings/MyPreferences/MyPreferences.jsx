@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "./MyFavourites.module.css";
+import styles from "./MyPreferences.module.css";
 
-export const MyFavourites = () => {
+export const MyPreferences = () => {
     const [pseudo, setPseudo] = useState("");
     const [email, setEmail] = useState("");
     const [gender, setGender] = useState("");
@@ -82,8 +82,8 @@ export const MyFavourites = () => {
     };
 
     return (
-        <div className={styles.FavouritesContainer}>
-            <h1>PRÉFÉRENCES</h1>
+        <div className={styles.PreferencesContainer}>
+            <h1>PREFERENCES</h1>
             <div className={styles.tabMenu}>
                 <button className={styles.activeTab}>PROFIL</button>
                 <button>NEWSLETTER</button>

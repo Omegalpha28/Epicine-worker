@@ -1,17 +1,18 @@
-.FavouritesContainer {
+.PreferencesContainer {
     padding: 40px;
-    background-color: #2c2c2c;
-    color: #fff;
+    background-color: var(--color-app);
+    color: var(--color-text);
     max-width: 800px;
     margin: 0 auto;
 }
 
-.FavouritesContainer h1 {
+.PreferencesContainer h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
 }
 
 .tabMenu {
+    color: var(--color-text);
     display: flex;
     justify-content: start;
     margin-bottom: 20px;
@@ -21,7 +22,7 @@
     background: none;
     border: none;
     font-size: 1.1em;
-    color: #fff;
+    color: var(--color-text);
     padding: 10px 20px;
     cursor: pointer;
     border-bottom: 2px solid transparent;
@@ -44,17 +45,24 @@
     font-size: 1.1em;
     margin-bottom: 10px;
     display: block;
+    color: var(--color-text);
+    text-decoration: none;
+    border: none;
 }
 
 .inputGroup input,
 .inputGroup select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #444;
+    box-shadow: var(--color-box-shadow);
     border-radius: 5px;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-inside-box);
+    color: var(--color-text);
+    text-decoration: none;
+    border: none;
+    outline: none;
 }
+
 
 .birthDate {
     display: flex;
