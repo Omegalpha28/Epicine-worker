@@ -4,13 +4,12 @@ const cors = require("cors");
 const app = express();
 const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
+const bulkloader = require("@mlagie/bulkloader");
 const Logger = require("./src/utils/Logger");
 const { connect, client, logout } = require("./core/bdd/sql-connector");
-const autoRequire = require("./core/autoRequire/autoRequire");
 const port = 5555;
 
 dotenv.config();
-
 async function main() {
     await connect({
         host: process.env.HOST,
@@ -42,8 +41,8 @@ main().then(() => {
 
     require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
-    autoRequire("./src/epicine/routes/list/", [client, app, bcrypt] );
-    autoRequire("./src/epicine/routes/tmdb/", [client, app, bcrypt] );
+    bulkloader("./src/epicine/routes/list/", [client, app, bcrypt] );
+    bulkloader("./src/epicine/routes/tmdb/", [client, app, bcrypt] );
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
