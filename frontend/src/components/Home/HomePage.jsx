@@ -9,6 +9,7 @@ import { Home } from "./Home";
 import { Join_Us } from "../Joinus/join_us";
 import { Wallpaper } from "./Wallpaper/Wallpaper";
 import { Search_Content } from "./Search_Content/Search_Content";
+import { TrailerBox } from "./TrailerBox/TrailerBox";
 
 export const HomePage = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -18,21 +19,12 @@ export const HomePage = () => {
 
   return (
     <div className={Home_style.page} data-theme={isDark ? "dark" : "light"}>
-      <Navbar
-        isDark={isDark}
-        setSearchQuery={setSearchQuery}
-        searchOpen={searchOpen}
-        setSearchOpen={setSearchOpen}
-      />
+      <Navbar isDark={isDark} setSearchQuery={setSearchQuery} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
       {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
       <div className={styles.App}>
-        <Wallpaper isDark={isDark} />
-        <Toggle
-          style={{ visibility: 'hidden' }}
-          isChecked={isDark}
-          handleChange={() => setIsDark(!isDark)}
+        <Toggle style={{ visibility: 'hidden' }} isChecked={isDark}handleChange={() => setIsDark(!isDark)}
         />
-        <Header />
+        <TrailerBox />
         <Home />
       </div>
       <Join_Us />

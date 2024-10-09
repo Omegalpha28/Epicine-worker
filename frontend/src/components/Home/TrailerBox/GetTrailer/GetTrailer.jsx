@@ -1,0 +1,52 @@
+import { useEffect, useState } from 'react';
+import styles from './GetTrailer.module.css';
+import useTheme from '../../../set_theme';
+import { useNavigate } from "react-router-dom";
+
+
+export const GetTrailer = ({ movieId }) => {
+    const [isDark, setIsDark] = useTheme();
+    const [trailerKey, setTrailerKey] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleViewMoreClick = () => {
+        navigate(`/movies/${movieId}`);
+    };
+
+    useEffect(() => {
+        const fetchTrailerKey = async () => {
+            try {
+                const response = await fetch(`http://localhost:5555/api/movies/${movieId}/videos`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                const trailer = data.results.find(video => video.type === "Trailer");
+                setTrailerKey(trailer ? trailer.key : null);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (movieId) {
+            fetchTrailerKey();
+        }
+    }, [movieId]);
+
+    return (
+        <div className={styles.box} data-theme={isDark ? "dark" : "light"}>
+            {loading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div className={styles.error}>{error}</div>
+            ) : trailerKey ? (
+                <iframe src={`https://www.youtube.com/embed/${trailerKey}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            ) : (
+                <div className={styles.no_trailer}>No trailer available</div>
+            )}
+            <button className={styles.more_button} onClick={handleViewMoreClick}>View more</button>
+        </div>
+    );
+};
