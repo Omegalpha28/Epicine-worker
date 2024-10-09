@@ -4,6 +4,7 @@
     --color-text-mode: #000000;
     --color-primary: #fecc00;
     --color-btn-hover: #676e75;
+    --color-text-btn-hover: var(--color-text);
     --color-secondary: #e6c892;
     --color-dark: #f4dbb8;
     --color-input-bg: #565d688a;
@@ -38,6 +39,7 @@
     --nav-bar: #fecc00;
     --color-text: #060d17;
     --color-text-button: black;
+    --color-text-btn-hover: var(--color-text);
     --color-app: #ffffff;
     --color-text-mode: #000000;
     --color-primary: #fecc00;
@@ -77,10 +79,11 @@
     --nav-bar: #060d17;
     --color-text: #c6c8cd;
     --color-text-button: #000000;
+    --color-text-btn-hover: #060d17;
     --color-app: #060d17;
     --color-text-mode: #ffffff;
     --color-primary: #576cbc;
-    --color-btn-hover: #161d24;
+    --color-btn-hover: #fecc00;
     --color-secondary: #19376d;
     --color-search-bar: #10161d;
     --color-dark: #0b2447;
@@ -109,21 +112,33 @@
 
 @media (prefers-color-scheme: dark) {
     [data-theme="dark"] {
+        --line-break: #252a32;
+        --button-newsletter: #fecc00;
+        --footer-background-color: #060d17;
+        --filter-logo: none;
+        --color-base: #000;
+        --nav-bar: #060d17;
         --color-text: #c6c8cd;
-        --color-primary: #576cbc;
+        --color-text-button: #000000;
+        --color-text-btn-hover: #060d17;
+        --color-app: #060d17;
         --color-text-mode: #ffffff;
-        --color-btn-hover: #161d24;
-        --color-input-bg: #8a919c80;
+        --color-primary: #576cbc;
+        --color-btn-hover: #fecc00;
         --color-secondary: #19376d;
-        --color-inside-box: #10161d;
-        --color-radiant1: #184df8;
-        --color-radiant2: #d47bfe;
+        --color-search-bar: #10161d;
         --color-dark: #0b2447;
+        --color-btn: #111924;
+        --color-radiant1: #5f97ff;
+        --color-radiant2: #d47bfe;
+        --color-input-bg: #8a919c80;
         --color-bg: #04152d;
+        --color-header-bg: #060d1700;
         --color-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+        --color-border: #000000;
         --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        --color-inside-box: #10161d;
 
-        --color-border: #999c9f;
         --color-about: #0c0c0c99;
         --background-item: linear-gradient(
             90deg,
@@ -132,5 +147,7 @@
         );
 
         --color-blur: #19376db3;
+        --font-robot: "Roboto";
+        --font-outfit: "Outfit";
     }
 }
