@@ -8,7 +8,7 @@ export const Recommendation = ({ movieId }) => {
     const [recommendations, setRecommendations] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [failedMovies, setFailedMovies] = useState(new Set()); // Track failed movies
+    const [failedMovies, setFailedMovies] = useState(new Set());
 
     useEffect(() => {
         const fetchMovieRecommendations = async () => {
@@ -41,8 +41,8 @@ export const Recommendation = ({ movieId }) => {
                 <h1>{error}</h1>
             ) : recommendations && recommendations.length > 0 ? (
                 <div className={styles.movie_list}>
-                        {recommendations
-                        .filter(movie => !failedMovies.has(movie.id))
+                    {recommendations
+                        .filter(movie => !failedMovies.has(movie.id)) // Skip failed movies
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
                                 <Link to={`/series/${movie.id}`}>

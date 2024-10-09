@@ -148,7 +148,7 @@ export const Serie_Profile = ({ serieId }) => {
                         </div>
                         <div className={styles.Recommendation}>
                             <div className={styles.RoleTitle}>Recommendations</div>
-                            <Recommendation serieId={serieId} />
+                            <Recommendation movieId={serieId} />
                         </div>
                     </div>
                 </>
