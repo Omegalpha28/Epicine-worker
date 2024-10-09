@@ -1,4 +1,4 @@
-const { getUser } = require("../../../../core/data/config.function");
+const { getUser, updateUser } = require("../../../../core/data/config.function");
 const auth = require("../../middleware/auth");
 
 module.exports = async function(client, app) {
@@ -22,17 +22,11 @@ module.exports = async function(client, app) {
     });
 
     // Mise à jour des informations utilisateur
-    app.post("/user/update", auth, async (req, res) => {
-        const { name, gender, birthday, telephone, avatar, banner, bio } = req.body;
-
+    app.put("/user", auth, async (req, res) => {
         try {
-            // Requête pour mettre à jour les informations de l'utilisateur (nom, genre, date de naissance, téléphone, avatar, bannière et bio)
-            const result = await client.query(
-                "UPDATE User SET name = $1, gender = $2, birthday = $3, telephone = $4, avatar = $5, banner = $6, bio = $7 WHERE uuid = $8",
-                [name, gender, birthday, telephone, avatar, banner, bio, req.uuiduser]
-            );
+            const result = await updateUser(client, req.uuiduser, req.body);
 
-            if (result.rowCount === 1) {
+            if (result) {
                 res.status(200).json({ message: "Mise à jour réussie" });
             } else {
                 res.status(404).json({ message: "Utilisateur non trouvé" });

@@ -8,7 +8,7 @@ export const MyProfile = () => {
         telephone: "",
         birthday: "",
         biography: "",
-        avatar: "",
+        avatar: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
         banner: ""
     });
 
@@ -22,19 +22,19 @@ export const MyProfile = () => {
                     },
                 });
 
-                if (!response.ok) {
+                if (!response.ok)
                     throw new Error("Erreur lors de la récupération des informations utilisateur");
-                }
 
                 const data = await response.json();
+
                 setUser({
                     pseudo: data.name,
                     email: data.email,
                     telephone: data.telephone,
-                    birthday: data.birthday || "",
-                    biography: data.biography || "Pas de biographie disponible",
-                    avatar: data.avatar || "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
-                    banner: data.banner || "",
+                    birthday: data.birthday,
+                    biography: data.biography,
+                    avatar: data.avatar,
+                    banner: data.banner,
                 });
             } catch (error) {
                 console.error("Erreur :", error);
@@ -78,7 +78,7 @@ export const MyProfile = () => {
                 className={styles.Banner}
                 style={{ backgroundImage: user.banner ? `url(${user.banner})` : "var(--nav-bar)" }}
             >
-                <img src={user.avatar} alt="Avatar" className={styles.Avatar} />
+                <img src={`/user/${user.avatar}`} alt="Avatar" className={styles.Avatar} />
                 <h1>{user.pseudo}</h1>
             </div>
 
@@ -92,7 +92,7 @@ export const MyProfile = () => {
                     <div className={styles.inputWithButton}>
                         <input
                             type="text"
-                            value={user.telephone}
+                            value={!user.telephone ? "" : user.telephone}
                             onChange={(e) => handleInputChange('telephone', e.target.value)}
                             placeholder="Non renseigné"
                         />
@@ -109,7 +109,7 @@ export const MyProfile = () => {
                     <label>Date de naissance</label>
                     <input
                         type="date"
-                        value={user.birthday}
+                        value={!user.birthday ? "" : user.birthday}
                         onChange={(e) => handleInputChange('birthday', e.target.value)}
                     />
                 </div>

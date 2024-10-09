@@ -33,8 +33,7 @@ const userSchema = new Schema({
     },
     avatar: {
         type: String,
-        default: null,
-        unique: true
+        default: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
     },
     banner: {
         type: String, // URL ou identifiant de la bannière
@@ -42,7 +41,7 @@ const userSchema = new Schema({
     },
     bio: {
         type: String,
-        default: null
+        default: "Pas de biographie disponible"
     },
     status: {
         type: Number,
