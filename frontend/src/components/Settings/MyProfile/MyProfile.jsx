@@ -30,7 +30,7 @@ export const MyProfile = () => {
                 setUser({
                     pseudo: data.name,
                     email: data.email,
-                    telephone: data.telephone || "Non renseigné",
+                    telephone: data.telephone,
                     birthday: data.birthday || "",
                     biography: data.biography || "Pas de biographie disponible",
                     avatar: data.avatar || "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
@@ -94,6 +94,7 @@ export const MyProfile = () => {
                             type="text"
                             value={user.telephone}
                             onChange={(e) => handleInputChange('telephone', e.target.value)}
+                            placeholder="Non renseigné"
                         />
                         <button
                             type="button"
