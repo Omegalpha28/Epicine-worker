@@ -30,7 +30,6 @@
     object-fit: cover;
     margin-right: 20px;
     border: 5px solid var(--color-app);
-    background-color: black;
     box-shadow: var(--color-box-shadow);
 }
 

@@ -478,7 +478,7 @@ class ModelInstance {
      * Updates a single entry in the database table.
      * 
      * @param {Object} model An object containing the key-value pairs to use for updating.
-     * @returns {Promise<Object>} A promise that resolves with updated data.
+     * @returns {int} A promise that resolves with updated data.
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
@@ -488,8 +488,7 @@ class ModelInstance {
             error(`Error executing query: ${err}`);
             throw err;
         });
-
-        return replaceValues(this.data, model);
+        return 1;
     }
 
     /**
