@@ -51,17 +51,19 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
-    margin: 0;
+    height: 81%;
+    width: 95%;
+    margin: auto;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
-    padding: 2.3% 2% 2% 2%;
+    padding: 2%;
     box-sizing: border-box;
     overflow-x: hidden;
     scrollbar-width: none;
-    flex-wrap: wrap;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s ease-in-out;
 }
 
 .categories button {

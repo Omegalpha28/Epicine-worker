@@ -112,7 +112,7 @@ module.exports = (client, app, bcrypt) => {
                         if (releaseData && releaseData.results) {
                             let foundReleaseDate = false;
                             for (const entry of releaseData.results) {
-                                if (entry.iso_3166_1 === "FR") {
+                                if (entry.iso_3166_1 === "US") {
                                     for (const releaseDateEntry of entry.release_dates) {
                                         if (releaseDateEntry.note === "") {
                                             const releaseDateStr = releaseDateEntry.release_date;
@@ -134,7 +134,7 @@ module.exports = (client, app, bcrypt) => {
                                 }
                             }
                         }
-                    } else {
+                    }  else {
                         const releaseUrl = `https://api.themoviedb.org/3/tv/${item.id}?language=en-US`;
                         const releaseResponse = await fetch(releaseUrl, {
                             method: 'GET',
@@ -143,20 +143,17 @@ module.exports = (client, app, bcrypt) => {
                                 Authorization: `Bearer ${TMDB_API_KEY}`,
                             },
                         });
-
                         if (!releaseResponse.ok) continue;
-
                         const releaseData = await releaseResponse.json();
                         if (releaseData && releaseData.first_air_date) {
                             const releaseDateObj = new Date(releaseData.first_air_date);
-                            if (!isNaN(releaseDateObj.getTime()) && releaseDateObj >= thirtyDaysAgo) {
-                                releaseDatesMap[item.id] = {
-                                    id: item.id,
-                                    title: releaseData.name,
-                                    releaseDate: releaseDateObj.toISOString().split('T')[0],
-                                    poster_path: releaseData.poster_path,
-                                };
-                            }
+                            // Enregistrer la série dans le tableau sans restriction de temps
+                            releaseDatesMap[item.id] = {
+                                id: item.id,
+                                title: releaseData.name,
+                                releaseDate: releaseDateObj.toISOString().split('T')[0],
+                                poster_path: releaseData.poster_path,
+                            };
                         }
                     }
                 }

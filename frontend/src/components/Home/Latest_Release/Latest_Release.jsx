@@ -54,24 +54,25 @@ export const Latest_Release = () => {
                     </div>
                 </div>
                 <div className={styles.inside_box}>
-                    {loading ? (
-                        <h1>Loading...</h1>
+                {loading ? (
+                <h1>Loading...</h1>
                     ) : error ? (
-                        <h1>{error}</h1>
+                    <h1>{error}</h1>
                     ) : releases.length > 0 ? (
-                        <div className={styles.movie_list}>
-                            {releases.map((release) => (
-                                <div key={release.id} className={styles.movie_item} onClick={() => handleMovieClick(release.id)}>
-                                    <Link to={`/${isMovies ? "movies" : "series"}/${release.id}`}>
-                                        <img src={`https://image.tmdb.org/t/p/w200${release.poster_path}`} alt={release.title || release.name} />
-                                    </Link>
-                                    <h3 className={styles.movie_title}>{release.title || release.name}</h3>
-                                </div>
-                            ))}
+                    <div className={styles.movie_list}>
+                    {releases.slice(0, 15).map((release) => ( // Limite à 15 éléments
+                        <div key={release.id} className={styles.movie_item} onClick={() => handleMovieClick(release.id)}>
+                            <Link to={`/${isMovies ? "movies" : "series"}/${release.id}`}>
+                                <img src={`https://image.tmdb.org/t/p/w200${release.poster_path}`} alt={release.title || release.name} />
+                            </Link>
+                            <h3 className={styles.movie_title}>{release.title || release.name}</h3>
                         </div>
-                    ) : (
-                        <h1>No Releases Available</h1>
-                    )}
+                    ))}
+                </div>
+                ) : (
+                    <h1>No Releases Available</h1>
+                )}
+
                 </div>
             </div>
         </div>
