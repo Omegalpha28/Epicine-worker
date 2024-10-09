@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    transition: background-color 0.25s ease-in-out;
 }
 
 .main_box {
@@ -50,18 +51,17 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 81%;
-    width: 95%;
-    margin: auto;
+    width: 90%;
+    margin: 0;
     border-radius: 10px;
     box-shadow: var(--color-box-shadow);
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
-    /* border: 0.5px solid var(--color-border); */
-    padding: 2%;
+    padding: 2.3% 2% 2% 2%;
     box-sizing: border-box;
     overflow-x: hidden;
-    scrollbar-width: none; /* Pour Firefox */
+    scrollbar-width: none;
+    flex-wrap: wrap;
 }
 
 .categories button {
@@ -70,11 +70,17 @@
     background-color: var(--color-btn);
     color: var(--color-text);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     font-size: 1.5vh;
     height: 3vh;
     width: auto;
     padding: 0 10px;
+}
+
+.categories button:hover {
+    background-color: var(--color-btn-hover);
+    color: var(--color-text-btn-hover);
 }
 
 .dropdown {
@@ -86,14 +92,14 @@
     background-color: var(--color-inside-box);
     border-radius: 10px;
     z-index: 10;
-    max-width: 150px; /* Utiliser max-width pour permettre un ajustement selon le contenu */
-    width: auto; /* Ajuste la largeur en fonction du contenu */
+    max-width: 150px;
+    width: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 5px 0;
     transition: opacity 0.3s ease;
     opacity: 0;
     visibility: hidden;
-    margin-right: 10px; /* Ajout d'une marge pour éviter le débordement */
+    margin-right: 10px;
 }
 
 .dropdown.active {
@@ -117,7 +123,7 @@
 }
 
 .dropdown_item:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile pour délimiter les éléments */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .category_button {
@@ -164,19 +170,22 @@
     align-items: center;
     text-overflow: ellipsis;
     min-width: 150px;
-    max-width: 150px;
     text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    transition: transform 0.25s ease-in-out;
 }
+
 
 .movie_item img {
     width: 100%;
     height: auto;
     max-height: 200px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .movie_item:hover {
-    transform: scale(1.1);
+    transform: scale(0.9);
     cursor: pointer;
 }
 

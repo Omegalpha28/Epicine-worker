@@ -62,7 +62,7 @@ export const Latest_Release = () => {
                         <div className={styles.movie_list}>
                             {releases.map((release) => (
                                 <div key={release.id} className={styles.movie_item} onClick={() => handleMovieClick(release.id)}>
-                                    <Link to={`/Movie/${release.id}`}>
+                                    <Link to={`/${isMovies ? "movies" : "series"}/${release.id}`}>
                                         <img src={`https://image.tmdb.org/t/p/w200${release.poster_path}`} alt={release.title || release.name} />
                                     </Link>
                                     <h3 className={styles.movie_title}>{release.title || release.name}</h3>
