@@ -73,14 +73,11 @@ module.exports = (client, app, bcrypt) => {
     });
 
     async function getLatestReleases(type) {
-        const discoverUrl = type === 'movie'
-            ? `https://api.themoviedb.org/3/discover/movie?language=en-US`
-            : `https://api.themoviedb.org/3/discover/tv?language=en-US`;
-    
+        const discoverUrl = type === 'movie' ? `https://api.themoviedb.org/3/discover/movie?language=en-US` : `https://api.themoviedb.org/3/discover/tv?language=en-US`;
         const releaseDatesMap = {};
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 365);
-    
+
         try {
             const response = await fetch(discoverUrl, {
                 method: 'GET',
@@ -89,13 +86,13 @@ module.exports = (client, app, bcrypt) => {
                     Authorization: `Bearer ${TMDB_API_KEY}`,
                 },
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Erreur lors de la récupération des ${type === 'movie' ? 'films' : 'séries'} : ${response.status}`);
             }
-    
+
             const results = await response.json();
-    
+
             const getReleaseDates = async (results) => {
                 for (const item of results) {
                     if (type === 'movie') {
@@ -107,11 +104,11 @@ module.exports = (client, app, bcrypt) => {
                                 Authorization: `Bearer ${TMDB_API_KEY}`,
                             },
                         });
-    
+
                         if (!releaseResponse.ok) continue;
-    
+
                         const releaseData = await releaseResponse.json();
-    
+
                         if (releaseData && releaseData.results) {
                             let foundReleaseDate = false;
                             for (const entry of releaseData.results) {
@@ -138,7 +135,6 @@ module.exports = (client, app, bcrypt) => {
                             }
                         }
                     } else {
-                        // Traitement pour les séries
                         const releaseUrl = `https://api.themoviedb.org/3/tv/${item.id}?language=en-US`;
                         const releaseResponse = await fetch(releaseUrl, {
                             method: 'GET',
@@ -147,9 +143,9 @@ module.exports = (client, app, bcrypt) => {
                                 Authorization: `Bearer ${TMDB_API_KEY}`,
                             },
                         });
-    
+
                         if (!releaseResponse.ok) continue;
-    
+
                         const releaseData = await releaseResponse.json();
                         if (releaseData && releaseData.first_air_date) {
                             const releaseDateObj = new Date(releaseData.first_air_date);
@@ -165,24 +161,18 @@ module.exports = (client, app, bcrypt) => {
                     }
                 }
             };
-    
             await getReleaseDates(results.results);
-    
             const releaseDatesArray = Object.values(releaseDatesMap);
             releaseDatesArray.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
-    
             const latestReleases = releaseDatesArray.slice(0, 100);
             return latestReleases;
-    
         } catch (error) {
             throw new Error('Erreur lors de la récupération des données.');
         }
     }
-    
-
 
     app.get('/api/latest-releases/:type', async (req, res) => {
-        const type = req.params.type === 'movies' ? 'movie' : 'tv'; // 'movies' devient 'movie' et 'series' devient 'tv'
+        const type = req.params.type === 'movies' ? 'movie' : 'tv';
         try {
             const releases = await getLatestReleases(type);
             res.json(releases);
