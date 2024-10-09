@@ -85,6 +85,8 @@
     overflow-x: hidden;
     scrollbar-width: none;
     flex-wrap: wrap;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s ease-in-out;
 }
 
 .movie_list {
