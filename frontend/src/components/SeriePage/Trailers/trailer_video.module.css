@@ -2,6 +2,51 @@
 
 .box {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-inside-box);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
     height: auto;
-    background-color: green;
+    max-width: 900px;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.box iframe {
+    width: 110%;
+    height: 450px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px 15px 15px 15px;
+}
+
+
+.loading, .error, .no-trailer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    width: 110%;
+    color: var(--color-text-mode);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+    .box {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .box iframe {
+        height: 250px;
+    }
+
+    .loading, .error, .no-trailer {
+        font-size: 1rem;
+    }
 }

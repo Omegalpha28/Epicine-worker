@@ -3,6 +3,7 @@ import styles from './serie_profile.module.css';
 import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
+import { Trailer_Video } from '../Trailers/trailer_video';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -58,19 +59,14 @@ export const Serie_Profile = ({ serieId }) => {
                         <div className={styles.TitleMobile}>{serieDetails.name}</div>
                         <div className={styles.picture}>
                             <a href={serieDetails.homepage} target="_blank" rel="noopener noreferrer">
-                                <img src={`https://image.tmdb.org/t/p/w200${serieDetails.poster_path}`} alt={serieDetails.name} />
+                                <img src={`https://image.tmdb.org/t/p/w300${serieDetails.poster_path}`} alt={serieDetails.name} />
                             </a>
                         </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
                                 <div className={styles.RatingTitle}><strong>Rating</strong></div>
-                                <div className={styles.Ratings}
-                                    style={{ background: getRatingBackground(rating) }}
-                                >
-                                    <div
-                                        className={styles.RatingValue}
-                                        style={{ width: `${ratingPercentage}%`, animation: 'load 0.5s forwards' }}
-                                    >
+                                <div className={styles.Ratings}>
+                                    <div className={styles.RatingValue} style={{ width: `${ratingPercentage}%`, animation: 'load 0.5s forwards' }} >
                                         {ratingPercentage}%
                                     </div>
                                 </div>
@@ -139,8 +135,11 @@ export const Serie_Profile = ({ serieId }) => {
                             {serieDetails.name}
                         </div>
                         <div className={styles.RoleTitle}>Overview</div>
+                        {serieDetails.tagline && (
+                            <div className={styles.Catchphrase}> ({serieDetails.tagline}) </div>
+                        )}
                         <div className={styles.Resume}>
-                            {serieDetails.overview}
+                            {serieDetails.overview ? serieDetails.overview : "Nothing to view"}
                         </div>
                         <div className={styles.Roles}>
                             <div className={styles.RoleTitle}>Cast</div>
