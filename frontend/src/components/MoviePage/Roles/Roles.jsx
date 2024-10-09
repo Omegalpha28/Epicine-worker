@@ -38,9 +38,7 @@ export const Roles = ({ movieId }) => {
                 <div className={styles.movie_list}>
                     {movieCredits.map((castMember) => (
                         <div key={castMember.cast_id} className={styles.movie_item}>
-                            <img src={`https://media.themoviedb.org/t/p/w138_and_h175_face${castMember.profile_path}`} onError={(e) => e.target.src = unknown} alt={castMember.name} />
-                            {castMember.name} <br />
-                            <span className={styles.character_name}>as {castMember.character}</span>
+                            <img src={`https://media.themoviedb.org/t/p/w138_and_h175_face${castMember.profile_path}`} onError={(e) => (e.target.src = unknown)}alt={castMember.name} /> {castMember.name} <span className={styles.character_name}> <div className={styles.as}> as </div> {castMember.character ? castMember.character : "(Not Listed)"} </span>
                         </div>
                     ))}
                 </div>

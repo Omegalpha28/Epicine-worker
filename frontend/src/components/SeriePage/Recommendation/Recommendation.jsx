@@ -42,13 +42,13 @@ export const Recommendation = ({ movieId }) => {
             ) : recommendations && recommendations.length > 0 ? (
                 <div className={styles.movie_list}>
                     {recommendations
-                        .filter(movie => !failedMovies.has(movie.id)) // Skip failed movies
+                        .filter(movie => !failedMovies.has(movie.id))
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
                                 <Link to={`/series/${movie.id}`}>
-                                    <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
+                                    <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
                                 </Link>
-                                {movie.title}
+                                {movie.name}
                             </div>
                         ))}
                 </div>

@@ -41,6 +41,12 @@
     margin: 20px 0;
 }
 
+.Catchphrase  {
+    margin-left: 2%;
+    font-size: 20px;
+    font-style: italic;
+}
+
 .myrow {
     display: flex;
     margin-top: 40px;
@@ -58,9 +64,9 @@
 
 .Ratings {
     width: 150%;
-    height: 15px;
+    height: auto;
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.2);
+    background: yellow;
     position: relative;
     overflow: hidden;
     font-size: 10px;
@@ -179,7 +185,6 @@
 }
 
 .picture img {
-    width: 150%;
     height: auto;
     border-radius: 10px;
     transition: 0.3s ease-in-out;

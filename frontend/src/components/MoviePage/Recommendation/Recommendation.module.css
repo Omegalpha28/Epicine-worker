@@ -28,10 +28,9 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
     min-width: 150px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     transition: transform 0.25s ease-in-out;
@@ -54,14 +53,15 @@
 
 .movie_item img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 15px 15px 0px 0px;
     transition: opacity 0.25s ease-in-out;
     object-fit: cover;
+    transition: transform 0.25s ease-in-out;
     height: 175px;
 }
 
 .movie_item img:hover {
-    opacity: 0.85;
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 600px) {

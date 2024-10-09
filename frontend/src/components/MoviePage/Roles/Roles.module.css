@@ -27,19 +27,22 @@
 
 
 .movie_item {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: start;
     align-items: center;
+    max-width: 120px;
     color: var(--color-text);
     margin-top: 0.5rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    border-radius: 15px 15px 0px 0px;
-    align-items: center;
+    border-radius: 15px 15px 15px 15px;
     transition: transform 0.25s ease-in-out;
 }
-
+.as {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .movie_item:hover {
     transform: scale(0.90);
@@ -59,8 +62,14 @@
 .movie_item img {
     width: 120px;
     height: 160px;
+    max-width: 120px;
+    max-height: 160px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.movie_item img:hover {
+    opacity: 0.5;
 }
 
 .character_name {

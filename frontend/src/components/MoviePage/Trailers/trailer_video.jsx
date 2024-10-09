@@ -9,26 +9,13 @@ export const Trailer_Video = ({ movieId }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchTrailer = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    Authorization: `Bearer ${process.env.TOKEN}`,
-                },
-            };
-
+        const fetchTrailerKey = async () => {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options);
-                const data = await response.json();
+                const response = await fetch(`http://localhost:5555/api/movies/${movieId}/videos`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-                const youtubeTrailer = data.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
-                if (youtubeTrailer) {
-                    setTrailerKey(youtubeTrailer.key);
-                } else {
-                    throw new Error('No trailer found.');
-                }
+                const data = await response.json();
+                const trailer = data.results.find(video => video.type === "Trailer");
+                setTrailerKey(trailer ? trailer.key : null);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -37,17 +24,18 @@ export const Trailer_Video = ({ movieId }) => {
         };
 
         if (movieId) {
-            fetchTrailer();
+            fetchTrailerKey();
         }
     }, [movieId]);
 
-    if (loading) return <div className={styles.loading}>Loading trailer...</div>;
-    if (error) return <div className={styles.error}>Error: {error}</div>;
-
     return (
         <div className={styles.box} data-theme={isDark ? "dark" : "light"}>
-            {trailerKey ? (
-                <iframe 
+            {loading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div className={styles.error}>{error}</div>
+            ) : trailerKey ? (
+                <iframe
                     src={`https://www.youtube.com/embed/${trailerKey}`}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -46,7 +46,7 @@ export const Recommendation = ({ movieId }) => {
                         .map((movie) => (
                             <div key={movie.id} className={styles.movie_item}>
                                 <Link to={`/movies/${movie.id}`}>
-                                    <img src={`https://image.tmdb.org/t/p/w138_and_h175_face${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
+                                    <img src={`https://image.tmdb.org/t/p/w400${movie.backdrop_path}`} alt={movie.title} onError={() => handleImageError(movie.id)} />
                                 </Link>
                                 {movie.title}
                             </div>

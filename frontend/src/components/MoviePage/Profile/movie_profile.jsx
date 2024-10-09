@@ -3,6 +3,7 @@ import styles from './movie_profile.module.css';
 import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
+import { Trailer_Video } from '../Trailers/trailer_video';
 
 // Fonction pour obtenir le style de fond de la note
 const getRatingBackground = (rating) => {
@@ -58,7 +59,7 @@ export const Movie_Profile = ({ movieId }) => {
                         <div className={styles.TitleMobile}>{movieDetails.title} </div>
                         <div className={styles.picture}>
                             <a href={movieDetails.homepage} target="_blank" rel="noopener noreferrer">
-                                <img src={`https://image.tmdb.org/t/p/w200${movieDetails.poster_path}`} alt={movieDetails.title} />
+                                <img src={`https://image.tmdb.org/t/p/w300${movieDetails.poster_path}`} alt={movieDetails.title} />
                             </a>
                         </div>
 
@@ -66,10 +67,7 @@ export const Movie_Profile = ({ movieId }) => {
                             <div className={styles.mycolumn}>
                                 <div className={styles.RatingTitle}><strong>Rating</strong></div>
                                 <div className={styles.Ratings}>
-                                    <div
-                                        className={styles.RatingValue}
-                                        style={{ width: `${ratingPercentage}%`, animation: 'load 0.5s forwards' }} // Animation pour la barre
-                                    >
+                                    <div className={styles.RatingValue} style={{ width: `${ratingPercentage}%`, animation: 'load 0.5s forwards' }} >
                                         {ratingPercentage}%
                                     </div>
                                 </div>
@@ -80,37 +78,64 @@ export const Movie_Profile = ({ movieId }) => {
 
                         <div className={styles.ReleaseDate}>
                             <strong>Release Date</strong> <br />
-                            {movieDetails.release_date}
+                            {movieDetails.release_date ? movieDetails.release_date : "Not listed"}
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
+                        <div className={styles.budget}>
+                            <strong>Budget</strong> <br />
+                            {movieDetails.budget ? movieDetails.budget.toLocaleString('fr-FR') : "Unknown"}
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
+                        <div className={styles.revenue}>
+                            <strong>Revenue</strong> <br />
+                            {movieDetails.revenue ? movieDetails.revenue.toLocaleString('fr-FR') : "Unknown"}
                         </div>
 
                         <hr className={styles.sectionDivider} />
 
                         <div className={styles.runtime}>
-                            <strong>Runtime</strong> <br />{formattedRuntime}
+                            <strong>Runtime</strong> <br />
+                            {formattedRuntime ? formattedRuntime : "Not listed"}
                         </div>
 
                         <hr className={styles.sectionDivider} />
 
                         <div className={styles.original_title}>
-                            <strong>Title Original</strong> <br />{movieDetails.original_title}
+                            <strong>Title Original</strong> <br />
+                            {movieDetails.original_title ? movieDetails.original_title : "Not listed"}
                         </div>
 
                         <hr className={styles.sectionDivider} />
 
                         <div className={styles.released}>
-                            <strong>Status</strong> <br />{movieDetails.status}
+                            <strong>Status</strong> <br />  {movieDetails.status ? movieDetails.status : "Nothing to view"}
                         </div>
 
                         <hr className={styles.sectionDivider} />
 
                         <div className={styles.Genres}>
-                            <strong>Genres</strong> <br />
-                            {movieDetails.genres.map((genre, index) => (
-                                <span key={genre.id}>
-                                    {genre.name}
-                                    {index < movieDetails.genres.length - 1 && ', '}
-                                </span>
-                            ))}
+                            <strong>Genres</strong> <br /> {movieDetails.genres && movieDetails.genres.length > 0 ? (
+                                movieDetails.genres.map((genre, index) => (
+                                    <span key={genre.id}> {genre.name} {index < movieDetails.genres.length - 1 && ', '} </span>
+                                ))
+                            ) : ( "Nothing to view" )}
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
+                        <div className={styles.Productions}>
+                            <strong>Production Companies</strong> <br />
+                            {movieDetails.production_companies && movieDetails.production_companies.length > 0 ? (
+                                <ul className={styles.production_list}>
+                                    {movieDetails.production_companies.map((production) => (
+                                    <li key={production.id}>{production.name}</li>
+                                    ))}
+                                </ul>
+                            ) : ("Unknown")}
                         </div>
                     </>
                 )}
@@ -118,8 +143,16 @@ export const Movie_Profile = ({ movieId }) => {
             {movieDetails && (
                 <div className={styles.divright}>
                     <div className={styles.Title}>{movieDetails.title}</div>
-                    <div className={styles.RoleTitle}> Resume</div>
-                    <div className={styles.Resume}>{movieDetails.overview}</div>
+                    <div className={styles.RoleTitle}>Overview</div>
+                        {movieDetails.tagline && (
+                            <div className={styles.Catchphrase}> ({movieDetails.tagline}) </div>
+                        )}
+                        <div className={styles.Resume}>
+                            {movieDetails.overview ? movieDetails.overview : "Nothing to view"}
+                        </div>
+                    <div className={styles.Trailers}>
+                        <Trailer_Video movieId={movieId} />
+                    </div>
                     <div className={styles.Roles}>
                         <div className={styles.RoleTitle}> Role </div>
                         <Roles movieId={movieId} />

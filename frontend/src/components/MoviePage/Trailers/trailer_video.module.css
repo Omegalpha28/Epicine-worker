@@ -4,46 +4,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-background); /* Adapt to dark or light theme */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: var(--color-box-shadow);
+    background-color: var(--color-inside-box);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     width: 100%;
     height: auto;
-    max-width: 800px; /* Max width to keep the player within reasonable size */
-    margin: 0 auto; /* Center the box */
+    max-width: 900px;
+    margin: 0 auto;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .box iframe {
-    width: 100%;
-    height: 450px; /* Keep the video responsive */
-    border-radius: 10px;
+    width: 110%;
+    height: 450px;
+    border-radius: 15px;
     border: none;
-    box-shadow: var(--color-box-shadow);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px 15px 15px 15px;
 }
 
-.box iframe:hover {
-    transform: scale(1.03); /* Slight hover effect for a more interactive feel */
-}
-
-.box::before {
-    content: ''; /* Optional background styling or iconography */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4); /* Dimming background for better readability */
-    z-index: -1;
-}
 
 .loading, .error, .no-trailer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 450px;
-    width: 100%;
+    width: 110%;
     color: var(--color-text-mode);
     font-size: 1.2rem;
     font-weight: bold;
