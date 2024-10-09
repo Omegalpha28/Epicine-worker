@@ -1,8 +1,10 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const { logs } = require('../../../utils/Logger');
 const app = express();
 
 module.exports = (client, app, bcrypt) => {
+    logs("ici");
     const TMDB_API_KEY = process.env.TOKEN;
 
     app.get('/api/movie/:movieId', async (req, res) => {
