@@ -4,6 +4,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.25s ease-in-out;
 }
 
 .main_box {
@@ -16,6 +17,7 @@
     padding: 2%;
     box-sizing: border-box;
     position: relative;
+    transition: background-color 0.25s ease-in-out;
 }
 
 .title_box {
@@ -47,12 +49,15 @@
     align-items: center;
     background-color: var(--color-btn);
     color: var(--color-text);
+    transition: background-color 0.25s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 
 .categories .movies:hover,
 .categories .series:hover {
     background-color: var(--color-btn-hover);
+    color: var(--color-text-btn-hover);
 }
 
 .inside_box {
@@ -71,6 +76,8 @@
     color: var(--color-text-mode);
     padding: 2%;
     box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s ease-in-out;
 }
 
 .movie_item {
@@ -127,10 +134,12 @@
     cursor: pointer;
     color: white;
     transition: 0.1s ease-in-out;
+    
 }
 
 .carousel_button:hover {
     scale: 110%;
+    color: var(--color-btn-hover);
 }
 
 .carousel_button:active {
@@ -152,10 +161,12 @@
     text-decoration: none;
     border: none;
     z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.25s ease-in-out;
 }
 
 .more_button:hover {
-    transform: scale(1.03);
+    transform: scale(0.93);
 }
 
 .indicators {

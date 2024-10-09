@@ -32,13 +32,13 @@
     min-width: 150px;
     text-align: center;
     border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
     transition: transform 0.25s ease-in-out;
 }
 
 .movie_item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    transform: scale(0.90);
 }
 
 .movie_title {

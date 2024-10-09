@@ -5,7 +5,6 @@
     box-shadow: var(--color-box-shadow);
     display: flex;
     justify-content: flex-start;
-    /* Alignement à gauche */
     padding: 2%;
     color: var(--color-text);
     flex-direction: row;
@@ -21,7 +20,6 @@
     height: auto;
     display: flex;
     justify-content: flex-start;
-    /* Alignement à gauche */
     flex-direction: column;
 }
 
@@ -39,11 +37,8 @@
 .separator {
     width: 100%;
     height: 1px;
-    /* Hauteur de la ligne */
     background-color: var(--color-text);
-    /* Couleur de la ligne */
     margin: 20px 0;
-    /* Espacement autour de la ligne */
 }
 
 .myrow {
@@ -63,48 +58,29 @@
 
 .Ratings {
     width: 150%;
-    /* Prendre toute la largeur */
     height: 15px;
-    /* Hauteur de la barre de progression */
     border-radius: 25px;
-    /* Coins arrondis pour la barre */
     background: rgba(255, 255, 255, 0.2);
-    /* Fond de la barre */
     position: relative;
-    /* Position pour l'élément interne */
     overflow: hidden;
-    /* Pour cacher le dépassement */
     font-size: 10px;
 }
 
 .RatingValue {
     display: flex;
-    /* Utiliser Flexbox pour centrer le contenu */
     align-items: center;
-    /* Centrer verticalement */
     justify-content: center;
-    /* Centrer horizontalement */
     height: 90%;
-    /* Prendre toute la hauteur de la barre */
     border-radius: 25px;
-    /* Coins arrondis pour l'indicateur */
     transition: width 0.5s ease;
-    /* Transition douce */
     background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
-    /* Dégradé coloré */
     width: 0;
-    /* Commencer à zéro */
     color: #fff;
-    /* Couleur du texte pour le contraste */
     font-weight: bold;
-    /* Mettre le texte en gras */
     text-align: center;
-    /* S'assurer que le texte est centré */
     white-space: nowrap;
-    /* Empêcher le texte de s'enrouler */
 }
 
-/* Animation de chargement pour la barre de progression */
 @keyframes load {
     from {
         width: 0;
@@ -139,7 +115,7 @@
 
 .separator {
     width: 90%;
-    height: 1px; /* Hauteur de la ligne */
+    height: 1px;
     background-color: var(--line-break);
 }
 
@@ -149,7 +125,6 @@
     border: none;
     border-top: 1px solid var(--line-break);
     width: 90%;
-    /* margin: 10px auto; Centrer le trait et ajuster l'espacement */
 }
 
 
@@ -196,10 +171,11 @@
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
+
 }
 
 .picture:hover {
-    transform: scale(1.03);
+    transform: scale(0.97);
 }
 
 .picture img {

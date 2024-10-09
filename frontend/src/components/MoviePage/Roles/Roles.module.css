@@ -28,14 +28,22 @@
 
 .movie_item {
     font-size: 0.9rem;
-    color: #ffffffb3;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: var(--color-text);
     margin-top: 0.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    border-radius: 15px 15px 0px 0px;
+    align-items: center;
+    transition: transform 0.25s ease-in-out;
 }
 
 
 .movie_item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    transform: scale(0.90);
+    cursor: pointer;
 }
 
 
@@ -57,5 +65,5 @@
 
 .character_name {
     font-style: italic;
-    color: #ffffff80;
+    color: var(--color-text);
 }

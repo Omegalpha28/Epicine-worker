@@ -1,75 +1,75 @@
 .inside_box {
-    background: var(--color-inside-box); /* Gradient similaire à Roles */
-    padding: 2rem; /* Même espacement */
-    border-radius: 15px; /* Même bordure arrondie */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Même ombre */
-    overflow-x: hidden; /* Cacher le débordement */
+    background: var(--color-inside-box);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow-x: hidden;
 }
 
 .movie_list {
-    display: flex; /* Utiliser flexbox pour la mise en page */
-    gap: 1rem; /* Espacement entre les éléments */
-    overflow-x: auto; /* Autoriser le défilement horizontal */
-    padding-bottom: 1rem; /* Espacement en bas */
-    scrollbar-width: thin; /* Barres de défilement fines */
-    scrollbar-color: #4a4a4a transparent; /* Couleur de la barre de défilement */
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a transparent;
 }
 
 .movie_list::-webkit-scrollbar {
-    height: 5px; /* Hauteur de la barre de défilement */
+    height: 5px;
 }
 
 .movie_list::-webkit-scrollbar-thumb {
-    background: #4a4a4a; /* Couleur du pouce de la barre de défilement */
-    border-radius: 10px; /* Coins arrondis */
+    background: #4a4a4a;
+    border-radius: 10px;
 }
 
 .movie_item {
-    display: flex; /* Flexbox pour la mise en page des éléments */
-    flex-direction: column; /* Empiler les enfants verticalement */
-    justify-content: start; /* Aligner les éléments en haut */
-    align-items: center; /* Centrer les éléments */
-    min-width: 150px; /* Largeur minimale pour chaque élément */
-    text-align: center; /* Centrer le texte */
-    border-radius: 10px; /* Coins arrondis */
-    transition: transform 0.25s ease-in-out; /* Transformation douce au survol */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.25s ease-in-out;
 }
 
 .movie_item:hover {
-    transform: scale(1.05); /* Effet de mise à l'échelle au survol */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Ombre au survol */
-    cursor: pointer; /* Curseur pointeur au survol */
+    transform: scale(0.90);
 }
 
 .movie_title {
-    display: block; /* Assurer que le titre est visible */
-    margin-top: 10px; /* Marge au-dessus du titre */
-    width: 10ch; /* Largeur fixe */
-    white-space: nowrap; /* Pas de saut de ligne */
-    overflow: hidden; /* Cacher le texte débordant */
-    text-overflow: ellipsis; /* Ellipsis pour le texte débordant */
-    font-size: 0.9rem; /* Taille de police pour le titre */
-    color: #ffffffb3; /* Couleur du titre */
+    display: block;
+    margin-top: 10px;
+    width: 10ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    color: #ffffffb3;
 }
 
 .movie_item img {
-    width: 100%; /* Image pleine largeur */
-    border-radius: 10px; /* Coins arrondis pour l'image */
-    transition: opacity 0.25s ease-in-out; /* Transition douce d'opacité */
-    object-fit: cover; /* Couvre l'image */
-    height: 175px; /* Hauteur fixe pour des tailles d'image cohérentes */
+    width: 100%;
+    border-radius: 10px;
+    transition: opacity 0.25s ease-in-out;
+    object-fit: cover;
+    height: 175px;
 }
 
 .movie_item img:hover {
-    opacity: 0.85; /* Légère variation d'opacité au survol */
+    opacity: 0.85;
 }
 
 @media screen and (max-width: 600px) {
     .movie_item {
-        min-width: 120px; /* Ajuster la largeur minimale pour les petits écrans */
+        min-width: 120px;
     }
     .movie_title {
-        font-size: 0.8rem; /* Ajuster la taille de police pour les petits écrans */
-        width: 8ch; /* Ajuster la largeur pour les petits écrans */
+        font-size: 0.8rem;
+        width: 8ch;
     }
 }
