@@ -50,7 +50,7 @@
     background-color: var(--color-btn);
     color: var(--color-text);
     transition: background-color 0.25s ease-in-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     cursor: pointer;
 }
 
@@ -71,12 +71,12 @@
     margin: auto;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: var(--color-box-shadow);
+    /* box-shadow: var(--color-box-shadow); */
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     padding: 2%;
     box-sizing: border-box;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     transition: background-color 0.25s ease-in-out;
 }
 
@@ -89,6 +89,7 @@
     height: 100%;
     text-align: center;
     border-radius: 10px;
+    box-shadow: 1px var(--color-box-shadow);
     background-color: var(--color-box-item);
     position: relative;
 }
@@ -134,7 +135,6 @@
     cursor: pointer;
     color: white;
     transition: 0.1s ease-in-out;
-    
 }
 
 .carousel_button:hover {
@@ -155,13 +155,12 @@
     height: 7%;
     background-color: #fecc00;
     color: var(--color-text-button);
-    box-shadow: var(--color-box-shadow);
+    box-shadow: 1px var(--color-box-shadow);
     border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
     border: none;
     z-index: 10;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     transition: background-color 0.25s ease-in-out;
 }
 

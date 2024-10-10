@@ -12,7 +12,7 @@
     max-height: 450px;
     width: 100%;
     background-color: var(--color-app);
-    box-shadow: var(--color-box-shadow);
+    /* box-shadow: var(--color-box-shadow); */
     padding: 2%;
     box-sizing: border-box;
     position: relative;
@@ -130,7 +130,7 @@
     width: 95%;
     margin: auto;
     border-radius: 10px;
-    box-shadow: var(--color-box-shadow);
+    /* box-shadow: var(--color-box-shadow); */
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     padding: 2%;

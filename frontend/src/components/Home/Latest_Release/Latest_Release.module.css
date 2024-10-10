@@ -54,7 +54,7 @@
     justify-content: center;
     align-items: center;
     transition: background-color 0.25s ease-in-out;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     background-color: var(--color-btn);
     color: var(--color-text);
     cursor: pointer;
@@ -77,7 +77,7 @@
     width: 100%; /* Prendre toute la largeur de .main_box */
     margin: 0; /* Enlevez les marges */
     border-radius: 10px;
-    box-shadow: var(--color-box-shadow);
+    /* box-shadow: var(--color-box-shadow); */
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     padding: 2.3% 2% 2% 2%;
@@ -85,7 +85,7 @@
     overflow-x: hidden;
     scrollbar-width: none;
     flex-wrap: wrap;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     transition: background-color 0.25s ease-in-out;
 }
 
@@ -109,7 +109,7 @@
     text-overflow: ellipsis;
     min-width: 150px;
     text-align: center;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px var(--color-box-shadow);
     border-radius: 15px;
     transition: transform 0.25s ease-in-out;
 }
