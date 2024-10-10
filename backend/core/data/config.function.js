@@ -1,4 +1,4 @@
-module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular};
+module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, updateFil};
 
 async function getUser(client, userInfo){return await client.getUser(userInfo);}
 async function createUser(client, name, email, mdp){return await client.createUser(name, email, mdp);}
@@ -12,3 +12,4 @@ async function getWatchList(client, watchInfo){return await client.getWatchList(
 async function addWatchList(client, uuid, film_id){return await client.addWatchList(uuid, film_id);}
 async function removeWatchList(client, uuid, film_id){return await client.removeWatchList(uuid, film_id);}
 async function getFilPopular(client){return await client.getFilPopular();}
+async function updateFil(client, fil_id, auteur){return await client.updateFil(fil_id, auteur);}
