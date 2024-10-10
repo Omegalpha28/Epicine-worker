@@ -4,7 +4,8 @@ import useTheme from '../../../set_theme';
 import { useNavigate } from "react-router-dom";
 import { GetTitle } from './GetTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons'; // Import de l'icône
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'; // Import de l'icône Exclamation Circle
+
 
 export const GetTrailer = ({ movieId }) => {
     const [isDark, setIsDark] = useTheme();
@@ -55,7 +56,7 @@ export const GetTrailer = ({ movieId }) => {
             )}
             <div className={styles.Title}><GetTitle movieId={movieId} /></div>
             <button className={styles.more_button} onClick={handleViewMoreClick}>
-                <FontAwesomeIcon icon={faPlay} className={styles.icon} />
+                <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
                 <span className={styles.button_text}>View more</span> {/* Enveloppement du texte dans un span */}
             </button>
         </div>

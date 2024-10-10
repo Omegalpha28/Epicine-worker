@@ -54,8 +54,8 @@
 }
 
 .more_button .icon {
-    margin-left: 1.5vw;
-    margin-right: 1vw; /* Ajoute de l'espace entre l'icône et le texte */
+    margin-left: 1.4vw;
+    margin-right: 0.9vw; /* Ajoute de l'espace entre l'icône et le texte */
     font-size: 1.8rem;
 }
 
@@ -63,8 +63,6 @@
     background-color: #ffdb00; /* Change la couleur de fond au survol */
     transform: scale(0.93);
 }
-
-
 
 .Title {
     font-family: 'Nexa Extra Bold', 'Nexa', 'Bebas Neue', sans-serif;
