@@ -9,7 +9,6 @@ export const TrailerBox = () => {
     const [error, setError] = useState(null);
     const [movieId, setMovieId] = useState(null);
 
-    const [isDark, setIsDark] = useTheme();
     useEffect(() => {
         fetchContent('movie', 'popular');
     }, []);
@@ -26,6 +25,7 @@ export const TrailerBox = () => {
             }
             const data = await response.json();
             setMovies(data.results);
+
             if (data.results.length > 0) {
                 const randomIndex = Math.floor(Math.random() * data.results.length);
                 setMovieId(data.results[randomIndex].id);
@@ -38,13 +38,13 @@ export const TrailerBox = () => {
     };
 
     return (
-        <div className={styles.Box} data-theme={isDark ? "dark" : "light"}>
+        <div className={styles.Box}>
             {loading ? (
                 <div>Loading...</div>
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                movieId && <GetTrailer movieId={movieId} />
+                movieId && <GetTrailer movieId={movieId} movies={movies} setMovieId={setMovieId} />
             )}
         </div>
     );

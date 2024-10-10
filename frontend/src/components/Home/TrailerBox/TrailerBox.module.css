@@ -1,8 +1,7 @@
 .box {
     background-color: var(--color-app);
     width: 100%;
-    background-color: red;
     height: 1080px;
-    padding: 0px 5vw 0px 5vw;
+    
     
 }

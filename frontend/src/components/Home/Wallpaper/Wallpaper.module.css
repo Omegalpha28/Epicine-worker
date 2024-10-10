@@ -1,9 +1,7 @@
 .Wallpaper {
     display: flex;
+    width: 100%;
     position: absolute;
-    left: 0;
-    right: 0;
-
 }
 
 .image {
@@ -13,12 +11,12 @@
 }
 
 .blurblock {
-    top: 0;
+    top: 40vh;
     left: -20vw;
     width: 140vw;
     height: 110vh;
     position: absolute;
-    background: linear-gradient(to top, var(--color-app) 55%, var(--color-app) 60%, transparent 95%, transparent 100%);
+    background: linear-gradient(to top, var(--color-app) 45%, var(--color-app) 50%, transparent 85%, transparent 100%);
     transition: background-color 0.25s ease-in-out;
 }
 
