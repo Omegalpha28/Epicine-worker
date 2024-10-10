@@ -31,7 +31,7 @@ main().then(() => {
 
     app.use(cors({
         origin: 'http://localhost:5173',
-        methods: ['GET', 'POST', 'PUT'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
         credentials: true
     }));
 
@@ -41,8 +41,9 @@ main().then(() => {
 
     require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
-    bulkloader("./src/epicine/routes/list/", [client, app, bcrypt] );
-    bulkloader("./src/epicine/routes/tmdb/", [client, app, bcrypt] );
+    bulkloader("./src/epicine/routes/list/", [client, app, bcrypt]);
+    bulkloader("./src/epicine/routes/tmdb/", [client, app, bcrypt]);
+    bulkloader("./src/forum/routes/", [client, app, bcrypt], true);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
