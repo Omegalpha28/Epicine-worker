@@ -310,7 +310,7 @@ class Model {
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
-                return;
+                return 0;
             });
         });
     }
