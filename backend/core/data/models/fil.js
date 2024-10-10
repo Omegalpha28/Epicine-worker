@@ -24,8 +24,9 @@ const filschema = new Schema({
         required: true
     },
     date: {
-        type: sqlType.DateTime,
-        required: true
+        type: sqlType.Timestamp,
+        required: true,
+        customize: "DEFAULT CURRENT_TIMESTAMP"
     },
     auteur: {
         type: String,

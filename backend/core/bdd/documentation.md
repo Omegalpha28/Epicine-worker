@@ -123,6 +123,7 @@ Le module fournit également une map des types SQL courants via `sqlType`.
 * Float
 * Text
 * DateTime
+* Timestamp
 * ### Exemple
 ```javascript
 console.log(sqlType.String); // "String"
