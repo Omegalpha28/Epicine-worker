@@ -22,9 +22,12 @@ module.exports = async function(client, app, bcrypt) {
 
     app.put("/update/fil", auth, async (req, res) => {
         const {fil_id, auteur, title, description} = req.body;
-
-        if (await updateFil(client, {id: fil_id, auteur: auteur, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
-        else res.status(500).json({"msg": "Internal server error"});
+        
+        if (!(await Fil.findOne({title: title})).data.open) res.status(400).json({"msg": "Le fil est fermé"});
+        else {
+            if (await updateFil(client, {id: fil_id, auteur: auteur, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
+            else res.status(500).json({"msg": "Internal server error"});
+        }
     })
 
     app.post("/close/fil", auth, async (req, res) => {
