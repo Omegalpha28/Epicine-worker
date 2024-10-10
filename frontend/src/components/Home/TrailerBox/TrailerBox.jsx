@@ -16,7 +16,6 @@ export const TrailerBox = () => {
     const fetchContent = async (type, subType) => {
         setError(null);
         setLoading(true);
-
         try {
             const response = await fetch(`http://localhost:5555/api/movies/popular?subType=${subType}`);
             if (!response.ok) {
@@ -25,10 +24,10 @@ export const TrailerBox = () => {
             }
             const data = await response.json();
             setMovies(data.results);
-
             if (data.results.length > 0) {
-                const randomIndex = Math.floor(Math.random() * data.results.length);
-                setMovieId(data.results[randomIndex].id);
+                const topMovies = data.results.slice(0, 4);
+                const randomIndex = Math.floor(Math.random() * topMovies.length);
+                setMovieId(topMovies[randomIndex].id);
             }
         } catch (err) {
             setError(err.message);
@@ -44,7 +43,7 @@ export const TrailerBox = () => {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                movieId && <GetTrailer movieId={movieId} movies={movies} setMovieId={setMovieId} />
+                movieId && <GetTrailer movieId={movieId} />
             )}
         </div>
     );

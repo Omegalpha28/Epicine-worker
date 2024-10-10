@@ -4,7 +4,7 @@ import useTheme from '../../../set_theme';
 import { useNavigate } from "react-router-dom";
 import { GetTitle } from './GetTitle';
 
-export const GetTrailer = ({ movieId, movies, setMovieId }) => {
+export const GetTrailer = ({ movieId}) => {
     const [isDark, setIsDark] = useTheme();
     const [trailerKey, setTrailerKey] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -13,14 +13,6 @@ export const GetTrailer = ({ movieId, movies, setMovieId }) => {
 
     const handleViewMoreClick = () => {
         navigate(`/movies/${movieId}`);
-    };
-
-    const fetchAnotherTrailer = () => {
-        if (movies.length > 1) {
-            const otherMovies = movies.filter(movie => movie.id !== movieId);
-            const randomIndex = Math.floor(Math.random() * otherMovies.length);
-            setMovieId(otherMovies[randomIndex].id);
-        }
     };
 
     useEffect(() => {
@@ -33,7 +25,7 @@ export const GetTrailer = ({ movieId, movies, setMovieId }) => {
                 if (trailer) {
                     setTrailerKey(trailer.key);
                 } else {
-                    fetchAnotherTrailer();
+                    setError("No trailer available.");
                 }
             } catch (err) {
                 setError(err.message);
@@ -45,10 +37,6 @@ export const GetTrailer = ({ movieId, movies, setMovieId }) => {
         if (movieId) {
             setLoading(true);
             fetchTrailerKey();
-
-            const trailerTimeout = setTimeout(fetchAnotherTrailer, 120000);
-
-            return () => clearTimeout(trailerTimeout);
         }
     }, [movieId]);
 
@@ -59,7 +47,7 @@ export const GetTrailer = ({ movieId, movies, setMovieId }) => {
             ) : error ? (
                 <div className={styles.error}>{error}</div>
             ) : trailerKey ? (
-                <iframe src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+                <iframe src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&loop=1&playlist=${trailerKey}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
             ) : (
                 <div className={styles.no_trailer}>No trailer available</div>
             )}
