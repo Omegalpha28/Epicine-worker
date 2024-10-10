@@ -4,6 +4,7 @@
     color: var(--color-text);
     max-width: 800px;
     margin-left: 3.5vw; /* Suppression du margin à gauche et à droite */
+    margin-top: 4vh;
 }
 
 

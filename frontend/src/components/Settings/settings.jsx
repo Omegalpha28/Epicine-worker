@@ -9,6 +9,9 @@ import { MySeries } from "../Settings/MySeries/MySeries";
 import { MyCollections } from "../Settings/MyCollections/MyCollections";
 import { MyPreferences } from "../Settings/MyPreferences/MyPreferences";
 import { RatedMovies } from "../Settings/RatedMovies/RatedMovies";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faFilm, faTv, faFolder, faCog, faStar } from "@fortawesome/free-solid-svg-icons";
+
 
 export const SettingsPage = () => {
     const [selectedNav, setSelectedNav] = useState('MyProfile');
@@ -53,12 +56,30 @@ export const SettingsPage = () => {
                 <div className={styles.settings}>
                     <nav className={styles.navs_settings}>
                         <ul className={styles.categories_settings}>
-                            <li onClick={() => handleNavClick('MyProfile')}>My profil</li>
-                            <li onClick={() => handleNavClick('MyMovies')}>My movies</li>
-                            <li onClick={() => handleNavClick('MySeries')}>My series</li>
-                            <li onClick={() => handleNavClick('MyCollections')}>My collections</li>
-                            <li onClick={() => handleNavClick('MyPreferences')}>My preferences</li>
-                            <li onClick={() => handleNavClick('RatedMovies')}>Rated Movies</li>
+                            <li onClick={() => handleNavClick('MyProfile')}>
+                                <FontAwesomeIcon icon={faUser} className={styles.icon} />
+                                <h1>MY PROFILE</h1>
+                            </li>
+                            <li onClick={() => handleNavClick('MyMovies')}>
+                                <FontAwesomeIcon icon={faFilm} className={styles.icon} />
+                                <h1>MY MOVIES</h1>
+                            </li>
+                            <li onClick={() => handleNavClick('MySeries')}>
+                                <FontAwesomeIcon icon={faTv} className={styles.icon} />
+                                <h1>MY SERIES</h1>
+                            </li>
+                            <li onClick={() => handleNavClick('MyCollections')}>
+                                <FontAwesomeIcon icon={faFolder} className={styles.icon} />
+                                <h1>MY COLLECTIONS</h1>
+                            </li>
+                            <li onClick={() => handleNavClick('MyPreferences')}>
+                                <FontAwesomeIcon icon={faCog} className={styles.icon} />
+                                <h1>MY PREFERENCES</h1>
+                            </li>
+                            <li onClick={() => handleNavClick('RatedMovies')}>
+                                <FontAwesomeIcon icon={faStar} className={styles.icon} />
+                                <h1>RATED MOVIES</h1>
+                            </li>
                         </ul>
                     </nav>
                     <div className={styles.content_area}>

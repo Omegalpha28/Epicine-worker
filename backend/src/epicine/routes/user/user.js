@@ -22,7 +22,7 @@ module.exports = async function(client, app) {
     });
 
     // Mise à jour des informations utilisateur
-    app.put("/user", auth, async (req, res) => {
+    app.put("/update/user", auth, async (req, res) => {
         try {
             const result = await updateUser(client, req.uuiduser, req.body);
 

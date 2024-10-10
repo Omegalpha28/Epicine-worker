@@ -3,14 +3,21 @@ import styles from "./MyProfile.module.css";
 
 export const MyProfile = () => {
     const [user, setUser] = useState({
-        pseudo: "",
+        username: "",
         email: "",
-        telephone: "",
+        phone: "",
         birthday: "",
         biography: "",
         avatar: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
-        banner: ""
+        banner: "",
+        password: "",
     });
+
+    const reformatDate = (date) => {
+        if (!date) return "";
+        const [day, month, year] = date.split("-");
+        return `${day}/${month}/${year}`;
+    };
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -23,21 +30,21 @@ export const MyProfile = () => {
                 });
 
                 if (!response.ok)
-                    throw new Error("Erreur lors de la récupération des informations utilisateur");
+                    throw new Error("Error fetching user information");
 
                 const data = await response.json();
 
                 setUser({
-                    pseudo: data.name,
+                    username: data.name,
                     email: data.email,
-                    telephone: data.telephone,
+                    phone: data.telephone,
                     birthday: data.birthday,
-                    biography: data.biography,
+                    birthday: reformatDate(data.birthday),
                     avatar: data.avatar,
                     banner: data.banner,
                 });
             } catch (error) {
-                console.error("Erreur :", error);
+                console.error("Error:", error);
             }
         };
 
@@ -48,27 +55,25 @@ export const MyProfile = () => {
         setUser((prevUser) => ({ ...prevUser, [field]: value }));
     };
 
-    const handleSubmit = async (field) => {
+    const handleSubmitAll = async () => {
         try {
-            const response = await fetch("http://localhost:5555/user", {
+            const response = await fetch("http://localhost:5555/update/user", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
-                body: JSON.stringify({
-                    [field]: user[field],
-                }),
+                body: JSON.stringify(user),
             });
 
             if (!response.ok) {
-                throw new Error(`Erreur lors de la mise à jour de ${field}`);
+                throw new Error("Error updating user information");
             }
 
             const data = await response.json();
-            console.log("Mise à jour réussie :", data);
+            console.log("Update successful:", data);
         } catch (error) {
-            console.error("Erreur :", error);
+            console.error("Error:", error);
         }
     };
 
@@ -79,7 +84,7 @@ export const MyProfile = () => {
                 style={{ backgroundImage: user.banner ? `url(${user.banner})` : "var(--nav-bar)" }}
             >
                 <img src={`/user/${user.avatar}`} alt="Avatar" className={styles.Avatar} />
-                <h1>{user.pseudo}</h1>
+                <h1 className={styles.username}>{user.username}</h1>
             </div>
 
             <div className={styles.InputContainer}>
@@ -87,48 +92,44 @@ export const MyProfile = () => {
                     <label>Email</label>
                     <input type="email" value={user.email} disabled />
                 </div>
+
                 <div className={styles.inputGroup}>
-                    <label>Téléphone</label>
-                    <div className={styles.inputWithButton}>
-                        <input
-                            type="text"
-                            value={!user.telephone ? "" : user.telephone}
-                            onChange={(e) => handleInputChange('telephone', e.target.value)}
-                            placeholder="Non renseigné"
-                        />
-                        <button
-                            type="button"
-                            onClick={() => handleSubmit('telephone')}
-                            className={styles.SaveButton}
-                        >
-                            Enregistrer
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.inputGroup}>
-                    <label>Date de naissance</label>
+                    <label>Phone</label>
                     <input
-                        type="date"
-                        value={!user.birthday ? "" : user.birthday}
-                        onChange={(e) => handleInputChange('birthday', e.target.value)}
+                        type="text"
+                        value={user.phone || ""}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        placeholder="Not provided"
                     />
                 </div>
+
                 <div className={styles.inputGroup}>
-                    <label>Biographie</label>
-                    <div className={styles.inputWithButton}>
-                        <textarea
-                            value={user.biography}
-                            onChange={(e) => handleInputChange('biography', e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => handleSubmit('biography')}
-                            className={styles.SaveButton}
-                        >
-                            Enregistrer
-                        </button>
-                    </div>
+                    <label>Birthday</label>
+                    <input
+                        type="text"
+                        value={user.birthday || ""}
+                        onChange={(e) => handleInputChange("birthday", e.target.value)}
+                        placeholder="Not provided"
+                    />
                 </div>
+
+
+                <div className={styles.inputGroup}>
+                    <label>Biography</label>
+                    <textarea
+                        value={user.biography || ""}
+                        onChange={(e) => handleInputChange("biography", e.target.value)}
+                    />
+                </div>
+
+                {/* Single Save button for all fields */}
+                <button
+                    type="button"
+                    onClick={handleSubmitAll}
+                    className={styles.SaveButtonAll}
+                >
+                    Save
+                </button>
             </div>
         </div>
     );

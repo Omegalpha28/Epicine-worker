@@ -8,6 +8,7 @@ export const MyPreferences = () => {
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
+    const [password, setPassword] = useState("");  // Ajout du champ pour le mot de passe
 
     // Fonction pour récupérer les informations utilisateur
     useEffect(() => {
@@ -20,7 +21,6 @@ export const MyPreferences = () => {
                     },
                 });
 
-                // Vérifier si la réponse est OK
                 if (!response.ok) {
                     throw new Error("Erreur lors de la récupération des informations utilisateur");
                 }
@@ -53,8 +53,12 @@ export const MyPreferences = () => {
             birthday: `${year}-${month}-${day}`, // Ajout de la date de naissance
         };
 
-        fetch("http://localhost:5555/user/update", {
-            method: "POST",
+        if (password) {
+            updatedUser.password = password;  // Ajout du mot de passe s'il est renseigné
+        }
+
+        fetch("http://localhost:5555/update/user", {  // Utilisation de PUT pour la mise à jour
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -109,40 +113,50 @@ export const MyPreferences = () => {
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <label>Je suis</label>
+                    <label>Iam</label>
                     <select
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}
                     >
-                        <option value="">Sélectionner un genre</option>
-                        <option value="male">Homme</option>
-                        <option value="female">Femme</option>
+                        <option value="">Select gender</option>
+                        <option value="male">Men</option>
+                        <option value="female">Women</option>
                     </select>
                 </div>
 
                 <div className={styles.inputGroup}>
-                    <label>Date de naissance</label>
+                    <label>Birthdate</label>
                     <div className={styles.birthDate}>
                         <select value={day} onChange={(e) => setDay(e.target.value)}>
-                            <option value="">Jour</option>
+                            <option value="">Day</option>
                             {generateOptions(1, 31)}
                         </select>
                         <select value={month} onChange={(e) => setMonth(e.target.value)}>
-                            <option value="">Mois</option>
+                            <option value="">Month</option>
                             {generateOptions(1, 12)}
                         </select>
                         <select value={year} onChange={(e) => setYear(e.target.value)}>
-                            <option value="">Année</option>
+                            <option value="">Year</option>
                             {generateOptions(new Date().getFullYear() - 100, new Date().getFullYear())}
                         </select>
                     </div>
                 </div>
 
+                <div className={styles.inputGroup}>
+                    <label>New password</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Let empthy if you don't want to change"
+                    />
+                </div>
+
                 <button type="button" className={styles.saveButton} onClick={handleSave}>
-                    ENREGISTRER
+                    Save
                 </button>
                 <div className={styles.deactivateAccount}>
-                    <a href="#deactivate">Désactiver mon compte</a>
+                    <a href="#deactivate">Deactivate my account</a>
                 </div>
             </form>
         </div>
