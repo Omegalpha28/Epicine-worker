@@ -76,7 +76,7 @@ module.exports = client => {
         return await client.customRequest("SELECT Fil.id,Fil.titre,Fil.description,SUM(IFNULL(Likes.type,0)) AS somme FROM Message LEFT Join Likes ON Likes.id_message=Message.id JOIN Fil ON Fil.id=Message.id_fil GROUP BY Fil.id ORDER BY somme DESC LIMIT 10");
     }
 
-    client.updateFil = async (fil_id, auteur) => {
-        return await Fil.updateOne({id: fil_id, auteur: auteur})
+    client.updateFil = async (filInfo) => {
+        return await Fil.updateOne(filInfo);
     }
 }

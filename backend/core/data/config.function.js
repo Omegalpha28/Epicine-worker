@@ -12,4 +12,4 @@ async function getWatchList(client, watchInfo){return await client.getWatchList(
 async function addWatchList(client, uuid, film_id){return await client.addWatchList(uuid, film_id);}
 async function removeWatchList(client, uuid, film_id){return await client.removeWatchList(uuid, film_id);}
 async function getFilPopular(client){return await client.getFilPopular();}
-async function updateFil(client, fil_id, auteur){return await client.updateFil(fil_id, auteur);}
+async function updateFil(client, filInfo){return await client.updateFil(filInfo);}

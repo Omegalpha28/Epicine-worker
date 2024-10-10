@@ -21,11 +21,18 @@ module.exports = async function(client, app, bcrypt) {
     });
 
     app.put("/update/fil", auth, async (req, res) => {
-        const {fil_id, auteur} = req.body;
-        if (await updateFil(client, fil_id, auteur)) res.status(200).json({"msg": "Fil mis à jour"});
+        const {fil_id, auteur, title, description} = req.body;
+
+        if (await updateFil(client, {id: fil_id, auteur: auteur, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
         else res.status(500).json({"msg": "Internal server error"});
     })
 
+    app.post("/close/fil", auth, async (req, res) => {
+        const {fil_id, auteur} = req.body;
+
+        if (await updateFil(client, {id: fil_id, auteur: auteur, open: 0})) res.status(200).json({"msg": "Fil fermé"});
+        else res.status(500).json({"msg": "Internal server error"});
+    });
     app.delete("/remove/fil", auth, async (req, res) => {
         const { fil_id } = req.body;
 
