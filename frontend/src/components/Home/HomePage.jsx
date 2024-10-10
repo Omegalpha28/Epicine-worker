@@ -4,12 +4,10 @@ import Home_style from "./HomePage.module.css";
 import useLocalStorage from "use-local-storage";
 import { Toggle } from "../Toggle/Toggle";
 import { Navbar } from "../Navbar/Navbar";
-import { Header } from "../Header/Header";
 import { Home } from "./Home";
 import { Join_Us } from "../Joinus/join_us";
 import { Wallpaper } from "./Wallpaper/Wallpaper";
 import { Search_Content } from "./Search_Content/Search_Content";
-import { TrailerBox } from "./TrailerBox/TrailerBox";
 
 export const HomePage = () => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -24,7 +22,7 @@ export const HomePage = () => {
       <div className={styles.App}>
         <Toggle style={{ visibility: 'hidden' }} isChecked={isDark}handleChange={() => setIsDark(!isDark)}
         />
-        <TrailerBox />
+        <Wallpaper />
         <Home />
       </div>
       <Join_Us />
