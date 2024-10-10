@@ -1,5 +1,8 @@
 @import '../../../animations/animation.css';
 @import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nexa+Bold&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nexa+Extra+Bold&display=swap');
 
 .box {
     display: flex;
@@ -23,45 +26,64 @@
 }
 
 .more_button {
+    align-items: center;
     position: absolute;
-    top: 50%;
+    top: 55%; /* Ajustez cette position si nécessaire */
     left: 10%;
     width: 200px;
     height: 60px;
     background-color: #fecc00;
     color: var(--color-text-button);
     box-shadow: var(--color-box-shadow);
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border: none;
     z-index: 10;
     transition: background-color 0.25s ease-in-out, transform 0.25s ease-in-out;
+    display: flex; /* Ajout de flexbox */
 }
 
+.button_text {
+    font-family: 'Nexa Extra Bold', 'Nexa', 'Bebas Neue', sans-serif;
+    margin-top: 5px; /* Ajustez cette valeur selon vos besoins */
+    display: flex; /* Assurez-vous que cela fonctionne bien avec la flexbox */
+    align-items: center; /* Aligne le texte au centre */
+    font-size: 1.6rem;
+}
+
+.more_button .icon {
+    margin-left: 1.5vw;
+    margin-right: 1vw; /* Ajoute de l'espace entre l'icône et le texte */
+    font-size: 1.8rem;
+}
+
+.more_button:hover {
+    background-color: #ffdb00; /* Change la couleur de fond au survol */
+    transform: scale(0.93);
+}
+
+
+
 .Title {
+    font-family: 'Nexa Extra Bold', 'Nexa', 'Bebas Neue', sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 40%;
     left: 10%;
     font-size: 60px;
-    width: 100vw;
+    -webkit-text-stroke: 2px white; /* pour les navigateurs basés sur Webkit comme Chrome et Safari */
+    text-stroke: 0.4px white; /* pour les autres navigateurs, mais pas entièrement pris en charge */
+    max-width: 15ch; /* Limite la largeur maximum à 150 caractères */
+    overflow-wrap: break-word; /* Permet au texte de passer à la ligne */
     z-index: 10;
-    background: linear-gradient(90deg, rgb(213, 216, 17), rgb(0, 0, 0));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
+    color: #FFFFFF;
     display: flex;
     background-size: 200% 200%;
     animation: moveGradient 3s ease infinite;
 }
-
-.more_button:hover {
-    transform: scale(0.93); /* Utilisation de transform pour le scale */
-}
-
-
 
 @media screen and (max-width: 600px) {
     .box {
