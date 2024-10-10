@@ -12,7 +12,8 @@ const sqlType = {
     Now: "Now",
     Float: "Float",
     Text: "Text",
-    DateTime: "DateTime"
+    DateTime: "DateTime",
+    Timestamp: "Timestamp",
 };
 
 const sqlTypeMap = {
@@ -25,7 +26,8 @@ const sqlTypeMap = {
     Now: 'NOW()',
     Float: 'FLOAT',
     Text: 'TEXT',
-    DateTime: "DATETIME"
+    DateTime: "DATETIME",
+    Timestamp: "TIMESTAMP",
 };
 
 /**
@@ -385,7 +387,6 @@ class Model {
 
                 resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
             }).catch((err) => {
-                logs("ici");
                 error(`Error executing query: ${err}`);
                 return 0;
             });
