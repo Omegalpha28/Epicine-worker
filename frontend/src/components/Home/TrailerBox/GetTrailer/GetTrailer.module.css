@@ -73,7 +73,6 @@
     left: 10%;
     font-size: 60px;
     -webkit-text-stroke: 2px white; /* pour les navigateurs basés sur Webkit comme Chrome et Safari */
-    text-stroke: 0.4px white; /* pour les autres navigateurs, mais pas entièrement pris en charge */
     max-width: 15ch; /* Limite la largeur maximum à 150 caractères */
     overflow-wrap: break-word; /* Permet au texte de passer à la ligne */
     z-index: 10;
