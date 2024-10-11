@@ -22,6 +22,7 @@
     transition: background-color 1s ease; */
 }
 
+
 .App::-webkit-scrollbar {
     height: 3px;
 }
