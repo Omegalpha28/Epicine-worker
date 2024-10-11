@@ -84,10 +84,7 @@ export const UpComing = () => {
                         <button className={styles.carousel_button} onClick={handleNext}>❯</button>
                     </div>
                     <div className={styles.movie_item}>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`}
-                            alt={currentMovie.title || currentMovie.name}
-                        />
+                        <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`}  onClick={handleViewMoreClick} alt={currentMovie.title || currentMovie.name} />
                         <h3 className={styles.movie_title}>{currentMovie.title || currentMovie.name}</h3>
                         <button className={styles.more_button} onClick={handleViewMoreClick}>View more</button>
                         {renderIndicators()}

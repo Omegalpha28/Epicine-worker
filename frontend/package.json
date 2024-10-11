@@ -21,6 +21,7 @@
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/supabase-js": "^2.45.4",
     "axios": "^1.7.7",
+    "cors": "^2.8.5",
     "gapi-script": "^1.2.0",
     "jwt-decode": "^4.0.0",
     "jwt-js-decode": "^1.9.0",

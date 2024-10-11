@@ -11,7 +11,7 @@
 }
 
 .blurblock {
-    top: 40vh;
+    top: 30vh;
     left: -20vw;
     width: 140vw;
     height: 110vh;
@@ -28,5 +28,6 @@
 
     .blurblock {
         background: linear-gradient(to top, var(--color-app) 80%, var(--color-app) 85%, transparent 100%, transparent 100%);
+        top: 25vh;
     }
 }
