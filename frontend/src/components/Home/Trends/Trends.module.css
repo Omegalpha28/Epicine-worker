@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     transition: background-color 0.25s ease-in-out;
 }
 
@@ -12,58 +11,45 @@
     height: 100%;
     max-height: 450px;
     width: 100%;
-    background-color: var(--color-app);
-    box-shadow: var(--color-box-shadow);
+    background-color: transparent;
     padding: 2%;
     box-sizing: border-box;
     position: relative;
-    transition: background-color 0.25s ease-in-out;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
-    padding: 0 2%;
 }
 
 .title_box {
-    margin-left: 2.5%;
-    margin-bottom: 5%;
+    margin-right: auto;
+    padding: 0vh 2vw;
     font-size: 4vh;
     color: var(--color-text-mode);
+    margin-bottom: 5vh;
 }
 
 .categories {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 5%;
-    position: relative;
-    width: auto;
-}
-
-.today {
-    margin-right: 10px;
 }
 
 .inside_box {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 81%;
-    width: 95%;
+    width:  95%;
     margin: auto;
     border-radius: 10px;
-    /*   */
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
-    padding: 2%;
+    padding: 2.3% 2% 2% 2%;
     box-sizing: border-box;
     overflow-x: hidden;
     scrollbar-width: none;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     transition: background-color 0.25s ease-in-out;
 }
 
@@ -74,7 +60,6 @@
     color: var(--color-text);
     cursor: pointer;
     transition: background-color 0.25s ease-in-out;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     font-size: 1.5vh;
     height: 3vh;
     width: auto;
@@ -84,6 +69,23 @@
 .categories button:hover {
     background-color: var(--color-btn-hover);
     color: var(--color-text-btn-hover);
+}
+
+.categories .today,
+.categories .this_week {
+    height: 3vh;
+    width: 9vw;
+    font-size: 1.5vh;
+    border-radius: 50px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.25s ease-in-out;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    cursor: pointer;
+    margin-right: 1vw;
 }
 
 .dropdown {
@@ -146,7 +148,6 @@
     margin-bottom: 10px;
     display: none;
 }
-
 .category_button:hover {
     background-color: var(--color-btn-hover);
 }

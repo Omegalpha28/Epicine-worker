@@ -12,7 +12,7 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background-color: var(--color-app);
+    background-color: transparent;
     box-shadow: var(--color-box-shadow);
     padding: 2%;
     box-sizing: border-box;
@@ -21,37 +21,36 @@
 }
 
 .title_box {
-    margin-top: 0.5%;
-    margin-left: 2.5%;
-    margin-bottom: 5%;
+    margin-right: auto;
+    padding: 0vh 2vw;
     font-size: 4vh;
     color: var(--color-text-mode);
+    margin-bottom: 5vh;
+
 }
 
 .categories {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 5%;
-    margin-top: 1%;
 }
 
 .categories .movies,
 .categories .series {
-    margin-left: 2%;
     height: 3vh;
-    width: 8vw;
+    width: 9vw;
+    margin-right: 1vw;
     font-size: 1.5vh;
     border-radius: 50px;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.25s ease-in-out;
     background-color: var(--color-btn);
     color: var(--color-text);
-    transition: background-color 0.25s ease-in-out;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     cursor: pointer;
+    margin-bottom: 3vh;
 }
 
 .categories .movies:hover,
@@ -71,12 +70,10 @@
     margin: auto;
     overflow: hidden;
     border-radius: 10px;
-    /* box-shadow: var(--color-box-shadow); */
     background-color: var(--color-inside-box);
     color: var(--color-text-mode);
     padding: 2%;
     box-sizing: border-box;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); */
     transition: background-color 0.25s ease-in-out;
 }
 
@@ -89,14 +86,18 @@
     height: 100%;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 1px var(--color-box-shadow);
     background-color: var(--color-box-item);
     position: relative;
+    transition: transform 0.25s ease-in-out;
 }
 
 .movie_title {
-    margin-top: 12px;
-    font-size: 1.5rem;
+    display: none;
+    margin-top: 1vh;
+    width: 10vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .release_date {
@@ -110,7 +111,12 @@
     height: 70%;
     object-fit: cover;
     border-radius: 10px;
-    z-index: 10;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.movie_item img:hover {
+    scale: 1.02;
 }
 
 .carousel_controls {
@@ -151,13 +157,14 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    width: 35%;
-    height: 7%;
+    width: 7vw;
+    height: 5vh;
     background-color: #fecc00;
     color: var(--color-text-button);
     box-shadow: 1px var(--color-box-shadow);
     border-radius: 50px;
     cursor: pointer;
+    font-size: 1.5vh;
     text-decoration: none;
     border: none;
     z-index: 10;
