@@ -1,45 +1,34 @@
 .toggle-container {
-  position: absolute;
-  top: 3em;
-  right: 3em;
+  display: flex; /* Utilisez flexbox pour centrer le bouton */
+  align-items: center; /* Centre verticalement */
+}
+
+.toggle-button {
+  font-size: 0.8em;
+  cursor: pointer;
+  color: var(--color-text);
+  border: none;
+  margin-top: 1vh;
+  border-radius: 5px;
+  padding: 4px 40px; /* Ajoutez du padding pour un meilleur aspect */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Ajoutez une transition pour l'animation */
   z-index: 3;
 }
 
-.toggle {
-  visibility: hidden;
+.toggle-button:hover {
+  background-color: var(--color-btn-hover);
 }
 
-.toggle + label {
-  display: flex;
-  align-items: center;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: var(--color-text);
+/* Styles pour le mode clair */
+.toggle-button.light {
+  background-color: var(--color-inside-box);
+  color: var(--color-text); /* Couleur du texte en mode clair */
 }
 
-.toggle + label::before {
-  content: "";
-  height: 1em;
-  width: 2em;
-  border-radius: 1em;
-  background-color: var(--color-secondary);
-  margin-right: 0.5em;
-  transition: background-color 0.25s ease-in-out;
-}
-
-.toggle + label::after {
-  content: "";
-  height: 0.8em;
-  width: 0.8em;
-  border-radius: 1em;
-  background-color: var(--color-primary);
-  position: absolute;
-  left: 0.2em;
-  transition: background-color 0.25s ease-in-out, transform 0.25s ease-in-out;
-}
-
-.toggle:checked + label::after {
-  transform: translateX(100%);
+/* Styles pour le mode sombre */
+.toggle-button.dark {
+  background-color: var(--color-inside-box); /* Couleur de fond en mode sombre */
+  color: var(--color-text) /* Couleur du texte en mode sombre */
 }
 
 @media screen and (max-width: 1000px) {
@@ -48,7 +37,5 @@
     top: 3em;
     transform: scale(1.1);
     right: 1em;
-    z-index: 3;
   }
-
 }

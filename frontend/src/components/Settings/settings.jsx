@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./settings.module.css"; // Votre fichier CSS spécifique
 import styles_App from "../../App.module.css";
 import useTheme from "../set_theme";
-import { Navbar } from "../Navbar/Navbar"; // Barre de navigation
+import { Navbar } from "../Navbar/Navbar";
+import { Join_Us } from "../Joinus/join_us";
 import { MyProfile } from "../Settings/MyProfile/MyProfile";
 import { MyMovies } from "../Settings/MyMovies/MyMovies";
 import { MySeries } from "../Settings/MySeries/MySeries";
@@ -87,6 +88,7 @@ export const SettingsPage = () => {
                     </div>
                 </div>
             </div>
+            <Join_Us />
         </div>
     );
 };

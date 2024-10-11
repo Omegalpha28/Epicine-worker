@@ -90,9 +90,16 @@
     font-size: 1.2em;
 }
 
+.toggleContainer {
+    display: flex;
+    align-items: center; /* Centre verticalement les éléments */
+    justify-content: space-between; /* Aligne les éléments à gauche */
+}
+
 .deactivateAccount {
-    margin-top: 20px;
-    text-align: right;
+    margin-top: 10px;
+    margin-left: 20px; /* Espace entre le toggle et le lien */
+    align-self: center; /* Centre le lien par rapport au conteneur */
 }
 
 .deactivateAccount a {
@@ -104,3 +111,5 @@
 .deactivateAccount a:hover {
     text-decoration: underline;
 }
+
+

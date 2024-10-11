@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MyPreferences.module.css";
+import useLocalStorage from "use-local-storage";
+import { Toggle } from "../../Toggle/Toggle";
 
 export const MyPreferences = () => {
     const [pseudo, setPseudo] = useState("");
@@ -8,9 +10,9 @@ export const MyPreferences = () => {
     const [day, setDay] = useState("");
     const [month, setMonth] = useState("");
     const [year, setYear] = useState("");
-    const [password, setPassword] = useState("");  // Ajout du champ pour le mot de passe
+    const [password, setPassword] = useState("");
+    const [isDark, setIsDark] = useLocalStorage("isDark", false);
 
-    // Fonction pour récupérer les informations utilisateur
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -26,7 +28,6 @@ export const MyPreferences = () => {
                 }
 
                 const data = await response.json();
-                // Assigner les valeurs récupérées aux états
                 setPseudo(data.name);
                 setEmail(data.email);
                 setGender(data.gender);
@@ -45,19 +46,15 @@ export const MyPreferences = () => {
         fetchUserData();
     }, []);
 
-    // Fonction pour sauvegarder les changements
     const handleSave = () => {
         const updatedUser = {
             name: pseudo,
-            gender, // Ajout du genre
-            birthday: `${year}-${month}-${day}`, // Ajout de la date de naissance
+            gender,
+            birthday: `${year}-${month}-${day}`,
+            ...(password && { password }),
         };
 
-        if (password) {
-            updatedUser.password = password;  // Ajout du mot de passe s'il est renseigné
-        }
-
-        fetch("http://localhost:5555/update/user", {  // Utilisation de PUT pour la mise à jour
+        fetch("http://localhost:5555/update/user", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -67,10 +64,8 @@ export const MyPreferences = () => {
         })
             .then(response => {
                 if (response.ok) {
-                    console.log("Mise à jour réussie");
                     alert("Mise à jour réussie");
                 } else {
-                    console.error("Erreur lors de la mise à jour");
                     alert("Erreur lors de la mise à jour");
                 }
             })
@@ -148,15 +143,18 @@ export const MyPreferences = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Let empthy if you don't want to change"
+                        placeholder="Let empty if you don't want to change"
                     />
                 </div>
 
                 <button type="button" className={styles.saveButton} onClick={handleSave}>
                     Save
                 </button>
-                <div className={styles.deactivateAccount}>
-                    <a href="#deactivate">Deactivate my account</a>
+                <div className={styles.toggleContainer}>
+                    <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+                    <div className={styles.deactivateAccount}>
+                        <a href="#deactivate">Deactivate my account</a>
+                    </div>
                 </div>
             </form>
         </div>

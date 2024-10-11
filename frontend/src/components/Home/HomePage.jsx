@@ -20,8 +20,6 @@ export const HomePage = () => {
       <Navbar isDark={isDark} setSearchQuery={setSearchQuery} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
       {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
       <div className={styles.App}>
-        <Toggle style={{ visibility: 'hidden' }} isChecked={isDark}handleChange={() => setIsDark(!isDark)}
-        />
         <Wallpaper />
         <Home />
       </div>
