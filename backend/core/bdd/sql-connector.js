@@ -359,13 +359,16 @@ class Model {
      * @throws {Error} Throws an error if query execution fails.
      */
     async customRequest(custom) {
-        try {
-            await connexion.promise().query(custom).catch((err) => {
-                return error(`Error executing query: ${err}`);
-            })
-        } catch (err) {
-            return error(`Error executing query: ${err}`);
-        }
+        return new Promise(async (resolve, reject) => {
+            await connexion.promise().query(custom).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        })
     }
 
     /**
@@ -374,18 +377,18 @@ class Model {
      * @async
      * @function deleteOne
      * @param {Object} filter - Un objet représentant les conditions de filtre pour la suppression.
-     * @returns {Promise<number|ModelInstance>} Une promesse qui se résout à 0 si aucune ligne n'a été supprimée,
+     * @returns {Promise<number>} Une promesse qui se résout à 0 si aucune ligne n'a été supprimée,
      * ou à une instance de ModelInstance représentant la ligne supprimée.
      * @throws {Error} Lance une erreur si la requête SQL échoue.
      */
     async deleteOne(filter) {
         const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
-        
+
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
-                if (rows.length == 0) return resolve(0);
+                if (rows[1] != undefined) return resolve(0);
 
-                resolve(new ModelInstance(this.name, Object.values(rows[0])[0]));
+                return resolve(1);
             }).catch((err) => {
                 error(`Error executing query: ${err}`);
                 return 0;
@@ -483,8 +486,8 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(this.data)}`;
-
+        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data[0]))}`;
+        
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;
@@ -498,17 +501,20 @@ class ModelInstance {
      * @returns {Promise<Object>} A promise that resolves with the data deleted.
      * @throws {Error} Throws an error if the deletion fails.
      */
-    async deleteOne(model) {
-        const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(model)}`;
-        try {
-            await connexion.promise().query(sql_request).catch((err) => {
-                return error(`Error executing query: ${err}`);
-            });
-        } catch (err) {
-            return error(`Error deleting data from ${this.name}: ${err}`);
-        }
+    async deleteOne(filter) {
+        const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
 
-        return replaceValues(this.data, model);
+        return new Promise((resolve, reject) => {
+            connexion.promise().query(sql_request).then((rows) => {
+                
+                if (rows[1] != undefined) return resolve(0);
+
+                resolve(1);
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return 0;
+            });
+        });
     }
 
     /**
@@ -518,13 +524,16 @@ class ModelInstance {
      * @throws {Error} Throws an error if query execution fails.
      */
     async customRequest(custom) {
-        try {
-            await connexion.promise().query(custom).catch((err) => {
-                return error(`Error executing query: ${err}`);
-            })
-        } catch (err) {
-            return error(`Error executing query: ${err}`);
-        }
+        return new Promise(async (resolve, reject) => {
+            await connexion.promise().query(custom).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        });
     }
 }
 

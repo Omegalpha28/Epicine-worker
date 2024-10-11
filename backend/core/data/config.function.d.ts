@@ -97,6 +97,12 @@ declare async function removeWatchList(client: object , uuid: string, film_id: n
 declare async function getFilPopular(client: object ): Promise<ModelInstance|number>;
 
 /**
+ * Récupère les informations du fil en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param filInfo les informations du fil à mettre à jour
+ */
+declare async function getFil(client: object, filInfo: (string | number)[]): Promise<ModelInstance|number>;
+/**
  * Met à jour les informations du fil en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
  * @param filInfo les informations du fil à mettre à jour
@@ -105,4 +111,4 @@ declare async function getFilPopular(client: object ): Promise<ModelInstance|num
  */
 declare async function updateFil(client: object , filInfo: (string | number)[]): Promise<number | Error>;
 
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, updateFil };
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil };
