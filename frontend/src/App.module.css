@@ -1,5 +1,10 @@
 @import "./vars.css";
 
+::selection {
+    background-color: var(--color-selection);
+    opacity: 0.5;
+}
+
 .App {
     padding: 5px 0vw 0px 0vw;
     width: 100%;
