@@ -359,13 +359,16 @@ class Model {
      * @throws {Error} Throws an error if query execution fails.
      */
     async customRequest(custom) {
-        try {
-            await connexion.promise().query(custom).catch((err) => {
-                return error(`Error executing query: ${err}`);
-            })
-        } catch (err) {
-            return error(`Error executing query: ${err}`);
-        }
+        return new Promise(async (resolve, reject) => {
+            await connexion.promise().query(custom).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        })
     }
 
     /**
@@ -518,13 +521,16 @@ class ModelInstance {
      * @throws {Error} Throws an error if query execution fails.
      */
     async customRequest(custom) {
-        try {
-            await connexion.promise().query(custom).catch((err) => {
-                return error(`Error executing query: ${err}`);
-            })
-        } catch (err) {
-            return error(`Error executing query: ${err}`);
-        }
+        return new Promise(async (resolve, reject) => {
+            await connexion.promise().query(custom).then((rows) => {
+                if (rows.length == 0) return resolve(0);
+
+                resolve(new ModelInstance(this.name, Object.values(rows[0])));
+            }).catch((err) => {
+                error(`Error executing query: ${err}`);
+                return;
+            });
+        });
     }
 }
 
