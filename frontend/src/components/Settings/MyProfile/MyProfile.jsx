@@ -38,7 +38,6 @@ export const MyProfile = () => {
                     username: data.name,
                     email: data.email,
                     phone: data.telephone,
-                    birthday: data.birthday,
                     birthday: reformatDate(data.birthday),
                     avatar: data.avatar,
                     banner: data.banner,
