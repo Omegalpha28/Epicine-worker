@@ -1,0 +1,148 @@
+/* Styles pour la grille des films et la page */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+.moviesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Carte de film */
+.movieCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    /* border: 1px solid #ddd; */
+    border-radius: 10px;
+    background-color: var(--color-inside-box);
+    transition: box-shadow 0.3s ease;
+}
+
+.movieCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.moviePoster {
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.movieTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.movieYear {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+}
+
+/* Style pour les étoiles de notation */
+.starsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.radioInput {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    margin: 0 5px;
+}
+
+.star:hover {
+    transform: scale(1.2);
+}
+
+/* Bouton 'Envie de voir' */
+.watchButton {
+    margin-top: 1vh;
+    padding: 10px 20px;
+    background-color: #007bff00;
+    color: #fecc00;
+    border: 1px solid #fecc00;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.watchButton:hover {
+    background-color: #0000006a;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #fecc00;
+    color: black;
+    border: none;
+    box-shadow: var(--color-box-shadow);
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.pagination button:hover {
+    background-color: #0000006a;
+}
+
+/* Pour afficher un texte de chargement */
+.loadingText {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #666;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .moviesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .watchButton {
+        padding: 8px 15px;
+    }
+
+    .pagination button {
+        padding: 8px 12px;
+    }
+}
