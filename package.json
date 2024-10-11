@@ -9,6 +9,7 @@
     "@react-oauth/google": "^0.12.1",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/supabase-js": "^2.45.4",
+    "cors": "^2.8.5",
     "email-validator": "^2.0.4",
     "gapi-script": "^1.2.0",
     "jwt-decode": "^4.0.0",
