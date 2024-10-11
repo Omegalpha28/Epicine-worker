@@ -1,7 +1,7 @@
-const { updateFil } = require("../../../../core/data/config.function");
+const { updateFil, getFil } = require("../../../../core/data/config.function");
 const { Fil } = require("../../../../core/data/models");
 const auth = require("../../../epicine/middleware/auth");
-const { error } = require("../../../utils/Logger");
+const { error, logs } = require("../../../utils/Logger");
 
 module.exports = async function(client, app, bcrypt) {
     app.post("/add/fil", auth, async (req, res) => {
@@ -24,25 +24,32 @@ module.exports = async function(client, app, bcrypt) {
     });
 
     app.put("/update/fil", auth, async (req, res) => {
-        const {fil_id, auteur, title, description} = req.body;
+        const {fil_id, title, description} = req.body;
         
         if (!(await Fil.findOne({title: title})).data.open) res.status(400).json({"msg": "Le fil est fermé"});
         else {
-            if (await updateFil(client, {id: fil_id, auteur: auteur, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
+            if (await updateFil(client, {id: fil_id, auteur: req.uuiduser, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
             else res.status(500).json({"msg": "Internal server error"});
         }
     })
 
     app.post("/close/fil", auth, async (req, res) => {
-        const {fil_id, auteur} = req.body;
+        const {fil_id} = req.body;
 
-        if (await updateFil(client, {id: fil_id, auteur: auteur, open: 0})) res.status(200).json({"msg": "Fil fermé"});
+        if ((await getFil(client, {id: fil_id})).data.length != 0 && await updateFil(client, {id: fil_id, auteur: req.uuiduser, open: 0})) res.status(200).json({"msg": "Fil fermé"});
         else res.status(500).json({"msg": "Internal server error"});
     });
     app.delete("/remove/fil", auth, async (req, res) => {
         const { fil_id } = req.body;
-
-        if ((await Fil.deleteOne({ id: fil_id })).data) res.status(200).json({"msg": "Fil supprimé"});
+        const filData = (await Fil.findOne({ id: fil_id })).data
+        
+        if (filData != undefined) {
+            if (filData.open == 1) res.status(400).json({"msg": "Il faut fermer le fil"});
+            else {
+                if (await Fil.deleteOne({ id: fil_id })) res.status(200).json({"msg": "Fil supprimé"});
+                else res.status(500).json({"msg": "Internal server error"});
+            }
+        }
         else res.status(500).json({"msg": "Internal server error"});
     })
 }
