@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const { User, Favorite, Watchlist } = require("./models");
+const { User, Favorite, Watchlist, Fil } = require("./models");
 
 
 module.exports = client => {
@@ -76,7 +76,14 @@ module.exports = client => {
         return await client.customRequest("SELECT Fil.id,Fil.titre,Fil.description,SUM(IFNULL(Likes.type,0)) AS somme FROM Message LEFT Join Likes ON Likes.id_message=Message.id JOIN Fil ON Fil.id=Message.id_fil GROUP BY Fil.id ORDER BY somme DESC LIMIT 10");
     }
 
+    client.getFil = async (filInfo) => {
+        return await Fil.find(filInfo);
+    }
     client.updateFil = async (filInfo) => {
-        return await Fil.updateOne(filInfo);
+        const filData = (await client.getFil({id: filInfo.id, auteur: filInfo.auteur}));
+
+        if (filData.data[0] != undefined)
+            delete filData.data[0].date;
+        return await filData.updateOne(filInfo);
     }
 }
