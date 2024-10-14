@@ -120,6 +120,27 @@ module.exports = (client, app, bcrypt) => {
         }
     });
 
+    app.get('/api/movie/:movieId/providers', async (req, res) => {
+        const { movieId } = req.params;
+        const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?language=en-US`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${TMDB_API_KEY}`,
+            },
+        };
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            res.json(data);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des distributeurs :', error);
+            res.status(500).json({ message: 'Erreur lors de la récupération des distributeurs.' });
+        }
+    });
+
     app.get('/api/movie/:movieId/recommendations', async (req, res) => {
 
         const { movieId } = req.params;
@@ -134,7 +155,6 @@ module.exports = (client, app, bcrypt) => {
 
         try {
             const response = await fetch(url, options);
-
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
             res.json(data);
