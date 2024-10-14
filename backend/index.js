@@ -41,7 +41,7 @@ main().then(() => {
 
     require("./src/epicine/routes/auth/auth")(client, app, bcrypt);
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
-    bulkloader("./src/epicine/routes/list/", [client, app, bcrypt]);
+    bulkloader("./src/epicine/routes/list/", [client, app, bcrypt], true);
     bulkloader("./src/epicine/routes/tmdb/", [client, app, bcrypt]);
     bulkloader("./src/forum/routes/", [client, app, bcrypt], true);
     app.listen(port, () => {
