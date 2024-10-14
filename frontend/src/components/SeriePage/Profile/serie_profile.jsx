@@ -4,6 +4,7 @@ import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Trailer_Video } from '../Trailers/trailer_video';
+import { Providers } from '../providers/Providers';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -71,6 +72,12 @@ export const Serie_Profile = ({ serieId }) => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
+                        <div className={styles.providers}>
+                            <strong>Providers</strong> <br /> <Providers serieId={serieId} />
                         </div>
 
                         <hr className={styles.sectionDivider} />

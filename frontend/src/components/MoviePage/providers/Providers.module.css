@@ -1,0 +1,19 @@
+
+.providerContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.provider {
+    text-align: center;
+}
+
+.provider img {
+    border-radius: 50px;
+    margin-right: 0.5vw;
+}
+
+.provider img:hover {
+    cursor: pointer;
+}

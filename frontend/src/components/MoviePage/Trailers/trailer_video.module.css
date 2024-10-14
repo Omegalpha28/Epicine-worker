@@ -6,7 +6,6 @@
     align-items: center;
     background-color: var(--color-inside-box);
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     width: 100%;
     height: auto;
     max-width: 900px;
@@ -19,7 +18,6 @@
     height: 450px;
     border-radius: 15px;
     border: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 15px 15px 15px 15px;
 }
 

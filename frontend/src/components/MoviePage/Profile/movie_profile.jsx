@@ -4,6 +4,7 @@ import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Trailer_Video } from '../Trailers/trailer_video';
+import { Providers } from '../providers/Providers';
 
 // Fonction pour obtenir le style de fond de la note
 const getRatingBackground = (rating) => {
@@ -43,7 +44,6 @@ export const Movie_Profile = ({ movieId }) => {
         }
     }, [movieId]);
 
-    // Affichage pendant le chargement
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
@@ -72,6 +72,12 @@ export const Movie_Profile = ({ movieId }) => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
+                        <div className={styles.providers}>
+                            <strong>Providers</strong> <br /> <Providers movieId={movieId} />
                         </div>
 
                         <hr className={styles.sectionDivider} />

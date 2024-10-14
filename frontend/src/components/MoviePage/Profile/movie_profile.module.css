@@ -1,8 +1,7 @@
 @import '../../animations/animation.css';
 
 .box {
-    background-color: var(--color-app);
-    box-shadow: var(--color-box-shadow);
+    background-color: transparent;
     display: flex;
     justify-content: flex-start;
     padding: 2%;
@@ -45,9 +44,15 @@
     justify-content: center;
 }
 
+.providers {
+    font-size: 20px;
+    max-width: 70%;
+}
+
 .Productions ul {
     padding-left: 20px;
 }
+
 .revenue {
     justify-content: center;
     align-items: center;
@@ -91,7 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
+    height: 100%;
     border-radius: 25px;
     transition: width 0.5s ease;
     background: linear-gradient(90deg, var(--color-radiant1), var(--color-radiant2));
@@ -202,7 +207,7 @@
 }
 
 .picture:hover {
-    transform: scale(0.97);
+    transform: scale(1.03);
     opacity: 0.6;
 }
 
@@ -252,9 +257,6 @@
     opacity: 1;
 }
 
-.Trailers {
-    margin-top: 50px;
-}
 
 .Roles {
     margin-top: 2%;
@@ -318,9 +320,9 @@
     }
 
     .Ratings {
-        width: 60px;
-        height: 60px;
-        font-size: 18px;
+        width: 50vw;
+        height: 2vh;
+        font-size: 20px;
     }
 
     .picture {
