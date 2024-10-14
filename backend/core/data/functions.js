@@ -99,4 +99,7 @@ module.exports = client => {
             return await LikesMovies.save(likeInfo);
         return 0;
     }
+    client.removeLike = async (likeInfo) => {
+        return await LikesMovies.deleteOne(likeInfo);
+    }
 }

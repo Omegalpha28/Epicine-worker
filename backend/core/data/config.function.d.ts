@@ -128,4 +128,10 @@ declare async function getLike(client: object, likeInfo: (string)[]): Promise<Mo
  * @param likeInfo les informations du like
  */
 declare async function addLike(client: object, likeInfo: (string)[]): Promise<Object>
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike };
+/**
+ * Supprime un like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function removeLike(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike };

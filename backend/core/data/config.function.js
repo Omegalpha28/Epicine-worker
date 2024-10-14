@@ -15,5 +15,6 @@ async function updateFil(client, filInfo){return await client.updateFil(filInfo)
 async function getLikeUnique(client, likeInfo){return await client.getLikeUnique(likeInfo);}
 async function getLike(client, likeInfo){return client.getLike(likeInfo);}
 async function addLike(client, likeInfo){return client.addLike(likeInfo);}
+async function removeLike(client, likeInfo){return client.removeLike(likeInfo);}
 
-module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike};
+module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike};
