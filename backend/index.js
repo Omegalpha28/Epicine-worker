@@ -8,14 +8,17 @@ const bulkloader = require("@mlagie/bulkloader");
 const Logger = require("./src/utils/Logger");
 const { connect, client, logout } = require("./core/bdd/sql-connector");
 const port = 5555;
-
 dotenv.config();
+const debug = process.env.DEBUG
+
+console.log(debug == "true");
+
 async function main() {
     await connect({
-        host: process.env.HOST,
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
+        host: debug == "true" ? process.env.HOST : process.env.S_HOST,
+        user: debug == "true" ? process.env.USER : process.env.S_USER,
+        password: debug == "true" ? process.env.PASSWORD : process.env.S_PASSWORD,
+        database: debug == "true" ? process.env.DATABASE : process.env.S_DBNAME,
         connectionLimit: 2,
         multipleStatements: true,
         idleTimeout: 10000,
