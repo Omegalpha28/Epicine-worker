@@ -19,7 +19,7 @@
     background: linear-gradient(to top, var(--color-app) 55%, var(--color-app) 60%, transparent 95%, transparent 100%);
 }
 
-@media screen and (max-width: 875px) {
+@media screen and (max-width: 900px) {
     .Wallpaper {
         display: none;
     }

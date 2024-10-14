@@ -16,10 +16,10 @@ export const WallpaperSerie = ({ serieId }) => {
     useEffect(() => {
         const fetchSerieDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5555/api/tv/${serieId}`); // Adapté pour les séries
+                const response = await fetch(`http://localhost:5555/api/tv/${serieId}`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-                setSerieDetails(data); // Changement de nom de variable
+                setSerieDetails(data);
             } catch (err) {
                 setError(err.message);
             } finally {
