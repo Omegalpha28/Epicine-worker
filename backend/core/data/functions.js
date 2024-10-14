@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const { User, Favorite, Watchlist, Fil } = require("./models");
+const { User, Favorite, Watchlist, Fil, Likes, LikesMovies } = require("./models");
 
 
 module.exports = client => {
@@ -85,5 +85,18 @@ module.exports = client => {
         if (filData.data[0] != undefined)
             delete filData.data[0].date;
         return await filData.updateOne(filInfo);
+    }
+    client.getLikeUnique = async (likeInfo) => {
+        return await LikesMovies.findOne(likeInfo);
+    }
+    client.getLike = async (likeInfo) => {
+        return await LikesMovies.find(likeInfo);
+    }
+    client.addLike = async (likeInfo) => {
+        const likeData = (await client.getLikeUnique(likeInfo)).data;
+
+        if (!likeData)
+            return await LikesMovies.save(likeInfo);
+        return 0;
     }
 }

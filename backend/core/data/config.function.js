@@ -1,5 +1,3 @@
-module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil};
-
 async function getUser(client, userInfo){return await client.getUser(userInfo);}
 async function createUser(client, name, email, mdp){return await client.createUser(name, email, mdp);}
 async function updateUser(client, uuid, settings){return await client.updateUser(uuid, settings);}
@@ -14,3 +12,8 @@ async function removeWatchList(client, uuid, film_id){return await client.remove
 async function getFilPopular(client){return await client.getFilPopular();}
 async function getFil(client, filInfo){return await client.getFil(filInfo);}
 async function updateFil(client, filInfo){return await client.updateFil(filInfo);}
+async function getLikeUnique(client, likeInfo){return await client.getLikeUnique(likeInfo);}
+async function getLike(client, likeInfo){return client.getLike(likeInfo);}
+async function addLike(client, likeInfo){return client.addLike(likeInfo);}
+
+module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike};
