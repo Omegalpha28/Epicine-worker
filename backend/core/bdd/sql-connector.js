@@ -353,6 +353,14 @@ class Model {
     }
 
     /**
+     * 
+     * @param {Object} filter The filter criteria for the query. Should be an object where keys are column names and values are the values to filter by.
+     * @returns {Promise<ModelInstance|number>} - A promise that resolves to a `ModelInstance` if a record is found, or `0` if no records match the filter.
+     */
+    async count(filter) {
+        return this.customRequest(`SELECT COUNT(*) as count FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`);
+    }
+    /**
      * Runs a custom SQL_request query.
      * @param {string} custom The custom SQL_request query to execute.
      * @returns {Promise<void>} A promise that resolves when the query is executed.
