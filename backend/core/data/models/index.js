@@ -5,5 +5,6 @@ module.exports = {
     Watchlist: require("./watchlist"),
     Fil: require("./fil"),
     Message: require("./message"),
-    Likes: require("./likes")
+    Likes: require("./likes"),
+    LikesMovies: require("./likesmovies")
 }
