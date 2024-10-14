@@ -11,7 +11,7 @@ fi
 if [ "$2" == "--no-start" ];then
     exit 0
 fi;
-
+npm i
 cd frontend
 npm i
 cd ..

@@ -43,10 +43,14 @@ const userSchema = new Schema({
         type: String,
         default: "Pas de biographie disponible"
     },
+    token_tmdb: {
+        type: String,
+        length: 40,
+        default: null
+    },
     status: {
         type: Number,
         default: 0
     }
 });
-
 module.exports = new Model("User", userSchema);

@@ -116,15 +116,15 @@ async function logout() {
  * const condition = generateCondition(filter, true);
  * console.log(condition); // 'id = 1, name = "John"'
  */
-function generateCondition(filter, isUpdate = false) {
-
+function generateCondition(filter, isUpdate = false)
+{
     const keys = Object.keys(filter);
     const values = Object.values(filter);
 
     const conditions = keys.map((key, index) => {
         const value = values[index];
 
-        if (value === null && isUpdate == false) return `${key} IS NULL`;
+        if ((value === null || value === "null") && isUpdate == false) return `${key} IS NULL`;
         return `${key} = ${typeof value === "string" ? `"${value}"` : value}`;
     }).join(` ${isUpdate == false ? "AND" : ","} `);
 
@@ -486,8 +486,8 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data[0]))}`;
-        
+        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data))}`;
+
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;
