@@ -110,5 +110,28 @@ declare async function getFil(client: object, filInfo: (string | number)[]): Pro
  * @throws {Error} Si une erreur survient
  */
 declare async function updateFil(client: object , filInfo: (string | number)[]): Promise<number | Error>;
-
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil };
+/**
+ * Récupère les premières informations du like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function getLikeUnique(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>;
+/**
+ * Récupère les informations du like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function getLike(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>;
+/**
+ * Ajoute un like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function addLike(client: object, likeInfo: (string)[]): Promise<Object>
+/**
+ * Supprime un like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function removeLike(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike };
