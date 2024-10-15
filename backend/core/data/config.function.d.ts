@@ -134,4 +134,22 @@ declare async function addLike(client: object, likeInfo: (string)[]): Promise<Ob
  * @param likeInfo les informations du like
  */
 declare async function removeLike(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike };
+/**
+ * Réccupère le message unique en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param messageInfo les informations du message
+ */
+declare async function getMessageUnique(client: object, messageInfo: (string | number)[]): Promise<ModelInstance|number>;
+/**
+ * Récupère le message en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param messageInfo les informations du message
+ */
+declare async function getMessage(client: object, messageInfo: (string | number)[]): Promise<ModelInstance|number>;
+/**
+ * Ajoute un message en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param messageInfo les informations du message
+ */
+declare async function addMessage(client: object, messageInfo: (string | number)[]): Promise<Object>
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage };
