@@ -358,7 +358,7 @@ class Model {
      * @returns {Promise<ModelInstance|number>} - A promise that resolves to a `ModelInstance` if a record is found, or `0` if no records match the filter.
      */
     async count(filter) {
-        return this.customRequest(`SELECT COUNT(*) as count FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`);
+        return this.customRequest(`SELECT COUNT(*) as count FROM ${this.name} ${filter != undefined ? `WHERE ${generateCondition(formatObject(filter))}` : ""}`);
     }
     /**
      * Runs a custom SQL_request query.
