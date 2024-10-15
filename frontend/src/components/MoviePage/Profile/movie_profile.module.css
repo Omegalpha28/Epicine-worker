@@ -123,6 +123,28 @@
     flex-direction: column;
 }
 
+.fav {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    max-height: 5vh;
+}
+
+.fav img {
+    width: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s ease-in-out;
+}
+
+.heart {
+    animation: explosion 1s forwards;
+}
+
 .Title,
 .TitleMobile {
     font-size: 80px;
