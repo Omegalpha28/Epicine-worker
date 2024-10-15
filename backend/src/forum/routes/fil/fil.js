@@ -59,5 +59,15 @@ module.exports = async function(client, app, bcrypt) {
             error(err);
             throw new Error(`Error get fil nb: ${err}`);
         }
+    });
+    app.get("/get/fil", async (req, res) => {
+        const { page, limit } = req.body;
+        try {
+            var filData = (await Fil.customRequest(`SELECT Fil.id, Fil.film_id,Fil.title,Fil.description FROM Fil LIMIT ${limit} OFFSET ${limit * (page - 1)}`)).data;
+            res.status(200).json(filData);
+        } catch (err) {
+            error(err);
+            throw new Error(`Error get fil: ${err}`);
+        }
     })
 }

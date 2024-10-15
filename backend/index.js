@@ -11,8 +11,6 @@ const port = 5555;
 dotenv.config();
 const debug = process.env.DEBUG
 
-console.log(debug == "true");
-
 async function main() {
     await connect({
         host: debug == "true" ? process.env.HOST : process.env.S_HOST,

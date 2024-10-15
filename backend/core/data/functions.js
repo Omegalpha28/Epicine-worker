@@ -1,5 +1,6 @@
+const { escape } = require("mysql2");
 const { error } = require("../../src/utils/Logger");
-const { User, Favorite, Watchlist, Fil, Likes, LikesMovies } = require("./models");
+const { User, Favorite, Watchlist, Fil, Likes, LikesMovies, Message } = require("./models");
 
 
 module.exports = client => {
@@ -101,5 +102,14 @@ module.exports = client => {
     }
     client.removeLike = async (likeInfo) => {
         return await LikesMovies.deleteOne(likeInfo);
+    }
+    client.getMessageUnique = async (messageInfo) => {
+        return await Message.findOne(messageInfo);
+    }
+    client.getMessage = async (messageInfo) => {
+        return await Message.find(messageInfo);
+    }
+    client.addMessage = async (messageInfo) => {
+        return await Message.save(messageInfo);
     }
 }
