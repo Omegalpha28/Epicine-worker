@@ -46,6 +46,22 @@
     font-style: italic;
 }
 
+.net_title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.Net {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vw;
+}
+
+.Net img {
+    width: 2vw;
+    cursor: pointer;
+
+}
 .myrow {
     display: flex;
     margin-top: 40px;
@@ -232,6 +248,61 @@
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
+
+.Seasons {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.Seasons button {
+    border-radius: 50px;
+    border: none;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1.5vh;
+    height: 3vh;
+    width: 6vw;
+
+    padding: 0 0.5vw;
+}
+
+.seasonbtn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Seasons button:hover {
+    background-color: var(--color-btn-hover);
+    color: var(--color-text-btn-hover);
+}
+
+.dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 15vh;
+    background-color: var(--color-inside-box);
+    border-radius: 15px;
+    z-index: 10;
+    max-width: 150px;
+    width: 6vw;
+    padding: 5px 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dropdown.show {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
 
 .picture:hover::before {
     opacity: 1;
