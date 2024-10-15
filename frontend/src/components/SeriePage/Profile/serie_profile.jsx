@@ -3,8 +3,8 @@ import styles from './serie_profile.module.css';
 import useTheme from '../../set_theme';
 import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
-import { Trailer_Video } from '../Trailers/trailer_video';
 import { Providers } from '../providers/Providers';
+import { Seasons } from '../Seasons/seasons';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -15,7 +15,7 @@ const formatRuntime = (runtime) => {
     if (!runtime) return 'N/A';
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
-    return ` ${hours}h ${minutes}m `;
+    return `${hours}h ${minutes}m`;
 };
 
 export const Serie_Profile = ({ serieId }) => {
@@ -23,6 +23,8 @@ export const Serie_Profile = ({ serieId }) => {
     const [serieDetails, setSerieDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [seasonID, setSeasonID] = useState(null);
 
     useEffect(() => {
         const fetchSerieDetails = async () => {
@@ -45,7 +47,15 @@ export const Serie_Profile = ({ serieId }) => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    console.log(serieDetails);
+    const handleSeasonChange = (newSeasonID) => {
+        setSeasonID(newSeasonID);
+        setDropdownVisible(false);
+    };
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+    };
+
     const rating = serieDetails ? serieDetails.vote_average : 0;
     const ratingPercentage = rating ? Math.round(rating * 10) : 0;
     const formattedRuntime = serieDetails && serieDetails.episode_run_time.length > 0
@@ -76,6 +86,24 @@ export const Serie_Profile = ({ serieId }) => {
 
                         <hr className={styles.sectionDivider} />
 
+                        <div className={styles.net}>
+                            <div className={styles.net_title}>
+                                <strong>Networks</strong>
+                            </div>
+                            <br />
+                            {serieDetails.networks.length > 0 ? (
+                                serieDetails.networks.map((network, index) => (
+                                    <div key={index} className={styles.Net}>
+                                        <img src={`https://image.tmdb.org/t/p/w45${network.logo_path}`} alt={network.name} />
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No Networks available.</p>
+                            )}
+                        </div>
+
+                        <hr className={styles.sectionDivider} />
+
                         <div className={styles.providers}>
                             <strong>Providers</strong> <br /> <Providers serieId={serieId} />
                         </div>
@@ -87,12 +115,11 @@ export const Serie_Profile = ({ serieId }) => {
                             {serieDetails.first_air_date}
                         </div>
 
-                        {serieDetails.episode_run_time != 0 && (
+                        {serieDetails.episode_run_time.length > 0 && (
                             <>
                                 <hr className={styles.sectionDivider} />
-
                                 <div className={styles.runtime}>
-                                    <strong>Episode Runtime</strong> <br /> {serieDetails.episode_run_time} min
+                                    <strong>Episode Runtime</strong> <br /> {formattedRuntime}
                                 </div>
                             </>
                         )}
@@ -148,6 +175,22 @@ export const Serie_Profile = ({ serieId }) => {
                         <div className={styles.Resume}>
                             {serieDetails.overview ? serieDetails.overview : "Nothing to view"}
                         </div>
+
+                        <div className={styles.Seasons}>
+                            <div className={styles.RoleTitle}>Episode</div>
+                            <div className={styles.seasonbtn} >
+                                <button onClick={toggleDropdown} >Select Season</button>
+                                <div className={`${styles.dropdown} ${dropdownVisible ? styles.show : ''}`}>
+                                {serieDetails && serieDetails.seasons.map((season) => (
+                                    <button key={season.season_number} onClick={() => handleSeasonChange(season.season_number)} className={seasonID === season.season_number ? styles.active : ''}>
+                                        Season {season.season_number}
+                                    </button>
+                                ))}
+                                </div>
+                            </div>
+                            <Seasons serieId={serieId} seasonID={seasonID} />
+                        </div>
+
                         <div className={styles.Roles}>
                             <div className={styles.RoleTitle}>Cast</div>
                             <Roles serieId={serieId} />

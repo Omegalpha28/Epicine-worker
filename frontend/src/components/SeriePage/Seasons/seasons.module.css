@@ -1,0 +1,135 @@
+.inside_box {
+    background: var(--color-inside-box);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 5vh;
+    overflow-x: hidden;
+}
+
+.categories {
+    position: relative;
+}
+
+.categories button {
+    border-radius: 50px;
+    border: none;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1.5vh;
+    height: 3vh;
+    width: auto;
+    padding: 0 10px;
+}
+
+.dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    background-color: var(--color-inside-box);
+    border-radius: 10px;
+    z-index: 10;
+    max-width: 150px;
+    width: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.categories button:active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.season_buttons button {
+    border-radius: 50px;
+    border: none;
+    background-color: var(--color-btn);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+    font-size: 1.5vh;
+    height: 3vh;
+    width: auto;
+    padding: 0 10px;
+    margin-right: 0.5rem;
+}
+
+.season_buttons button:hover {
+    background-color: var(--color-btn-hover);
+    color: var(--color-text-btn-hover);
+}
+
+.season_buttons .active {
+    background-color: var(--color-btn-active);
+}
+
+.episode_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.episode_grid {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a transparent;
+}
+
+.episode_grid::-webkit-scrollbar {
+    height: 5px;
+}
+
+.episode_grid::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 10px;
+}
+
+.episode_item {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    align-items: center;
+    color: var(--color-text);
+    margin-top: 0.5rem;
+    border-radius: 15px;
+    transition: transform 0.25s ease-in-out;
+}
+
+.episode_item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.episode_title {
+    display: block;
+    margin-top: 10px;
+    width: 12ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    color: var(--color-text);
+}
+
+.episode_item img {
+    width: 120px;
+    height: 160px;
+    max-width: 120px;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.episode_item img:hover {
+    opacity: 0.5;
+}
