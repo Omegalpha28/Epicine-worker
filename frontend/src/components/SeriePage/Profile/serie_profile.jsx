@@ -5,6 +5,8 @@ import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Providers } from '../providers/Providers';
 import { Seasons } from '../Seasons/seasons';
+import fav_pressed from '../../../../assets/heart.png';
+import fav from '../../../../assets/favorite.png';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -24,7 +26,31 @@ export const Serie_Profile = ({ serieId }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [seasonID, setSeasonID] = useState(null);
+    const [seasonID, setSeasonID] = useState(1);
+    const [isClicked, setIsClicked] = useState(false);
+    const [hearts, setHearts] = useState([]);
+
+    const handleClick = () => {
+        setIsClicked(!isClicked);
+
+        const newHearts = Array.from({ length: 10 }).map((_, index) => {
+            const randomX = Math.random() * 100 - 50;
+            const randomY = Math.random() * 50 + 30;
+            const animationDuration = Math.random() * 1 + 0.5 + 's';
+
+            return {
+                id: index,
+                left: `${randomX}px`,
+                translateY: `${-randomY}px`,
+                animationDuration,
+            };
+        });
+
+        setHearts(newHearts);
+        setTimeout(() => {
+            setHearts([]);
+        }, 1000);
+    };
 
     useEffect(() => {
         const fetchSerieDetails = async () => {
@@ -72,6 +98,16 @@ export const Serie_Profile = ({ serieId }) => {
                             <a href={serieDetails.homepage} target="_blank" rel="noopener noreferrer">
                                 <img src={`https://image.tmdb.org/t/p/w300${serieDetails.poster_path}`} alt={serieDetails.name} />
                             </a>
+                        </div>
+                        <div className={styles.fav} onClick={handleClick}>
+                            {hearts.map(heart => (
+                                <img key={heart.id} src={fav_pressed} alt="Favori actif" className={styles.heart} style={{  left: heart.left,   animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})`, }} />
+                            ))}
+                            {isClicked ? (
+                                <img src={fav_pressed} alt="Favori actif" className={styles.img} />
+                            ) : (
+                                <img src={fav} alt="Favori inactif" className={styles.img} />
+                            )}
                         </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
@@ -177,18 +213,22 @@ export const Serie_Profile = ({ serieId }) => {
                         </div>
 
                         <div className={styles.Seasons}>
-                            <div className={styles.RoleTitle}>Episode</div>
-                            <div className={styles.seasonbtn} >
-                                <button onClick={toggleDropdown} >Select Season</button>
-                                <div className={`${styles.dropdown} ${dropdownVisible ? styles.show : ''}`}>
-                                {serieDetails && serieDetails.seasons.map((season) => (
-                                    <button key={season.season_number} onClick={() => handleSeasonChange(season.season_number)} className={seasonID === season.season_number ? styles.active : ''}>
-                                        Season {season.season_number}
-                                    </button>
-                                ))}
+                            <div className={styles.Seasons}>
+                                <div className={styles.RoleTitle}>Episode</div>
+                                <div className={styles.seasonbtn}>
+                                    <div className={`${styles.dropdown} ${dropdownVisible ? styles.show : ''}`}>
+                                        {serieDetails && serieDetails.seasons .filter(season => season.season_number !== 0) .map(season => (
+                                            <button key={season.season_number} onClick={() => handleSeasonChange(season.season_number)} className={seasonID === season.season_number ? styles.active : ''}>
+                                            Season {season.season_number}
+                                        </button>
+                                        ))}
+                                    </div>
+                                    <button onClick={toggleDropdown}>Select Season</button>
                                 </div>
+                                {seasonID > 0 && (
+                                    <Seasons serieId={serieId} seasonID={seasonID} />
+                                )}
                             </div>
-                            <Seasons serieId={serieId} seasonID={seasonID} />
                         </div>
 
                         <div className={styles.Roles}>

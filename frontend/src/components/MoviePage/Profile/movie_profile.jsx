@@ -5,26 +5,49 @@ import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Trailer_Video } from '../Trailers/trailer_video';
 import { Providers } from '../providers/Providers';
+import fav_pressed from '../../../../assets/heart.png';
+import fav from '../../../../assets/favorite.png';
 
-// Fonction pour obtenir le style de fond de la note
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
     return `linear-gradient(360deg, var(--color-radiant1) ${percentage}%, var(--color-radiant2) ${100 - percentage}%)`;
 };
 
-// Fonction pour formater la durée du film
 const formatRuntime = (runtime) => {
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
     return ` ${hours}h ${minutes}m `;
 };
 
-// Composant principal
 export const Movie_Profile = ({ movieId }) => {
     const [isDark] = useTheme();
     const [movieDetails, setMovieDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isClicked, setIsClicked] = useState(false);
+    const [hearts, setHearts] = useState([]);
+
+    const handleClick = () => {
+        setIsClicked(!isClicked);
+
+        const newHearts = Array.from({ length: 10 }).map((_, index) => {
+            const randomX = Math.random() * 100 - 50;
+            const randomY = Math.random() * 50 + 30;
+            const animationDuration = Math.random() * 1 + 0.6 + 's';
+
+            return {
+                id: index,
+                left: `${randomX}px`,
+                translateY: `${-randomY}px`,
+                animationDuration,
+            };
+        });
+
+        setHearts(newHearts);
+        setTimeout(() => {
+            setHearts([]);
+        }, 1000);
+    };
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -62,7 +85,16 @@ export const Movie_Profile = ({ movieId }) => {
                                 <img src={`https://image.tmdb.org/t/p/w300${movieDetails.poster_path}`} alt={movieDetails.title} />
                             </a>
                         </div>
-
+                        <div className={styles.fav} onClick={handleClick}>
+                            {hearts.map(heart => (
+                                <img key={heart.id} src={fav_pressed} alt="Favori actif" className={styles.heart} style={{  left: heart.left,   animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})`, }} />
+                            ))}
+                            {isClicked ? (
+                                <img src={fav_pressed} alt="Favori actif" className={styles.img} />
+                            ) : (
+                                <img src={fav} alt="Favori inactif" className={styles.img} />
+                            )}
+                        </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
                                 <div className={styles.RatingTitle}><strong>Rating</strong></div>

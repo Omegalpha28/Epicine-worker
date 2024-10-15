@@ -1,4 +1,4 @@
-
+@import '../../animations/animation.css';
 
 .box {
     background-color: transparent;
@@ -168,6 +168,28 @@
     font-size: 20px;
 }
 
+.fav {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    max-height: 5vh;
+}
+
+.fav img {
+    width: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s ease-in-out;
+}
+
+.heart {
+    animation: explosion 1s forwards;
+}
+
 .released {
     font-size: 20px;
 }
@@ -250,23 +272,21 @@
 }
 
 .Seasons {
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
 .Seasons button {
-    border-radius: 50px;
     border: none;
     background-color: var(--color-btn);
     color: var(--color-text);
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     font-size: 1.5vh;
-    height: 3vh;
+    height: 4vh;
+    z-index: 11;
     width: 6vw;
-
     padding: 0 0.5vw;
 }
 
@@ -274,6 +294,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
+    font-size: 20px;
 }
 
 .Seasons button:hover {
@@ -282,25 +304,25 @@
 }
 
 .dropdown {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
-    margin-top: 15vh;
-    background-color: var(--color-inside-box);
+    top: 100%;
+    left: 84%;
     border-radius: 15px;
     z-index: 10;
     max-width: 150px;
-    width: 6vw;
     padding: 5px 0;
-    transition: opacity 0.3s ease;
     opacity: 0;
     visibility: hidden;
+    transform: translateY(-5vh);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .dropdown.show {
-    display: flex;
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 
