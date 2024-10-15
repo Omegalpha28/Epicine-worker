@@ -51,5 +51,13 @@ module.exports = async function(client, app, bcrypt) {
             }
         }
         else res.status(500).json({"msg": "Internal server error"});
+    });
+    app.get("/get/fil/nb", async (req, res) => {
+        try {
+            res.status(200).json((await Fil.count()).data);
+        } catch (error) {
+            error(err);
+            throw new Error(`Error get fil nb: ${err}`);
+        }
     })
 }
