@@ -138,12 +138,26 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 1s ease-in-out;
+    transition: 2s ease-in-out;
 }
 
 .heart {
-    animation: explosion 1s forwards;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 50px;
+    cursor: pointer;
+    transition: 5s ease-in-out;
 }
+
+.heart_appear {
+    animation: reverse_explosion 2s forwards;
+}
+
+.heart {
+    animation: explosion 2s forwards;
+}
+
 
 .Title,
 .TitleMobile {

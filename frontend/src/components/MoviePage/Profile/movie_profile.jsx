@@ -28,21 +28,22 @@ export const Movie_Profile = ({ movieId }) => {
     const [hearts, setHearts] = useState([]);
 
     const handleClick = () => {
-        setIsClicked(!isClicked);
-
+        const newIsClicked = !isClicked;
+        setIsClicked(newIsClicked);
+        const animationClass = newIsClicked ? 'appear' : 'disappear';
         const newHearts = Array.from({ length: 10 }).map((_, index) => {
             const randomX = Math.random() * 100 - 50;
             const randomY = Math.random() * 50 + 30;
-            const animationDuration = Math.random() * 1 + 0.6 + 's';
+            const animationDuration = Math.random() * 1 + 0.5 + 's';
 
             return {
                 id: index,
                 left: `${randomX}px`,
                 translateY: `${-randomY}px`,
                 animationDuration,
+                animationClass,
             };
         });
-
         setHearts(newHearts);
         setTimeout(() => {
             setHearts([]);
@@ -86,13 +87,20 @@ export const Movie_Profile = ({ movieId }) => {
                             </a>
                         </div>
                         <div className={styles.fav} onClick={handleClick}>
-                            {hearts.map(heart => (
-                                <img key={heart.id} src={fav_pressed} alt="Favori actif" className={styles.heart} style={{  left: heart.left,   animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})`, }} />
-                            ))}
                             {isClicked ? (
-                                <img src={fav_pressed} alt="Favori actif" className={styles.img} />
+                                <>
+                                    {hearts.map((heart) => (
+                                        <img key={heart.id} src={fav_pressed} alt="Favori actif" className={`${styles.heart} ${isClicked ? 'appear' : 'disappear'}`} style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
+                                    ))}
+                                    <img src={fav_pressed} alt="Favori actif" className={styles.img} />
+                                </>
                             ) : (
-                                <img src={fav} alt="Favori inactif" className={styles.img} />
+                                <>
+                                    {hearts.map((heart) => (
+                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
+                                    ))}
+                                    <img src={fav} alt="Favori inactif" className={styles.img} />
+                                </>
                             )}
                         </div>
                         <div className={styles.myrow}>
