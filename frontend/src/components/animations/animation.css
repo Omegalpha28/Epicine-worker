@@ -19,7 +19,23 @@
 @keyframes explosion {
   0% {
       opacity: 1;
+      transform: translateY(-100px) scale(0.3);
+
+  }
+  50% {
+      opacity: 1;
+      transform: translateY(-50px) scale(0.5);
+  }
+  100% {
+      opacity: 0;
       transform: translateY(0) scale(0.8);
+  }
+}
+
+@keyframes reverse_explosion {
+  0% {
+      opacity: 1;
+      transform: translateY(-100px) scale(0.3);
   }
   50% {
       opacity: 1;
@@ -27,9 +43,11 @@
   }
   100% {
       opacity: 0; /* Disparaître */
-      transform: translateY(-100px) scale(0.3); /* Élever et réduire */
+      transform: translateY(0) scale(0.8);
+
   }
 }
+
 
 @keyframes moveGradient {
   0% {
