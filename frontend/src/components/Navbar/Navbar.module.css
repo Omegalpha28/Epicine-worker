@@ -17,6 +17,38 @@
     transition: 0.25s ease-in-out;
 }
 
+.searchContent {
+    position: absolute; /* Reste positionné par rapport à la barre de navigation */
+    top: 100%; /* Aligne en bas de la barre de navigation */
+    left: 0; /* Aligne à gauche par rapport à la barre de navigation */
+    right: 0; /* Aligne à droite par rapport à la barre de navigation */
+    background-color: var(--color-app); /* Couleur de fond */
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); Ombre pour le contenu */
+    z-index: 99; /* Assure qu'il est au-dessus des autres éléments */
+    display: none; /* Par défaut, caché */
+    flex-direction: column; /* Permet d'organiser les éléments en colonne */
+    /* animation: fadeIn 0.3s; Animation d'apparition */
+}
+
+/* Afficher le contenu de recherche lorsque searchOpen est vrai */
+.box.open + .searchContent {
+    display: flex; /* Affiche le contenu de recherche */
+}
+
+/* Animation pour l'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Commence transparent */
+        transform: translateY(-10px); /* Légère translation vers le haut */
+    }
+    to {
+        opacity: 1; /* Devient opaque */
+        transform: translateY(0); /* Retourne à sa position d'origine */
+    }
+}
+
+
+
 .logo {
     height: 40px;
     margin-top: 14px;
@@ -56,7 +88,6 @@
     content: '';
     height: 5px;
     width: 0%;
-    /* background: var(--color-primary); */
     position: absolute;
     left: 50%;
     bottom: 0px;
@@ -89,8 +120,6 @@
     height: 100%;
     left: 0%;
     bottom: 0%;
-    width: 100%;
-    /* background: var(--color-primary); */
 }
 
 .account_PC {
@@ -99,7 +128,6 @@
     color: var(--color-text);
     text-decoration: none;
     padding: 0.5% 1%;
-    text-decoration: none;
     float: right;
     margin-left: auto;
     margin-top: 5px;
@@ -109,7 +137,6 @@
     content: '';
     height: 5px;
     width: 0%;
-    /* background: var(--color-primary); */
     position: absolute;
     left: 50%;
     bottom: 0px;
@@ -127,7 +154,6 @@
     content: '';
     height: 0%;
     width: 100%;
-    /* background: var(--color-secondary); */
     position: absolute;
     left: 0%;
     bottom: 50%;
@@ -139,8 +165,6 @@
     height: 100%;
     left: 0%;
     bottom: 0%;
-    width: 100%;
-    /* background: var(--color-primary); */
 }
 
 .account_MB {
@@ -158,7 +182,6 @@
     cursor: pointer;
     padding: 20px 20px;
     background-color: var(--color-search-bar);
-    /* border: 0.1px solid var(--color-input-bg); */
     border-radius: 30px;
     align-items: center;
     margin-top: 2px;
@@ -215,7 +238,6 @@
     width: 400px;
 }
 
-
 @media screen and (max-width: 875px) {
     .navbar {
         flex-direction: row;
@@ -243,7 +265,6 @@
         display: block;
         cursor: pointer;
         top: 50%;
-        /* Center vertically */
         transform: translateY(-50%);
         margin-right: 8vw;
     }
@@ -282,4 +303,3 @@
         color: var(--color-text);
     }
 }
-

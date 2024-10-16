@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { getImageUrl } from "../../utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faSignOutAlt, faCog } from '@fortawesome/free-solid-svg-icons';
+import { Search_Content } from "../Home/Search_Content/Search_Content";
 
-export const Navbar = ({ setSearchQuery, searchOpen, setSearchOpen, isLoggedIn, setIsLoggedIn }) => {
+export const Navbar = ({ isDark, setIsDark, isLoggedIn, setIsLoggedIn }) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
     const [searchText, setSearchText] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -61,7 +64,7 @@ export const Navbar = ({ setSearchQuery, searchOpen, setSearchOpen, isLoggedIn, 
                             <li><Link to="/settings">Settings</Link></li>
                             <li className={styles.account_MB}>
                                 <a onClick={handleLogout}>
-                                <FontAwesomeIcon icon="fa-solid fa-user-plus" />
+                                    <FontAwesomeIcon icon="fa-solid fa-user-plus" />
                                 </a>
                             </li>
                         </>
@@ -96,6 +99,11 @@ export const Navbar = ({ setSearchQuery, searchOpen, setSearchOpen, isLoggedIn, 
                     />
                 </a>
             </div>
+            {searchOpen && searchQuery && (
+                <div className={`${styles.searchContent}`}>
+                    <Search_Content query={searchQuery} />
+                </div>
+            )}
             <Link className={styles.account_PC} to={isLoggedIn ? "#" : "/login"}>
                 <FontAwesomeIcon icon={isLoggedIn ? faSignOutAlt : faUserTie} />
             </Link>
