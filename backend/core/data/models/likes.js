@@ -1,24 +1,20 @@
 const { Schema, Model } = require("../../bdd/sql-connector");
 
 const likesSchema = new Schema({
-    id: {
-        type: Number,
-        auto_increment: true,
-        customize: "PRIMARY KEY"
-    },
-    id_message: {
-        type: Number,
-        foreignKey: "Message(id)"
-    },
-    auteur: {
+    userUUID: {
         type: String,
         length: 36,
-        foreignKey: "User(uuid)"
+        required: true,
+        foreignKey: "User(uuid)",
     },
-    type: {
+    item_id: {
         type: Number,
         required: true
-    }
-});
+    },
+    type: {
+        type: String,
+        required: true
+    },
+})
 
 module.exports = new Model("Likes", likesSchema);
