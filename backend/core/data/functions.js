@@ -79,13 +79,11 @@ module.exports = client => {
     client.getFil = async (filInfo) => {
         return await Fil.find(filInfo);
     }
-    client.updateFil = async (filInfo) => {
-        const filData = (await client.getFil({id: filInfo.id, auteur: filInfo.auteur}));
+    client.updateFil = async (auteur, filInfo) => {
+        const filData = (await client.getFil({id: filInfo.id, auteur: auteur}));
 
         if (filData.data[0] != undefined)
             delete filData.data[0].date;
-        console.log("filInfo", filInfo);
-        
         return await filData.updateOne(filInfo);
     }
     client.getLikeUnique = async (likeInfo) => {

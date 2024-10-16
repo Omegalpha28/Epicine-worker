@@ -28,7 +28,7 @@ module.exports = async function(client, app, bcrypt) {
         
         if (!(await Fil.findOne({title: title})).data.open) res.status(400).json({"msg": "Le fil est fermé"});
         else {
-            if (await updateFil(client, {id: fil_id, auteur: req.uuiduser, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
+            if (await updateFil(client, req.uuiduser, {id: fil_id, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
             else res.status(500).json({"msg": "Internal server error"});
         }
     })
