@@ -15,12 +15,14 @@ const messageSchema = new Schema({
         required: true
     },
     date: {
-        type: sqlType.DateTime,
-        required: true
+        type: sqlType.Timestamp,
+        required: true,
+        customize: "DEFAULT CURRENT_TIMESTAMP"
     },
     report: {
         type: Boolean,
-        required: true
+        required: true,
+        default: 0
     },
     auteur: {
         type: String,
