@@ -1,5 +1,7 @@
+const { User } = require("../../../../core/data/models");
 const { validUserArgs } = require("../../../utils/valid_args");
-const { checkAccountMail, register, getAccountMail } = require("../user/user.query");
+const auth = require("../../middleware/auth");
+const { checkAccountMail, register, getAccountMail, checkMdp } = require("../user/user.query");
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -42,4 +44,16 @@ module.exports = async function (client, app, bcrypt) {
             }
         })
     });
+    app.delete("/delete", auth, async (req, res) => {
+        const { email, password } = req.body;
+
+        if (!email || !password || email.length == 0 || password.length == 0) res.status(400).json({"msg": "email and password is required"});
+        if (User.count({email: email}) == 0) res.status(404).json({"msg": "Internal server error"});
+        if (checkMdp(client, res, email, password)) {
+            User.deleteOne({email: email, password: password});
+            res.status(200).json({"msg": "deleted"});
+        }
+        else
+            res.status(500).json({"msg": "Internal server error"});
+    })
 }

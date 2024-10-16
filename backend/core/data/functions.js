@@ -120,4 +120,11 @@ module.exports = client => {
             return 0;
         return await messageData.updateOne(messageInfo);
     }
+    client.removeMessage = async (messageInfo) => {
+        const messageData = await client.getMessageUnique({id: messageInfo.id, id_fil: messageInfo.id_fil, auteur: messageInfo.auteur});
+
+        if (messageData.data)
+            return await messageData.deleteOne(messageInfo);
+        return 0;
+    }
 }
