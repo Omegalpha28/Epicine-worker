@@ -6,16 +6,28 @@ module.exports = async function(client, app, bcrypt) {
         const uuid = req.uuiduser
         const favData = (await getFavorite(client, {userUUID: uuid})).data;
 
-        if (favData) res.status(200).json(favData);
+        if (favData) {
+            const favoritesByType = {};
+
+            favData.forEach(favorite => {
+                const type = favorite.type;
+                if (!favoritesByType[type]) {
+                    favoritesByType[type] = [];
+                }
+                favoritesByType[type].push(favorite);
+            });
+            res.status(200).json(favoritesByType);
+        }
         else res.status(404).json({"msg": "Internal server erro"});
     })
     app.post("/add/favorite", auth, async (req, res) => {
         const uuid = req.uuiduser
-        const film_id = req.body["film_id"];
-        const favData = (await getFavoriteUnique(client, {userUUID: uuid, film_id: film_id})).data;
+        const {item_id, type, is_view} = req.body;
+
+        const favData = (await getFavoriteUnique(client, {userUUID: uuid, item_id: item_id, type: type, is_view: is_view})).data;
 
         if (!favData) {
-            if (!(await addFavorite(client, uuid, film_id)))
+            if (!(await addFavorite(client, uuid, item_id, type, is_view)))
                 res.status(404).json({"msg": "Internal server error"});
             else
                 res.status(200).json({"msg": "added"});
@@ -25,11 +37,11 @@ module.exports = async function(client, app, bcrypt) {
 
     app.delete("/remove/favorite", auth, async (req, res) => {
         const uuid = req.uuiduser
-        const film_id = req.body["film_id"];
-        const favData = (await getFavoriteUnique(client, {userUUID: uuid, film_id: film_id})).data;
+        const item_id = req.body["item_id"];
+        const favData = (await getFavoriteUnique(client, {userUUID: uuid, item_id: item_id})).data;
 
         if (favData) {
-            if (!(await removeFavorite(client, uuid, film_id)))
+            if (!(await removeFavorite(client, uuid, item_id)))
                 res.status(404).json({"msg": "Internal server error"});
             else
                 res.status(200).json({"msg": "removed"});

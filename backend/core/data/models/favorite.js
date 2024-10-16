@@ -7,10 +7,19 @@ const favoriteSchema = new Schema({
         required: true,
         foreignKey: "User(uuid)",
     },
-    film_id: {
+    item_id: {
         type: Number,
         required: true
-    }
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    is_view: {
+        type: Boolean,
+        required: true,
+        default: 0
+    },
 });
 
 module.exports = new Model("Favorite", favoriteSchema);

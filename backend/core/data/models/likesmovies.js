@@ -7,10 +7,14 @@ const likesMoviesSchema = new Schema({
         required: true,
         foreignKey: "User(uuid)",
     },
-    film_id: {
+    item_id: {
         type: Number,
         required: true
-    }
+    },
+    type: {
+        type: String,
+        required: true
+    },
 })
 
 module.exports = new Model("LikesMovies", likesMoviesSchema);

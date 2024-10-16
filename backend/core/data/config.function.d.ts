@@ -47,20 +47,22 @@ declare async function getFavorite(client: object, favInfo: (string | number)[])
  * Ajoute un favoris à l'utilisateur en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
  * @param uuid identifiant de l'utilisateur
- * @param film_id indentifiant du film
+ * @param item_id indentifiant de l'item
+ * @param type le type de favoris
+ * @param is_view si le film est vu
  * @returns {Promise<Object>} Les informations de l'utilisateur
  * @throws {Error} Si une erreur survient
  */
-declare async function addFavorite(client: object, uuid: string, film_id: number): Promise<Object>
+declare async function addFavorite(client: object, uuid: string, item_id: number, type: string, is_view: boolean): Promise<Object>
 
 /**
  * Supprime un favoris à l'utilisateur en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
  * @param uuid identifiant de l'utilisateur
- * @param film_id indentifiant du film
+ * @param item_id indentifiant de l'item
  * @returns {Promise<ModelInstance|number>} Les favoris de l'utilisateur supprimer
  */
-declare async function removeFavorite(client: object, uuid: string, film_id: number): Promise<ModelInstance|number>
+declare async function removeFavorite(client: object, uuid: string, item_id: number): Promise<ModelInstance|number>
 
 /**
  * Récupère un élément de la liste de lecture de l'utilisateur en fonction des informations fournies
@@ -74,20 +76,20 @@ declare async function getWatchListUnique(client: object, watchInfo): Promise<Mo
  * Ajoute un élément à la liste de lecture de l'utilisateur en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
  * @param uuid identifiant de l'utilisateur
- * @param film_id indentifiant du film
+ * @param item_id indentifiant de l'item
  * @returns {Promise<Object>} Les informations de la liste de lecture de l'utilisateur
  * @throws {Error} Si une erreur survient
  */
-declare async function addWatchList(client: object, uuid: string, film_id: number): Promise<Object>
+declare async function addWatchList(client: object, uuid: string, item_id: number): Promise<Object>
 
 /**
  * Supprime un élément de la liste de lecture de l'utilisateur en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
  * @param uuid identifiant de l'utilisateur
- * @param film_id indentifiant du film
+ * @param item_id indentifiant de l'item
  * @returns {Promise<ModelInstance|number>} La liste de lecture de l'utilisateur supprimer
  */
-declare async function removeWatchList(client: object , uuid: string, film_id: number);
+declare async function removeWatchList(client: object , uuid: string, item_id: number);
 
 /**
  * Récupère les fils les plus populaires
