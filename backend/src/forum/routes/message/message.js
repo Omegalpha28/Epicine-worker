@@ -1,3 +1,4 @@
+const { addMessage, getMessageUnique } = require("../../../../core/data/config.function");
 const auth = require("../../../epicine/middleware/auth")
 
 module.exports = async function(client, app, bcrypt) {
@@ -9,9 +10,9 @@ module.exports = async function(client, app, bcrypt) {
         else res.status(500).json({"msg": "Internal server error"});
     })
     app.get("/get/message", auth, async (req, res) => {
-        const {id_fil} = req.body
+        const {id, id_fil} = req.body
 
-        const msgData = await getMessage(client, {id_fil:id_fil});
-        res.status(200).json(msgData);
+        const msgData = await getMessageUnique(client, {id:id, id_fil:id_fil});
+        res.status(200).json(msgData.data);
     })
 }

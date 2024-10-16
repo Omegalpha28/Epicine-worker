@@ -1,7 +1,7 @@
-const { updateFil, getFil } = require("../../../../core/data/config.function");
+const { updateFil } = require("../../../../core/data/config.function");
 const { Fil } = require("../../../../core/data/models");
 const auth = require("../../../epicine/middleware/auth");
-const { error, logs } = require("../../../utils/Logger");
+const { error } = require("../../../utils/Logger");
 
 module.exports = async function(client, app, bcrypt) {
     app.post("/add/fil", auth, async (req, res) => {
