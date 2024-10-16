@@ -494,8 +494,8 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data[0]))}`;
-        
+        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data[0] != undefined ? this.data[0] : this.data))}`;
+
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);
             throw err;
