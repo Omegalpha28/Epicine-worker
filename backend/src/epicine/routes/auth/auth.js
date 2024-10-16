@@ -1,6 +1,10 @@
 const { validUserArgs } = require("../../../utils/valid_args");
 const { checkAccountMail, register, getAccountMail } = require("../user/user.query");
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 module.exports = async function (client, app, bcrypt) {
     app.post("/register", async (req, res) => {
         var email = req.body["email"];
@@ -32,8 +36,10 @@ module.exports = async function (client, app, bcrypt) {
             return;
         }
         await getAccountMail(client, res, email, mdp, bcrypt, async nb => {
-            if (nb == 84)
+            if (nb == 84) {
+                await sleep(1000);
                 res.status(404).json({"msg": "Invalid Credentials"});
+            }
         })
     });
 }

@@ -4,11 +4,11 @@ const auth = require("../../../middleware/auth");
 module.exports = async function(client, app, bcrypt) {
     app.post("/add/like", auth, async (req, res) => {
         const uuid = req.uuiduser;
-        const {item_id, type} = req.body;
+        const {item_id, type, value} = req.body;
         const likeData = (await getLikeUnique(client, {userUUID: uuid, item_id: item_id, type: type})).data;
 
         if (!likeData) {
-            if (!(await addLike(client, {userUUID: uuid, item_id: item_id, type: type})))
+            if (!(await addLike(client, {userUUID: uuid, item_id: item_id, type: type, value: value})))
                 res.status(404).json({"msg": "Internal server error"});
             else
                 res.status(201).json({"msg": "added"});
