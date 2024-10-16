@@ -20,5 +20,6 @@ async function getMessageUnique(client, messageInfo){return client.getMessageUni
 async function getMessage(client, messageInfo){return client.getMessage(messageInfo);}
 async function addMessage(client, messageInfo){return client.addMessage(messageInfo);}
 async function updateMessage(client, auteur, messageInfo){return client.updateMessage(auteur, messageInfo);}
+async function removeMessage(client, messageInfo){return client.removeMessage(messageInfo);}
 
-module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage};
+module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage, removeMessage};
