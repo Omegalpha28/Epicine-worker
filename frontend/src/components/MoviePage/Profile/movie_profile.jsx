@@ -97,7 +97,7 @@ export const Movie_Profile = ({ movieId }) => {
                             ) : (
                                 <>
                                     {hearts.map((heart) => (
-                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
+                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart_appear} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
                                     ))}
                                     <img src={fav} alt="Favori inactif" className={styles.img} />
                                 </>

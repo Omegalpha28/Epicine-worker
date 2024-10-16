@@ -357,9 +357,9 @@
     }
 
     .Ratings {
-        width: 50vw;
-        height: 2vh;
-        font-size: 20px;
+        width: 250px;
+        height: 20px;
+        font-size: 18px;
     }
 
     .picture {
