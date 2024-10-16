@@ -41,16 +41,16 @@ module.exports = client => {
         return await Favorite.find(favInfo);
     }
 
-    client.addFavorite = async (uuid, film_id) => {
-        const favData = (await Favorite.findOne({ userUUID: uuid, film_id: film_id })).data;
+    client.addFavorite = async (uuid, item_id, type, is_view) => {
+        const favData = (await Favorite.findOne({ userUUID: uuid, item_id: item_id, type: type, is_view: is_view })).data;
 
         if (!favData)
-            return await Favorite.save({ userUUID: uuid, film_id: film_id });
+            return await Favorite.save({ userUUID: uuid, item_id: item_id, type: type });
         return 0;
     }
 
-    client.removeFavorite = async (uuid, film_id) => {
-        return await Favorite.deleteOne({ userUUID: uuid, film_id: film_id });
+    client.removeFavorite = async (uuid, item_id) => {
+        return await Favorite.deleteOne({ userUUID: uuid, item_id: item_id });
     }
 
     client.getWatchListUnique = async (watchInfo) => {
@@ -61,16 +61,16 @@ module.exports = client => {
         return await Watchlist.find(watchInfo);
     }
 
-    client.addWatchList = async (uuid, film_id) => {
-        const watchData = (await Watchlist.findOne({ userUUID: uuid, film_id: film_id })).data;
+    client.addWatchList = async (uuid, item_id) => {
+        const watchData = (await Watchlist.findOne({ userUUID: uuid, item_id: item_id })).data;
 
         if (!watchData)
-            return await Watchlist.save({ userUUID: uuid, film_id: film_id });
+            return await Watchlist.save({ userUUID: uuid, item_id: item_id });
         return 0;
     }
 
-    client.removeWatchList = async (uuid, film_id) => {
-        return await Watchlist.deleteOne({ userUUID: uuid, film_id: film_id });
+    client.removeWatchList = async (uuid, item_id) => {
+        return await Watchlist.deleteOne({ userUUID: uuid, item_id: item_id });
     }
 
     client.getFilPopular = async () => {
@@ -85,6 +85,8 @@ module.exports = client => {
 
         if (filData.data[0] != undefined)
             delete filData.data[0].date;
+        console.log("filInfo", filInfo);
+        
         return await filData.updateOne(filInfo);
     }
     client.getLikeUnique = async (likeInfo) => {

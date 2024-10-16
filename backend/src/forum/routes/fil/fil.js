@@ -35,8 +35,8 @@ module.exports = async function(client, app, bcrypt) {
 
     app.post("/close/fil", auth, async (req, res) => {
         const {fil_id} = req.body;
-
-        if ((await getFil(client, {id: fil_id})).data.length != 0 && await updateFil(client, {id: fil_id, auteur: req.uuiduser, open: 0})) res.status(200).json({"msg": "Fil fermé"});
+        console.log((await Fil.findOne({id: fil_id})).data);
+        if ((await Fil.count({id: fil_id})).data[0].count && await updateFil(client, {id: fil_id, auteur: req.uuiduser, open: 0})) res.status(200).json({"msg": "Fil fermé"});
         else res.status(500).json({"msg": "Internal server error"});
     });
     app.delete("/remove/fil", auth, async (req, res) => {
