@@ -15,6 +15,10 @@ const likesSchema = new Schema({
         type: String,
         required: true
     },
+    value: {
+        type: Number,
+        required: true,
+    },
 })
 
 module.exports = new Model("Likes", likesSchema);
