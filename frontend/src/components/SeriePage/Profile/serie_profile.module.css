@@ -149,17 +149,6 @@
     width: 90%;
 }
 
-
-@keyframes moveGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
 .TitleMobile {
     display: none;
 }
@@ -411,8 +400,8 @@
     }
 
     .Ratings {
-        width: 60px;
-        height: 60px;
+        width: 250px;
+        height: 20px;
         font-size: 18px;
     }
 
