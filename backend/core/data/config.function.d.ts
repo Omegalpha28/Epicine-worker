@@ -107,11 +107,12 @@ declare async function getFil(client: object, filInfo: (string | number)[]): Pro
 /**
  * Met à jour les informations du fil en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param auteur l'auteur du fil
  * @param filInfo les informations du fil à mettre à jour
  * @returns Promise<number>
  * @throws {Error} Si une erreur survient
  */
-declare async function updateFil(client: object , filInfo: (string | number)[]): Promise<number | Error>;
+declare async function updateFil(client: object, auteur: string, filInfo: (string | number)[]): Promise<number | Error>;
 /**
  * Récupère les premières informations du like en fonction des informations fournies
  * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.

@@ -11,7 +11,7 @@ async function addWatchList(client, uuid, item_id){return await client.addWatchL
 async function removeWatchList(client, uuid, item_id){return await client.removeWatchList(uuid, item_id);}
 async function getFilPopular(client){return await client.getFilPopular();}
 async function getFil(client, filInfo){return await client.getFil(filInfo);}
-async function updateFil(client, filInfo){return await client.updateFil(filInfo);}
+async function updateFil(client, auteur, filInfo){return await client.updateFil(auteur, filInfo);}
 async function getLikeUnique(client, likeInfo){return await client.getLikeUnique(likeInfo);}
 async function getLike(client, likeInfo){return client.getLike(likeInfo);}
 async function addLike(client, likeInfo){return client.addLike(likeInfo);}
