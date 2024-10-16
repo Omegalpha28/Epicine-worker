@@ -111,4 +111,13 @@ module.exports = client => {
     client.addMessage = async (messageInfo) => {
         return await Message.save(messageInfo);
     }
+    client.updateMessage = async (auteur, messageInfo) => {
+        const messageData = await client.getMessageUnique({id: messageInfo.id, auteur: auteur});
+
+        if (messageData.data.date != undefined)
+            delete messageData.data.date;
+        if (!messageData.data)
+            return 0;
+        return await messageData.updateOne(messageInfo);
+    }
 }

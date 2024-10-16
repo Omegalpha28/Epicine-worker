@@ -155,4 +155,11 @@ declare async function getMessage(client: object, messageInfo: (string | number)
  * @param messageInfo les informations du message
  */
 declare async function addMessage(client: object, messageInfo: (string | number)[]): Promise<Object>
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage };
+/**
+ * Met à jour les informations du message en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param auteur l'auteur du message
+ * @param messageInfo les informations du message
+ */
+declare async function updateMessage(client: object, auteur: string, messageInfo: (string | number)[]): Promise<number | Error>;
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage };
