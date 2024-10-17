@@ -181,4 +181,22 @@ declare async function updateMessage(client: object, auteur: string, messageInfo
  * @param messageInfo les informations du message
  */
 declare async function removeMessage(client:object, messageInfo: (string | number)[]): Promise<number>;
-export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeAllFavorite, removeFavorite, getWatchListUnique, addWatchList, removeAllWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage, removeMessage };
+/**
+ * Récupère le message en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function getLikeMessage(client: object, likeInfo: (string)[]): Promise<ModelInstance|number>;
+/**
+ * Ajoute un message de like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function addLikeMessage(client: object, likeInfo: (string)[]): Promise<Object>
+/**
+ * Supprime un message de like en fonction des informations fournies
+ * @param client Le module client est un objet utilisé pour stocker des fonctions. Il sert de conteneur centralisé pour diverses fonctions qui peuvent être utilisées dans différentes parties de l'application.
+ * @param likeInfo les informations du like
+ */
+declare async function removeLikeMessage(client: object, likeInfo: (string)[]): Promise<number>
+export { getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeAllFavorite, removeFavorite, getWatchListUnique, addWatchList, removeAllWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage, removeMessage, getLikeMessage, addLikeMessage, removeLikeMessage};
