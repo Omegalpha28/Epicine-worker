@@ -453,7 +453,7 @@ code {
 <li><code>findOne(filter, fields)</code> : Trouve une entrée unique dans la table.</li>
 <li><code>find(filter, fields)</code> : Trouve des entrées dans la table.</li>
 <li><code>customRequest(custom)</code> : Exécute une requête SQL personnalisée.</li>
-<li><code>deleteOne(filter)</code> : Supprime une entrée de la table.</li>
+<li><code>delete(filter)</code> : Supprime une entrée de la table.</li>
 <li><code>dropTable()</code> : Supprime la table si elle existe.</li>
 <li><code>generate_uuid()</code> : Génère un UUID unique pour le modèle.</li>
 </ul>
@@ -471,7 +471,7 @@ code {
 <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> userModel.findOne({ <span class="hljs-attr">token</span>: <span class="hljs-string">'abc123'</span> });
 
 <span class="hljs-comment">// Supprimer une entrée</span>
-<span class="hljs-keyword">await</span> userModel.deleteOne({ <span class="hljs-attr">token</span>: <span class="hljs-string">'abc123'</span> });
+<span class="hljs-keyword">await</span> userModel.delete({ <span class="hljs-attr">token</span>: <span class="hljs-string">'abc123'</span> });
 </div></code></pre>
 <h2 id="class-modelinstance">Class ModelInstance</h2>
 <p>Représente une instance d'un modèle de base de données.</p>
@@ -488,7 +488,7 @@ code {
 <h3 id="m%C3%A9thodes">Méthodes :</h3>
 <ul>
 <li><code>updateOne(model)</code> : Met à jour une entrée unique dans la table.</li>
-<li><code>deleteOne(model)</code> : Supprime une entrée unique dans la table.</li>
+<li><code>delete(model)</code> : Supprime une entrée unique dans la table.</li>
 <li><code>customRequest(custom)</code> : Exécute une requête SQL personnalisée.</li>
 </ul>
 </li>
@@ -502,7 +502,7 @@ code {
 <span class="hljs-keyword">await</span> userInstance.updateOne({ <span class="hljs-attr">mdp</span>: <span class="hljs-string">'newpassword'</span> });
 
 <span class="hljs-comment">// Supprimer des données</span>
-<span class="hljs-keyword">await</span> userInstance.deleteOne({ <span class="hljs-attr">token</span>: <span class="hljs-string">'abc123'</span> });
+<span class="hljs-keyword">await</span> userInstance.delete({ <span class="hljs-attr">token</span>: <span class="hljs-string">'abc123'</span> });
 </div></code></pre>
 <h1 id="types-sql">Types SQL</h1>
 <p>Le module fournit également une map des types SQL courants via <code>sqlType</code>.</p>

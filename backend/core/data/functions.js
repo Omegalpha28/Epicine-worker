@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const { User, Favorite, Watchlist, Fil, Likes, Message } = require("./models");
+const { User, Favorite, Watchlist, Fil, Likes, Message, LikesMessage } = require("./models");
 
 
 module.exports = client => {
@@ -48,8 +48,11 @@ module.exports = client => {
         return 0;
     }
 
+    client.removeAllFavorite = async (uuid) => {
+        return await Favorite.delete({ userUUID: uuid });
+    }
     client.removeFavorite = async (uuid, item_id) => {
-        return await Favorite.deleteOne({ userUUID: uuid, item_id: item_id });
+        return await Favorite.delete({ userUUID: uuid, item_id: item_id });
     }
 
     client.getWatchListUnique = async (watchInfo) => {
@@ -68,8 +71,12 @@ module.exports = client => {
         return 0;
     }
 
+    client.removeAllWatchList = async (uuid) => {
+        return await Watchlist.delete({ userUUID: uuid });
+    }
+
     client.removeWatchList = async (uuid, item_id) => {
-        return await Watchlist.deleteOne({ userUUID: uuid, item_id: item_id });
+        return await Watchlist.delete({ userUUID: uuid, item_id: item_id });
     }
 
     client.getFilPopular = async () => {
@@ -100,7 +107,7 @@ module.exports = client => {
         return 0;
     }
     client.removeLike = async (likeInfo) => {
-        return await Likes.deleteOne(likeInfo);
+        return await Likes.delete(likeInfo);
     }
     client.getMessageUnique = async (messageInfo) => {
         return await Message.findOne(messageInfo);
@@ -124,7 +131,16 @@ module.exports = client => {
         const messageData = await client.getMessageUnique({id: messageInfo.id, id_fil: messageInfo.id_fil, auteur: messageInfo.auteur});
 
         if (messageData.data)
-            return await messageData.deleteOne(messageInfo);
+            return await messageData.delete(messageInfo);
         return 0;
+    }
+    client.getLikeMessage = async (likeInfo) => {
+        return await LikesMessage.findOne(likeInfo);
+    }
+    client.addLikeMessage = async (likeInfo) => {
+        return await LikesMessage.save(likeInfo);
+    }
+    client.removeLikeMessage = async (likeInfo) => {
+        return await LikesMessage.delete(likeInfo);
     }
 }
