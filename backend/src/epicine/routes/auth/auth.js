@@ -1,4 +1,5 @@
-const { User } = require("../../../../core/data/models");
+const { removeAllFavorite, removeAllWatchList } = require("../../../../core/data/config.function");
+const { User, Favorite, Watchlist, Likes, Fil, LikesMessage, Message } = require("../../../../core/data/models");
 const { validUserArgs } = require("../../../utils/valid_args");
 const auth = require("../../middleware/auth");
 const { checkAccountMail, register, getAccountMail, checkMdp } = require("../user/user.query");
@@ -28,7 +29,7 @@ module.exports = async function (client, app, bcrypt) {
     app.post("/login", async (req, res) => {
         var email = req.body["email"];
         var mdp = req.body["password"];
-
+        
         if (email == undefined || mdp == undefined) {
             res.status(500).json({"msg": "Internal server error"});
             return;
@@ -49,8 +50,15 @@ module.exports = async function (client, app, bcrypt) {
 
         if (!email || !password || email.length == 0 || password.length == 0) res.status(400).json({"msg": "email and password is required"});
         if (User.count({email: email}) == 0) res.status(404).json({"msg": "Internal server error"});
-        if (checkMdp(client, res, email, password)) {
-            User.deleteOne({email: email, password: password});
+        if (checkMdp(client, res, email, password, bcrypt) && (await User.findOne({email: email})).data != undefined) {
+            await removeAllFavorite(client, req.uuiduser );
+            await removeAllWatchList(client, req.uuiduser);
+            await Likes.customRequest(`UPDATE Likes SET userUUID="97dad2b4-8bfa-11ef-9457-0242ac120002" WHERE userUUID="${req.uuiduser}"`);
+            await Fil.customRequest(`UPDATE Fil SET auteur="97dad2b4-8bfa-11ef-9457-0242ac120002" WHERE auteur="${req.uuiduser}"`);
+            await Likes.customRequest(`UPDATE Likes SET userUUID="97dad2b4-8bfa-11ef-9457-0242ac120002" WHERE userUUID="${req.uuiduser}"`);
+            await LikesMessage.customRequest(`UPDATE LikesMessage SET auteur="97dad2b4-8bfa-11ef-9457-0242ac120002" WHERE auteur="${req.uuiduser}"`);
+            await Message.customRequest(`UPDATE Message SET auteur="97dad2b4-8bfa-11ef-9457-0242ac120002" WHERE auteur="${req.uuiduser}"`);
+            await User.delete({email: email});
             res.status(200).json({"msg": "deleted"});
         }
         else

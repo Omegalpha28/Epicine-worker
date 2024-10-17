@@ -45,7 +45,7 @@ async function getAccountMail(client, res, email, mdp, bcrypt, callback)
     }
 }
 
-async function checkMdp(client, res, email, mdp)
+async function checkMdp(client, res, email, mdp, bcrypt)
 {
     const userData = (await getUser(client, {email: email})).data;
 

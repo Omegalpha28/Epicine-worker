@@ -4,10 +4,12 @@ async function updateUser(client, uuid, settings){return await client.updateUser
 async function getFavoriteUnique(client, favInfo){return await client.getFavoriteUnique(favInfo);}
 async function getFavorite(client, favInfo){return await client.getFavorite(favInfo);}
 async function addFavorite(client, uuid, item_id, type, is_view){return await client.addFavorite(uuid, item_id, type, is_view);}
+async function removeAllFavorite(client, uuid){return await client.removeAllFavorite(uuid);}
 async function removeFavorite(client, uuid, item_id){return await client.removeFavorite(uuid, item_id);}
 async function getWatchListUnique(client, watchInfo){return await client.getWatchListUnique(watchInfo);}
 async function getWatchList(client, watchInfo){return await client.getWatchList(watchInfo);}
 async function addWatchList(client, uuid, item_id){return await client.addWatchList(uuid, item_id);}
+async function removeAllWatchList(client, uuid){return await client.removeAllWatchList(uuid);}
 async function removeWatchList(client, uuid, item_id){return await client.removeWatchList(uuid, item_id);}
 async function getFilPopular(client){return await client.getFilPopular();}
 async function getFil(client, filInfo){return await client.getFil(filInfo);}
@@ -22,4 +24,4 @@ async function addMessage(client, messageInfo){return client.addMessage(messageI
 async function updateMessage(client, auteur, messageInfo){return client.updateMessage(auteur, messageInfo);}
 async function removeMessage(client, messageInfo){return client.removeMessage(messageInfo);}
 
-module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage, removeMessage};
+module.exports = {getUser, createUser, updateUser, getFavoriteUnique, getFavorite, addFavorite, removeAllFavorite, removeFavorite, getWatchListUnique, getWatchList, addWatchList, removeAllWatchList, removeWatchList, getFilPopular, getFil, updateFil, getLikeUnique, getLike, addLike, removeLike, getMessageUnique, getMessage, addMessage, updateMessage, removeMessage};

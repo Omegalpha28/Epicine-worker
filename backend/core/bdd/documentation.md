@@ -75,7 +75,7 @@ Représente un modèle de base de données.
     * `findOne(filter, fields)` : Trouve une entrée unique dans la table.
     * `find(filter, fields)` : Trouve des entrées dans la table.
     * `customRequest(custom)` : Exécute une requête SQL personnalisée.
-    * `deleteOne(filter)` : Supprime une entrée de la table.
+    * `delete(filter)` : Supprime une entrée de la table.
     * `dropTable()` : Supprime la table si elle existe.
     * `generate_uuid()` : Génère un UUID unique pour le modèle.
 * ### Exemple
@@ -89,7 +89,7 @@ await userModel.save({ token: 'abc123', mdp: 'password' });
 const user = await userModel.findOne({ token: 'abc123' });
 
 // Supprimer une entrée
-await userModel.deleteOne({ token: 'abc123' });
+await userModel.delete({ token: 'abc123' });
 ```
 ## Class ModelInstance
 Représente une instance d'un modèle de base de données.
@@ -99,7 +99,7 @@ Représente une instance d'un modèle de base de données.
     * `data (Object)` : Les données de l'instance.
 * ### Méthodes :
     * `updateOne(model)` : Met à jour une entrée unique dans la table.
-    * `deleteOne(model)` : Supprime une entrée unique dans la table.
+    * `delete(model)` : Supprime une entrée unique dans la table.
     * `customRequest(custom)` : Exécute une requête SQL personnalisée.
 * ### Exemple
 ```javascript
@@ -109,7 +109,7 @@ const userInstance = new ModelInstance('users', { token: 'abc123', mdp: 'passwor
 await userInstance.updateOne({ mdp: 'newpassword' });
 
 // Supprimer des données
-await userInstance.deleteOne({ token: 'abc123' });
+await userInstance.delete({ token: 'abc123' });
 ```
 # Types SQL
 Le module fournit également une map des types SQL courants via `sqlType`.

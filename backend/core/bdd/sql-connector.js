@@ -360,6 +360,7 @@ class Model {
     async count(filter) {
         return this.customRequest(`SELECT COUNT(*) as count FROM ${this.name} ${filter != undefined ? `WHERE ${generateCondition(formatObject(filter))}` : ""}`);
     }
+
     /**
      * Runs a custom SQL_request query.
      * @param {string} custom The custom SQL_request query to execute.
@@ -383,13 +384,13 @@ class Model {
      * Supprime une entrée de la table SQL correspondant au filtre fourni.
      *
      * @async
-     * @function deleteOne
+     * @function delete
      * @param {Object} filter - Un objet représentant les conditions de filtre pour la suppression.
      * @returns {Promise<number>} Une promesse qui se résout à 0 si aucune ligne n'a été supprimée,
      * ou à une instance de ModelInstance représentant la ligne supprimée.
      * @throws {Error} Lance une erreur si la requête SQL échoue.
      */
-    async deleteOne(filter) {
+    async delete(filter) {
         const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
 
         return new Promise((resolve, reject) => {
@@ -509,7 +510,7 @@ class ModelInstance {
      * @returns {Promise<Object>} A promise that resolves with the data deleted.
      * @throws {Error} Throws an error if the deletion fails.
      */
-    async deleteOne(filter) {
+    async delete(filter) {
         const sql_request = `DELETE FROM ${this.name} WHERE ${generateCondition(formatObject(filter))}`;
 
         return new Promise((resolve, reject) => {

@@ -45,7 +45,7 @@ module.exports = async function(client, app, bcrypt) {
         if (filData != undefined) {
             if (filData.open == 1) res.status(400).json({"msg": "Il faut fermer le fil"});
             else {
-                if (await Fil.deleteOne({ id: fil_id })) res.status(200).json({"msg": "Fil supprimé"});
+                if (await Fil.delete({ id: fil_id })) res.status(200).json({"msg": "Fil supprimé"});
                 else res.status(500).json({"msg": "Internal server error"});
             }
         }
