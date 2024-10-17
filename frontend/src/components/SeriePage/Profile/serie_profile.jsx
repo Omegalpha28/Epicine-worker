@@ -5,8 +5,7 @@ import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Providers } from '../providers/Providers';
 import { Seasons } from '../Seasons/seasons';
-import fav_pressed from '../../../../assets/heart.png';
-import fav from '../../../../assets/favorite.png';
+import { Like } from '../like/like';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -28,9 +27,9 @@ export const Serie_Profile = ({ serieId }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [seasonID, setSeasonID] = useState(1);
     const [isClicked, setIsClicked] = useState(false);
-    const [hearts, setHearts] = useState([]);
+    /*const [hearts, setHearts] = useState([]);*/
 
-    const handleClick = () => {
+    /*const handleClick = () => {
         const newIsClicked = !isClicked;
         setIsClicked(newIsClicked);
         const animationClass = newIsClicked ? 'appear' : 'disappear';
@@ -51,7 +50,7 @@ export const Serie_Profile = ({ serieId }) => {
         setTimeout(() => {
             setHearts([]);
         }, 1000);
-    };
+    };*/
 
     useEffect(() => {
         const fetchSerieDetails = async () => {
@@ -100,22 +99,10 @@ export const Serie_Profile = ({ serieId }) => {
                                 <img src={`https://image.tmdb.org/t/p/w300${serieDetails.poster_path}`} alt={serieDetails.name} />
                             </a>
                         </div>
-                        <div className={styles.fav} onClick={handleClick}>
-                            {isClicked ? (
-                                <>
-                                    {hearts.map((heart) => (
-                                        <img key={heart.id} src={fav_pressed} alt="Favori actif" className={`${styles.heart} ${isClicked ? 'appear' : 'disappear'}`} style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
-                                    ))}
-                                    <img src={fav_pressed} alt="Favori actif" className={styles.img} />
-                                </>
-                            ) : (
-                                <>
-                                    {hearts.map((heart) => (
-                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart_appear} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
-                                    ))}
-                                    <img src={fav} alt="Favori inactif" className={styles.img} />
-                                </>
-                            )}
+                        <div className={styles.fav} >
+                            <div className={styles.like} >
+                                <Like serieId={serieId} />
+                            </div>
                         </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
@@ -253,3 +240,8 @@ export const Serie_Profile = ({ serieId }) => {
         </div>
     );
 };
+
+
+/*{hearts.map((heart) => (
+                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart_appear} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
+                                    ))} */

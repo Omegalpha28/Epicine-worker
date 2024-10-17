@@ -1,0 +1,26 @@
+.likeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 1vw;
+
+}
+
+.likeContainer img {
+    width: 50px;
+    cursor: pointer;
+    margin-right: 1vw;
+    transition: 0.3s ease-in-out;
+}
+
+.favoriteIcon {
+    font-size: 40px;
+    cursor: pointer;
+    margin-right: 1vw;
+    transition: 0.3s ease-in-out;
+}
+
+.likeContainer img:hover {
+    transform: scale(1.1);
+}
