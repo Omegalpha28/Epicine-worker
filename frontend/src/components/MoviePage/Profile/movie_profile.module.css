@@ -125,20 +125,19 @@
 
 .fav {
     position: relative;
-    width: 100%;
     display: flex;
-    flex-direction: row;
-    height: 5vh;
-    max-height: 5vh;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 6vh;
+    max-height: 6vh;
 }
 
 .fav img {
     width: 50px;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 2s ease-in-out;
+    margin-right: 1vw;
+    transition: 0.3s ease-in-out;
 }
 
 .heart {

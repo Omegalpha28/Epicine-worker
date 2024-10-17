@@ -5,8 +5,7 @@ import { Roles } from '../Roles/Roles';
 import { Recommendation } from '../Recommendation/Recommendation';
 import { Trailer_Video } from '../Trailers/trailer_video';
 import { Providers } from '../providers/Providers';
-import fav_pressed from '../../../../assets/heart.png';
-import fav from '../../../../assets/favorite.png';
+import { Like } from '../like/like';
 
 const getRatingBackground = (rating) => {
     const percentage = (rating / 10) * 100;
@@ -24,10 +23,10 @@ export const Movie_Profile = ({ movieId }) => {
     const [movieDetails, setMovieDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isClicked, setIsClicked] = useState(false);
-    const [hearts, setHearts] = useState([]);
+    /*const [isClicked, setIsClicked] = useState(false);
+    const [hearts, setHearts] = useState([]);*/
 
-    const handleClick = () => {
+    /*const handleClick = () => {
         const newIsClicked = !isClicked;
         setIsClicked(newIsClicked);
         const animationClass = newIsClicked ? 'appear' : 'disappear';
@@ -48,7 +47,7 @@ export const Movie_Profile = ({ movieId }) => {
         setTimeout(() => {
             setHearts([]);
         }, 1000);
-    };
+    };*/
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
@@ -86,22 +85,8 @@ export const Movie_Profile = ({ movieId }) => {
                                 <img src={`https://image.tmdb.org/t/p/w300${movieDetails.poster_path}`} alt={movieDetails.title} />
                             </a>
                         </div>
-                        <div className={styles.fav} onClick={handleClick}>
-                            {isClicked ? (
-                                <>
-                                    {hearts.map((heart) => (
-                                        <img key={heart.id} src={fav_pressed} alt="Favori actif" className={`${styles.heart} ${isClicked ? 'appear' : 'disappear'}`} style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
-                                    ))}
-                                    <img src={fav_pressed} alt="Favori actif" className={styles.img} />
-                                </>
-                            ) : (
-                                <>
-                                    {hearts.map((heart) => (
-                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart_appear} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
-                                    ))}
-                                    <img src={fav} alt="Favori inactif" className={styles.img} />
-                                </>
-                            )}
+                        <div className={styles.fav}>
+                            <Like movieId={movieId} />
                         </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
