@@ -113,7 +113,14 @@ module.exports = client => {
         return await Message.findOne(messageInfo);
     }
     client.getMessage = async (messageInfo) => {
-        return await Message.find(messageInfo);
+        return await Message.customRequest(`SELECT Message.id, Message.id_fil, Message.text, Message.date, Message.report, Message.auteur, 
+        SUM(CASE WHEN LikesMessage.type = 1 THEN 1 ELSE 0 END) AS likes, 
+        SUM(CASE WHEN LikesMessage.type = -1 THEN 1 ELSE 0 END) AS dislikes 
+        FROM Message 
+        LEFT JOIN LikesMessage ON LikesMessage.id_message = Message.id 
+        JOIN User ON User.uuid = Message.auteur 
+        WHERE Message.id_fil = ${messageInfo.id_fil} 
+        GROUP BY Message.id`);
     }
     client.addMessage = async (messageInfo) => {
         return await Message.save(messageInfo);
