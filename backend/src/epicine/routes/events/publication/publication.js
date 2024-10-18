@@ -25,4 +25,19 @@ module.exports = async function(client, app, bcrypt) {
         else
             res.status(500).json({"msg": "Internal server error"});
     });
+    app.get("/get/publication", auth, async (req, res) => {
+        const uuid = req.uuiduser;
+        const {id} = req.body;
+        const userData = (await getUser(client, {uuid: uuid})).data;
+
+        if (userData.status != 1) {
+            res.status(401).json({"msg": "Unauthorized"});
+            return;
+        }
+        const publications = (await Publication.findOne({id: id, auteur: uuid})).data;
+        if (publications == undefined)
+            res.status(404).json({"msg": "Publication not found"});
+        else
+            res.status(200).json(publications);
+    })
 }
