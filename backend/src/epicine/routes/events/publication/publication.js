@@ -65,4 +65,18 @@ module.exports = async function(client, app, bcrypt) {
         else
             res.status(500).json({"msg": "Internal server error"});
     })
+    app.delete("/delete/publication", auth, async (req, res) => {
+        const uuid = req.uuiduser;
+        const {id} = req.body;
+        const userData = (await getUser(client, {uuid: uuid})).data;
+
+        if (userData.status != 1) {
+            res.status(401).json({"msg": "Unauthorized"});
+            return;
+        }
+        if ((await Publication.delete({id: id, auteur: uuid})))
+            res.status(200).json({"msg": "Publication deleted"});
+        else
+            res.status(500).json({"msg": "Internal server error"});
+    })
 }
