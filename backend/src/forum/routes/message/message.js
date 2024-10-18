@@ -2,7 +2,7 @@ const { addMessage, getMessageUnique, updateMessage, removeMessage } = require("
 const auth = require("../../../epicine/middleware/auth")
 
 module.exports = async function(client, app, bcrypt) {
-    app.post("/add/message", auth, async (req, res) => {
+    app.put("/add/message", auth, async (req, res) => {
         const {text, id_fil} = req.body
 
         if (await addMessage(client, {auteur: req.uuiduser, text:text, id_fil:id_fil}))

@@ -9,7 +9,7 @@ module.exports = async function(client, app, bcrypt) {
         if (watchData) res.status(200).json(watchData);
         else res.status(404).json({"msg": "Internal server erro"});
     })
-    app.post("/add/watchlist", auth, async (req, res) => {
+    app.put("/add/watchlist", auth, async (req, res) => {
         const uuid = req.uuiduser;
         const film_id = req.body["film_id"];
         const watchData = (await getWatchListUnique(client, {userUUID: uuid, film_id: film_id})).data;

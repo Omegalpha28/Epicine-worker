@@ -4,7 +4,7 @@ const auth = require("../../../epicine/middleware/auth");
 const { error } = require("../../../utils/Logger");
 
 module.exports = async function(client, app, bcrypt) {
-    app.post("/add/fil", auth, async (req, res) => {
+    app.put("/add/fil", auth, async (req, res) => {
         const { title, film_id, description } = req.body;
         const filData = (await Fil.findOne({title: title})).data;
         
@@ -23,7 +23,7 @@ module.exports = async function(client, app, bcrypt) {
         }
     });
 
-    app.put("/update/fil", auth, async (req, res) => {
+    app.post("/update/fil", auth, async (req, res) => {
         const {fil_id, title, description} = req.body;
         
         if (!(await Fil.findOne({title: title})).data.open) res.status(400).json({"msg": "Le fil est fermé"});

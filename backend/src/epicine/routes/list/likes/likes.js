@@ -2,7 +2,7 @@ const { getLikeUnique, addLike, getLike, removeLike } = require("../../../../../
 const auth = require("../../../middleware/auth");
 
 module.exports = async function(client, app, bcrypt) {
-    app.post("/add/like", auth, async (req, res) => {
+    app.put("/add/like", auth, async (req, res) => {
         const uuid = req.uuiduser;
         const {item_id, type, value} = req.body;
         const likeData = (await getLikeUnique(client, {userUUID: uuid, item_id: item_id, type: type})).data;
