@@ -1,5 +1,5 @@
 const { error } = require("../../src/utils/Logger");
-const { User, Favorite, Watchlist, Fil, Likes, Message, LikesMessage } = require("./models");
+const { User, Favorite, Watchlist, Fil, Likes, Message, LikesMessage, Publication } = require("./models");
 
 
 module.exports = client => {
@@ -149,5 +149,8 @@ module.exports = client => {
     }
     client.removeLikeMessage = async (likeInfo) => {
         return await LikesMessage.delete(likeInfo);
+    }
+    client.createPublication = async (publicationInfo) => {
+        return await Publication.save(publicationInfo);
     }
 }

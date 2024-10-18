@@ -74,9 +74,8 @@ let connexion = null;
  * await connect(config);
  */
 async function connect(config) {
-    connexion = mysql.createConnection(config);
+    connexion = mysql.createPool(config);
 }
-
 
 /**
  * Closes the database connection.

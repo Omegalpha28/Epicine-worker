@@ -29,7 +29,7 @@ async function getAccountMail(client, res, email, mdp, bcrypt, callback)
 {
     const userData = (await getUser(client, {email: email})).data;
 
-    if (userData == undefined)
+    if (userData == undefined || userData.status == -1)
         callback(84);
     else {
         var mdp2 = userData.password;

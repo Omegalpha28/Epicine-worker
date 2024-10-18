@@ -44,25 +44,10 @@ main().then(() => {
     require("./src/epicine/routes/user/user")(client, app, bcrypt);
     bulkloader("./src/epicine/routes/list/", [client, app, bcrypt], true);
     bulkloader("./src/epicine/routes/tmdb/", [client, app, bcrypt]);
+    bulkloader("./src/epicine/routes/events/", [client, app, bcrypt], true);
     bulkloader("./src/forum/routes/", [client, app, bcrypt], true);
     app.listen(port, () => {
         Logger.logs(`Listening at port: ${port}`);
         Logger.serveur(`EpiCine server: http://localhost:${port}`);
     });
-});
-
-process.on('SIGINT', async () => {
-    console.log("entrain de s'arrêter");
-
-    await logout();
-    process.exit();
-});
-
-process.on('SIGTERM', async () => {
-    await logout();
-    process.exit();
-});
-
-process.on('exit', async () => {
-    await logout();
 });
