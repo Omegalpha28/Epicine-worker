@@ -20,7 +20,7 @@ module.exports = async function(client, app, bcrypt) {
         }
         else res.status(404).json({"msg": "Internal server erro"});
     })
-    app.post("/add/favorite", auth, async (req, res) => {
+    app.put("/add/favorite", auth, async (req, res) => {
         const uuid = req.uuiduser
         const {item_id, type, is_view} = req.body;
 

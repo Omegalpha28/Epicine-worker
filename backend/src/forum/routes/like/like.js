@@ -2,7 +2,7 @@ const { getLikeMessage, addLikeMessage, removeLikeMessage } = require("../../../
 const auth = require("../../../epicine/middleware/auth");
 
 module.exports = async function(client, app, bcrypt) {
-    app.post("/add/like_message", auth, async (req, res) => {
+    app.put("/add/like_message", auth, async (req, res) => {
         const {id_message, type} = req.body;
         const likeData = (await getLikeMessage(client, {id_message: id_message, auteur: req.uuiduser, type: type})).data;
         
