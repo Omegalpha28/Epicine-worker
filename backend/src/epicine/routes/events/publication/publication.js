@@ -1,0 +1,28 @@
+const { getUser } = require("../../../../../core/data/config.function");
+const { Publication } = require("../../../../../core/data/models");
+const auth = require("../../../middleware/auth");
+
+module.exports = async function(client, app, bcrypt) {
+    app.put("/add/publication", auth, async (req, res) => {
+        const {title, text} = req.body;
+        const uuid = req.uuiduser;
+        const userData = (await getUser(client, {uuid: uuid})).data;
+
+        if (userData.status != 1) {
+            res.status(401).json({"msg": "Unauthorized"});
+            return;
+        }
+        if (title == undefined || text == undefined) {
+            res.status(400).json({"msg": "title and text is required"});
+            return;
+        }
+        if (title.length == 0 || text.length == 0) {
+            res.status(400).json({"msg": "title and text is required"});
+            return;
+        }
+        if (await Publication.save({title: title, text: text, auteur: uuid}))
+            res.status(200).json({"msg": "Publication added"});
+        else
+            res.status(500).json({"msg": "Internal server error"});
+    });
+}
