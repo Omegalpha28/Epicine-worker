@@ -282,7 +282,6 @@ class Model {
     async save(data) {
         const keys = Object.keys(data);
         const sql_request = `INSERT INTO ${this.name} (${keys.join(', ')}) VALUES (${generateValueSQL(Object.values(data))})`;
-
         sql(this.name, sql_request);
         try {
             const result = await connexion.promise().query(sql_request);
@@ -446,9 +445,9 @@ class Model {
      *
      * @throws {Error} If there is an error executing the SQL_request query.
      */
-    async generate_uuid() {
+    async generate_uuid(var_uuid="uuid") {
         const uuid = (await connexion.promise().query("SELECT UUID();"))[0][0]["UUID()"];
-        const sql_request = `SELECT COUNT(*) FROM ${this.name} WHERE uuid="${uuid}";`;
+        const sql_request = `SELECT COUNT(*) FROM ${this.name} WHERE ${var_uuid}="${uuid}";`;
 
         return new Promise((resolve, reject) => {
             connexion.promise().query(sql_request).then((rows) => {
@@ -494,7 +493,7 @@ class ModelInstance {
      * @throws {Error} Throws an error if the update fails.
      */
     async updateOne(model) {
-        const sql_request = `UPDATE ${this.name} SET ${generateCondition(model, true)} WHERE ${generateCondition(formatObject(this.data[0] != undefined ? this.data[0] : this.data))}`;
+        const sql_request = `UPDATE ${this.name} SET ${generateCondition(formatObject(model), true)} WHERE ${generateCondition(formatObject(this.data[0] != undefined ? this.data[0] : this.data))}`;
 
         await connexion.promise().query(sql_request).catch((err) => {
             error(`Error executing query: ${err}`);

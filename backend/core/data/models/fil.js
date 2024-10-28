@@ -28,6 +28,11 @@ const filschema = new Schema({
         required: true,
         customize: "DEFAULT CURRENT_TIMESTAMP"
     },
+    report: {
+        type: Boolean,
+        required: true,
+        default: 0
+    },
     auteur: {
         type: String,
         length: 36,
