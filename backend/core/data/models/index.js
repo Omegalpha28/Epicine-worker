@@ -6,5 +6,6 @@ module.exports = {
     Message: require("./message"),
     LikesMessage: require("./likesmessage"),
     Likes: require("./likes"),
-    Publication: require("./publication")
+    Publication: require("./publication"),
+    Reactions: require("./reactions")
 }

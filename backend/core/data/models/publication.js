@@ -19,6 +19,15 @@ const sondageSchema = new Schema({
         required: true,
         customize: "DEFAULT CURRENT_TIMESTAMP"
     },
+    reactions: {
+        type: sqlType.Object,
+        default: null,
+    },
+    report: {
+        type: Boolean,
+        required: true,
+        default: 0
+    },
     auteur: {
         type: String,
         length: 36,
