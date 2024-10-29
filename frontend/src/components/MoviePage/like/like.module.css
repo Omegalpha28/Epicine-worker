@@ -4,7 +4,6 @@
     justify-content: center;
     margin-top: 25px;
     margin-left: 1vw;
-
 }
 
 .likeContainer img {
@@ -14,13 +13,13 @@
     transition: 0.3s ease-in-out;
 }
 
-.favoriteIcon {
+.Solid {
     font-size: 40px;
-    cursor: pointer;
     margin-right: 1vw;
-    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
-.likeContainer img:hover {
-    transform: scale(1.1);
+.Regular {
+    font-size: 40px;
+    cursor: pointer;
 }
