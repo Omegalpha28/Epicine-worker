@@ -27,30 +27,6 @@ export const Serie_Profile = ({ serieId }) => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [seasonID, setSeasonID] = useState(1);
     const [isClicked, setIsClicked] = useState(false);
-    /*const [hearts, setHearts] = useState([]);*/
-
-    /*const handleClick = () => {
-        const newIsClicked = !isClicked;
-        setIsClicked(newIsClicked);
-        const animationClass = newIsClicked ? 'appear' : 'disappear';
-        const newHearts = Array.from({ length: 10 }).map((_, index) => {
-            const randomX = Math.random() * 100 - 50;
-            const randomY = Math.random() * 50 + 30;
-            const animationDuration = Math.random() * 1 + 0.5 + 's';
-
-            return {
-                id: index,
-                left: `${randomX}px`,
-                translateY: `${-randomY}px`,
-                animationDuration,
-                animationClass,
-            };
-        });
-        setHearts(newHearts);
-        setTimeout(() => {
-            setHearts([]);
-        }, 1000);
-    };*/
 
     useEffect(() => {
         const fetchSerieDetails = async () => {
@@ -101,7 +77,7 @@ export const Serie_Profile = ({ serieId }) => {
                         </div>
                         <div className={styles.fav} >
                             <div className={styles.like} >
-                                <Like serieId={serieId} />
+                                <Like serieId={serieId} IsDark={isDark}/>
                             </div>
                         </div>
                         <div className={styles.myrow}>
@@ -240,8 +216,3 @@ export const Serie_Profile = ({ serieId }) => {
         </div>
     );
 };
-
-
-/*{hearts.map((heart) => (
-                                        <img key={heart.id} src={fav} alt="Favori actif" className={`${styles.heart_appear} ${isClicked ? 'appear' : 'disappear'}`}  style={{ left: heart.left, animationDuration: heart.animationDuration, transform: `translate(${heart.left}, ${heart.translateY})` }} />
-                                    ))} */
