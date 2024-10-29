@@ -1,42 +1,63 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as SolidStar } from '@fortawesome/free-solid-svg-icons';
-import { faStar as RegularStar } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp as faSolidThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsDown as faSolidThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './like.module.css';
-import likeIcon from '../../../../assets/like_icon/like.png';
-import dislikeIcon from '../../../../assets/like_icon/dislike.png';
-import likeNoIcon from '../../../../assets/like_icon/like_no.png';
-import addToCollectionIcon from '../../../../assets/like_icon/plus.png';
-import notAddToCollectionIcon from '../../../../assets/like_icon/plus2.png';
 
-export const Like = ({ serieId }) => {
-    const [likeState, setLikeState] = useState('like_no');
-    const [isInCollection, setIsInCollection] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
+export const Like = ({ serieId, IsDark }) => {
+    const [isLiked, setIsLiked] = useState(false);
+    const [isDisliked, setIsDisliked] = useState(false);
+    const baseColor = !IsDark ? 'black' : 'white';
 
-    const toggleLike = () => {
-        if (likeState === 'like') {
-            setLikeState('dislike');
-        } else if (likeState === 'dislike') {
-            setLikeState('like_no');
-        } else {
-            setLikeState('like');
+    useEffect(() => {
+        const fetchLikeStatus = async () => {
+            try {
+                const response = await fetch(`http://localhost:5555/get/like?item_id=${serieId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    credentials: 'include'
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                if (data.isLiked) {
+                    setIsLiked(true);
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération du like:", error);
+            }
+        };
+        if (serieId) {
+            fetchLikeStatus();
         }
+    }, [serieId]);
+
+    const handleLikeClick = () => {
+        setIsLiked(!isLiked);
+        if (isDisliked) setIsDisliked(false);
     };
 
-    const toggleCollection = () => {
-        setIsInCollection((prevState) => !prevState);
-    };
-
-    const toggleFavorite = () => {
-        setIsFavorite((prevState) => !prevState);
+    const handleDislikeClick = () => {
+        setIsDisliked(!isDisliked);
+        if (isLiked) setIsLiked(false);
     };
 
     return (
         <div className={styles.likeContainer}>
-            <FontAwesomeIcon icon={isFavorite ? SolidStar : RegularStar} onClick={toggleFavorite} className={styles.favoriteIcon}/>
-            <img src={likeState === 'like' ? likeIcon : likeState === 'dislike' ? dislikeIcon : likeNoIcon}  alt="like button" className={styles.likeIcon} onClick={toggleLike} />
-            <img src={isInCollection ? addToCollectionIcon : notAddToCollectionIcon} alt="add to collection button" className={styles.addToCollectionIcon} onClick={toggleCollection} />
+            <FontAwesomeIcon
+                icon={faSolidThumbsUp}
+                className={styles.Solid}
+                onClick={handleLikeClick}
+                style={{ color: isLiked ? 'blue' : baseColor }}
+            />
+            <FontAwesomeIcon
+                icon={faSolidThumbsDown}
+                className={styles.Regular}
+                onClick={handleDislikeClick}
+                style={{ color: isDisliked ? 'red' : baseColor }}
+            />
         </div>
     );
 };
+
