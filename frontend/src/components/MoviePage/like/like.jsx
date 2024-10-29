@@ -28,10 +28,10 @@ export const Like = ({ movieId, IsDark }) => {
                 console.error("Erreur lors de la récupération du like:", error);
             }
         };
-        if (serieId) {
+        if (movieId) {
             fetchLikeStatus();
         }
-    }, [serieId]);
+    }, [movieId]);
 
     const handleLikeClick = () => {
         setIsLiked(!isLiked);
