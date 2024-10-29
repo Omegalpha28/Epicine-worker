@@ -366,6 +366,7 @@ class Model {
      * @throws {Error} Throws an error if query execution fails.
      */
     async customRequest(custom) {
+        console.log(custom);
         return new Promise(async (resolve, reject) => {
             await connexion.promise().query(custom).then((rows) => {
                 if (rows.length == 0) return resolve(0);

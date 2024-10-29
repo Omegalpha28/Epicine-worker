@@ -13,7 +13,18 @@ services:
       - "3307:3306"
     networks:
       - backend_overlay
-
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: epicine_phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: db_user
+      PMA_PASSWORD: db_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    networks:
+      - backend_overlay
   backend:
     build: ./backend
     container_name: epicine_backend
