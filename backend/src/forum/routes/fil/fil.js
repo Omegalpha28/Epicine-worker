@@ -69,4 +69,10 @@ module.exports = async function(client, app, bcrypt) {
             throw new Error(`Error get fil: ${err}`);
         }
     })
+    app.get("/get/search/fil", async (req, res) => {
+        const { recherche } = req.body;
+        var filData = (await Fil.customRequest(`SELECT A.id_fil,A.titre_fil,A.description_fil,SUM(IFNULL(LikesMessage.type,0)) AS somme FROM (SELECT DISTINCT Fil.id AS id_fil, Fil.title AS titre_fil, Fil.description AS description_fil FROM Message RIGHT JOIN Fil ON Fil.id=Message.id_fil WHERE INSTR(Fil.title, '${recherche}')!=0 OR INSTR(Fil.description, '${recherche}')!=0 OR INSTR(Message.text, '${recherche}')!=0 ) AS A LEFT JOIN Message ON A.id_fil=Message.id_fil LEFT JOIN LikesMessage ON LikesMessage.id_message=Message.id GROUP BY A.id_fil ORDER BY somme DESC`));
+
+        res.status(200).json(filData.data);
+    });
 }
