@@ -86,7 +86,7 @@ export const Movie_Profile = ({ movieId }) => {
                             </a>
                         </div>
                         <div className={styles.fav}>
-                            <Like movieId={movieId} />
+                            <Like movieId={movieId} IsDark={isDark}/>
                         </div>
                         <div className={styles.myrow}>
                             <div className={styles.mycolumn}>
