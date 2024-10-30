@@ -58,7 +58,7 @@ export const Navbar = ({ isDark, setIsDark, isLoggedIn, setIsLoggedIn }) => {
                     <li><Link to="/New_Release">Events</Link></li>
                     <li><Link to="/Movies">Movies</Link></li>
                     <li><Link to="/TV_Shows">Series</Link></li>
-                    <li><Link to="/Streaming">Forums</Link></li>
+                    <li><Link to="/Forum">Forums</Link></li>
                     {isLoggedIn ? (
                         <>
                             <li><Link to="/settings">Settings</Link></li>

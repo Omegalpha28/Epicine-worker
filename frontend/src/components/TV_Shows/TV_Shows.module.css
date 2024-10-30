@@ -26,7 +26,7 @@
     padding: 10px 15px;
     border-radius: 5px;
     border: none;
-    background-color: var(--color-button-bg);
+    background-color: var(--color-btn-bg);
     color: var(--color-text);
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
@@ -34,7 +34,7 @@
 
 .controls button:hover,
 .controls select:hover {
-    background-color: var(--nav-bar);
+    background-color: var(--color-app);
 }
 
 .inside_box {
@@ -112,19 +112,25 @@
 
 .pagination button {
     padding: 10px 20px;
-    background-color: var(--color-button-bg);
-    color: var(--color-button-text);
-    border: none;
+    background-color: var(--color-inside-box);
+    color: var(--color-text);
+    border: 1px solid var(--line-break);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
 
 .pagination button:hover {
-    background-color: var(--color-button-bg-hover);
+    background-color: var(--color-btn-hover);
+    color: black;
 }
 
 .pagination span {
     font-size: 16px;
     align-self: center;
+}
+
+.options option:hover {
+    background-color: var(--color-primary);
+    color: black;
 }

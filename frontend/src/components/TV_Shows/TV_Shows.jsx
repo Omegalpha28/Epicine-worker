@@ -5,7 +5,6 @@ import { Navbar } from "../Navbar/Navbar";
 import { Toggle } from "../Toggle/Toggle";
 import app_styles from "../../App.module.css";
 import { Join_Us } from "../Joinus/join_us";
-import { Search_Content } from "../Home/Search_Content/Search_Content";
 import { Link } from "react-router-dom";
 
 export const TV_Shows = () => {
@@ -16,8 +15,6 @@ export const TV_Shows = () => {
   const [isFree, setIsFree] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:5555/api/genres')
@@ -41,23 +38,6 @@ export const TV_Shows = () => {
       })
       .catch(error => console.error('Erreur lors de la récupération des séries :', error));
   }, [selectedGenre, page, isFree]);
-
-  // Effectuer la recherche
-  useEffect(() => {
-    if (searchQuery) {
-      fetch(`http://localhost:5555/api/search/tv?query=${encodeURIComponent(searchQuery)}`)
-        .then(response => response.json())
-        .then(data => {
-          setShows(data.results);
-          setTotalPages(data.total_pages > 30 ? 30 : data.total_pages);
-        })
-        .catch(error => console.error('Erreur lors de la recherche des séries :', error));
-    } else {
-      // Si aucun terme de recherche, réinitialiser les séries
-      setSelectedGenre(null);
-      setPage(1);
-    }
-  }, [searchQuery]);
 
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
@@ -84,19 +64,11 @@ export const TV_Shows = () => {
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
-        <Navbar
-          isDark={isDark}
-          setSearchQuery={setSearchQuery}
-          searchOpen={searchOpen}
-          setSearchOpen={setSearchOpen}
-        />
-        {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
-
+        <Navbar isDark={isDark} />
         <div className={styles.inside_box}>
           <div className={styles.header}>
             <h1>Series</h1>
             <div className={styles.controls}>
-              <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
               <button onClick={handleFreeToggle} className={styles.freeToggle}>
                 {isFree ? "Show All TV Shows" : "Show Free TV Shows"}
               </button>
@@ -112,17 +84,21 @@ export const TV_Shows = () => {
           </div>
 
           <div className={styles.shows}>
-            {shows.map((show) => (
-              <div key={show.id} className={styles.show_item}>
-                <Link to={`/series/${show.id}`}>
-                  <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
-                </Link>
-                <div>
-                  <h3>{truncateTitle(show.name)}</h3>
-                  <p>{show.first_air_date}</p>
+            {shows.length === 0 ? (
+              <p>No TV shows available.</p>
+            ) : (
+              shows.map((show) => (
+                <div key={show.id} className={styles.show_item}>
+                  <Link to={`/series/${show.id}`}>
+                    <img src={`https://image.tmdb.org/t/p/w200${show.poster_path}`} alt={show.name} />
+                  </Link>
+                  <div>
+                    <h3>{truncateTitle(show.name)}</h3>
+                    {/* <p>{show.first_air_date}</p> */}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           <div className={styles.pagination}>
             <button onClick={handlePreviousPage} disabled={page === 1}>Previous</button>

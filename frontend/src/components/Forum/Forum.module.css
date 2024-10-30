@@ -1,0 +1,105 @@
+/* Page principale */
+.page {
+  height: 100%;
+  background-color: var(--color-app);
+  color: var(--text-color);
+}
+
+/* Contenu principal (sous la navbar) */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh; /* Espace entre la navbar et le contenu */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section principale à l'intérieur de .content */
+.inside_box {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-text);
+}
+
+/* Conteneur pour la barre de recherche */
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.searchInput {
+  padding: 10px;
+  background-color: var(--color-inside-box);
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  width: 80%;
+  margin-top: 5vh;
+}
+
+.searchButton {
+  background: transparent;
+  border: none;
+  font-size: 1.2em;
+  margin-left: -35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 5vh;
+}
+
+.createPostButton {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  margin-top: 100px;
+  box-shadow: 1px solid var(--color-box-shadow);
+}
+
+/* Liste des films */
+.filList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 70vw;
+  gap: 15px;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+
+/* Style pour chaque carte de film */
+.filCard {
+  background-color: var(--color-inside-box);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 1px solid var(--box-shadow);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.filCard:hover {
+  transform: scale(1.02);
+}
+
+.filCard h2 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.filCard p {
+  margin: 5px 0;
+  color: #666;
+}

@@ -1,0 +1,205 @@
+/* Créez des animations d'ouverture et de fermeture */
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Déplace l'élément vers le haut */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Ramène l'élément à sa position d'origine */
+    }
+}
+
+@keyframes modalClose {
+    from {
+        opacity: 1;
+        transform: translateY(0); /* L'élément est à sa position d'origine */
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px); /* Déplace l'élément vers le haut */
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.636);
+    backdrop-filter: blur(1px); /* Appliquer un flou d'arrière-plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+    animation: modalOpen 0.5s forwards; /* Animation d'ouverture */
+}
+
+.closeButton {
+    background-color: transparent;
+    color: var(--color-text);
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    align-self: flex-end;
+}
+
+/* Styles pour la boîte interne de la modal */
+.inside_box {
+    background: var(--color-app);
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    animation: modalOpen 0.5s forwards; /* Animation d'ouverture */
+    border: 10px solid white;
+}
+
+h1, h2 {
+    margin: 10px 0;
+    color: var(--color-text);
+}
+
+.inputField, .textAreaField {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none; /* Pas de bordure */
+    border-radius: 6px;
+    background-color: var(--color-inside-box); /* Couleur de fond des inputs */
+    color: var(--color-text); /* Couleur du texte des inputs */
+}
+
+.textAreaField {
+    height: 100px;
+}
+
+.addPictureButton, .createButton {
+    padding: 10px;
+    border: none; /* Pas de bordure */
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--color-primary); /* Couleur de fond des boutons */
+    color: black; /* Couleur du texte des boutons */
+    margin-bottom: 10px;
+}
+
+.addPictureButton:hover, .createButton:hover {
+    opacity: 0.8; /* Effet de survol */
+}
+
+.searchModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(1px); /* Appliquer un flou d'arrière-plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    animation: modalOpen 0.5s forwards; /* Animation d'ouverture */
+}
+
+.searchModalContent {
+    background: var(--color-app);
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    animation: modalOpen 0.5s forwards; /* Animation d'ouverture */
+    border: 10px solid white;
+}
+
+.searchResults {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colonnes */
+    gap: 10px;
+    margin-top: 10px;
+    max-height: 400px; /* Hauteur maximale pour activer le défilement */
+    overflow-y: auto; /* Activer le défilement vertical */
+    padding-right: 10px; /* Espace pour la scroll bar */
+}
+
+.searchResults::-webkit-scrollbar {
+    display: none;
+}
+
+.mediaItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.posterImage {
+    width: 100%; /* Largeur de chaque image s'adapte à la colonne */
+    height: auto;
+    border-radius: 6px; /* Coins arrondis pour les affiches */
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.selectedMediaContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+
+.selectedMediaItem {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    background-color: var(--color-inside-box);
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    color : var(--color-text);
+}
+
+.searchInput {
+    background-color: var(--color-inside-box);
+    color: var(--color-text);
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.selectedPosterImage {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.removeMediaButton {
+    background: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Animation de fermeture (à appliquer lors de la fermeture de la modal) */
+.close {
+    animation: modalClose 0.5s forwards; /* Animation de fermeture */
+}

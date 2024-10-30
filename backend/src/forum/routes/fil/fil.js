@@ -3,53 +3,71 @@ const { Fil } = require("../../../../core/data/models");
 const auth = require("../../../epicine/middleware/auth");
 const { error } = require("../../../utils/Logger");
 
-module.exports = async function(client, app, bcrypt) {
+module.exports = async function (client, app, bcrypt) {
     app.put("/add/fil", auth, async (req, res) => {
-        const { title, film_id, description } = req.body;
-        const filData = (await Fil.findOne({title: title})).data;
-        
+        const { title, description, films } = req.body;
+
         try {
-            if (filData != undefined && title == filData.title) res.status(409).json({"msg": "Ce titre de fil existe déjà"});
-            else {
-                if (filData == undefined && await Fil.save({ film_id: film_id, title: title, description: description, auteur: req.uuiduser }))
-                    res.status(200).json({"msg": "Fil créé"});
-                else
-                    res.status(500).json({"msg": "Internal server error"});
+            // Vérifier si un Fil avec le même titre existe déjà
+            const existingFil = await Fil.findOne({ title: title });
+            if (existingFil) {
+                return res.status(409).json({ msg: "Ce titre de fil existe déjà" });
             }
-        }
-        catch (err) {
-            error(err);
-            throw new Error(`Error add fil: ${err}`);
+
+            // Création du Fil sans film_id initialement
+            const newFil = await Fil.create({
+                title: title,
+                description: description || "",
+                auteur: req.uuiduser
+            });
+
+            // Associer chaque film_id au Fil dans la table de jointure
+            if (films && Array.isArray(films)) {
+                for (const filmId of films) {
+                    await FilmFil.create({
+                        filId: newFil.id, // Associe le nouvel ID de Fil
+                        filmId: filmId
+                    });
+                }
+            }
+
+            res.status(200).json({ msg: "Fil créé avec succès", filId: newFil.id });
+        } catch (err) {
+            console.error(`Erreur lors de la création du fil: ${err}`);
+            res.status(500).json({ msg: "Erreur interne lors de la création du fil" });
         }
     });
 
+
+
+
     app.post("/update/fil", auth, async (req, res) => {
-        const {fil_id, title, description} = req.body;
-        
-        if (!(await Fil.findOne({title: title})).data.open) res.status(400).json({"msg": "Le fil est fermé"});
+        const { fil_id, title, description } = req.body;
+
+        if (!(await Fil.findOne({ title: title })).data.open) res.status(400).json({ "msg": "Le fil est fermé" });
         else {
-            if (await updateFil(client, req.uuiduser, {id: fil_id, title: title, description: description})) res.status(200).json({"msg": "Fil mis à jour"});
-            else res.status(500).json({"msg": "Internal server error"});
+            if (await updateFil(client, req.uuiduser, { id: fil_id, title: title, description: description })) res.status(200).json({ "msg": "Fil mis à jour" });
+            else res.status(500).json({ "msg": "Internal server error" });
         }
     })
 
     app.post("/close/fil", auth, async (req, res) => {
-        const {fil_id} = req.body;
-        if ((await Fil.count({id: fil_id})).data[0].count && await updateFil(client, req.uuiduser, {id: fil_id, open: 0})) res.status(200).json({"msg": "Fil fermé"});
-        else res.status(500).json({"msg": "Internal server error"});
+        const { fil_id } = req.body;
+        if ((await Fil.count({ id: fil_id })).data[0].count && await updateFil(client, req.uuiduser, { id: fil_id, open: 0 })) res.status(200).json({ "msg": "Fil fermé" });
+        else res.status(500).json({ "msg": "Internal server error" });
     });
     app.delete("/remove/fil", auth, async (req, res) => {
         const { fil_id } = req.body;
         const filData = (await Fil.findOne({ id: fil_id })).data
-        
+
         if (filData != undefined) {
-            if (filData.open == 1) res.status(400).json({"msg": "Il faut fermer le fil"});
+            if (filData.open == 1) res.status(400).json({ "msg": "Il faut fermer le fil" });
             else {
-                if (await Fil.delete({ id: fil_id })) res.status(200).json({"msg": "Fil supprimé"});
-                else res.status(500).json({"msg": "Internal server error"});
+                if (await Fil.delete({ id: fil_id })) res.status(200).json({ "msg": "Fil supprimé" });
+                else res.status(500).json({ "msg": "Internal server error" });
             }
         }
-        else res.status(500).json({"msg": "Internal server error"});
+        else res.status(500).json({ "msg": "Internal server error" });
     });
     app.get("/get/fil/nb", async (req, res) => {
         try {
@@ -70,9 +88,30 @@ module.exports = async function(client, app, bcrypt) {
         }
     })
     app.get("/get/search/fil", async (req, res) => {
-        const { recherche } = req.body;
-        var filData = (await Fil.customRequest(`SELECT A.id_fil,A.titre_fil,A.description_fil,SUM(IFNULL(LikesMessage.type,0)) AS somme FROM (SELECT DISTINCT Fil.id AS id_fil, Fil.title AS titre_fil, Fil.description AS description_fil FROM Message RIGHT JOIN Fil ON Fil.id=Message.id_fil WHERE INSTR(Fil.title, '${recherche}')!=0 OR INSTR(Fil.description, '${recherche}')!=0 OR INSTR(Message.text, '${recherche}')!=0 ) AS A LEFT JOIN Message ON A.id_fil=Message.id_fil LEFT JOIN LikesMessage ON LikesMessage.id_message=Message.id GROUP BY A.id_fil ORDER BY somme DESC`));
+        const { recherche } = req.query;  // Utilisation de req.query au lieu de req.body
+        try {
+            const filData = await Fil.customRequest(`
+                SELECT A.id AS id, A.title AS title, A.description AS description, SUM(IFNULL(LikesMessage.type, 0)) AS somme
+                FROM (
+                  SELECT DISTINCT Fil.id, Fil.title, Fil.description
+                  FROM Message
+                  RIGHT JOIN Fil ON Fil.id = Message.id_fil
+                  WHERE INSTR(Fil.title, '${recherche}') != 0
+                    OR INSTR(Fil.description, '${recherche}') != 0
+                    OR INSTR(Message.text, '${recherche}') != 0
+                ) AS A
+                LEFT JOIN Message ON A.id = Message.id_fil
+                LEFT JOIN LikesMessage ON LikesMessage.id_message = Message.id
+                GROUP BY A.id
+                ORDER BY somme DESC
+            `);
 
-        res.status(200).json(filData.data);
+            res.status(200).json(filData.data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des films :", error);
+            res.status(500).json({ message: "Erreur serveur" });
+        }
     });
+
+
 }

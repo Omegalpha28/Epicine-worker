@@ -42,7 +42,7 @@
     --color-text: #060d17;
     --color-text-button: black;
     --color-text-btn-hover: var(--color-text);
-    --color-app: #d8d4d4;
+    --color-app: #ffffff;
     --color-text-mode: #000000;
     --color-primary: #fecc00;
     --color-btn-hover: #adadad;
@@ -85,7 +85,7 @@
     --color-text-btn-hover: #060d17;
     --color-app: #060d17;
     --color-text-mode: #ffffff;
-    --color-primary: #576cbc;
+    --color-primary: #fecc00;
     --color-btn-hover: #fecc00;
     --color-secondary: #19376d;
     --color-search-bar: #10161d;
@@ -127,7 +127,7 @@
         --color-text-btn-hover: #060d17;
         --color-app: #060d17;
         --color-text-mode: #ffffff;
-        --color-primary: #576cbc;
+        --color-primary: #fecc00;
         --color-btn-hover: #fecc00;
         --color-secondary: #19376d;
         --color-search-bar: #10161d;

@@ -69,14 +69,13 @@ export const Movies = () => {
           <div className={styles.header}>
             <h1>Movies</h1>
             <div className={styles.controls}>
-              <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
               <button onClick={handleFreeToggle} className={styles.freeToggle}>
                 {isFree ? "Show All Movies" : "Show Free Movies"}
               </button>
               <select onChange={handleGenreChange}>
                 <option value="">Select Genre</option>
                 {genres.map((genre) => (
-                  <option key={genre.id} value={genre.id}>
+                  <option className={styles.options} key={genre.id} value={genre.id}>
                     {genre.name}
                   </option>
                 ))}
@@ -92,7 +91,7 @@ export const Movies = () => {
                 </Link>
                 <div>
                   <h3>{truncateTitle(movie.title)}</h3>
-                  <p>{movie.release_date}</p>
+                  {/* <p>{movie.release_date}</p> */}
                 </div>
               </div>
             ))}

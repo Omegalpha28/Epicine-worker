@@ -29,7 +29,6 @@
     flex-direction: column; /* Permet d'organiser les éléments en colonne */
     /* animation: fadeIn 0.3s; Animation d'apparition */
 }
-
 /* Afficher le contenu de recherche lorsque searchOpen est vrai */
 .box.open + .searchContent {
     display: flex; /* Affiche le contenu de recherche */

@@ -59,27 +59,27 @@ export const SettingsPage = () => {
                         <ul className={styles.categories_settings}>
                             <li onClick={() => handleNavClick('MyProfile')}>
                                 <FontAwesomeIcon icon={faUser} className={styles.icon} />
-                                <h1>MY PROFILE</h1>
+                                <span>MY PROFILE</span> {/* Changez h1 en span */}
                             </li>
                             <li onClick={() => handleNavClick('MyMovies')}>
                                 <FontAwesomeIcon icon={faFilm} className={styles.icon} />
-                                <h1>MY MOVIES</h1>
+                                <span>MY MOVIES</span>
                             </li>
                             <li onClick={() => handleNavClick('MySeries')}>
                                 <FontAwesomeIcon icon={faTv} className={styles.icon} />
-                                <h1>MY SERIES</h1>
+                                <span>MY SERIES</span>
                             </li>
                             <li onClick={() => handleNavClick('MyCollections')}>
                                 <FontAwesomeIcon icon={faFolder} className={styles.icon} />
-                                <h1>MY COLLECTIONS</h1>
+                                <span>MY COLLECTIONS</span>
                             </li>
                             <li onClick={() => handleNavClick('MyPreferences')}>
                                 <FontAwesomeIcon icon={faCog} className={styles.icon} />
-                                <h1>MY PREFERENCES</h1>
+                                <span>MY PREFERENCES</span>
                             </li>
                             <li onClick={() => handleNavClick('RatedMovies')}>
                                 <FontAwesomeIcon icon={faStar} className={styles.icon} />
-                                <h1>RATED MOVIES</h1>
+                                <span>RATED MOVIES</span>
                             </li>
                         </ul>
                     </nav>

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NewReleasePage } from "./components/NewRelease/NewRelease";
 import { Movies } from "./components/Movies/Movies";
 import { TV_Shows } from "./components/TV_Shows/TV_Shows";
-import { Streaming } from "./components/Streaming/Streaming";
+import { Forum } from "./components/Forum/Forum";
 import { SignUpPage } from "./components/Account/SignUp";
 import { TrailersPage } from "./components/Trailers/Trailers";
 import { MPage } from "./components/MoviePage/MPage";
@@ -24,7 +24,7 @@ function App() {
                 <Route path="/New_Release" element={<NewReleasePage />} />
                 <Route path="/Movies" element={<Movies />} />
                 <Route path="/TV_Shows" element={<TV_Shows />} />
-                <Route path="/Streaming" element={<Streaming />} />
+                <Route path="/Forum" element={<Forum />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
                 <Route path="/Signup" element={<SignUpPage />} />
                 <Route path="/movies/:id" element={<MPage />} />
