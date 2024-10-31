@@ -4,6 +4,7 @@ import styles from './create_post.module.css';
 import { Navbar } from "../../Navbar/Navbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
 
 export const CreatePost = ({ onClose }) => {
     const [isDark] = useTheme();
@@ -16,6 +17,8 @@ export const CreatePost = ({ onClose }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedMediaList, setSelectedMediaList] = useState([]);
     const [error, setError] = useState("");
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchSearchResults = async () => {
@@ -42,16 +45,10 @@ export const CreatePost = ({ onClose }) => {
             return;
         }
 
-        // Vérifiez si la liste des films sélectionnés est vide
-        if (selectedMediaList.length === 0) {
-            setError("At least one movie/series must be selected!");
-            return;
-        }
-
         const postData = {
             title,
             description,
-            films: selectedMediaList.map(media => media.film_id), // Récupérer tous les film_id
+            films: selectedMediaList.map(media => media.id), // Ensure you're using the correct ID here
         };
 
         try {
@@ -65,14 +62,18 @@ export const CreatePost = ({ onClose }) => {
             });
 
             if (!response.ok) {
-                throw new Error(`Error creating post: ${response.statusText}`);
+                const errorData = await response.json();
+                setError(`Error: ${errorData.message || response.statusText}`);
+                throw new Error(`Error creating post: ${errorData.message || response.statusText}`);
             }
 
             const result = await response.json();
             console.log(result);
-            onClose();
+            onClose(); // Close the modal here
+            navigate("/forum"); // Redirect to Forum page
         } catch (error) {
             console.error("Error creating post:", error);
+            setError("Failed to create post."); // Handle the error
         }
     };
 
@@ -92,14 +93,14 @@ export const CreatePost = ({ onClose }) => {
     };
 
     const handleMediaSelect = (media) => {
-        if (!selectedMediaList.find(item => item.film_id === media.film_id)) {
+        if (!selectedMediaList.find(item => item.id === media.id)) { // Check using the correct ID
             setSelectedMediaList(prev => [...prev, media]);
         }
         closeSearchModal();
     };
 
     const removeMedia = (mediaId) => {
-        setSelectedMediaList(prev => prev.filter(media => media.film_id !== mediaId));
+        setSelectedMediaList(prev => prev.filter(media => media.id !== mediaId));
     };
 
     return (
@@ -154,7 +155,7 @@ export const CreatePost = ({ onClose }) => {
                             />
                             <div className={styles.searchResults}>
                                 {searchResults.map((item) => (
-                                    <div key={item.film_id} onClick={() => handleMediaSelect(item)} className={styles.mediaItem}>
+                                    <div key={item.id} onClick={() => handleMediaSelect(item)} className={styles.mediaItem}>
                                         {item.poster_path && (
                                             <img
                                                 src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
@@ -162,6 +163,7 @@ export const CreatePost = ({ onClose }) => {
                                                 className={styles.posterImage}
                                             />
                                         )}
+                                        <p>{item.title || item.name}</p>
                                     </div>
                                 ))}
                             </div>
@@ -170,19 +172,24 @@ export const CreatePost = ({ onClose }) => {
                 )}
                 <div className={styles.selectedMediaContainer}>
                     {selectedMediaList.map(media => (
-                        <div key={media.film_id} className={styles.selectedMediaItem}>
+                        <div key={media.id} className={styles.selectedMediaItem}>
                             <img
                                 src={`https://image.tmdb.org/t/p/w200${media.poster_path}`}
                                 alt={media.title || media.name}
                                 className={styles.selectedPosterImage}
                             />
                             <span>{media.title || media.name}</span>
-                            <button onClick={() => removeMedia(media.film_id)} className={styles.removeMediaButton}>Remove</button>
+                            <button onClick={() => removeMedia(media.id)} className={styles.removeMediaButton}>Remove</button>
                         </div>
                     ))}
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.createButton} onClick={handleSubmit}>Create</button>
+                    <button
+                        className={styles.createButton}
+                        onClick={handleSubmit} 
+                    >
+                        Create
+                    </button>
                 </div>
             </div>
         </div>

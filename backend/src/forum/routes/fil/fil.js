@@ -5,41 +5,23 @@ const { error } = require("../../../utils/Logger");
 
 module.exports = async function (client, app, bcrypt) {
     app.put("/add/fil", auth, async (req, res) => {
-        const { title, description, films } = req.body;
+        const { title, film_id, description } = req.body;
+        const filData = (await Fil.findOne({ title: title })).data;
 
         try {
-            // Vérifier si un Fil avec le même titre existe déjà
-            const existingFil = await Fil.findOne({ title: title });
-            if (existingFil) {
-                return res.status(409).json({ msg: "Ce titre de fil existe déjà" });
+            if (filData != undefined && title == filData.title) res.status(409).json({ "msg": "Ce titre de fil existe déjà" });
+            else {
+                if (filData == undefined && await Fil.save({ film_id: film_id, title: title, description: description, auteur: req.uuiduser }))
+                    res.status(200).json({ "msg": "Fil créé" });
+                else
+                    res.status(500).json({ "msg": "Internal server error" });
             }
-
-            // Création du Fil sans film_id initialement
-            const newFil = await Fil.create({
-                title: title,
-                description: description || "",
-                auteur: req.uuiduser
-            });
-
-            // Associer chaque film_id au Fil dans la table de jointure
-            if (films && Array.isArray(films)) {
-                for (const filmId of films) {
-                    await FilmFil.create({
-                        filId: newFil.id, // Associe le nouvel ID de Fil
-                        filmId: filmId
-                    });
-                }
-            }
-
-            res.status(200).json({ msg: "Fil créé avec succès", filId: newFil.id });
-        } catch (err) {
-            console.error(`Erreur lors de la création du fil: ${err}`);
-            res.status(500).json({ msg: "Erreur interne lors de la création du fil" });
+        }
+        catch (err) {
+            error(err);
+            throw new Error(`Error add fil: ${err}`);
         }
     });
-
-
-
 
     app.post("/update/fil", auth, async (req, res) => {
         const { fil_id, title, description } = req.body;
