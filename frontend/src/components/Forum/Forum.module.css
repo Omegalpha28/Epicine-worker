@@ -2,7 +2,7 @@
 .page {
   height: 100%;
   background-color: var(--color-app);
-  color: var(--text-color);
+  /* color: var(--text-color); */
 }
 
 /* Contenu principal (sous la navbar) */
@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--color-text);
+  /* color: var(--color-text); */
 }
 
 /* Conteneur pour la barre de recherche */
@@ -33,6 +33,10 @@
   justify-content: center;
   width: 100%;
   margin-top: 20px;
+}
+
+.searchContainer input {
+  color: var(--color-text);
 }
 
 .searchInput {
@@ -45,6 +49,7 @@
   margin-top: 5vh;
 }
 
+
 .searchButton {
   background: transparent;
   border: none;
@@ -54,6 +59,7 @@
   display: flex;
   align-items: center;
   margin-top: 5vh;
+  color: var(--color-text);
 }
 
 .createPostButton {
@@ -96,10 +102,15 @@
 .filCard h2 {
   margin: 0;
   font-size: 1.2em;
-  color: #333;
+  color: var(--color-text);
 }
 
 .filCard p {
   margin: 5px 0;
-  color: #666;
+  color: var(--color-text);
+}
+
+.filLink {
+  text-decoration: none;
+  color: var(--color-text);
 }

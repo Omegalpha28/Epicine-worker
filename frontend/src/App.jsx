@@ -12,6 +12,7 @@ import { TrailersPage } from "./components/Trailers/Trailers";
 import { MPage } from "./components/MoviePage/MPage";
 import { SPage } from "./components/SeriePage/SPage";
 import { SettingsPage } from "./components/Settings/settings";
+import { Fil } from "./components/Forum/Fil/Fil";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/Movies" element={<Movies />} />
                 <Route path="/TV_Shows" element={<TV_Shows />} />
                 <Route path="/Forum" element={<Forum />} />
+                <Route path="/Fil/:id" element={<Fil />} />
                 <Route path="/Trailers" element={<TrailersPage />} />
                 <Route path="/Signup" element={<SignUpPage />} />
                 <Route path="/movies/:id" element={<MPage />} />

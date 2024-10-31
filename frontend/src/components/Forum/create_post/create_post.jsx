@@ -45,10 +45,15 @@ export const CreatePost = ({ onClose }) => {
             return;
         }
 
+        if (selectedMediaList.length === 0) {
+            setError("You must select at least one movie or series!");
+            return;
+        }
+
         const postData = {
             title,
             description,
-            films: selectedMediaList.map(media => media.id), // Ensure you're using the correct ID here
+            film_id: selectedMediaList[0].id, // Sélectionner le premier élément de la liste
         };
 
         try {
@@ -69,11 +74,11 @@ export const CreatePost = ({ onClose }) => {
 
             const result = await response.json();
             console.log(result);
-            onClose(); // Close the modal here
-            navigate("/forum"); // Redirect to Forum page
+            onClose(); // Fermer la modal ici
+            navigate("/forum"); // Rediriger vers la page Forum
         } catch (error) {
             console.error("Error creating post:", error);
-            setError("Failed to create post."); // Handle the error
+            setError("Failed to create post."); // Gérer l'erreur
         }
     };
 
@@ -186,7 +191,7 @@ export const CreatePost = ({ onClose }) => {
                 <div className={styles.buttonContainer}>
                     <button
                         className={styles.createButton}
-                        onClick={handleSubmit} 
+                        onClick={handleSubmit}
                     >
                         Create
                     </button>

@@ -6,6 +6,7 @@ import { Join_Us } from "../Joinus/join_us";
 import { CreatePost } from './create_post/create_post';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const Forum = () => {
   const [isDark, setIsDark] = useTheme();
@@ -73,8 +74,10 @@ export const Forum = () => {
             {filData.length > 0 ? (
               filData.map((fil) => (
                 <div key={fil.id} className={styles.filCard}>
-                  <h2>{fil.title}</h2>
-                  <p>{fil.description}</p>
+                  <Link to={`/fil/${fil.id}`} className={styles.filLink}>
+                    <h2>{fil.title}</h2>
+                    <p>{fil.description}</p>
+                  </Link>
                 </div>
               ))
             ) : noResults ? (

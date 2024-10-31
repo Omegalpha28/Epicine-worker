@@ -1,0 +1,98 @@
+.postContainer {
+    background: var(--color-app);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.postHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.postTitle {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.reportButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    font-size: 1.2rem;
+}
+
+.postContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postDescription {
+    color: var(--color-text);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.posterImage {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 6px;
+    align-self: center;
+}
+
+.postActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+.editButton, .updateButton, .closeButton, .deleteButton {
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.editButton:hover, .updateButton:hover, .closeButton:hover, .deleteButton:hover {
+    background-color: var(--color-secondary);
+}
+
+.inputField, .textareaField {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-input-bg);
+}
+
+.textareaField {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
