@@ -26,7 +26,10 @@ services:
     networks:
       - backend_overlay
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      args:
+        - TYPE=development
     container_name: epicine_backend
     environment:
       DATABASE_URL: mysql://db_user:db_password@mysql:3306/db_name
@@ -43,7 +46,10 @@ services:
 
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - TYPE=development
     container_name: epicine_frontend
     environment:
       CHOKIDAR_USEPOLLING: "true"
