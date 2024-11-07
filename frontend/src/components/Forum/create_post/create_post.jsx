@@ -76,11 +76,13 @@ export const CreatePost = ({ onClose }) => {
             console.log(result);
             onClose(); // Fermer la modal ici
             navigate("/forum"); // Rediriger vers la page Forum
+            window.location.reload(); // Recharger la page
         } catch (error) {
             console.error("Error creating post:", error);
             setError("Failed to create post."); // Gérer l'erreur
         }
     };
+
 
     const handleClose = () => {
         setClosing(true);
@@ -168,7 +170,7 @@ export const CreatePost = ({ onClose }) => {
                                                 className={styles.posterImage}
                                             />
                                         )}
-                                        <p>{item.title || item.name}</p>
+                                        {/* <p>{item.title || item.name}</p> */}
                                     </div>
                                 ))}
                             </div>

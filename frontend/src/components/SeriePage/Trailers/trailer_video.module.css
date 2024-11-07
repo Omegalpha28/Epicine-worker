@@ -1,6 +1,7 @@
 @import '../../animations/animation.css';
 
 .box {
+    margin-top: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +10,7 @@
     width: 100%;
     height: auto;
     max-width: 900px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 

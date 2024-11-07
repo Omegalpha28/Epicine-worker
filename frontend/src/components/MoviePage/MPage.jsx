@@ -19,7 +19,6 @@ export const MPage = () => {
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
-        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         <Navbar setSearchQuery={setSearchQuery} searchOpen={searchOpen} setSearchOpen={setSearchOpen} />
         {searchOpen && searchQuery && <Search_Content query={searchQuery} />}
 

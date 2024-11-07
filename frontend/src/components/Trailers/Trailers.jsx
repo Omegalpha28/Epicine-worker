@@ -12,7 +12,6 @@ export const TrailersPage = () => {
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App} >
-        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         <Navbar />
       <div className={styles.inside_box}>
           <h1>Trailers</h1>

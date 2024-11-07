@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Fil.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faEdit, faTrash, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -14,35 +14,46 @@ export const Fil = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
-  const [reply, setReply] = useState(""); // État pour la réponse
-  const [replies, setReplies] = useState([]); // État pour les réponses
+  const [reply, setReply] = useState("");
+  const [replies, setReplies] = useState([]);
   const [isDark] = useTheme();
-
-  // Récupérer le token
-  const token = localStorage.getItem("token"); // Assure-toi que le token est bien stocké ici
+  const [user, setUser] = useState(null); // Pour récupérer l'utilisateur actuel
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPost();
     fetchReplies();
-  }, [postIdNumber]); // Utilisez postIdNumber ici
+    fetchUser();
+  }, [postIdNumber]);
 
+  // Fonction pour récupérer les données du post
   const fetchPost = async () => {
     try {
-      const response = await fetch(`http://localhost:5555/api/fil/${postIdNumber}`); // Utilisez postIdNumber
+      const response = await fetch(`http://localhost:5555/api/fil/${postId}`);
       if (!response.ok) throw new Error("Failed to fetch post data.");
-      const data = await response.json();
-      setPost(data);
-      setTitle(data.title);
-      setDescription(data.description);
+
+      const result = await response.json();
+      if (result && result.data) {
+        const postData = result.data;
+        if ('title' in postData && 'description' in postData) {
+          setPost(postData);
+          setTitle(postData.title);
+          setDescription(postData.description);
+        } else {
+          setError("Post data is incomplete.");
+        }
+      } else {
+        setError("Post data is incomplete.");
+      }
     } catch (err) {
-      console.error("Error fetching post:", err);
       setError("Failed to load post.");
     }
   };
 
+  // Fonction pour récupérer les réponses au post
   const fetchReplies = async () => {
     try {
-      const response = await fetch(`http://localhost:5555/get/message?id_fil=${postIdNumber}`, {
+      const response = await fetch(`http://localhost:5555/get/public/message?id_fil=${postIdNumber}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -50,73 +61,37 @@ export const Fil = () => {
         },
       });
       if (!response.ok) throw new Error("Failed to fetch replies.");
+
       const data = await response.json();
-      setReplies(data);
+      if (Array.isArray(data)) {
+        setReplies(data);
+      } else {
+        setError("Unexpected reply format.");
+      }
     } catch (err) {
-      console.error("Error fetching replies:", err);
       setError("Failed to load replies.");
     }
   };
 
-  const handleUpdate = async () => {
+  // Fonction pour récupérer l'utilisateur connecté
+  const fetchUser = async () => {
     try {
-      const response = await fetch(`http://localhost:5555/update/fil/${postIdNumber}`, {
-        method: "PUT",
+      const response = await fetch("http://localhost:5555/user", {
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({ title, description }),
       });
-      const result = await response.json();
-      if (response.ok) {
-        setIsEditing(false);
-        fetchPost();
-      } else {
-        setError(result.msg || "Update failed");
-      }
+      if (!response.ok) throw new Error("Failed to fetch user data.");
+
+      const data = await response.json();
+      setUser(data);  // Sauvegarde les informations de l'utilisateur
     } catch (err) {
-      console.error("Error updating post:", err);
-      setError("Update failed.");
+      setError("Failed to load user.");
     }
   };
 
-  const handleClose = async () => {
-    try {
-      const response = await fetch(`http://localhost:5555/close/fil/${postIdNumber}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        },
-      });
-      const result = await response.json();
-      if (response.ok) fetchPost();
-      else setError(result.msg || "Failed to close fil");
-    } catch (err) {
-      console.error("Error closing fil:", err);
-      setError("Failed to close fil.");
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(`http://localhost:5555/remove/fil/${postIdNumber}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${localStorage.getItem("token")}`
-        },
-      });
-      const result = await response.json();
-      if (response.ok) window.location.reload();
-      else setError(result.msg || "Failed to delete fil");
-    } catch (err) {
-      console.error("Error deleting fil:", err);
-      setError("Failed to delete fil.");
-    }
-  };
-
+  // Fonction pour soumettre une réponse
   const handleReplySubmit = async () => {
     try {
       const response = await fetch("http://localhost:5555/add/message", {
@@ -125,20 +100,83 @@ export const Fil = () => {
           "Content-Type": "application/json",
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify({ text: reply, id_fil: postIdNumber }), // Utilisez postIdNumber
+        body: JSON.stringify({ text: reply, id_fil: postIdNumber }),
       });
-      const result = await response.json();
       if (response.ok) {
-        setReply(""); // Réinitialiser le champ de réponse
-        fetchReplies(); // Recharger les réponses
+        setReply("");
+        fetchReplies();
       } else {
+        const result = await response.json();
         setError(result.msg || "Failed to submit reply");
       }
     } catch (err) {
-      console.error("Error submitting reply:", err);
       setError("Failed to submit reply.");
     }
   };
+
+  // Fonction pour supprimer le post
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:5555/remove/fil/${postIdNumber}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` },
+      });
+      if (!response.ok) throw new Error("Failed to delete post.");
+      navigate('/Forum');
+    } catch (err) {
+      setError("Failed to delete post.");
+    }
+  };
+
+  // Fonction pour mettre à jour le post
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`http://localhost:5555/update/fil/${postIdNumber}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ title, description }),
+      });
+      if (!response.ok) throw new Error("Failed to update post.");
+      setIsEditing(false);
+      fetchPost();
+    } catch (err) {
+      setError("Failed to update post.");
+    }
+  };
+
+  // Fonction pour signaler le post
+  const handleReport = async () => {
+    try {
+      const response = await fetch(`http://localhost:5555/report/fil/${postIdNumber}`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` },
+      });
+      if (!response.ok) throw new Error("Failed to report post.");
+      setPost({ ...post, report: true });
+    } catch (err) {
+      setError("Failed to report post.");
+    }
+  };
+
+  // Fonction pour fermer le post
+  const handleClose = async () => {
+    try {
+      const response = await fetch(`http://localhost:5555/close/fil/${postIdNumber}`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` },
+      });
+      if (!response.ok) throw new Error("Failed to close post.");
+      setPost({ ...post, open: false });
+    } catch (err) {
+      setError("Failed to close post.");
+    }
+  };
+
+  // Vérifier si l'utilisateur est l'auteur du post
+  const canEditOrDelete = user && user.uuid === post?.auteur;
 
   if (error) return <div className={styles.error}>{error}</div>;
   if (!post) return <div className={styles.loading}>Loading...</div>;
@@ -148,62 +186,39 @@ export const Fil = () => {
       <Navbar />
       <div className={styles.postContainer}>
         <div className={styles.postHeader}>
-          <h2 className={styles.postTitle}>{post.title}</h2>
-          <div className={styles.postActions}>
-            <button className={styles.reportButton}>
-              <FontAwesomeIcon icon={faFlag} />
-            </button>
-            {isEditing ? (
-              <button onClick={handleUpdate} className={styles.updateButton}>Update</button>
-            ) : (
+          <h2 className={styles.postTitle}>{title || "Untitled"}</h2>
+          <p className={styles.postDescription}>{description || "No description available."}</p>
+        </div>
+
+        <div className={styles.postActions}>
+          <button onClick={handleReport} className={styles.reportButton}>
+            <FontAwesomeIcon icon={faFlag} /> Report
+          </button>
+
+          {/* Afficher ces boutons seulement si l'utilisateur est l'auteur du post */}
+          {canEditOrDelete && (
+            <>
               <button onClick={() => setIsEditing(true)} className={styles.editButton}>
                 <FontAwesomeIcon icon={faEdit} /> Edit
               </button>
-            )}
-            <button onClick={handleClose} className={styles.closeButton}>
-              <FontAwesomeIcon icon={faLock} /> Close
-            </button>
-            <button onClick={handleDelete} className={styles.deleteButton}>
-              <FontAwesomeIcon icon={faTrash} /> Delete
-            </button>
-          </div>
-        </div>
-
-        <div className={styles.postContent}>
-          {isEditing ? (
-            <div>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className={styles.inputField}
-              />
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className={styles.textareaField}
-              />
-            </div>
-          ) : (
-            <>
-              <p className={styles.postDescription}>{post.description}</p>
-              {post.poster_path && (
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${post.poster_path}`}
-                  alt={post.title}
-                  className={styles.posterImage}
-                />
-              )}
+              <button onClick={handleDelete} className={styles.deleteButton}>
+                <FontAwesomeIcon icon={faTrash} /> Delete
+              </button>
             </>
           )}
+
+          <button onClick={handleClose} className={styles.closeButton}>
+            <FontAwesomeIcon icon={faLock} /> Close
+          </button>
         </div>
 
         <div className={styles.repliesSection}>
           <h3>Replies</h3>
           {replies.length > 0 ? (
             replies.map((reply) => (
-              <div key={reply.id} className={styles.reply}>
-                <p>{reply.text}</p>
+              <div key={reply.id} className={styles.replyBubble}>
+                <div className={styles.replyAuthor}>{reply.auteur}: </div>
+                <div className={styles.replyText}>{reply.text}</div>
               </div>
             ))
           ) : (
@@ -212,15 +227,14 @@ export const Fil = () => {
         </div>
 
         <div className={styles.replySection}>
-          <h3>Reply to this post</h3>
           <textarea
             value={reply}
             onChange={(e) => setReply(e.target.value)}
             className={styles.replyInput}
             placeholder="Write your reply here..."
           />
-          <button onClick={handleReplySubmit} className={styles.replyButton}>Submit Reply</button>
         </div>
+        <button onClick={handleReplySubmit} className={styles.replyButton}>Submit Reply</button>
       </div>
     </div>
   );

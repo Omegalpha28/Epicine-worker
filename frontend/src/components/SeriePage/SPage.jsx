@@ -16,7 +16,6 @@ export const SPage = () => {
   return (
     <div className={styles.page} data-theme={isDark ? "dark" : "light"}>
       <div className={app_styles.App}>
-        <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         <Navbar />
         <WallpaperSerie serieId={id} />
         <div className={styles.box}>

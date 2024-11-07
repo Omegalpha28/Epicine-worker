@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importer le hook useNavigate
 import styles from "./MyProfile.module.css";
 
 export const MyProfile = () => {
@@ -13,6 +14,8 @@ export const MyProfile = () => {
         password: "",
     });
 
+    const navigate = useNavigate(); // Utiliser le hook useNavigate pour la redirection
+
     const reformatDate = (date) => {
         if (!date) return "";
         const [day, month, year] = date.split("-");
@@ -20,17 +23,23 @@ export const MyProfile = () => {
     };
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            navigate("/login", { replace: true }); // Redirige si pas de token
+            return;
+        }
+
+        // Fetch des données utilisateur si un token est trouvé
         const fetchUserData = async () => {
             try {
                 const response = await fetch("http://localhost:5555/user", {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 });
 
-                if (!response.ok)
-                    throw new Error("Error fetching user information");
+                if (!response.ok) throw new Error("Error fetching user information");
 
                 const data = await response.json();
 
@@ -48,7 +57,7 @@ export const MyProfile = () => {
         };
 
         fetchUserData();
-    }, []);
+    }, [navigate]);
 
     const handleInputChange = (field, value) => {
         setUser((prevUser) => ({ ...prevUser, [field]: value }));
@@ -74,6 +83,15 @@ export const MyProfile = () => {
         } catch (error) {
             console.error("Error:", error);
         }
+    };
+
+    const handleLogout = () => {
+        // Supprimer le token du localStorage pour déconnecter l'utilisateur
+        localStorage.removeItem("token");
+        console.log("User logged out");
+
+        // Rediriger immédiatement vers la page de login
+        navigate("/login", { replace: true });
     };
 
     return (
@@ -112,7 +130,6 @@ export const MyProfile = () => {
                     />
                 </div>
 
-
                 <div className={styles.inputGroup}>
                     <label>Biography</label>
                     <textarea
@@ -128,6 +145,15 @@ export const MyProfile = () => {
                     className={styles.SaveButtonAll}
                 >
                     Save
+                </button>
+
+                {/* Logout button */}
+                <button
+                    type="button"
+                    onClick={handleLogout}
+                    className={styles.LogoutButton}
+                >
+                    Logout
                 </button>
             </div>
         </div>

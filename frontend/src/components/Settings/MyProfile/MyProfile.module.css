@@ -117,3 +117,21 @@
 .inputWithButton button:hover {
     background-color: var(--color-button-hover); /* Couleur au survol */
 }
+
+.LogoutButton {
+    background-color: var(--color-primary);
+    font-size: 0.8em;
+    cursor: pointer;
+    color: black;
+    border: none;
+    margin-top: 2vh;
+    border-radius: 5px;
+    padding: 4px 40px; /* Ajoutez du padding pour un meilleur aspect */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Ajoutez une transition pour l'animation */
+    z-index: 3;
+}
+
+/* Effet de survol pour le bouton de déconnexion */
+.LogoutButton:hover {
+    background-color: var(--color-primary); /* Couleur au survol */
+}

@@ -13,7 +13,7 @@ export const Forum = () => {
   const [filData, setFilData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [noResults, setNoResults] = useState(false);
-  const [showModal, setShowModal] = useState(false); // État pour afficher le modal
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     fetchPopularFilms();
