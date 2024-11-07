@@ -1,4 +1,4 @@
-const { getFavorite, removeFavorite, addFavorite, getFavoriteUnique } = require("../../../../core/data/config.function");
+const { getFavorite, removeFavorite, addFavorite, getFavoriteUnique } = require("../../../core/data/config.function");
 const auth = require("../../middleware/auth");
 
 module.exports = async function(client, app, bcrypt) {

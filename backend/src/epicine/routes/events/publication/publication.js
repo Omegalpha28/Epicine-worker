@@ -1,4 +1,4 @@
-const { getUser } = require("../../../../../core/data/config.function");
+const { getUser } = require("../../../../core/data/config.function");
 const { Publication } = require("../../../../../core/data/models");
 const auth = require("../../../middleware/auth");
 

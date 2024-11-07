@@ -1,4 +1,4 @@
-const { getFil, updateFil } = require("../../../../../core/data/config.function");
+const { getFil, updateFil } = require("../../../../core/data/config.function");
 
 module.exports = async function(client, app, bcrypt) {
     app.post("/report/fil", async (req, res) => {

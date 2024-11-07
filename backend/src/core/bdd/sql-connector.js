@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const { error, logs, sql } = require("../../src/utils/Logger");
+const { error, logs, sql } = require("../../utils/Logger");
 let client = {};
 
 const sqlType = {

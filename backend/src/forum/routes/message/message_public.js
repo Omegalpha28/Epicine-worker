@@ -1,4 +1,4 @@
-const { getMessage } = require("../../../../core/data/config.function");
+const { getMessage } = require("../../../core/data/config.function");
 
 module.exports = async function (client, app, bcrypt) {
     app.get("/get/public/message", async (req, res) => {

@@ -1,4 +1,4 @@
-const { getMessage, updateMessage } = require("../../../../../core/data/config.function");
+const { getMessage, updateMessage } = require("../../../../core/data/config.function");
 
 module.exports = async function(client, app, bcrypt) {
     app.post("/report/message", async (req, res) => {

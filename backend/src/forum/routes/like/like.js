@@ -1,4 +1,4 @@
-const { getLikeMessage, addLikeMessage, removeLikeMessage } = require("../../../../core/data/config.function");
+const { getLikeMessage, addLikeMessage, removeLikeMessage } = require("../../../core/data/config.function");
 const auth = require("../../../epicine/middleware/auth");
 
 module.exports = async function(client, app, bcrypt) {

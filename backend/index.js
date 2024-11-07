@@ -6,7 +6,7 @@ const bodyparser = require("body-parser");
 const dotenv = require("dotenv");
 const bulkloader = require("@mlagie/bulkloader");
 const Logger = require("./src/utils/Logger");
-const { connect, client, logout } = require("./core/bdd/sql-connector");
+const { connect, client, logout } = require("./src/core/bdd/sql-connector");
 const port = 5555;
 dotenv.config();
 const debug = process.env.DEBUG
@@ -25,7 +25,7 @@ async function main() {
         Logger.error(error);
         process.exit();
     })
-    require("./core/data/functions")(client);
+    require("./src/core/data/functions")(client);
 }
 
 main().then(() => {

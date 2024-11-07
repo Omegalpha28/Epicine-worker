@@ -1,5 +1,5 @@
-const { removeAllFavorite, removeAllWatchList } = require("../../../../core/data/config.function");
-const { User, Favorite, Watchlist, Likes, Fil, LikesMessage, Message } = require("../../../../core/data/models");
+const { removeAllFavorite, removeAllWatchList } = require("../../../core/data/config.function");
+const { User, Favorite, Watchlist, Likes, Fil, LikesMessage, Message } = require("../../../core/data/models");
 const { validUserArgs } = require("../../../utils/valid_args");
 const auth = require("../../middleware/auth");
 const { checkAccountMail, register, getAccountMail, checkMdp } = require("../user/user.query");

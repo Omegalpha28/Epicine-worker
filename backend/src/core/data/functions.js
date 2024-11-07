@@ -1,4 +1,4 @@
-const { error } = require("../../src/utils/Logger");
+const { error } = require("../../utils/Logger");
 const { User, Favorite, Watchlist, Fil, Likes, Message, LikesMessage, Publication } = require("./models");
 
 
