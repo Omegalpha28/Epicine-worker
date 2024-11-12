@@ -20,6 +20,18 @@ module.exports = async function(client, app) {
             res.status(500).json({ "msg": "Erreur serveur" });
         }
     });
+    app.get("/user/:uuid", async (req, res) => {
+        try {
+            const userData = (await getUser(client, { uuid: req.params.uuid })).data;
+            if (userData != undefined) {
+                res.status(200).json({ "name" : userData.name});
+            }
+        }
+        catch (err) {
+            console.error("Erreur lors de la récupération des informations utilisateur :", err);
+            res.status(500).json({ "msg": "Erreur serveur" });
+        }
+    });
 
     // Mise à jour des informations utilisateur
     app.put("/update/user", auth, async (req, res) => {
