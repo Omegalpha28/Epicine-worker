@@ -11,6 +11,7 @@
 }
 
 .postContainer {
+    margin-top: 5vh;
     width: 100%;
     max-width: 800px; /* Réduit un peu la largeur max pour mieux centrer */
     background: transparent;

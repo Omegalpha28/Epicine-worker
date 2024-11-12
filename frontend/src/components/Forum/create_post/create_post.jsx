@@ -112,7 +112,7 @@ export const CreatePost = ({ onClose }) => {
 
     return (
         <div className={`${styles.modal} ${closing ? styles.close : ''}`} data-theme={isDark ? "dark" : "light"}>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className={`${styles.inside_box} ${closing ? styles.close : ''}`}>
                 <button className={styles.closeButton} onClick={handleClose}>
                     <FontAwesomeIcon icon={faTimes} />

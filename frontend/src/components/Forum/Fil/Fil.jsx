@@ -64,7 +64,20 @@ export const Fil = () => {
 
       const data = await response.json();
       if (Array.isArray(data)) {
-        setReplies(data);
+        const repliesWithAuthors = await Promise.all(data.map(async (reply) => {
+          try {
+            // Récupère le nom de l'auteur avec son UUID
+            const authorResponse = await fetch(`http://localhost:5555/user/${reply.auteur}`);
+            if (authorResponse.ok) {
+              const authorData = await authorResponse.json();
+              return { ...reply, auteur: authorData.name }; // Remplace l'UUID par le nom
+            }
+          } catch (err) {
+            console.error("Failed to fetch author name:", err);
+          }
+          return reply; // En cas d'erreur, garde l'UUID original
+        }));
+        setReplies(repliesWithAuthors);
       } else {
         setError("Unexpected reply format.");
       }
@@ -217,7 +230,7 @@ export const Fil = () => {
           {replies.length > 0 ? (
             replies.map((reply) => (
               <div key={reply.id} className={styles.replyBubble}>
-                <div className={styles.replyAuthor}>{reply.auteur}: </div>
+                <div className={styles.replyAuthor}>{reply.auteur} </div>
                 <div className={styles.replyText}>{reply.text}</div>
               </div>
             ))
