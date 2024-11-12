@@ -1,4 +1,4 @@
-const { Reactions, Publication } = require("../../../../../core/data/models");
+const { Reactions, Publication } = require("../../../../core/data/models");
 const { logs } = require("../../../../utils/Logger");
 const auth = require("../../../middleware/auth")
 

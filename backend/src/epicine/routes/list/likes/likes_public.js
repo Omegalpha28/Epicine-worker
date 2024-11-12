@@ -1,4 +1,4 @@
-const { Likes } = require("../../../../../core/data/models");
+const { Likes } = require("../../../../core/data/models");
 
 module.exports = async function (client, app, bcrypt) {
     app.get("/get/public/like", async (req, res) => {

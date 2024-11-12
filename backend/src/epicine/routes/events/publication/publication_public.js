@@ -1,4 +1,4 @@
-const { Publication } = require("../../../../../core/data/models");
+const { Publication } = require("../../../../core/data/models");
 
 module.exports = async function(client, app, bcrypt) {
     app.get("/get/public/publication", async (req, res) => {

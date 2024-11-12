@@ -1,4 +1,4 @@
-const { Fil } = require("../../../../core/data/models");
+const { Fil } = require("../../../core/data/models");
 
 module.exports = async function (client, app, bcrypt) {
     app.get("/get/fil/popular", async (req, res) => {

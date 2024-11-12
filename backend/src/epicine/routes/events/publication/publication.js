@@ -1,5 +1,5 @@
 const { getUser } = require("../../../../core/data/config.function");
-const { Publication } = require("../../../../../core/data/models");
+const { Publication } = require("../../../../core/data/models");
 const auth = require("../../../middleware/auth");
 
 module.exports = async function(client, app, bcrypt) {

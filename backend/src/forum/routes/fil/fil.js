@@ -1,5 +1,5 @@
 const { updateFil } = require("../../../core/data/config.function");
-const { Fil } = require("../../../../core/data/models");
+const { Fil } = require("../../../core/data/models");
 const auth = require("../../../epicine/middleware/auth");
 const { error } = require("../../../utils/Logger");
 
