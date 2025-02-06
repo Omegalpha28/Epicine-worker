@@ -4,11 +4,11 @@ import styles from "./MyProfile.module.css";
 
 export const MyProfile = () => {
     const [user, setUser] = useState({
-        username: "",
+        name: "",
         email: "",
-        phone: "",
+        telephone: "",
         birthday: "",
-        biography: "",
+        bio: "",
         avatar: "1c9b0ad4-89ac-4324-94ad-a9a60ab77b9a",
         banner: "",
         password: "",
@@ -44,9 +44,9 @@ export const MyProfile = () => {
                 const data = await response.json();
 
                 setUser({
-                    username: data.name,
+                    name: data.name,
                     email: data.email,
-                    phone: data.telephone,
+                    telephone: data.telephone,
                     birthday: reformatDate(data.birthday),
                     avatar: data.avatar,
                     banner: data.banner,
@@ -101,7 +101,7 @@ export const MyProfile = () => {
                 style={{ backgroundImage: user.banner ? `url(${user.banner})` : "var(--nav-bar)" }}
             >
                 <img src={`/user/${user.avatar}`} alt="Avatar" className={styles.Avatar} />
-                <h1 className={styles.username}>{user.username}</h1>
+                <h1 className={styles.name}>{user.name}</h1>
             </div>
 
             <div className={styles.InputContainer}>
@@ -114,8 +114,8 @@ export const MyProfile = () => {
                     <label>Phone</label>
                     <input
                         type="text"
-                        value={user.phone || ""}
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        value={user.telephone || ""}
+                        onChange={(e) => handleInputChange("telephone", e.target.value)}
                         placeholder="Not provided"
                     />
                 </div>
@@ -133,8 +133,8 @@ export const MyProfile = () => {
                 <div className={styles.inputGroup}>
                     <label>Biography</label>
                     <textarea
-                        value={user.biography || ""}
-                        onChange={(e) => handleInputChange("biography", e.target.value)}
+                        value={user.bio || ""}
+                        onChange={(e) => handleInputChange("bio", e.target.value)}
                     />
                 </div>
 

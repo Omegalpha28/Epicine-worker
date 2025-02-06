@@ -1,4 +1,4 @@
-ARG TYPE=development
+ ARG TYPE=development
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
